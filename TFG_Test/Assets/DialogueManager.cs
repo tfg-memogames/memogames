@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+
 [RequireComponent(typeof(Text))]
 public class DialogueManager : MonoBehaviour {
 
@@ -16,7 +17,7 @@ public class DialogueManager : MonoBehaviour {
 	private float TextSpeedMultiplier = 1.0f;
 
 	public KeyCode DialogueInput = KeyCode.Return;
-	public string[] Dialogue;
+	private string[] Dialogue;
 	public GameObject ContinueIcon;
 
 	private GameObject _dialogueBox;
@@ -31,6 +32,20 @@ public class DialogueManager : MonoBehaviour {
 		_dialogueBox.SetActive (true);
 		textComponent.text = "";
 		HideIcons ();
+
+		//Read files incomplete, miss keep the number of items
+		string text = System.IO.File.ReadAllText("myfile.txt");
+
+		Dialogue= new string[10];
+		int i = 0;
+		Dialogue [0] = " ";
+		foreach (char t in text)
+			if (t == '\n') {
+				i++;
+				Dialogue [i] = "";
+			}else
+				Dialogue [i] += t;	
+
 	}
 
 
