@@ -1,8 +1,6 @@
 # memogames
 
-Propuesta de juego 
-
-“Juego de recuerdo y localización de objetos”
+Juego de recuerdo y localización de objetos
 
 Dirigido a personas mayores sanas con o sin quejas subjetivas de memoria.
 
