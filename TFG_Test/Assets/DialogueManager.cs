@@ -35,6 +35,7 @@ public class DialogueManager : MonoBehaviour {
 
     //PRUEBAS
     public InputHandler _input;
+    private OptionsController _optionC;
 
     //Línea actual del diálogo.
     //Es variable global para poder ser modificada por InputHandler.
@@ -43,28 +44,37 @@ public class DialogueManager : MonoBehaviour {
     //Variables del diálogo
     private string _name = "name";
     private int _age = 0;
+    private string _destination = "Destino";
+    private string _flightDate = "Date";
+    private string _suitCase = "suit";
 
 
     //Botones del diálogo.
     public Button _button1;
     public Button _button2;
 
+    //Archivos .txt
+    private const string FIRST_DIAL = "first_dialogue.txt";
+    private const string SECOND_DIAL = "second_dialogue.txt";
+
 
     // Use this for initialization
     void Start () {
 		_dialogueBox = GameObject.Find("Dialogue Box");
-        //_button1 = GetComponent<Button>();
-        //_button2 = GameObject.Find("Button 2").GetComponent<Button>();
-        
-        
 
+        _optionC = GameObject.FindObjectOfType<OptionsController>();
 
-        _dialogueBox.SetActive (true);
-		textComponent.text = "";
-		HideIcons ();
+        this.readFile(FIRST_DIAL);
+    }
 
-		//Read files incomplete, miss keep the number of items
-		string text = System.IO.File.ReadAllText("myfile.txt");
+    private void readFile(string textName)
+    {
+        _dialogueBox.SetActive(true);
+        textComponent.text = "";
+        HideIcons();
+
+        //Read files incomplete, miss keep the number of items
+        string text = System.IO.File.ReadAllText(textName);
         //Entrada
         //En "text" se almacena todo el contenido del archivo
         _dialogue = text.Split('\n');
@@ -79,6 +89,12 @@ public class DialogueManager : MonoBehaviour {
 				_isDialoguePlaying = true;
 				StartCoroutine(StartDialogue());
 		}
+
+        //Comienza el segundo diálogo. (De momento comienza al pulsar la letra T)
+        else if(Input.GetKeyDown(KeyCode.T) && !_isDialoguePlaying)
+        {
+            readFile(SECOND_DIAL);
+        }
 	}
 
 
@@ -92,26 +108,26 @@ public class DialogueManager : MonoBehaviour {
 
 		while (_currentDialogueIndex < length || !_isStringBeingRevealed) {
 			if (!_isStringBeingRevealed && !waitingEntry) {
-                string[] line = _dialogue[_currentDialogueIndex].Split(' ');
+                string l = _dialogue[_currentDialogueIndex];
+                //string[] line = _dialogue[_currentDialogueIndex].Split(' ');
                 //El símbolo # marca que se debe pedir datos al usuario.
-                if (line[0].Contains("#"))
+                if (l.StartsWith("#"))
                 {
                     waitingEntry = true;
                     this._input.interactiveOn();
                     
                 }
-                else if(line[0].Contains("@"))
+                //El símbolo @ marca que se deben mostrar opciones al usuario.
+                else if (l.StartsWith("@"))
                 {
-                    //Debug.Log(line[1]);
-                    int numberButtons = 0;
-                    int.TryParse(line[1], out numberButtons);
-                    buttonActivation(numberButtons, line);
+                    //Avisa a OptionsController y le pasa el contenido de la línea.
+                    _optionC.prepareOptions(l);
                     waitingEntry = true;
                 }
                 else
                 {
                     _isStringBeingRevealed = true;
-                    StartCoroutine(ShowLine(line));
+                    StartCoroutine(ShowLine(l));
                     _currentDialogueIndex++;
 
                     if (_currentDialogueIndex <= length)
@@ -133,40 +149,11 @@ public class DialogueManager : MonoBehaviour {
 		_isDialoguePlaying = false;
 	}
 
-    
-    private void buttonActivation(int number, string[] buttonNames)
-    {
-        //En las dos primeras posiciones de buttonNames viene basura.
-        switch(number)
-        {
-            case 1:
-                if(buttonNames[2] != null)
-                    activeOneButton(buttonNames[2]);
-                break;
-            case 2:
-                if (buttonNames[2] != null && buttonNames[3] != null)
-                    activeTwoButton(buttonNames[2], buttonNames[3]);
-                break;
-            case 3:
-                if(buttonNames[2] != null && buttonNames[3] != null && buttonNames[4] != null)
-                    activeThreeButton(buttonNames[2], buttonNames[3], buttonNames[4]);
-                break;
-            case 4:
-                if(buttonNames[2] != null && buttonNames[3] != null & buttonNames[4] != null && buttonNames[5] != null)
-                    activeFourButton(buttonNames[2], buttonNames[3], buttonNames[4], buttonNames[5]);
-                break;
 
-        }
-
-    }
-
-    
-
-
-
-    private IEnumerator ShowLine(string[] line) {
+    private IEnumerator ShowLine(string l) {
         //Length: Longitud de la línea
-		
+
+        string[] line = l.Split(' ');
 		int wordCounter = 0;
 
 		textComponent.text = "";
@@ -178,6 +165,8 @@ public class DialogueManager : MonoBehaviour {
         while (wordCounter < length) {
             if (line[wordCounter].Contains("&name")) 
                 line[wordCounter] = _name;
+            else if(line[wordCounter].Contains("&destination"))
+                line[wordCounter] = _destination;
             textComponent.text += line[wordCounter];
             textComponent.text += " ";
             wordCounter++;
@@ -225,48 +214,31 @@ public class DialogueManager : MonoBehaviour {
         set { _age = value; }
     }
 
+    public string destination
+    {
+        get { return this._destination; }
+        set { _destination = value; }
+    }
+
+    public string flightDate
+    {
+        get { return this._flightDate; }
+        set { _flightDate = value; }
+    }
+
+
     public int currentDialogueIndex
     {
         get { return this._currentDialogueIndex; }
         set { _currentDialogueIndex = value; }
     }
 
-
-    private void activeOneButton(string butName)
+    public string suitCase
     {
-        _button1.gameObject.SetActive(true);
-        _button1.name = butName;
+        get { return this._suitCase; }
+        set { _suitCase = value; }
     }
 
-    private void activeTwoButton(string butName1, string butName2)
-    {
-        _button1.gameObject.SetActive(true);
-        _button1.GetComponentInChildren<Text>().text = butName1;
-        //_button1.GetComponent<Text>() = butName1;
-        _button2.gameObject.SetActive(true);
-        //butName2.Substring('\r');
-        _button2.GetComponentInChildren<Text>().text = butName2;
-        //_button2.name = butName2;
-        
 
-    }
-    
-    private void activeThreeButton(string butName1, string butName2, string butName3)
-    {
-        /* _button1.SetActive(true);
-         _button1.name = butName1;
-         _button2.SetActive(true);
-         _button2.name = butName2;
-         */
-     }
-     private void activeFourButton(string butName1, string butName2, string butName3, string butName4)
-     {
-        /*
-         _button1.SetActive(true);
-         _button1.name = butName1;
-         _button2.SetActive(true);
-         _button2.name = butName2;
-        */
-    }
 
 }
