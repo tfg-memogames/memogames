@@ -78,6 +78,7 @@ public class InputHandler : MonoBehaviour {
                     _dialog.currentDialogueIndex = AGE_INDEX;
                 }
                 break;
+            
         }
 
 
