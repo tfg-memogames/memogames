@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/espaguetti.unity
+- path: Assets/Scenes/Spaguetti.unity
   isLoaded: 1
   isActive: 1
