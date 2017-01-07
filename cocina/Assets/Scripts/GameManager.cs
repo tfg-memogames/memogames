@@ -12,38 +12,29 @@ public class GameManager : MonoBehaviour {
 		public string _sentence;
 	}
 
-	[System.Serializable]
-	public class Ingredient {
-		public Sprite _icon;
-		public string _name;
-
-	}
-	[System.Serializable]
-	public class Utensil {
-		public Sprite _icon;
-		public string _name;
-		public List<Ingredient> _ingredients;
-	}
-
-	[System.Serializable]
-	public class Tool {
-		public Sprite _icon;
-		public string _name;
-		public List<Utensil> _utensils;
-	}
-
 	#endregion
 
 	#region attributes
 
 	private List<Step> _recipe;
 
+	private Object[] _ingredients;
+
+	private Object[] _utensils;
+
+	private Object[] _tools;
+
 
 	#endregion
 
 	// Use this for initialization
 	void Start () {
-		
+		_recipe=new List<Step>();
+
+		_ingredients=Resources.LoadAll("Ingredients");
+		_utensils=Resources.LoadAll("Utensils");
+		_tools=Resources.LoadAll("Tools");
+
 	}
 	
 	// Update is called once per frame
