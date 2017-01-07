@@ -22,6 +22,8 @@ public class DropObject : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
 
 		if (d != null) {
 			d.returnPoint = eventData.position;
+			eventData.pointerDrag.gameObject.transform.SetAsLastSibling ();
+			d.dropDone = true;
 		}
 	}
 
