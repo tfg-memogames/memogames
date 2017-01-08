@@ -1,9 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DropObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerClick.cs">
     <Files>
-      <File FileName="Assets\Scripts\DragObject.cs" Line="46" Column="25" />
-      <File FileName="Assets\Scripts\DropObject.cs" Line="15" Column="2" />
+      <File FileName="Assets\Scripts\DragObject.cs" Line="29" Column="2" />
+      <File FileName="Assets\Scripts\DropObject.cs" Line="23" Column="20" />
+      <File FileName="Assets\Scripts\PlayerClick.cs" Line="38" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
