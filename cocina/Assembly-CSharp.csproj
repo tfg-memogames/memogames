@@ -46,10 +46,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Scripts\DragObject.cs" />
+     <Compile Include="Assets\Scripts\Draggable.cs" />
      <Compile Include="Assets\Scripts\DropObject.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
+     <Compile Include="Assets\Scripts\PlayerClick.cs" />
      <Compile Include="Assets\Scripts\Recipe.cs" />
+     <Compile Include="Assets\Scripts\Tap.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/UNITY/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

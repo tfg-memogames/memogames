@@ -10,14 +10,16 @@ public class DragObject: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	public Vector2 returnPoint;
 
 	[HideInInspector]
-	public bool dropDone;
+	public bool dropZone;
 
 	[HideInInspector]
+	public Transform parent;
+
 	private Transform firstParent;
 
 	void Start() {
 		this.gameObject.AddComponent<CanvasGroup>();
-		dropDone = false;
+		dropZone = false;
 	}
 
 	public void OnBeginDrag(PointerEventData eventData) {
@@ -26,13 +28,11 @@ public class DragObject: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		returnPoint = this.transform.position;
 	
 		this.firstParent = this.transform.parent;
-		this.transform.SetParent (this.transform.parent.parent.parent);
 
 		GetComponent<CanvasGroup> ().blocksRaycasts = false;
 	}
 
 	public void OnDrag(PointerEventData eventData) {
-		//Debug.Log ("Dragging");
 		this.transform.position = eventData.position;
 	}
 
@@ -41,9 +41,10 @@ public class DragObject: MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
 		this.transform.position = returnPoint;
 
-		if (!dropDone) {
-			this.transform.SetParent (firstParent);
-			dropDone = false;
+		if (dropZone) {
+			this.transform.SetParent (parent);
+			firstParent = parent;
+			dropZone = false;
 		}
 		
 		GetComponent<CanvasGroup> ().blocksRaycasts = true;

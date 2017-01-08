@@ -8,22 +8,19 @@ public class DropObject : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPo
 
 
 	public void OnPointerEnter(PointerEventData eventData) {
-		//Debug.Log("Pointer enter " + this.name);
 	}
 
 	public void OnPointerExit(PointerEventData eventData) {
-		//Debug.Log ("Pointer exit " + this.name);
 	}
 
 	public void OnDrop(PointerEventData eventData) {
-		Debug.Log("Drop on " + this.name);
 
 		DragObject d = eventData.pointerDrag.GetComponent<DragObject> ();
 
 		if (d != null) {
 			d.returnPoint = eventData.position;
-			eventData.pointerDrag.gameObject.transform.SetAsLastSibling ();
-			d.dropDone = true;
+			d.dropZone = true;
+			d.parent = this.transform;
 		}
 	}
 
