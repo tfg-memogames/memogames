@@ -1,0 +1,12 @@
+Fernando: Buenos días, me llamo Fernando y soy la persona encargada de organizar el viaje de este fin de semana.
+Fernando: Solo necesito algunos datos sobre ti, ¿Cuál es tu nombre?
+#
+Fernando: Encantado &name, ¿Y me podrías decir tu edad?
+#
+Fernando: Genial! Ya he registrado tus datos para el viaje. Bueno voy a darte los detalles y así podrás echarme una mano si alguien te los pide.
+Fernando: Finalmente el destino será ACAPULCO. El VIERNES cogeremos el vuelo de las 11:45 en la terminal 3 del aeropuerto de BARAJAS.
+Fernando: La vuelta será el LUNES, y cogeremos el  avión de vuelta a las 19:30. Todo el mundo deberá llevar PASAPORTE, y no se podrá facturar maleta.
+Fernando: ¿Necesitas que te lo repita?
+@%2%Si%No
+Fernando: ¡Muy bien!. Ahora me tengo que ir. Un placer, &name.
+<FIN>
