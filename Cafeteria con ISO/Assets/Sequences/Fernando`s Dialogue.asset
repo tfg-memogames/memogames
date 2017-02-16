@@ -1,0 +1,489 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e0d983d07aae244b4199260a850e12, type: 3}
+  m_Name: Fernando`s Dialogue
+  m_EditorClassIdentifier: 
+  inited: 0
+  root: {fileID: 114131222415484632}
+  nodes:
+  - {fileID: 114131222415484632}
+  - {fileID: 114335492980193684}
+  - {fileID: 114663229660423326}
+  - {fileID: 114602372248629056}
+  - {fileID: 114399606557141378}
+  - {fileID: 114955640517668646}
+  - {fileID: 114348813872401142}
+  - {fileID: 114554733496245780}
+  - {fileID: 114451213583348996}
+  - {fileID: 114734671269632074}
+  ids:
+  - -2596
+  - -14854
+  - -23032
+  - -23776
+  - -25924
+  - -26844
+  - -28812
+  - -29646
+  - -8876
+  - -64870
+--- !u!114 &114028570837756410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986074b62c14ea9478e480b10c421f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - text: Necesito que me lo repitas.
+    parameter: 
+  - text: Entendido.
+    parameter: 
+--- !u!114 &114048738594539206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: Fernando
+    msg: "Menos de 45 a\xF1os... Venga, dime la verdad. "
+    character: 
+    parameter: 
+--- !u!114 &114069658781828086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: AskingAge
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: Fernando
+    msg: "Encantado &name \xBFY me podr\xEDas decir tu edad?"
+    character: 
+    parameter: 
+--- !u!114 &114131222415484632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114451213583348996}
+  isUnityObject: 1
+  objectContent: {fileID: 114628277440060254}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 48
+    y: 197
+    width: 223
+    height: 256
+  collapsed: 0
+--- !u!114 &114291741562077346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: Bye Fernando
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: Fernando
+    msg: "\xA1Muy bien!. Ahora me tengo que ir. Un placer, &name."
+    character: 
+    parameter: 
+--- !u!114 &114335492980193684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114663229660423326}
+  isUnityObject: 1
+  objectContent: {fileID: 114069658781828086}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 704
+    y: 285
+    width: 223
+    height: 186
+  collapsed: 0
+--- !u!114 &114348813872401142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Options
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114955640517668646}
+  - {fileID: 114554733496245780}
+  isUnityObject: 1
+  objectContent: {fileID: 114028570837756410}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 1938
+    y: 252
+    width: 300
+    height: 115
+  collapsed: 0
+--- !u!114 &114399606557141378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114955640517668646}
+  isUnityObject: 1
+  objectContent: {fileID: 114602345748896568}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 1372
+    y: 73
+    width: 223
+    height: 186
+  collapsed: 0
+--- !u!114 &114451213583348996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: GameEvent
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114335492980193684}
+  isUnityObject: 1
+  objectContent: {fileID: 114498042040012198}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 313
+    y: 236
+    width: 300
+    height: 151
+  collapsed: 0
+--- !u!114 &114498042040012198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
+  m_Name: Player Name Input
+  m_EditorClassIdentifier: 
+  keys:
+  - synchronous
+  values:
+  - {fileID: 114542004201861100}
+--- !u!114 &114516821035717670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daaa0a8c5652f247939f4ab49339994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  f: 0
+  d: 0
+  s: 
+  v2: {x: 0, y: 0}
+  v3: {x: 0, y: 0, z: 0}
+  v4: {x: 0, y: 0, z: 0, w: 0}
+  q: {x: 0, y: 0, z: 0, w: 0}
+  b: 0
+  c: 0
+  whatIs: System.Boolean
+--- !u!114 &114542004201861100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daaa0a8c5652f247939f4ab49339994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  f: 0
+  d: 0
+  s: 
+  v2: {x: 0, y: 0}
+  v3: {x: 0, y: 0, z: 0}
+  v4: {x: 0, y: 0, z: 0, w: 0}
+  q: {x: 0, y: 0, z: 0, w: 0}
+  b: 1
+  c: 0
+  whatIs: System.Boolean
+--- !u!114 &114554733496245780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114734671269632074}
+  isUnityObject: 1
+  objectContent: {fileID: 114291741562077346}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 2347
+    y: 242
+    width: 300
+    height: 186
+  collapsed: 0
+--- !u!114 &114588221841854658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
+  m_Name: Change_To_Maria_Scene
+  m_EditorClassIdentifier: 
+  keys:
+  - synchronous
+  values:
+  - {fileID: 114516821035717670}
+--- !u!114 &114602345748896568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: Travel Details 1
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: Fernando
+    msg: "Genial! Ya he registrado tus datos para el viaje. Bueno voy a darte los
+      detalles y as\xED podr\xE1s echarme una mano si alguien te los pide.\r\n"
+    character: 
+    parameter: 
+--- !u!114 &114602372248629056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114663229660423326}
+  isUnityObject: 1
+  objectContent: {fileID: 114048738594539206}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 651
+    y: 25
+    width: 223
+    height: 186
+  collapsed: 0
+--- !u!114 &114628277440060254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: AskingName
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: Fernando
+    msg: "Buenos d\xEDas, me llamo Fernando y soy la persona encargada de organizar
+      el viaje de este fin de semana.\r\n"
+    character: 
+    parameter: 
+  - name: Fernando
+    msg: "Solo necesito algunos datos sobre ti, \xBFCu\xE1l es tu nombre?"
+    character: 
+    parameter: 
+--- !u!114 &114663229660423326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Options
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114602372248629056}
+  - {fileID: 114399606557141378}
+  - {fileID: 114399606557141378}
+  - {fileID: 114399606557141378}
+  isUnityObject: 1
+  objectContent: {fileID: 114756923077477976}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 960
+    y: 221
+    width: 300
+    height: 157
+  collapsed: 0
+--- !u!114 &114728498982493444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: Travel Details 2
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: Fernando
+    msg: "Finalmente el destino ser\xE1 Roma. El VIERNES cogeremos el vuelo de las
+      11:45 en la terminal 3 del aeropuerto de BARAJAS.\r\n"
+    character: 
+    parameter: 
+  - name: Fernando
+    msg: "La vuelta ser\xE1 el LUNES, y cogeremos el  avi\xF3n de vuelta a las 19:30.
+      Todo el mundo deber\xE1 llevar PASAPORTE, y no se podr\xE1 facturar maleta."
+    character: 
+    parameter: 
+--- !u!114 &114734671269632074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: GameEvent
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 0}
+  isUnityObject: 1
+  objectContent: {fileID: 114588221841854658}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 2719
+    y: 299
+    width: 300
+    height: 109
+  collapsed: 0
+--- !u!114 &114756923077477976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986074b62c14ea9478e480b10c421f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - text: Menor de 45
+    parameter: 
+  - text: 45 - 55
+    parameter: 
+  - text: 55-65
+    parameter: 
+  - text: Mayor de 65
+    parameter: 
+--- !u!114 &114955640517668646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114348813872401142}
+  isUnityObject: 1
+  objectContent: {fileID: 114728498982493444}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 1602
+    y: 186
+    width: 223
+    height: 256
+  collapsed: 0

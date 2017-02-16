@@ -1,0 +1,466 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e0d983d07aae244b4199260a850e12, type: 3}
+  m_Name: Maria`s Conversation
+  m_EditorClassIdentifier: 
+  inited: 0
+  root: {fileID: 114526617401742696}
+  nodes:
+  - {fileID: 114526617401742696}
+  - {fileID: 114718651892332636}
+  - {fileID: 114870138216707782}
+  - {fileID: 114791216099713800}
+  - {fileID: 114292147679610074}
+  - {fileID: 114376519653442836}
+  - {fileID: 114556348425508492}
+  - {fileID: 114705432577678518}
+  - {fileID: 114646995670182090}
+  - {fileID: 114097264077612500}
+  ids:
+  - -35422
+  - -39184
+  - -52542
+  - -59040
+  - -63748
+  - -70548
+  - -72360
+  - -33070
+  - -43958
+  - -48194
+--- !u!114 &114097264077612500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114791216099713800}
+  isUnityObject: 1
+  objectContent: {fileID: 114119516609991860}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 850
+    y: 361
+    width: 300
+    height: 186
+  collapsed: 1
+--- !u!114 &114119516609991860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: chosingBerlin
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "\xBFDe verdad? Siempre quise ir a Berl\xEDn! Y, \xBFCu\xE1ndo cogemos el
+      vuelo?"
+    character: 
+    parameter: 
+--- !u!114 &114292147679610074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114376519653442836}
+  isUnityObject: 1
+  objectContent: {fileID: 114419192288902898}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 1597
+    y: 308
+    width: 300
+    height: 186
+  collapsed: 1
+--- !u!114 &114332257347298802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986074b62c14ea9478e480b10c421f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - text: Maleta
+    parameter: 
+  - text: Equipaje de mano
+    parameter: 
+--- !u!114 &114357034591771640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: chosingAngeles
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "\xBFDe verdad? Siempre quise ir a Los \xC1ngeles! Y, \xBFCu\xE1ndo cogemos
+      el vuelo?"
+    character: 
+    parameter: 
+--- !u!114 &114376519653442836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Options
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114556348425508492}
+  - {fileID: 114556348425508492}
+  isUnityObject: 1
+  objectContent: {fileID: 114332257347298802}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 1969
+    y: 352
+    width: 300
+    height: 115
+  collapsed: 1
+--- !u!114 &114386798244739696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: Hi Maria
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "\xBFQu\xE9 tal, &name ?. Hac\xEDa mucho que no nos ve\xEDamos. Qu\xE9 bien
+      que hayamos quedado aqu\xED, me encanta esta cafeter\xEDa.\r\n"
+    character: 
+    parameter: 
+  - name: "Mar\xEDa"
+    msg: "Estoy muy ilusionada por el viaje de este fin de semana. Yo me apunt\xE9
+      antes de que se decidiera el destino."
+    character: 
+    parameter: 
+  - name: "Mar\xEDa"
+    msg: "Seguro que t\xFA me puedes ayudar. \xBFCu\xE1l es finalmente el destino?\r\n"
+    character: 
+    parameter: 
+--- !u!114 &114419192288902898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: askingSuitCase
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "Genial!, Bueno, por \xFAltimo \xBFMejor llevar maleta o equipaje de mano?"
+    character: 
+    parameter: 
+--- !u!114 &114456050540330724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986074b62c14ea9478e480b10c421f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - text: Lunes 11:45
+    parameter: 
+  - text: Lunes 15:35
+    parameter: 
+  - text: Viernes 11:45
+    parameter: 
+  - text: "S\xE1bado 13:45"
+    parameter: 
+--- !u!114 &114526617401742696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114718651892332636}
+  isUnityObject: 1
+  objectContent: {fileID: 114386798244739696}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 53
+    y: 169
+    width: 300
+    height: 326
+  collapsed: 1
+--- !u!114 &114526652303321868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: "Bye Mar\xEDa"
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "As\xED lo har\xE9. No paro de pensar en el viaje, espero no olvidar lo que
+      ten\xEDa que comprar.\r\n"
+    character: 
+    parameter: 
+  - name: "Mar\xEDa"
+    msg: "Hoy voy a preparar Spaghetti Carbonara, si quieres puedo pasarte la receta.
+      La tengo apuntada en alg\xFAn sitio, cuando llegues a casa no olvides llamarme."
+    character: 
+    parameter: 
+  - name: "Mar\xEDa"
+    msg: Tengo que ir al supermercado a comprar lo que me falta. Nos vemos pronto
+      &name.
+    character: 
+    parameter: 
+--- !u!114 &114556348425508492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 0}
+  isUnityObject: 1
+  objectContent: {fileID: 114526652303321868}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 2357
+    y: 227
+    width: 223
+    height: 326
+  collapsed: 0
+--- !u!114 &114568037464682100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 986074b62c14ea9478e480b10c421f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options:
+  - text: Roma
+    parameter: 
+  - text: "Par\xEDs"
+    parameter: 
+  - text: "Los \xC1ngeles"
+    parameter: 
+  - text: "Berl\xEDn"
+    parameter: 
+--- !u!114 &114581717370057562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: chosingParis
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "\xBFDe verdad? Siempre quise ir a Par\xEDs! Y, \xBFCu\xE1ndo cogemos el
+      vuelo?"
+    character: 
+    parameter: 
+--- !u!114 &114646995670182090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114791216099713800}
+  isUnityObject: 1
+  objectContent: {fileID: 114357034591771640}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 831
+    y: 284
+    width: 300
+    height: 186
+  collapsed: 1
+--- !u!114 &114705432577678518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114791216099713800}
+  isUnityObject: 1
+  objectContent: {fileID: 114581717370057562}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 790
+    y: 223
+    width: 300
+    height: 186
+  collapsed: 1
+--- !u!114 &114718651892332636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Options
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114870138216707782}
+  - {fileID: 114705432577678518}
+  - {fileID: 114646995670182090}
+  - {fileID: 114097264077612500}
+  isUnityObject: 1
+  objectContent: {fileID: 114568037464682100}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 384
+    y: 253
+    width: 300
+    height: 157
+  collapsed: 0
+--- !u!114 &114791216099713800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Options
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114292147679610074}
+  - {fileID: 114292147679610074}
+  - {fileID: 114292147679610074}
+  - {fileID: 114292147679610074}
+  isUnityObject: 1
+  objectContent: {fileID: 114456050540330724}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 1314
+    y: 245
+    width: 300
+    height: 157
+  collapsed: 1
+--- !u!114 &114870138216707782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114791216099713800}
+  isUnityObject: 1
+  objectContent: {fileID: 114994450287057858}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 802
+    y: 11
+    width: 223
+    height: 186
+  collapsed: 1
+--- !u!114 &114994450287057858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: chosingRoma
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "\xBFDe verdad? Siempre quise ir a Roma! Y, \xBFCu\xE1ndo cogemos el vuelo?"
+    character: 
+    parameter: 
