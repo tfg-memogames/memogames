@@ -10,13 +10,15 @@ public class InputManager : EventManager
     private IGameEvent processing;
     public InputField _input;
     private GameState _gs;
-
+    public GameObject mainCharacter;
+    public GameObject phone;
 
     private void Start()
     {
         this._input.gameObject.SetActive(false);
         processing = null;
         this._gs = GameObject.FindObjectOfType<GameState>();
+        this.phone.SetActive(false);
     }
 
 
@@ -37,12 +39,18 @@ public class InputManager : EventManager
             _input.gameObject.SetActive(true);
 
         }
+        else if(ev.Name == "Fernando_Leaves")
+        {
+            //Fernando se va
+            if (this.mainCharacter != null)
+                this.mainCharacter.SetActive(false);
+            //Y le llaman al teléfono
+            this.phone.SetActive(true);
+        }
         else if(ev.Name == "Change_To_Maria_Scene")
         {
             //Cambia a escena con María.
             SceneManager.LoadScene(1);
-
-
         }
     }
 
