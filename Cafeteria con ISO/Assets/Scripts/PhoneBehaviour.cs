@@ -27,6 +27,7 @@ public class PhoneBehaviour : MonoBehaviour {
 
     public void startDialog()
     {
+        this.source.Stop();
         var ge = new GameEvent();
         ge.Name = "start sequence";
         ge.setParameter("sequence", seq);
@@ -36,7 +37,7 @@ public class PhoneBehaviour : MonoBehaviour {
     private void OnMouseDown()
     {
         
-        this.source.Stop();
+        
         startDialog();
     }
 }
