@@ -1,0 +1,4 @@
+sceneSetups:
+- path: "Assets/Scenes/Coffee Shop/Conver with Mar\xEDa.unity"
+  isLoaded: 1
+  isActive: 1
