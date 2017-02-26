@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Door : MonoBehaviour {
 
     public string scene;
