@@ -97,6 +97,8 @@
      <Compile Include="Assets\Scripts\Coffee Shop\PhoneBehaviour.cs" />
      <Compile Include="Assets\Scripts\CustomDialogManager.cs" />
      <Compile Include="Assets\Scripts\DetectClickOnChild.cs" />
+     <Compile Include="Assets\Scripts\DragAndDrop\DragObject.cs" />
+     <Compile Include="Assets\Scripts\DragAndDrop\DropObject.cs" />
      <Compile Include="Assets\Scripts\GameState.cs" />
      <Compile Include="Assets\Scripts\Home\DissapearCharacter.cs" />
      <Compile Include="Assets\Scripts\Home\Door\Door.cs" />
@@ -104,9 +106,6 @@
      <Compile Include="Assets\Scripts\Test\Parent.cs" />
      <Compile Include="Assets\Scripts\Test\Test.cs" />
      <None Include="Assets\IsoUnity\Source\Util\JSONObject\readme.txt" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -121,9 +120,6 @@
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
