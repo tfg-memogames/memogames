@@ -1,11 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameState.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Home/CameraController.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameState.cs" Line="26" Column="31" />
-      <File FileName="Assets\Scripts\Test.cs" Line="21" Column="31" />
-      <File FileName="Assets\Scripts\DetectClick.cs" Line="13" Column="25" />
-      <File FileName="Assets\Scripts\Parent.cs" Line="8" Column="23" />
+      <File FileName="Assets/Scripts/Home/Door/Door.cs" Line="4" Column="1" />
+      <File FileName="Assets/Scripts/Home/CameraController.cs" Line="44" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -100,8 +100,10 @@
      <Compile Include="Assets\Scripts\DragAndDrop\DragObject.cs" />
      <Compile Include="Assets\Scripts\DragAndDrop\DropObject.cs" />
      <Compile Include="Assets\Scripts\GameState.cs" />
+     <Compile Include="Assets\Scripts\Home\CameraController.cs" />
      <Compile Include="Assets\Scripts\Home\DissapearCharacter.cs" />
      <Compile Include="Assets\Scripts\Home\Door\Door.cs" />
+     <Compile Include="Assets\Scripts\Home\Door\Out.cs" />
      <Compile Include="Assets\Scripts\PlayerMoves.cs" />
      <Compile Include="Assets\Scripts\Test\Parent.cs" />
      <Compile Include="Assets\Scripts\Test\Test.cs" />
