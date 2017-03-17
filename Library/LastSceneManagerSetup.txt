@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Scenes/Home/Kitchen.unity
+  isLoaded: 1
+  isActive: 1

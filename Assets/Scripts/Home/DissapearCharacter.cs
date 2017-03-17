@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class DissapearCharacter : EventManager {
 
-    public GameObject couple;
+    public GameObject parent;
 
     public override void ReceiveEvent(IGameEvent ev)
     {
-        if (ev.Name == "Couple_Leaves")
+        if (ev.Name == "Parent_Leaves")
         {
             //Fernando se va
-            if (this.couple != null)
-                this.couple.SetActive(false);
+            if (this.parent != null)
+                this.parent.SetActive(false);
         }
     }
 

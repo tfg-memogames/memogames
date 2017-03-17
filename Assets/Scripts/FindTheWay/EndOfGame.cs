@@ -2,19 +2,20 @@
 
 public class EndOfGame : MonoBehaviour {
 
-    private GameState gs;
+    public CanvasManager cm;
 
     //Crear etiqueta llamada GameState y asignarsela a GameState
     void Start()
     {
-        gs = GameObject.FindGameObjectWithTag("GameState").GetComponent<GameState>();
+        cm = GameObject.FindObjectOfType<CanvasManager>();
+        Debug.Log(this.gameObject.name);
     }
 
 	void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Car")
         {
-            gs.win();
+            cm.win();
         }
     }
 }

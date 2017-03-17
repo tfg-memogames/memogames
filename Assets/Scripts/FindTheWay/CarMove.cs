@@ -7,6 +7,8 @@ public class CarMove : MonoBehaviour
 {
     private GameState gs;
 
+
+
     public enum Direction { SW, SE, NE, NW };
     private enum Tag { S, L, R, SL, SR, LR, SLR }
 

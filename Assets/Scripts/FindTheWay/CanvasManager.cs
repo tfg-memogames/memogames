@@ -5,11 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CanvasManager : MonoBehaviour {
+public class CanvasManager : MonoBehaviour
+{
 
     public GameObject bar;
-	public GameObject gas;
-	public GameObject electric;
+    public GameObject gas;
+    public GameObject electric;
 
     private RectTransform rt;
     private float totalEnergy;
@@ -17,7 +18,7 @@ public class CanvasManager : MonoBehaviour {
     private float currentConsum = 0;
 
     private int distance;
-	public Text dist_Text;
+    public Text dist_Text;
 
 
     public float value = 100f;
@@ -30,73 +31,65 @@ public class CanvasManager : MonoBehaviour {
     //GameState
     private GameState gs;
 
+    //GameManager
+    private GameManager gm;
+
     //PopUp
-	public Button exit;
+    public Button exit;
     public Button restart;
-	public Button next;
-	public Text wastedEnergy;
-	public Text level_up;
-	public Text score;
+    public Button next;
+    public Text wastedEnergy;
+    public Text level_up;
+    public Text score;
 
 
-	public Button stars6;
-	public Button stars5;
-	public Button stars4;
-	public Button stars3;
-	public Button stars2;
-	public Button stars1;
-
-    private bool mapOpened;
+    public Button stars6;
+    public Button stars5;
+    public Button stars4;
+    public Button stars3;
+    public Button stars2;
+    public Button stars1;
 
 
     // Use this for initialization
     void Start()
     {
-		this.dist_Text.text = "Distance: 0";
+        this.dist_Text.text = "Distance: 0";
         this.distance = 0;
         this.rt = bar.GetComponent<RectTransform>();
         this.totalEnergy = rt.sizeDelta.x;
         gs = GameObject.FindObjectOfType<GameState>();
-
-		if (gs.carType == GameState.Car.ELECTRIC)
-			bar = electric;
+        gm = GameObject.FindObjectOfType<GameManager>();
 
 
-		if (gs.carType == GameState.Car.GAS)
-			bar = gas;
-		
+        if (gs.carType == GameState.Car.ELECTRIC)
+            bar = electric;
+        else
+            bar = gas;
+
 
         restart.gameObject.SetActive(false);
-		wastedEnergy.enabled=false;
-		next.gameObject.SetActive(false);
-		level_up.enabled=false;
-		score.enabled = false;
+        wastedEnergy.enabled = false;
+        next.gameObject.SetActive(false);
+        level_up.enabled = false;
+        score.enabled = false;
 
-		exit.gameObject.SetActive(false);
-		stars6.gameObject.SetActive(false);
-		stars5.gameObject.SetActive(false);
-		stars4.gameObject.SetActive(false);
-		stars3.gameObject.SetActive(false);
-		stars2.gameObject.SetActive(false);
-		stars1.gameObject.SetActive(false);
+        exit.gameObject.SetActive(false);
+        stars6.gameObject.SetActive(false);
+        stars5.gameObject.SetActive(false);
+        stars4.gameObject.SetActive(false);
+        stars3.gameObject.SetActive(false);
+        stars2.gameObject.SetActive(false);
+        stars1.gameObject.SetActive(false);
 
-        mapOpened = false;
     }
 
-   
-    //Método cuando se acaba la energía
-    private void wastedEner()
-    {
 
-        restart.gameObject.SetActive(true);
-		exit.gameObject.SetActive(true);
-		wastedEnergy.enabled=true;
-    }
 
     //newValue es el porcentaje consumido
     private void setPercentageOfEnergy(float newValue)
     {
-        
+
         float x = (newValue * totalEnergy) / 100;
         float y = rt.localPosition.y;
         float z = rt.localPosition.z;
@@ -107,9 +100,9 @@ public class CanvasManager : MonoBehaviour {
     private void decreaseEnergy()
     {
 
-        
-        
-        //Si es de gasolina el gasto es 2 el del eléctrico
+
+
+        //Si es de gasolina el gasto es 1.5 el del eléctrico
         if (gs.carType == GameState.Car.ELECTRIC)
             this.currentConsum += this.consumption;
         else
@@ -120,16 +113,14 @@ public class CanvasManager : MonoBehaviour {
         //Parar coche y mostrar fin.
         if (this.currentConsum >= 100)
         {
-            car.stopCar();
-            wastedEner();
-
+            lose();
         }
 
     }
 
     public void mapButton_Clicked()
     {
-        
+        gm.showMap();
 
     }
 
@@ -148,34 +139,52 @@ public class CanvasManager : MonoBehaviour {
         decreaseEnergy();
     }
 
-	public void showwin(int path){
-
-
-		float points=path/distance;
-
-		if (points == 1) {
-			stars3.gameObject.SetActive (true);
-			stars1.gameObject.SetActive (true);
-			stars2.gameObject.SetActive (true);
-		} else if (points > 0.75) {
-			stars4.gameObject.SetActive (true);
-			stars5.gameObject.SetActive (true);
-		}else if (points > 0.5)
-			stars6.gameObject.SetActive (true);
-		else if (points < 0.5) {
-			score.text = "No has conseguido ninguna estrella :(";
-			score.enabled = true;
-
-		}
-
-		exit.gameObject.SetActive(true);
-
-		next.gameObject.SetActive(true);
-
-		level_up.enabled = true;
 
 
 
-	}
 
+    //Muestra popup con que has ganado (desbloqueará el siguiente nivel)
+    public void win()
+    {
+        int path = gm.pathLength;
+
+        float points = path / distance;
+
+        if (points == 1)
+        {
+            stars3.gameObject.SetActive(true);
+            stars1.gameObject.SetActive(true);
+            stars2.gameObject.SetActive(true);
+        }
+        else if (points > 0.75)
+        {
+            stars4.gameObject.SetActive(true);
+            stars5.gameObject.SetActive(true);
+        }
+        else if (points > 0.5)
+            stars6.gameObject.SetActive(true);
+        else if (points < 0.5)
+        {
+            score.text = "No has conseguido ninguna estrella :(";
+            score.enabled = true;
+
+        }
+
+        exit.gameObject.SetActive(true);
+
+        next.gameObject.SetActive(true);
+
+        level_up.enabled = true;
+
+
+
+    }
+
+    private void lose()
+    {
+        car.stopCar();
+        restart.gameObject.SetActive(true);
+        exit.gameObject.SetActive(true);
+        wastedEnergy.enabled = true;
+    }
 }
