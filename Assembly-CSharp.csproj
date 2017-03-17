@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{93C482A3-4367-DC83-D11B-42190C2EA7EB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_5_0;UNITY_5_5;UNITY_5;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_SCRIPTING_NEW_CSHARP_COMPILER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VIDEO;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\IsoUnity\Source\Dialog.cs" />
+     <Compile Include="Assets\IsoUnity\Source\DialogManager.cs" />
+     <Compile Include="Assets\IsoUnity\Source\EvenManagers\IsoSwitchesEventManager.cs" />
+     <Compile Include="Assets\IsoUnity\Source\EvenManagers\SequenceManager.cs" />
+     <Compile Include="Assets\IsoUnity\Source\EventManager.cs" />
+     <Compile Include="Assets\IsoUnity\Source\GUIs\DialogEventManager.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\Command.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\Game.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\GameEvent.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\IGameEvent.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\IsoUnityType.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\IsoUnityTypeFactory.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\IsoUnityTypes\IsoUnityBasicType.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\IsoUnityTypes\IsoUnityCollectionType.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\IsoUnityTypes\IsoUnityEnumType.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Game\IsoUnityTypes\IsoUnityList.cs" />
+     <Compile Include="Assets\IsoUnity\Source\IAssetSerializable.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Inventory\Inventory.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Inventory\Item.cs" />
+     <Compile Include="Assets\IsoUnity\Source\IsoSettings\IsoSettings.cs" />
+     <Compile Include="Assets\IsoUnity\Source\IsoSettings\IsoSettingsManager.cs" />
+     <Compile Include="Assets\IsoUnity\Source\IsoSwitches\ISwitch.cs" />
+     <Compile Include="Assets\IsoUnity\Source\IsoSwitches\IsoSwitches.cs" />
+     <Compile Include="Assets\IsoUnity\Source\IsoSwitches\IsoSwitchesManager.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Options.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Forks\Checkable.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Forks\CheckableWrapper.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Forks\IFork.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Forks\ISwitchFork.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Forks\ItemFork.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Interpreter\ISequenceInterpreter.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Interpreter\Interpreters\CheckableInterpreter.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Interpreter\Interpreters\DialogInterpreter.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Interpreter\Interpreters\Factoria\SequenceInterpreterFactory.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Interpreter\Interpreters\GameEventInterpreter.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Interpreter\SequenceInterpreter.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\NodeContent.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\NodeContentAttribute.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\Sequence.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Secuences\SequenceNode.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Util\ExtensionRect.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Util\JSONObject\JSONAble.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Util\JSONObject\JSONObject.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Util\JSONObject\JSONSerializer.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Util\JSONObject\JSONTemplates.cs" />
+     <Compile Include="Assets\IsoUnity\Source\Util\JSONObject\VectorTemplates.cs" />
+     <Compile Include="Assets\Scripts\Coffee Shop\ConversationLauncher.cs" />
+     <Compile Include="Assets\Scripts\Coffee Shop\InputManager.cs" />
+     <Compile Include="Assets\Scripts\Coffee Shop\PhoneBehaviour.cs" />
+     <Compile Include="Assets\Scripts\CustomDialogManager.cs" />
+     <Compile Include="Assets\Scripts\DetectClickOnChild.cs" />
+     <Compile Include="Assets\Scripts\DragAndDrop\DragObject.cs" />
+     <Compile Include="Assets\Scripts\DragAndDrop\DropObject.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\Arrow.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\ArrowOptions.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\CameraMove.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\CanvasManager.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\CarMove.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\EndOfGame.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\GameState.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\Intersection.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\LevelSelector.cs" />
+     <Compile Include="Assets\Scripts\FindTheWay\SetupIntersections.cs" />
+     <Compile Include="Assets\Scripts\GameState.cs" />
+     <Compile Include="Assets\Scripts\Home\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Home\DissapearCharacter.cs" />
+     <Compile Include="Assets\Scripts\Home\Door\Door.cs" />
+     <Compile Include="Assets\Scripts\PlayerMoves.cs" />
+     <Compile Include="Assets\Scripts\Test\DisplayOptionsOnClick.cs" />
+     <Compile Include="Assets\Scripts\Test\KitchenBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Test\Parent.cs" />
+     <Compile Include="Assets\Scripts\Test\Test.cs" />
+     <None Include="Assets\IsoUnity\Source\Util\JSONObject\readme.txt" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.PlaymodeTestsRunner">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.VR">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

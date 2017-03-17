@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{D8458F08-2102-12B7-65EF-4E429AEE133A}") = "memogames", "Assembly-CSharp.csproj", "{93C482A3-4367-DC83-D11B-42190C2EA7EB}"
+EndProject
+Project("{D8458F08-2102-12B7-65EF-4E429AEE133A}") = "memogames", "Assembly-CSharp-Editor.csproj", "{07267EA8-765E-5C99-AB3A-2C239553113E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93C482A3-4367-DC83-D11B-42190C2EA7EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C482A3-4367-DC83-D11B-42190C2EA7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C482A3-4367-DC83-D11B-42190C2EA7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C482A3-4367-DC83-D11B-42190C2EA7EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07267EA8-765E-5C99-AB3A-2C239553113E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07267EA8-765E-5C99-AB3A-2C239553113E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07267EA8-765E-5C99-AB3A-2C239553113E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07267EA8-765E-5C99-AB3A-2C239553113E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
