@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class DropObject : MonoBehaviour {
 
 	public void ItemWasDropped(GameObject go)
     {
-        gameObject.SetActive(false);
+        Debug.Log(go.name + " drag on " + name);
+
+        FindObjectOfType<RecipeManager>().ItemWasDropped(go, gameObject);
     }
 }

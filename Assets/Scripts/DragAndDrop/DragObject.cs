@@ -30,6 +30,7 @@ public class DragObject: MonoBehaviour {
 
     void OnMouseUp()
     {
+
         int i = 0;
 
         while (i < destiny.Length && !coll.IsTouching(destiny[i].GetComponent<Collider2D>()))
