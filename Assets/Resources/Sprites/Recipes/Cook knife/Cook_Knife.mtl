@@ -1,0 +1,8 @@
+newmtl material
+Ka 0.297000 0.297000 0.297000
+Kd 0.700000 0.700000 0.700000
+Ks 1.000000 1.000000 1.000000
+Ns 16.799999
+Tr 0.000000
+illum 2
+map_Kd C:\Softimage\XSI_6.02\Data\PARPG_Weapons\Pictures\Cook_Knife_reflection.png
