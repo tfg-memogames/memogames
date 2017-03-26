@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Recipes/Spaguettiv2.unity
+- path: Assets/Scenes/Home/Kitchen.unity
   isLoaded: 1
   isActive: 1

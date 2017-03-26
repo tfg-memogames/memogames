@@ -1,9 +1,9 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "memogames", "Assembly-CSharp.csproj", "{93C482A3-4367-DC83-D11B-42190C2EA7EB}"
+# Visual Studio 2008
+
+Project("{D8458F08-2102-12B7-65EF-4E429AEE133A}") = "memogames", "Assembly-CSharp.csproj", "{93C482A3-4367-DC83-D11B-42190C2EA7EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "memogames", "Assembly-CSharp-Editor.csproj", "{07267EA8-765E-5C99-AB3A-2C239553113E}"
+Project("{D8458F08-2102-12B7-65EF-4E429AEE133A}") = "memogames", "Assembly-CSharp-Editor.csproj", "{07267EA8-765E-5C99-AB3A-2C239553113E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
