@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Home/Kitchen.unity
+- path: Assets/Scenes/Recipes/Kitchen.unity
   isLoaded: 1
   isActive: 1
