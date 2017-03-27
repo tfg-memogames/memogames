@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class DropObject : MonoBehaviour {
+public class Drop : MonoBehaviour {
 
 	public void ItemWasDropped(GameObject go)
     {
