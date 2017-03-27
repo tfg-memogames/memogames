@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider2D))]
-public class Drag: MonoBehaviour {
+public class DragObject: MonoBehaviour {
 
     public GameObject[] destiny;
 
