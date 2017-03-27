@@ -1,0 +1,35 @@
+{"house": 
+	[
+      {"Hall":
+      		[
+      		 {"phone": "floor1"},
+      		 {"toy": "floor2"},
+      		]
+      },
+      {"Bathroom":
+      		[
+      		 {"towel": "floor1"},
+      		 {"toy": "floor2"},
+      		]
+      },
+      {"Main_bedroom":
+      		[
+      		 {"towel": "floor1"},
+      		 {"toy": "floor2"},
+      		]
+      },
+      {"Second_bedroom":
+      		[
+      		 {"towel": "floor1"},
+      		 {"toy": "floor2"},
+      		]
+      },
+      {"Hallway":
+      		[
+      		 {"phone": "floor1"},
+      		 {"toy": "floor2"},
+      		]
+      },
+
+    ] 
+}
