@@ -15,6 +15,7 @@ public class Back : MonoBehaviour {
 
 	void TaskOnClick(){
 		SceneManager.LoadScene(scene);
+
 	}
 }
 
