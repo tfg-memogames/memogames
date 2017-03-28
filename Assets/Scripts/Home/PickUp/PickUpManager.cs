@@ -8,10 +8,9 @@ using UnityEngine;
 
 public class PickUpManager : MonoBehaviour {
 	private int totalObjects;
-	private static string file="house.json";
 	//array objeto lugar en el que se encuentra
 
-	public static Dictionary<String, Dictionary<string, string>> house;
+	public static Dictionary<string, Dictionary<string, string>> house;
 
 	void Awake(){
 		DontDestroyOnLoad(transform.gameObject);
@@ -22,45 +21,54 @@ public class PickUpManager : MonoBehaviour {
 		
 		house = new Dictionary<string, Dictionary<string, string>> ();
 
-		Dictionary<string,string> aux;
-		aux= new Dictionary<string, string> (); //hall
-		aux.Add ("Floor1", "Toy");
-		aux.Add ("Table", ".");
-		house.Add ("Hall", aux);
+		Dictionary<string,string> hall = new Dictionary<string, string> (); //hall
+		hall.Add ("Floor1", "Toy");
+		hall.Add ("Table", ".");
+		house.Add ("Hallway", hall);
 
-		aux.Clear(); //main bedroom
-		aux.Add ("Floor2", "Pillow");
-		aux.Add ("Floor3", "Shirt");
-		aux.Add ("Floor4", "Shoe");
-		aux.Add ("Bed", ".");
-		aux.Add ("Closet", ".");
-		house.Add ("Main_bedroom", aux);
+		Dictionary<string,string> main = new Dictionary<string, string> (); //main bedroom
+		main.Add ("Floor2", "Pillow");
+		main.Add ("Floor3", "Shirt");
+		main.Add ("Floor4", "Shoe");
+		main.Add ("Bed", ".");
+		main.Add ("Closet", ".");
+		house.Add ("Main_bedroom", main);
 
-		aux.Clear(); //second bedroom
-		aux.Add ("Floor1", "Towel");
-		aux.Add ("Floor2", "Cuack");
-		aux.Add ("Bed1", ".");
-		aux.Add ("Bed2", ".");
-		house.Add ("Second_bedroom", aux);
+		Dictionary<string,string> second = new Dictionary<string, string> (); //second bedroom
+		second.Add ("Floor1", "Towel");
+		second.Add ("Floor2", "Cuack");
+		second.Add ("Bed1", ".");
+		second.Add ("Bed2", ".");
+		house.Add ("Second_bedroom", second);
 
-		aux.Clear(); //livingroom
-		aux.Add ("Remote_control", "Floor4");
-		aux.Add ("Floor2", "Pillow");
-		aux.Add ("Floor1", "Chair");
-		aux.Add ("Floor3", "Sock");
-		aux.Add ("Table1", ".");
-		aux.Add ("Table2", ".");
-		aux.Add ("Floor4", ".");
-		house.Add ("Livingroom", aux);
+		Dictionary<string,string> living = new Dictionary<string, string> (); //livingroom
+		living.Add ("Floor1", "Remote_control");
+		living.Add ("Armrest", ".");
+		living.Add ("Low_table_top", ".");
+		living.Add ("Low_table_down", ".");
+		living.Add ("Table", ".");
+		living.Add ("Table_down", ".");
+		//living.Add ("Floor2", "Pillow");
+		//living.Add ("Floor1", "Chair");
+		//living.Add ("Floor3", "Sock");
+		//living.Add ("Table1", ".");
+		//living.Add ("Table2", ".");
+		//living.Add ("Floor4", ".");
+		house.Add ("Livingroom", living);
+
+		Dictionary<string,string> bath = new Dictionary<string, string> (); //bathroom
+		bath.Add ("Floor1", "Towel");
+		bath.Add ("Floor2", "Cuack");
+		house.Add ("Bathroom", living);
+
+		Dictionary<string,string> kit = new Dictionary<string, string> (); //kitchen
+		kit.Add ("Floor1", ".");
+		kit.Add ("Floor2", ".");
+		house.Add ("Kitchen", kit);
+
 
 	}
-
-
-	// Update is called once per frame
-	void Update () {
-	
-
-	}
+		
 
 
 }
