@@ -9,7 +9,7 @@ public class DisplayPanel : MonoBehaviour {
 
     private static GameObject p; //??? static
 
-    void Start()
+    void Awake()
     {
         canvasRect = GameObject.Find("Canvas").GetComponent<RectTransform>();
     }

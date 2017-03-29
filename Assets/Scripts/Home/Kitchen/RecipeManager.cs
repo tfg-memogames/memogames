@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecipeManager : MonoBehaviour {
+public class RecipeManager : MonoBehaviour
+{
 
-    public static RecipeManager instance;  
+    public static RecipeManager instance;
 
     public GameObject ovenPanel;
     public GameObject tapPanel;
@@ -13,20 +14,24 @@ public class RecipeManager : MonoBehaviour {
     public GameObject refrigeratorPanel;
     public List<Step> steps;
 
-    private DisplayPanel displayPanel;
-    private static Step lastStep; //??? static
+    private static DisplayPanel displayPanel;
+    private static Step lastStep; 
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake()
+    {
         if (instance == null)
             instance = this;
 
         else if (instance != this)
             Destroy(gameObject);
+    }
 
+    void Start()
+    {
         displayPanel = GetComponent<DisplayPanel>();
         lastStep = new Step();
-	}
+    }
 
     public void ItemWasDropped(GameObject drag, GameObject drop)
     {
@@ -54,10 +59,10 @@ public class RecipeManager : MonoBehaviour {
                 lastStep.action = Action.Ninguno;
 
                 CheckStep();
-               
+
                 break;
         }
-        
+
     }
 
     //Compara lastStep con el paso que tocaba realizar y actualiza el juego
@@ -73,7 +78,8 @@ public class RecipeManager : MonoBehaviour {
                 {
                     steps[0].drop.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
 
-                } else
+                }
+                else
                 {
                     steps[0].drag.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
                 }
@@ -82,7 +88,7 @@ public class RecipeManager : MonoBehaviour {
             //Eliminamos de la receta el paso realizado correctamente
             steps.RemoveAt(0);
             //Mostramos éxito y lo tachamos de la receta
-            Debug.Log("Éxito"); 
+            Debug.Log("Éxito");
 
             if (steps.Count == 0)
             {
@@ -97,8 +103,6 @@ public class RecipeManager : MonoBehaviour {
 
     public void ButtonPressed(string action)
     {
-        //Debug.Log(lastStep.drag);
-        //Debug.Log(lastStep.drop);
 
         switch (action)
         {
@@ -148,105 +152,6 @@ public class RecipeManager : MonoBehaviour {
         displayPanel.DestroyPanel();
     }
 
-    /*
-    #region ButtonsFunctions
-
-    #region OvenFunctions
-
-    //Llamada cuando se pulsa el boton hornear
-    public void Bake()
-    {
-        lastStep.action = Action.Hornear;
-        displayPanel.DestroyPanel();
-    }
-
-    //Llamada cuando se pulsa el boton gratinar
-    public void Broil()
-    {
-        lastStep.action = Action.Gratinar;
-        displayPanel.DestroyPanel();
-    }
-
-    #endregion
-
-    #region TapFunctions
-
-    //Llamada cuando se da al boton añadir del grifo
-    public void FillWithWater()
-    {
-        lastStep.action = Action.Llenar;
-    }
-
-    //Llamada cuando se da al boton vaciar del grifo
-    public void Empty()
-    {
-        lastStep.action = Action.Vaciar;
-    }
-
-    #endregion
-
-    #region CeramicHobFunctions
-
-    //Llamada cuando se pulsa el boton de hacer a la plancha
-    public void Grill()
-    {
-        lastStep.action = Action.ALaPlancha;
-    }
-
-    //Llamada cuando se pulsa el boton de hervir
-    public void Boil()
-    {
-        lastStep.action = Action.Hervir;
-    }
-
-    //Llamada cuando se pulsa el boton de freir
-    public void Fry()
-    {
-        lastStep.action = Action.Freir;
-    }
-
-    #endregion
-
-    #region TableMenu
-
-    //Llamada cuando se pulsa el boton picar
-    public void Chop()
-    {
-        lastStep.action = Action.Picar;
-    }
-
-    //Llamada cuando se pulsa el boton pelar
-    public void Peel()
-    {
-        lastStep.action = Action.Pelar;
-    }
-
-    //Lamada cuando se pulsa el boton cortar
-    public void Cut()
-    {
-        lastStep.action = Action.Cortar;
-    }
-
-    #endregion
-
-    #region Refrigerator
-    
-    //Llamada cuando se pulsa el boton enfriar
-    public void Cool()
-    {
-        lastStep.action = Action.Enfriar;
-    }
-
-    //Llamada cuando se pulsa el boton congelar
-    public void Freeze()
-    {
-        lastStep.action = Action.Congelar;
-    }
-
-    #endregion
-
-    #endregion
-    */
 }
 
 [System.Serializable]
