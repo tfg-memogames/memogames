@@ -16,43 +16,17 @@ public class CameraController : MonoBehaviour {
 	void Update () {
 		Vector3 v = Camera.main.GetComponent<Transform> ().position;
 		Vector3 mouse=Input.mousePosition;
-		float negative = zoom ? -8 : -4;
-		float positive = zoom ? 8 : 4;
+		float negative = -4;
+		float positive =  4;
 
-
-		if(mouse.y<100 && zoom && v.y>-3)
-			Camera.main.GetComponent<Transform> ().position = new Vector3( v.x, v.y - (float)0.1, v.z);
-
-		if(mouse.y>600 && zoom && v.y<3)
-			Camera.main.GetComponent<Transform> ().position = new Vector3( v.x, v.y + (float)0.1, v.z);
-
-		if(mouse.x<100 && v.x>negative)
+		if(mouse.x<Screen.width/7 && v.x>negative)
 				Camera.main.GetComponent<Transform> ().position = new Vector3( v.x - (float)0.1, v.y, v.z);
 
-		if(mouse.x>1200 && v.x<positive)
+		if(mouse.x>Screen.width-Screen.width/7 && v.x<positive)
 				Camera.main.GetComponent<Transform> ().position = new Vector3( v.x + (float)0.1, v.y, v.z);
 		
 
 	}
 
-	void OnMouseDown() {
-		zoom = true;
-		cameraPosition = Camera.main.GetComponent<Transform> ().position;
-		Vector3 mouse=Input.mousePosition;
-
-		Camera.main.GetComponent<Transform> ().position = new Vector3 (cameraPosition.x, cameraPosition.y, -5);
-
-	}
-
-	void OnMouseUp() {
-		zoom = false;
-		cameraPosition=Camera.main.GetComponent<Transform> ().position;
-		float x=cameraPosition.x;
-
-		if (x > 4)x = 4;
-		if (x < -4)x = -4;
-
-		Camera.main.GetComponent<Transform> ().position = new Vector3(x, 0, -10);
-	}
 
 }

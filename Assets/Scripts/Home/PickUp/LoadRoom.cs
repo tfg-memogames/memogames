@@ -7,19 +7,29 @@ using UnityEngine.SceneManagement;
 public class LoadRoom : MonoBehaviour {
 
 	public string room;
-	public GameObject[] sites;
+
+	public GameObject[] roomSites;
+	public static GameObject[] sites;
+
 	public GameObject[] objects;
-	public Dictionary<string, string> d;
+	public static Dictionary<string, string> dictionary;
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+
+		sites=new GameObject[roomSites.Length];
+
+		for (int i = 0; i < roomSites.Length; i++) {
+			sites [i] = roomSites [i];
+		}
+
 		Button btn = GameObject.FindGameObjectWithTag("Back").GetComponent<Button>();
 		btn.onClick.AddListener(TaskOnClick);	
 
-		d = PickUpManager.house [room];
+		dictionary = PickUpManager.house [room];
 
 		for (int i = 0; i < sites.Length; i++)
-			if (!d [sites [i].name].Equals ("."))
-				foundObject (d [sites [i].name]).transform.position = sites [i].transform.position;
+			if (!dictionary[sites [i].name].Equals ("."))
+				foundObject (dictionary[sites [i].name]).transform.position = sites [i].transform.position;
 	}
 
 	GameObject foundObject(string name){
@@ -33,8 +43,11 @@ public class LoadRoom : MonoBehaviour {
 	}
 
 	void TaskOnClick(){
-		SceneManager.LoadScene("Hallway");
-		PickUpManager.house [room]=d;
+		if(room.Equals("Hallway"))
+			SceneManager.LoadScene("Hall");
+		else
+			SceneManager.LoadScene("Hallway");
+		PickUpManager.house [room]=dictionary;
 	}
 
 }
