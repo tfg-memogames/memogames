@@ -67,8 +67,17 @@ public class RecipeManager : MonoBehaviour {
         if (lastStep.Equals(steps[0]))
         {
             //Cambiamos el sprite
-            /*if (steps[0].sprite != null)
-                lastStep.dr*/
+            if (steps[0].sprite != null)
+            {
+                if (steps[0].action == Action.Ninguno)
+                {
+                    steps[0].drop.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
+
+                } else
+                {
+                    steps[0].drag.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
+                }
+            }
 
             //Eliminamos de la receta el paso realizado correctamente
             steps.RemoveAt(0);
