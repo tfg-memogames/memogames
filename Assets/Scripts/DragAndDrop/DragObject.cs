@@ -36,12 +36,17 @@ public class DragObject: MonoBehaviour {
         while (i < destiny.Length && !coll.IsTouching(destiny[i].GetComponent<Collider2D>()))
             i++;
 
-        if (i == destiny.Length) transform.position = startPoint;
+        if (i == destiny.Length) returnToStartPoint();
         else
         {
             Debug.Log("Touching with " + destiny[i].gameObject.name);
-			destiny[i].gameObject.SendMessage("ItemWasDropped", this.gameObject, SendMessageOptions.DontRequireReceiver);
+            destiny[i].gameObject.SendMessage("ItemWasDropped", this.gameObject, SendMessageOptions.DontRequireReceiver);
 
         }
+    }
+
+    public void returnToStartPoint()
+    {
+        transform.position = startPoint;
     }
 }

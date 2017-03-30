@@ -13,6 +13,7 @@ public class RecipeManager : MonoBehaviour
     public GameObject tablePanel;
     public GameObject refrigeratorPanel;
     public List<Step> steps;
+    public GameObject timer;
 
     private static DisplayPanel displayPanel;
     private static Step lastStep; 
@@ -25,6 +26,8 @@ public class RecipeManager : MonoBehaviour
 
         else if (instance != this)
             Destroy(gameObject);
+
+        Instantiate(timer);
     }
 
     void Start()
@@ -37,6 +40,8 @@ public class RecipeManager : MonoBehaviour
     {
         lastStep.drag = drag;
         lastStep.drop = drop;
+
+        enableClickOnObjects(false);
 
         switch (drop.name)
         {
@@ -57,6 +62,8 @@ public class RecipeManager : MonoBehaviour
                 break;
             default:
                 lastStep.action = Action.Ninguno;
+
+                enableClickOnObjects(true);
 
                 CheckStep();
 
@@ -90,14 +97,22 @@ public class RecipeManager : MonoBehaviour
             //Mostramos éxito y lo tachamos de la receta
             Debug.Log("Éxito");
 
+            //Instanciar el tick del shadowEffect como que ha tenido exito
+
             if (steps.Count == 0)
             {
                 Debug.Log("Has ganado");
+                enableClickOnObjects(false);
             }
         }
         else
         {
             Debug.Log("Error");
+
+            //Como ha tenido un error devolvemos el objeto a su posicion inicial
+            lastStep.drag.GetComponent<DragObject>().returnToStartPoint();
+
+            //Instanciamos la X del shadowEffect
         }
     }
 
@@ -147,11 +162,28 @@ public class RecipeManager : MonoBehaviour
                 break;
         }
 
-        CheckStep();
-
         displayPanel.DestroyPanel();
+
+        enableClickOnObjects(true);
+
+        CheckStep();
     }
 
+    private void enableClickOnObjects(bool flag)
+    {
+        GameObject[] drags = GameObject.FindGameObjectsWithTag("Item");
+
+        foreach (GameObject go in drags)
+        {
+            if (flag) go.layer = 0; //Default
+            else go.layer = 2; //Ignore raycast
+        }
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("You lose");
+    }
 }
 
 [System.Serializable]
