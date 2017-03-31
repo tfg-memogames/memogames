@@ -26,14 +26,14 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
 
     //Contador de consultas al mapa
-    private int mapCounter = 3;
+    private int mapCounter = 4;
 
     //Length of optimal path
     private int _pathLength;
 
     public static GameState gameS;
 
-    private bool mapOpened;
+    //private bool _mapOpened;
 
     public Sprite mapOpenedSprite;
     public Sprite mapClosedSprite;
@@ -49,34 +49,41 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mapOpened = false;
+        car.mapOpened = false;
+        
+        //_mapOpened = false;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (mapCounter == 4)
+        {
+            this.showMap();
+        }
     }
 
     //Muestra el mapa 
     public void showMap()
     {
-        if (!mapOpened)
+        if (!car.mapOpened)
         {
             if (mapCounter > 0)
             {
                 car.stopCar();
+                mapCounter--;
 
-                mapOpened = true;
+
+                car.mapOpened = true;
                 buttonShow.image.sprite = mapClosedSprite;
                 camCurrPos = mainCamera.transform.position;
-                mapCounter--;
-                Vector3 vec = camCurrPos;
-                vec.z = vec.z - 50;
+                
+                //Vector3 vec = camCurrPos;
+                //vec.z = vec.z - 50;
                 mainCamera.GetComponent<CameraMove>().chase = false;
-                mainCamera.fieldOfView = 150;
-                mainCamera.gameObject.GetComponent<Transform>().position = new Vector3(-273.4f, 10.85f, -40);
+                mainCamera.fieldOfView = 159;
+                mainCamera.gameObject.GetComponent<Transform>().position = new Vector3(-1394f, -583f, -40);
                 mapCounterText.text = "" + mapCounter;
 
                 //Llamamos al método que muestra las rutas óptimas
@@ -94,7 +101,9 @@ public class GameManager : MonoBehaviour
                 buttonShow.image.sprite = mapOpenedSprite;
 
             }
-            car.ResumeCar();
+            //Si el coche no está en una intersección se reanuda la marcha
+            if(!car.intersection)
+                car.ResumeCar();
             mainCamera.transform.position = camCurrPos;
             mainCamera.fieldOfView = 70;
             //Llamamos al método que muestra las rutas óptimas
@@ -102,7 +111,8 @@ public class GameManager : MonoBehaviour
             {
                 road.GetComponent<SpriteRenderer>().color = Color.white;
             }
-            mapOpened = false;
+            //_mapOpened = false;
+            car.mapOpened = false;
             mainCamera.GetComponent<CameraMove>().chase = true;
         }
     }
@@ -125,5 +135,8 @@ public class GameManager : MonoBehaviour
         get { return this._pathLength; }
         set { this._pathLength = value; }
     }
+
+   
+
 
 }

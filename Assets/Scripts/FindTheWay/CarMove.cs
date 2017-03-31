@@ -29,6 +29,12 @@ public class CarMove : MonoBehaviour
 
     private bool turn = true;
 
+    //Booleano que indica si el coche está en una intersección
+    private bool _intersection = false;
+
+    //Booleano que permite saber si el mapa está pulsado.
+    private bool _mapOpened = false;
+
     //private Animator anim;
 
     // Use this for initialization
@@ -220,8 +226,27 @@ public class CarMove : MonoBehaviour
 
         if (other.gameObject.tag == "I")
         {
+            this._intersection = true;
             stopCar();
         }
             
     }
+
+
+
+    public bool intersection
+    {
+        get { return this._intersection; }
+        set { this._intersection = value; }
+    }
+
+    public bool mapOpened
+    {
+        get { return this._mapOpened; }
+        set { this._mapOpened = value; }
+    }
 }
+
+
+
+

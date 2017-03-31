@@ -21,7 +21,6 @@ public class CanvasManager : MonoBehaviour
     public Text dist_Text;
 
 
-    public float value = 100f;
 
     //Gasto de energía
     private float consumption = 1f;
@@ -56,16 +55,23 @@ public class CanvasManager : MonoBehaviour
     {
         this.dist_Text.text = "Distance: 0";
         this.distance = 0;
-        this.rt = bar.GetComponent<RectTransform>();
-        this.totalEnergy = rt.sizeDelta.x;
         gs = GameObject.FindObjectOfType<GameState>();
         gm = GameObject.FindObjectOfType<GameManager>();
 
 
         if (gs.carType == GameState.Car.ELECTRIC)
-            bar = electric;
-        else
-            bar = gas;
+        {
+            gas.SetActive(false);
+            bar = electric.transform.GetChild(0).transform.GetChild(0).gameObject;
+        }
+        else { 
+            electric.SetActive(false);
+            bar = gas.transform.GetChild(0).transform.GetChild(0).gameObject;
+        }
+
+
+        this.rt = bar.GetComponent<RectTransform>();
+        this.totalEnergy = rt.sizeDelta.x;
 
 
         restart.gameObject.SetActive(false);
@@ -146,22 +152,24 @@ public class CanvasManager : MonoBehaviour
     //Muestra popup con que has ganado (desbloqueará el siguiente nivel)
     public void win()
     {
+        car.stopCar();
         int path = gm.pathLength;
 
         float points = path / distance;
 
-        if (points == 1)
+        if (points >= 0.95)
         {
+            score.text = "¡Has conseguido la máxima puntuación!";
             stars3.gameObject.SetActive(true);
             stars1.gameObject.SetActive(true);
             stars2.gameObject.SetActive(true);
         }
-        else if (points > 0.75)
+        else if (points > 0.75 && points < 0.95)
         {
             stars4.gameObject.SetActive(true);
             stars5.gameObject.SetActive(true);
         }
-        else if (points > 0.5)
+        else if (points > 0.5 && points < 0.75)
             stars6.gameObject.SetActive(true);
         else if (points < 0.5)
         {
