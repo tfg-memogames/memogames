@@ -29,6 +29,12 @@ public class CarMove : MonoBehaviour
 
     private bool turn = true;
 
+
+    //Booleano que indica si se deben mostrar las flechas en una intersección.
+    private bool arrowsEnabled = true;
+
+   
+
     //Booleano que indica si el coche está en una intersección
     private bool _intersection = false;
 
@@ -36,6 +42,8 @@ public class CarMove : MonoBehaviour
     private bool _mapOpened = false;
 
     //private Animator anim;
+
+    public GameObject carArrow;
 
     // Use this for initialization
     void Start()
@@ -54,6 +62,8 @@ public class CarMove : MonoBehaviour
         move = true;
        //anim = gameObject.GetComponent<Animator>();
         ChangeCarView();
+        carArrow.SetActive(false);
+
     }
 
     private void ChangeCarView()
@@ -148,25 +158,13 @@ public class CarMove : MonoBehaviour
         //Intersección
         else if(turn){
             
+            //Si el giro es hacia la izquierda debe girar más tarde para continuar por el carril derecho.
             if (other.gameObject.tag == Tag.L.ToString())
             {
                 turn = false;
-                switch (dir)
-                {
-                    case Direction.NW:
-                        dir = Direction.SW;
-                        break;
-                    case Direction.NE:
-                        dir = Direction.NW;
-                        break;
-                    case Direction.SW:
-                        dir = Direction.SE;
-                        break;
-                    default:
-                        dir = Direction.NE;
-                        break;
-                }
-                ChangeCarView();
+                StartCoroutine(WaitToTurn());
+                
+                
             }
             else if (other.gameObject.tag == Tag.R.ToString())
             {
@@ -211,6 +209,35 @@ public class CarMove : MonoBehaviour
         
     }
 
+
+    //La parte de cógido que quieres que se detenga debe estar dentro del método IEnumerator
+    public IEnumerator WaitToTurn()
+    {
+        float delay = 0.17f;
+        yield return new WaitForSeconds(delay);
+        switch (dir)
+        {
+
+            case Direction.NW:
+                dir = Direction.SW;
+                break;
+            case Direction.NE:
+                dir = Direction.NW;
+                break;
+            case Direction.SW:
+                dir = Direction.SE;
+                break;
+            default:
+                dir = Direction.NE;
+                break;
+        }
+        ChangeCarView();
+        
+
+    }
+
+
+
     //aparecen las flechas en los sitios a los que puede ir
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -220,13 +247,24 @@ public class CarMove : MonoBehaviour
             other.gameObject.name == "SW") && (dir.ToString() != other.gameObject.name)
             && other != coll)
         {
-            other.transform.parent.gameObject.GetComponent<Intersection>().ShowArrows(other.gameObject);
-            coll = other;
+            //Solo se muestran las flechas tras haber pasado por una carretera con la etiqueta Straight
+            if (arrowsEnabled)
+            {
+                other.transform.parent.gameObject.GetComponent<Intersection>().ShowArrows(other.gameObject);
+                coll = other;
+                //Tras mostrar las flechas hay que esperar a pasar por una carretera recta.
+                arrowsEnabled = false;
+            }
         }
+        
+        //Tras pasar por una carretera recta ya se pueden volver a mostrar las flechas.
+        if (other.gameObject.tag == "S")
+            arrowsEnabled = true;
 
         if (other.gameObject.tag == "I")
         {
             this._intersection = true;
+            
             stopCar();
         }
             
@@ -245,6 +283,8 @@ public class CarMove : MonoBehaviour
         get { return this._mapOpened; }
         set { this._mapOpened = value; }
     }
+
+   
 }
 
 

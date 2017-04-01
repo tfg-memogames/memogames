@@ -21,6 +21,7 @@ public class SetupIntersections : MonoBehaviour {
             {
                 GameObject child = i.transform.GetChild(count).gameObject;
                 child.AddComponent<Arrow>();
+                //child.AddComponent<PolygonCollider2D>();
 
                 if (child.name == dirs.NE.ToString())
                 {

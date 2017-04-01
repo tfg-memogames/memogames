@@ -8,7 +8,7 @@ public class EndOfGame : MonoBehaviour {
     void Start()
     {
         cm = GameObject.FindObjectOfType<CanvasManager>();
-        Debug.Log(this.gameObject.name);
+        
     }
 
 	void OnTriggerEnter2D(Collider2D col)

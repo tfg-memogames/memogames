@@ -26,7 +26,10 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;
 
     //Contador de consultas al mapa
-    private int mapCounter = 4;
+    private int mapCounter;
+
+    //Número máximo de veces que el jugador puede ver el mapa completo.
+    private const int MAP_COUNTER = 4;
 
     //Length of optimal path
     private int _pathLength;
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         _pathLength = bestPath.Length;
+        this.mapCounter = MAP_COUNTER;
     }
 
     // Use this for initialization
@@ -58,7 +62,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mapCounter == 4)
+        if (mapCounter == MAP_COUNTER)
         {
             this.showMap();
         }
@@ -72,6 +76,7 @@ public class GameManager : MonoBehaviour
             if (mapCounter > 0)
             {
                 car.stopCar();
+                car.carArrow.SetActive(true);
                 mapCounter--;
 
 
@@ -104,6 +109,8 @@ public class GameManager : MonoBehaviour
             //Si el coche no está en una intersección se reanuda la marcha
             if(!car.intersection)
                 car.ResumeCar();
+
+            car.carArrow.SetActive(false);
             mainCamera.transform.position = camCurrPos;
             mainCamera.fieldOfView = 70;
             //Llamamos al método que muestra las rutas óptimas

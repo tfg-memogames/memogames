@@ -19,6 +19,7 @@ public class Arrow : MonoBehaviour {
             car.ResumeCar();
             //El coche ya no está en una interseción.
             car.intersection = false;
+            
 
             switch (car.dir)
             {
