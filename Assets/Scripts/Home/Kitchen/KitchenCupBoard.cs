@@ -2,24 +2,46 @@
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Collider2D))]
 public class KitchenCupBoard : MonoBehaviour
-{
-
+{ 
     public Sprite openned;
     public Sprite closed;
 
     private SpriteRenderer sr;
-
-    private bool isClose;
+    private bool isClose = false;
 
 
     void Start()
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
+
+        //Cerramos las puertas
+        OpenCloseDoor();
+
+        //Dehabilitamos los colliders de los hijos
+        EnableColliders(false);
     }
 
+    private void EnableColliders(bool flag)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<Collider2D>().enabled = flag;
+        }
+    }
 
-    public void OpenCloseDoor()
+    void OnMouseOver()
+    {
+        Debug.Log("Funciona");
+        if(Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("Entra");
+            OpenCloseDoor();
+        }
+    }
+
+    private void OpenCloseDoor()
     {
         if (isClose)
         {
@@ -43,6 +65,7 @@ public class KitchenCupBoard : MonoBehaviour
         }
 
         ShowChildObjects(!isClose);
+        EnableColliders(!isClose);
     }
 
     private void ShowChildObjects(bool show)
