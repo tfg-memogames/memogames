@@ -7,10 +7,15 @@ using UnityEngine.UI;
 public class Counter : MonoBehaviour {
 
     public Text timeToGo;
-    public float time;
+    private float time;
 
     private Image image;
     private float restTime;
+
+    void Awake()
+    {
+        time = GameObject.FindGameObjectWithTag("GameController").GetComponent<RecipeManager>().time;
+    }
 
 	// Use this for initialization
 	void Start () {

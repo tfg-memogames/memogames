@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Transform))]
 [RequireComponent(typeof(Image))]
-public class shadowEffect : MonoBehaviour {
+public class ShadowEffect : MonoBehaviour {
 
     public float timeEffect;
     public Vector3 finalPosition;
@@ -23,7 +23,6 @@ public class shadowEffect : MonoBehaviour {
         image = GetComponent<Image>();
         startColor = image.color;
         startPosition = transform.localPosition;
-        posTransition = finalPosition - startPosition;
         timeToFinish = timeEffect;
         StartCoroutine(WaitAndDestroy());
     }
@@ -39,9 +38,9 @@ public class shadowEffect : MonoBehaviour {
         timeToFinish -= Time.deltaTime;
         float percOfCurrTime = (timeEffect - timeToFinish) / timeEffect;
 
-        transform.localPosition = new Vector3(startPosition.x + posTransition.x * percOfCurrTime,
-                                         startPosition.y + posTransition.y * percOfCurrTime,
-                                         startPosition.z + posTransition.z * percOfCurrTime);
+        transform.localPosition = new Vector3(startPosition.x + finalPosition.x * percOfCurrTime,
+                                         startPosition.y + finalPosition.y * percOfCurrTime,
+                                         startPosition.z + finalPosition.z * percOfCurrTime);
 
         image.color = new Color(startColor.r,
                                 startColor.g,

@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class RecipeManager : MonoBehaviour
 {
-
     public static RecipeManager instance;
 
+    public float cameraZoom = 3.9f;
     public GameObject ovenPanel;
     public GameObject tapPanel;
     public GameObject ceramicHobPanel;
     public GameObject tablePanel;
     public GameObject refrigeratorPanel;
+    public GameObject correct;
+    public GameObject mistake;
     public List<Step> steps;
     public GameObject timer;
 
+    private float _time = 60.0f;
     private static DisplayPanel displayPanel;
     private static Step lastStep; 
 
@@ -27,6 +30,8 @@ public class RecipeManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
 
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().orthographicSize = cameraZoom;
+        GameObject.Find("Chairs").SetActive(false);
         Instantiate(timer);
     }
 
@@ -98,6 +103,7 @@ public class RecipeManager : MonoBehaviour
             Debug.Log("Éxito");
 
             //Instanciar el tick del shadowEffect como que ha tenido exito
+            displayPanel.instantiatePanel(correct, lastStep.drop);
 
             if (steps.Count == 0)
             {
@@ -113,6 +119,8 @@ public class RecipeManager : MonoBehaviour
             lastStep.drag.GetComponent<DragObject>().returnToStartPoint();
 
             //Instanciamos la X del shadowEffect
+            displayPanel.instantiatePanel(mistake, lastStep.drop);
+            lastStep.drag.GetComponent<DragObject>().returnToStartPoint();
         }
     }
 
@@ -169,6 +177,13 @@ public class RecipeManager : MonoBehaviour
         CheckStep();
     }
 
+    //Cuando se le abre un panel y presiona la X
+    public void CancelAction()
+    {
+        enableClickOnObjects(true);
+        lastStep.drag.GetComponent<DragObject>().returnToStartPoint();
+    }
+
     private void enableClickOnObjects(bool flag)
     {
         GameObject[] drags = GameObject.FindGameObjectsWithTag("Item");
@@ -183,6 +198,11 @@ public class RecipeManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("You lose");
+    }
+
+    public float time
+    {
+        get { return _time; }
     }
 }
 
