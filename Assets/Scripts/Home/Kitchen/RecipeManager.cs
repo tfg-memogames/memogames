@@ -20,11 +20,8 @@ public class RecipeManager : MonoBehaviour
 
     //Recipe
     public List<Step> steps;
-<<<<<<< Updated upstream
     private float _time = 280.0f;
-=======
-    private float _time = 120.0f;
->>>>>>> Stashed changes
+
 
     private static int currentStep = 0;
     private static DisplayPanel displayPanel;
@@ -49,11 +46,8 @@ public class RecipeManager : MonoBehaviour
     {
         displayPanel = GetComponent<DisplayPanel>();
         lastStep = new Step();
-<<<<<<< Updated upstream
-        currentStep = 5;
-=======
         currentStep = 0;
->>>>>>> Stashed changes
+
     }
 
     public void ItemWasDropped(GameObject drag, GameObject drop)
