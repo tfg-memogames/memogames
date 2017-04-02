@@ -37,6 +37,13 @@ public class DisplayPanel : MonoBehaviour {
         panelTransform.anchoredPosition = WorldObject_ScreenPosition;
     }
 
+    public void instantiatePanel(GameObject panel)
+    {
+        p = Instantiate(panel);
+        p.transform.SetParent(canvasRect);
+        p.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+    }
+
     //Elimina el ultimo panel instanciado
     public void DestroyPanel()
     {

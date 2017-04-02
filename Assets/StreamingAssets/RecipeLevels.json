@@ -1,0 +1,51 @@
+{
+	"Levels": [
+		{
+			"time" : 60,
+			"steps" : [
+				{
+					"drag"   : "Cup", 
+					"drop"   : "Tap",
+					"action" : "FillWithWater",
+					"sprite" : "olla_sin_tapa_agua"
+				},
+				{
+					"drag"   : "Cup",
+					"drop"   : "CeramicHob",
+					"action" : "Boil",
+					"sprite" : null
+				},
+				{
+					"drag"   : "Spaguetti",
+					"drop"   : "Cup",
+					"action" : "None",
+					"sprite" : "olla_spaguetis_crudos"
+				},
+				{
+					"drag"   : "Cup",
+					"drop"   : "Tap",
+					"action" : "Empty",
+					"sprite" : "olla_espaguetis_cocidos"
+				},
+				{
+					"drag"   : "Cup",
+					"drop"   : "Plate",
+					"action" : "None",
+					"sprite" : "plato_espaguetis"
+				},
+				{
+					"drag"   : "Oregano",
+					"drop"   : "Plate",
+					"action" : "None",
+					"sprite" : null
+				},
+				{
+					"drag"   : "Tomato",
+					"drop"   : "Plate",
+					"action" : "None",
+					"sprite" : "espaguetis_tomate"
+				}
+			]
+		}
+	]
+}

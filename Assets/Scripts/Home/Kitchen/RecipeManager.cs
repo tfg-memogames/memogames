@@ -15,18 +15,20 @@ public class RecipeManager : MonoBehaviour
     public GameObject correct;
     public GameObject mistake;
     public GameObject timer;
+    public GameObject winPanel;
+    public GameObject gameOverPanel;
 
     //Recipe
     public List<Step> steps;
-    private float _time = 60.0f;
+    private float _time = 3.0f;
 
+    private static int currentStep = 0;
     private static DisplayPanel displayPanel;
     private static Step lastStep;
 
     // Use this for initialization
     void Awake()
     {
-        Debug.Log("Entra");
 
         if (instance == null)
             instance = this;
@@ -43,6 +45,7 @@ public class RecipeManager : MonoBehaviour
     {
         displayPanel = GetComponent<DisplayPanel>();
         lastStep = new Step();
+        currentStep = 4;
     }
 
     public void ItemWasDropped(GameObject drag, GameObject drop)
@@ -85,35 +88,41 @@ public class RecipeManager : MonoBehaviour
     private void CheckStep()
     {
         //Si era el paso que tenia que hacer
-        if (lastStep.Equals(steps[0]))
+        if (lastStep.Equals(steps[currentStep]))
         {
             //Cambiamos el sprite
-            if (steps[0].sprite != null)
+            if (steps[currentStep].sprite != null)
             {
-                if (steps[0].action == Action.Ninguno)
+                if (steps[currentStep].action == Action.Ninguno)
                 {
-                    // Destroy(steps[0].drag);
-                    steps[0].drop.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
+                    Destroy(lastStep.drag);
+                    //steps[0].drop.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
+                    lastStep.drop.GetComponent<SpriteRenderer>().sprite = steps[currentStep].sprite;
 
                 }
                 else
                 {
-                    steps[0].drag.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
+                    //steps[0].drag.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
+                    lastStep.drag.GetComponent<SpriteRenderer>().sprite = steps[currentStep].sprite;
                 }
             }
 
             //Eliminamos de la receta el paso realizado correctamente
-            steps.RemoveAt(0);
+            //steps.RemoveAt(0);
+
+
             //Mostramos éxito y lo tachamos de la receta
             Debug.Log("Éxito");
+            currentStep++;
 
             //Instanciar el tick del shadowEffect como que ha tenido exito
             displayPanel.instantiatePanel(correct, lastStep.drop);
 
-            if (steps.Count == 0)
+            if (steps.Count == currentStep)
             {
                 Debug.Log("Has ganado");
                 enableClickOnObjects(false);
+                displayPanel.instantiatePanel(winPanel);
             }
         }
         else
@@ -161,6 +170,8 @@ public class RecipeManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("You lose");
+        enableClickOnObjects(false);
+        displayPanel.instantiatePanel(gameOverPanel);
     }
 
     public float time

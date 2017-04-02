@@ -33,10 +33,8 @@ public class KitchenCupBoard : MonoBehaviour
 
     void OnMouseOver()
     {
-        Debug.Log("Funciona");
         if(Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Entra");
             OpenCloseDoor();
         }
     }
