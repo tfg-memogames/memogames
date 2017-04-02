@@ -20,7 +20,7 @@ public class RecipeManager : MonoBehaviour
 
     //Recipe
     public List<Step> steps;
-    private float _time = 3.0f;
+    private float _time = 280.0f;
 
     private static int currentStep = 0;
     private static DisplayPanel displayPanel;
@@ -45,7 +45,7 @@ public class RecipeManager : MonoBehaviour
     {
         displayPanel = GetComponent<DisplayPanel>();
         lastStep = new Step();
-        currentStep = 4;
+        currentStep = 5;
     }
 
     public void ItemWasDropped(GameObject drag, GameObject drop)
@@ -87,6 +87,7 @@ public class RecipeManager : MonoBehaviour
     //Compara lastStep con el paso que tocaba realizar y actualiza el juego
     private void CheckStep()
     {
+        Debug.Log(currentStep);
         //Si era el paso que tenia que hacer
         if (lastStep.Equals(steps[currentStep]))
         {
@@ -95,7 +96,6 @@ public class RecipeManager : MonoBehaviour
             {
                 if (steps[currentStep].action == Action.Ninguno)
                 {
-                    Destroy(lastStep.drag);
                     //steps[0].drop.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
                     lastStep.drop.GetComponent<SpriteRenderer>().sprite = steps[currentStep].sprite;
 
@@ -107,12 +107,17 @@ public class RecipeManager : MonoBehaviour
                 }
             }
 
-            //Eliminamos de la receta el paso realizado correctamente
-            //steps.RemoveAt(0);
+            if (steps[currentStep].action == Action.Ninguno)
+            {
+                Destroy(lastStep.drag);
+            }
+
+                //Eliminamos de la receta el paso realizado correctamente
+                //steps.RemoveAt(0);
 
 
-            //Mostramos éxito y lo tachamos de la receta
-            Debug.Log("Éxito");
+                //Mostramos éxito y lo tachamos de la receta
+                Debug.Log("Éxito");
             currentStep++;
 
             //Instanciar el tick del shadowEffect como que ha tenido exito
@@ -122,7 +127,7 @@ public class RecipeManager : MonoBehaviour
             {
                 Debug.Log("Has ganado");
                 enableClickOnObjects(false);
-                displayPanel.instantiatePanel(winPanel);
+                //displayPanel.instantiatePanel(winPanel);
             }
         }
         else
