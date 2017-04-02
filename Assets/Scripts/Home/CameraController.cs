@@ -19,10 +19,10 @@ public class CameraController : MonoBehaviour {
 		float negative = -4;
 		float positive =  4;
 
-		if(mouse.x<Screen.width/7 && v.x>negative)
+		if(mouse.x<Screen.width/4 && v.x>negative)
 				Camera.main.GetComponent<Transform> ().position = new Vector3( v.x - (float)0.1, v.y, v.z);
 
-		if(mouse.x>Screen.width-Screen.width/7 && v.x<positive)
+		if(mouse.x>Screen.width-Screen.width/4 && v.x<positive)
 				Camera.main.GetComponent<Transform> ().position = new Vector3( v.x + (float)0.1, v.y, v.z);
 		
 
