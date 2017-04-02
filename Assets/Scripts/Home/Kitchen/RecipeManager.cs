@@ -14,16 +14,20 @@ public class RecipeManager : MonoBehaviour
     public GameObject refrigeratorPanel;
     public GameObject correct;
     public GameObject mistake;
-    public List<Step> steps;
     public GameObject timer;
 
+    //Recipe
+    public List<Step> steps;
     private float _time = 60.0f;
+
     private static DisplayPanel displayPanel;
-    private static Step lastStep; 
+    private static Step lastStep;
 
     // Use this for initialization
     void Awake()
     {
+        Debug.Log("Entra");
+
         if (instance == null)
             instance = this;
 
@@ -88,6 +92,7 @@ public class RecipeManager : MonoBehaviour
             {
                 if (steps[0].action == Action.Ninguno)
                 {
+                    // Destroy(steps[0].drag);
                     steps[0].drop.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
 
                 }
@@ -126,49 +131,7 @@ public class RecipeManager : MonoBehaviour
 
     public void ButtonPressed(string action)
     {
-
-        switch (action)
-        {
-            case "Bake":
-                lastStep.action = Action.Hornear;
-                break;
-            case "Broil":
-                lastStep.action = Action.Gratinar;
-                break;
-            case "FillWithWater":
-                lastStep.action = Action.Llenar;
-                break;
-            case "Empty":
-                lastStep.action = Action.Vaciar;
-                break;
-            case "Grill":
-                lastStep.action = Action.ALaPlancha;
-                break;
-            case "Boil":
-                lastStep.action = Action.Hervir;
-                break;
-            case "Fry":
-                lastStep.action = Action.Freir;
-                break;
-            case "Chop":
-                lastStep.action = Action.Picar;
-                break;
-            case "Peel":
-                lastStep.action = Action.Pelar;
-                break;
-            case "Cut":
-                lastStep.action = Action.Cortar;
-                break;
-            case "Cool":
-                lastStep.action = Action.Enfriar;
-                break;
-            case "Freeze":
-                lastStep.action = Action.Congelar;
-                break;
-            default:
-                lastStep.action = Action.Ninguno;
-                break;
-        }
+        lastStep.action = stringToAction(action);
 
         displayPanel.DestroyPanel();
 
@@ -203,6 +166,56 @@ public class RecipeManager : MonoBehaviour
     public float time
     {
         get { return _time; }
+    }
+
+    public static Action stringToAction(string action)
+    {
+        Action a;
+
+        switch (action)
+        {
+            case "Bake":
+                a = Action.Hornear;
+                break;
+            case "Broil":
+                a = Action.Gratinar;
+                break;
+            case "FillWithWater":
+                a = Action.Llenar;
+                break;
+            case "Empty":
+                a = Action.Vaciar;
+                break;
+            case "Grill":
+                a = Action.ALaPlancha;
+                break;
+            case "Boil":
+                a = Action.Hervir;
+                break;
+            case "Fry":
+                a = Action.Freir;
+                break;
+            case "Chop":
+                a = Action.Picar;
+                break;
+            case "Peel":
+                a = Action.Pelar;
+                break;
+            case "Cut":
+                a = Action.Cortar;
+                break;
+            case "Cool":
+                a = Action.Enfriar;
+                break;
+            case "Freeze":
+                a = Action.Congelar;
+                break;
+            default:
+                a = Action.Ninguno;
+                break;
+        }
+
+        return a;
     }
 }
 
@@ -247,6 +260,7 @@ public class Step
 
         // TODO: write your implementation of Equals() here
         Step s = obj as Step;
+
         return (s.drag.name == drag.name && s.drop.name == drop.name && s.action == action);
     }
 
