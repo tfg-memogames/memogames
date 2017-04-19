@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using RAGE.Analytics;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     //Contador de consultas al mapa
     private int mapCounter;
 
+
     //Número máximo de veces que el jugador puede ver el mapa completo.
     private const int MAP_COUNTER = 4;
 
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     public CarMove car;
 
+	//private Tracker tracker;
+
 
     void Awake()
     {
@@ -52,7 +56,8 @@ public class GameManager : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {
+	{
+		//tracker = GameObject.FindObjectOfType<Tracker> ();
         car.mapOpened = false;
         
         //_mapOpened = false;
@@ -79,7 +84,9 @@ public class GameManager : MonoBehaviour
                 car.carArrow.SetActive(true);
                 mapCounter--;
 
+				Tracker.T.trackedGameObject.Interacted("map");
 
+			
                 car.mapOpened = true;
                 buttonShow.image.sprite = mapClosedSprite;
                 camCurrPos = mainCamera.transform.position;
