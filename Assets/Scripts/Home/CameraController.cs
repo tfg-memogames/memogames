@@ -16,7 +16,10 @@ public class CameraController : MonoBehaviour {
 
 		if(mouse.y>Screen.height-Screen.height/6 && v.y<2)
 			Camera.main.GetComponent<Transform> ().position = new Vector3( v.x , v.y+ (float)0.1, v.z);
-		
+
+
+		v = Camera.main.GetComponent<Transform> ().position;
+		mouse=Input.mousePosition;
 		if(mouse.x<Screen.width/4 && v.x>-4)
 				Camera.main.GetComponent<Transform> ().position = new Vector3( v.x - (float)0.1, v.y, v.z);
 
