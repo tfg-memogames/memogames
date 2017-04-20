@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
                 car.carArrow.SetActive(true);
                 mapCounter--;
 
+				//Tracker.T.Alternative.Selected("qid","rid",Alternative.AlternativeType.Question)
+
+				//Tracker.T.setVar("name", "nombrejugador");
 				Tracker.T.trackedGameObject.Interacted("map");
 
 			
