@@ -190,7 +190,9 @@ public class CanvasManager : MonoBehaviour
 
     private void lose()
     {
-        car.stopCar();
+        //DestroyObject(car);
+        car.destroyCar();
+        //car.stopCar();
         restart.gameObject.SetActive(true);
         exit.gameObject.SetActive(true);
         wastedEnergy.enabled = true;

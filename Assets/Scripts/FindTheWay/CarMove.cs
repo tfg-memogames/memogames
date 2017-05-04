@@ -139,8 +139,14 @@ public class CarMove : MonoBehaviour
 
     public void stopCar()
     {
+        
         this.move = false;
         //this.anim.Stop();
+    }
+
+    public void destroyCar()
+    {
+        Destroy(this);
     }
     
     void OnTriggerExit2D(Collider2D other)
