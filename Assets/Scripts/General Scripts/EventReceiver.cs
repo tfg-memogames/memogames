@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Isometra;
 using UnityEngine;
 
-public class EventReceiver : EventManager
+public class EventReceiver : Isometra.EventManager
 {
 
     public GameObject phone;

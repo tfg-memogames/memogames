@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IAssetSerializable {
+namespace Isometra.Sequences {
+	public interface IAssetSerializable {
 
-    void SerializeInside(Object assetObject);
+	    void SerializeInside(Object assetObject);
 
+	}
 }

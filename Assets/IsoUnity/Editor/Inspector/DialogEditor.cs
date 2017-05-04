@@ -4,111 +4,125 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 
-[CustomEditor(typeof(Dialog))]
-public class DialogEditor : Editor {
+namespace Isometra.Sequences {
+	[CustomEditor(typeof(Dialog))]
+	public class DialogEditor : NodeContentEditor {
 
-    private void OnEnable()
-    {
-        // Add listeners to draw events
+	    protected override void OnEnable()
+	    {
 
-        fragmentsReorderableList = new ReorderableList(new ArrayList(), typeof(Fragment), true, true, true, true);
-        fragmentsReorderableList.drawHeaderCallback += DrawFragmentsHeader;
-        fragmentsReorderableList.drawElementCallback += DrawFragment;
-        fragmentsReorderableList.onAddCallback += AddFragment;
-        fragmentsReorderableList.onRemoveCallback += RemoveFragment;
-        fragmentsReorderableList.onReorderCallback += ReorderFragments;
-    }
+	        base.OnEnable();
+	        // Add listeners to draw events
 
-    private ReorderableList fragmentsReorderableList;
-    private Dialog dialog;
-    private Vector2 scroll = Vector2.zero;
+	        fragmentsReorderableList = new ReorderableList(new ArrayList(), typeof(Fragment), true, true, true, true);
+	        fragmentsReorderableList.drawHeaderCallback += DrawFragmentsHeader;
+	        fragmentsReorderableList.drawElementCallback += DrawFragment;
+	        fragmentsReorderableList.onAddCallback += AddFragment;
+	        fragmentsReorderableList.onRemoveCallback += RemoveFragment;
+	        fragmentsReorderableList.onReorderCallback += ReorderFragments;
+	    }
 
-    public override void OnInspectorGUI()
-    {
-        dialog = target as Dialog;
+	    private ReorderableList fragmentsReorderableList;
+	    private Dialog dialog;
+	    private Vector2 scroll = Vector2.zero;
 
-        GUIStyle style = new GUIStyle();
-        style.padding = new RectOffset(5, 5, 5, 5);
-        dialog.name = UnityEditor.EditorGUILayout.TextField("Name", dialog.name);
+	    protected override void NodeContentInspectorGUI()
+	    {
+	        dialog = target as Dialog;
 
-        fragmentsReorderableList.list = dialog.Fragments;
+	        GUIStyle style = new GUIStyle();
+	        style.padding = new RectOffset(5, 5, 5, 5);
+	        dialog.name = UnityEditor.EditorGUILayout.TextField("Name", dialog.name);
 
-        EditorGUILayout.HelpBox("You have to add at least one", MessageType.None);
-        if (fragmentsReorderableList.list != null)
-        {
-            bool isScrolling = false;
-            if (fragmentsReorderableList.list.Count > 3)
-            {
-                scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.ExpandWidth(true), GUILayout.Height(250));
-                isScrolling = true;
-            }
+	        fragmentsReorderableList.list = dialog.Fragments;
 
-            fragmentsReorderableList.elementHeight = fragmentsReorderableList.list.Count == 0 ? 20 : 70;
-            fragmentsReorderableList.DoLayoutList();
+	        EditorGUILayout.HelpBox("You have to add at least one", MessageType.None);
+	        if (fragmentsReorderableList.list != null)
+	        {
+	            bool isScrolling = false;
+	            if (fragmentsReorderableList.list.Count > 3)
+	            {
+	                scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.ExpandWidth(true), GUILayout.Height(250));
+	                isScrolling = true;
+	            }
 
-            if (isScrolling)
-                EditorGUILayout.EndScrollView();
-        }
-    }
+	            fragmentsReorderableList.elementHeight = fragmentsReorderableList.list.Count == 0 ? 20 : 70;
+	            fragmentsReorderableList.DoLayoutList();
+
+	            if (isScrolling)
+	                EditorGUILayout.EndScrollView();
+	        }
+	    }
 
 
 
-    private Rect moveRect(Rect target, Rect move)
-    {
-        Rect r = new Rect(move.x + target.x, move.y + target.y, target.width, target.height);
+	    private Rect moveRect(Rect target, Rect move)
+	    {
+	        Rect r = new Rect(move.x + target.x, move.y + target.y, target.width, target.height);
 
-        if (r.x + r.width > move.x + move.width)
-        {
-            r.width = (move.width + 25) - r.x;
-        }
+	        if (r.x + r.width > move.x + move.width)
+	        {
+	            r.width = (move.width + 25) - r.x;
+	        }
 
-        return r;
-    }
+	        return r;
+	    }
 
-    /*****************************
-     * FRAGMENTS LIST OPERATIONS
-     *****************************/
+	    /*****************************
+	     * FRAGMENTS LIST OPERATIONS
+	     *****************************/
 
-    Rect entityRect = new Rect(0, 2, 40, 15);
-    Rect characterRect = new Rect(0, 2, 95, 15);
-    Rect parameterRect = new Rect(100, 2, 190, 15);
-    Rect nameRect = new Rect(0, 20, 190, 15);
-    Rect textRect = new Rect(0, 35, 190, 30);
-    private void DrawFragmentsHeader(Rect rect)
-    {
-        GUI.Label(rect, "Dialog fragments");
-    }
+	    private void DrawFragmentsHeader(Rect rect)
+	    {
+	        GUI.Label(rect, "Dialog fragments");
+	    }
 
-    private void DrawFragment(Rect rect, int index, bool active, bool focused)
-    {
-        Fragment frg = (Fragment)fragmentsReorderableList.list[index];
+	    private void DrawFragment(Rect rect, int index, bool active, bool focused)
+	    {
+	        EditorGUI.BeginChangeCheck();
 
-        EditorGUI.LabelField(moveRect(entityRect, rect), "Target: ");
-        frg.Character = EditorGUI.TextField(moveRect(characterRect, rect), frg.Character);
-        frg.Parameter = EditorGUI.TextField(moveRect(parameterRect, rect), frg.Parameter);
-        frg.Name = EditorGUI.TextField(moveRect(nameRect, rect), frg.Name);
-        frg.Msg = EditorGUI.TextArea(moveRect(textRect, rect), frg.Msg);
+	        Fragment frg = (Fragment)fragmentsReorderableList.list[index];
 
-        // If you are using a custom PropertyDrawer, this is probably better
-        // EditorGUI.PropertyField(rect, serializedObject.FindProperty("list").GetArrayElementAtIndex(index));
-        // Although it is probably smart to cach the list as a private variable ;)
-    }
+			Rect characterRect = new Rect(0, 2, rect.width * .5f, 15);
+			Rect parameterRect = new Rect(rect.width * .5f, 2, rect.width * .5f, 15);
+			Rect nameRect = new Rect(0, 20, rect.width, 15);
+			Rect textRect = new Rect(0, 35, rect.width, 30);
 
-    private void AddFragment(ReorderableList list)
-    {
-        dialog.AddFragment();
-    }
+	        frg.Character = EditorGUI.TextField(moveRect(characterRect, rect), frg.Character);
+	        frg.Parameter = EditorGUI.TextField(moveRect(parameterRect, rect), frg.Parameter);
+	        frg.Name = EditorGUI.TextField(moveRect(nameRect, rect), frg.Name);
+	        frg.Msg = EditorGUI.TextArea(moveRect(textRect, rect), frg.Msg);
 
-    private void RemoveFragment(ReorderableList list)
-    {
-        dialog.RemoveFragment(dialog.Fragments[list.index]);
+	        // If you are using a custom PropertyDrawer, this is probably better
+	        // EditorGUI.PropertyField(rect, serializedObject.FindProperty("list").GetArrayElementAtIndex(index));
+	        // Although it is probably smart to cach the list as a private variable ;)
 
-    }
 
-    private void ReorderFragments(ReorderableList list)
-    {
-        List<Fragment> l = (List<Fragment>)fragmentsReorderableList.list;
-        dialog.Fragments = l;
-    }
+	        if (EditorGUI.EndChangeCheck())
+	        {
+	            EditorUtility.SetDirty(dialog);
+	        }
+	    }
 
+	    private void AddFragment(ReorderableList list)
+	    {
+	        dialog.AddFragment();
+	        EditorUtility.SetDirty(dialog);
+	    }
+
+	    private void RemoveFragment(ReorderableList list)
+	    {
+	        dialog.RemoveFragment(dialog.Fragments[list.index]);
+	        EditorUtility.SetDirty(dialog);
+	    }
+
+	    private void ReorderFragments(ReorderableList list)
+	    {
+	        List<Fragment> l = (List<Fragment>)fragmentsReorderableList.list;
+	        dialog.Fragments = l;
+
+	        EditorUtility.SetDirty(dialog);
+	    }
+
+	}
 }

@@ -2,32 +2,34 @@
 using UnityEditor;
 using System.Collections;
 
-public class IsoAssetsManager  {
+namespace Isometra {
+	public class IsoAssetsManager  {
 
-    public static T CreateAssetOf<T>(string ruta) where T : ScriptableObject
-    {
-        T so = ScriptableObject.CreateInstance<T>();
-        AssetDatabase.CreateAsset(so, ruta);
-        Selection.activeObject = so;
+	    public static T CreateAssetOf<T>(string ruta) where T : ScriptableObject
+	    {
+	        T so = ScriptableObject.CreateInstance<T>();
+	        AssetDatabase.CreateAsset(so, ruta);
+	        Selection.activeObject = so;
 
-        return so;
-    }
+	        return so;
+	    }
 
-    public static ScriptableObject CreateAssetOf(string name, string ruta){
+	    public static ScriptableObject CreateAssetOf(string name, string ruta){
 
-		ScriptableObject so = ScriptableObject.CreateInstance (name);
-		AssetDatabase.CreateAsset(so, ruta);
-		Selection.activeObject = so;  
+			ScriptableObject so = ScriptableObject.CreateInstance (name);
+			AssetDatabase.CreateAsset(so, ruta);
+			Selection.activeObject = so;  
 
-		return so;
-	}
+			return so;
+		}
 
-	public static ScriptableObject CreateAssetInCurrentPathOf(string name){
-		
-		ScriptableObject so = ScriptableObject.CreateInstance (name);
-		ProjectWindowUtil.CreateAsset(so, name+".asset");
-		Selection.activeObject = so;  
-		
-		return so;
+		public static ScriptableObject CreateAssetInCurrentPathOf(string name){
+			
+			ScriptableObject so = ScriptableObject.CreateInstance (name);
+			ProjectWindowUtil.CreateAsset(so, name+".asset");
+			Selection.activeObject = so;  
+			
+			return so;
+		}
 	}
 }

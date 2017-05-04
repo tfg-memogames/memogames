@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface NodeContent {
-    
-    string[] ChildNames { get; }
-    int ChildSlots { get; }
+namespace Isometra.Sequences {
+	public interface NodeContent {
+	    
+	    string[] ChildNames { get; }
+	    int ChildSlots { get; }
+	}
 }

@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface EventEditor  {
+namespace Isometra.Sequences {
+	public interface EventEditor  {
 
-	void draw();
-	SerializableGameEvent Result { get; }
-	string EventName{ get; }
-	EventEditor clone();
-	void useEvent(SerializableGameEvent ge);
-	void detachEvent(SerializableGameEvent ge);
+		void draw();
+		SerializableGameEvent Result { get; }
+		string EventName{ get; }
+		EventEditor clone();
+		void useEvent(SerializableGameEvent ge);
+		void detachEvent(SerializableGameEvent ge);
+	}
 }

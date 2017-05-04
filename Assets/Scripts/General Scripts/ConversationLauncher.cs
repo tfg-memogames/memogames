@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Isometra;
+using Isometra.Sequences;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

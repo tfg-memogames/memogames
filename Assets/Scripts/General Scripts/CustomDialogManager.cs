@@ -3,9 +3,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using Isometra.Sequences;
 
-public class CustomDialogManager : DialogEventManager {
-
+public class CustomDialogManager : Isometra.Sequences.DialogEventManager
+{
+    
     public enum State
     {
         Opening, Showing, Closing, Idle, Options
@@ -173,4 +175,6 @@ public class CustomDialogManager : DialogEventManager {
 
         return nMsg.ToString();
     }
+
+    
 }

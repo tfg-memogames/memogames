@@ -3,33 +3,35 @@ using UnityEditor;
 using System.Collections;
 using System;
 
-public class EmptyNodeEditor : NodeEditor {
+namespace Isometra.Sequences {
+	public class EmptyNodeEditor : NodeEditor {
 
-	private SequenceNode node;
+		private SequenceNode node;
 
-	public void draw(){
-		EditorGUILayout.HelpBox("Select a content for this node" +
-			"or leave it empty to finish the secuence here.",MessageType.Info);
-		if(Event.current.type != EventType.layout){
-			if(node.Childs.Length != 0)
-				node.clearChilds();
+		public void draw(){
+			EditorGUILayout.HelpBox("Select a content for this node" +
+				"or leave it empty to finish the secuence here.",MessageType.Info);
+			if(Event.current.type != EventType.layout){
+				if(node.Childs.Length != 0)
+					node.clearChilds();
+			}
 		}
-	}
 
-	public SequenceNode Result { get{ return node; } }
-	public string NodeName{ get { return "Empty node"; } }
+		public SequenceNode Result { get{ return node; } }
+		public string NodeName{ get { return "Empty node"; } }
 
-    public string[] ChildNames{ get{ return null; } }
+	    public string[] ChildNames{ get{ return null; } }
 
-    public NodeEditor clone(){ return new EmptyNodeEditor(); }
+	    public NodeEditor clone(){ return new EmptyNodeEditor(); }
 
-	public bool manages(SequenceNode c) { return c.Content == null; }
-	public void useNode(SequenceNode c) {
-		if(c.Content != null)	
-			c.Content = null;
+		public bool manages(SequenceNode c) { return c.Content == null; }
+		public void useNode(SequenceNode c) {
+			if(c.Content != null)	
+				c.Content = null;
 
-        c.ChildSlots = 0;
-		
-		node = c;
+	        c.ChildSlots = 0;
+			
+			node = c;
+		}
 	}
 }

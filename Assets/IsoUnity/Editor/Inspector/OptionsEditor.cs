@@ -1,90 +1,113 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-[CustomEditor(typeof(Options))]
-public class OptionsEditor : Editor {
+namespace Isometra.Sequences {
+	[CustomEditor(typeof(Options))]
+	public class OptionsEditor : NodeContentEditor {
 
-    private ReorderableList optionsReorderableList;
+	    private static Texture2D conditionsTex, noConditionsTex;
 
-    private void OnEnable()
-    {
-        optionsReorderableList = new ReorderableList(new ArrayList(), typeof(Option), true, true, true, true);
-        //optionsReorderableList.elementHeight = 70;
-        optionsReorderableList.drawHeaderCallback += DrawOptionsHeader;
-        optionsReorderableList.drawElementCallback += DrawOption;
-        optionsReorderableList.onAddCallback += AddOption;
-        optionsReorderableList.onRemoveCallback += RemoveOption;
-        optionsReorderableList.onReorderCallback += ReorderOptions;
-    }
+	    private ReorderableList optionsReorderableList;
+	    private Editor forkEditor;
 
+	    protected override void OnEnable()
+	    {
+	        base.OnEnable();
 
-    private Options options;
-    public override void OnInspectorGUI()
-    {
-        options = target as Options;
+	        if (!conditionsTex) conditionsTex = (Texture2D)Resources.Load("isometra/img/icons/conditions-16x16", typeof(Texture2D));
+	        if (!noConditionsTex) noConditionsTex = (Texture2D)Resources.Load("isometra/img/icons/no-conditions-16x16", typeof(Texture2D));
 
-        //EditorGUILayout.HelpBox("Options are the lines between you have to choose at the end of the dialog. Leave empty to do nothing, put one to execute this as the dialog ends, or put more than one to let the player choose between them.", MessageType.None);
-        if (optionsReorderableList.list != null)
-        {
-            int i = optionsReorderableList.count;
-        }
-        optionsReorderableList.list = options.Values;
-        optionsReorderableList.DoLayoutList();
-    }
+	        optionsReorderableList = new ReorderableList(new ArrayList(), typeof(Option), true, true, true, true);
+	        //optionsReorderableList.elementHeight = 70;
+	        optionsReorderableList.drawHeaderCallback += DrawOptionsHeader;
+	        optionsReorderableList.drawElementCallback += DrawOption;
+	        optionsReorderableList.onAddCallback += AddOption;
+	        optionsReorderableList.onRemoveCallback += RemoveOption;
+	        optionsReorderableList.onReorderCallback += ReorderOptions;
+	        optionsReorderableList.onSelectCallback += (list) =>
+	        {
+	            forkEditor = list.index != -1 ? Editor.CreateEditor(options.Values[list.index].Fork) : null;
+	        };
+	    }
 
 
+	    private Options options;
+	    protected override void NodeContentInspectorGUI()
+	    {
+	        options = target as Options;
 
-    /**************************
-     * OPTIONS LIST OPERATIONS
-     ***************************/
+	        //EditorGUILayout.HelpBox("Options are the lines between you have to choose at the end of the dialog. Leave empty to do nothing, put one to execute this as the dialog ends, or put more than one to let the player choose between them.", MessageType.None);
 
-    Rect labelRect = new Rect(0, 2, 35, 15);
-    Rect optionRect = new Rect(40, 2, 185, 15);
-    private void DrawOptionsHeader(Rect rect)
-    {
-        GUI.Label(rect, "Dialog options");
-    }
+	        optionsReorderableList.list = options.Values;
+	        optionsReorderableList.DoLayoutList();
 
-    private void DrawOption(Rect rect, int index, bool active, bool focused)
-    {
-        Option opt = (Option)optionsReorderableList.list[index];
+	        if (forkEditor != null && forkEditor.target != null)
+	            forkEditor.OnInspectorGUI();
+	    }
 
-        EditorGUI.LabelField(moveRect(labelRect, rect), "Text: ");
-        opt.Text = EditorGUI.TextField(moveRect(optionRect, rect), opt.Text);
-    }
 
-    private void AddOption(ReorderableList list)
-    {
-        options.AddOption();
-    }
 
-    private void RemoveOption(ReorderableList list)
-    {
-        options.removeOption(options.Values[list.index]);
-    }
+	    /**************************
+	     * OPTIONS LIST OPERATIONS
+	     ***************************/
+	     
+	    private void DrawOptionsHeader(Rect rect)
+	    {
+	        GUI.Label(rect, "Dialog options");
+	    }
 
-    private void ReorderOptions(ReorderableList list)
-    {
-        List<Option> l = (List<Option>)optionsReorderableList.list;
-        options.Values = l;
-    }
+	    private void DrawOption(Rect rect, int index, bool active, bool focused)
+	    {
+	        EditorGUI.BeginChangeCheck();
 
-    /**
-     * moveRect
-     * */
-     
-    private Rect moveRect(Rect target, Rect move)
-    {
-        Rect r = new Rect(move.x + target.x, move.y + target.y, target.width, target.height);
+	        Option opt = (Option)optionsReorderableList.list[index];
+	        
+	        opt.Text = EditorGUI.TextField(new Rect(rect.position + new Vector2(0,1), new Vector2(rect.width-20, rect.height-4)), opt.Text);
+	        GUI.DrawTexture(new Rect(rect.position + new Vector2(rect.width - 17,0), new Vector2(16, 16)), (opt.Fork as ForkGroup).List.Count > 0 ? conditionsTex : noConditionsTex);
 
-        if (r.x + r.width > move.x + move.width)
-        {
-            r.width = (move.width + 25) - r.x;
-        }
+	        if (EditorGUI.EndChangeCheck())
+	        {
+	            EditorUtility.SetDirty(options);
+	        }
+	    }
 
-        return r;
-    }
+	    private void AddOption(ReorderableList list)
+	    {
+	        options.AddOption();
+	        EditorUtility.SetDirty(options);
+	    }
+
+	    private void RemoveOption(ReorderableList list)
+	    {
+	        options.removeOption(options.Values[list.index]);
+	        EditorUtility.SetDirty(options);
+	    }
+
+	    private void ReorderOptions(ReorderableList list)
+	    {
+	        List<Option> l = (List<Option>)optionsReorderableList.list;
+	        options.Values = l;
+	        EditorUtility.SetDirty(options);
+	    }
+
+	    /**
+	     * moveRect
+	     * */
+	     
+	    private Rect moveRect(Rect target, Rect move)
+	    {
+	        Rect r = new Rect(move.x + target.x, move.y + target.y, target.width, target.height);
+
+	        if (r.x + r.width > move.x + move.width)
+	        {
+	            r.width = (move.width + 25) - r.x;
+	        }
+
+	        return r;
+	    }
+	}
 }

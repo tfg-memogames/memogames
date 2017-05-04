@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Isometra;
+using Isometra.Sequences;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,8 +15,6 @@ public class PhoneBehaviour : MonoBehaviour {
 
     //Persona a la que debe llamar
     public GameObject target;
-
-   
 
     //Si el móvil se debe esconder o no
     public bool visibleAtStart = false;

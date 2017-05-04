@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IFork {
-    
-    bool check();
+namespace Isometra.Sequences {
+	public interface IFork {
+	    
+	    bool check();
+	}
 }

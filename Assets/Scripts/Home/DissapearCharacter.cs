@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Isometra;
 using UnityEngine;
 
-public class DissapearCharacter : EventManager {
+public class DissapearCharacter : Isometra.EventManager
+{
 
     public GameObject parent;
+
 
     public override void ReceiveEvent(IGameEvent ev)
     {

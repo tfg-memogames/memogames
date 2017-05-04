@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface JSONAble 
-{
-    JSONObject toJSONObject();
-    void fromJSONObject(JSONObject json);
+namespace Isometra {
+	public interface JSONAble 
+	{
+	    JSONObject toJSONObject();
+	    void fromJSONObject(JSONObject json);
+	}
 }
