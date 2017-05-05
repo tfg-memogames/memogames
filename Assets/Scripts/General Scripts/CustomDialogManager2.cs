@@ -48,6 +48,7 @@ public class CustomDialogManager2 : DialogEventManager {
     {
         state = State.Idle;
         this._gs = GameObject.FindObjectOfType<GameState>();
+        
     }
 
     // ------------------------------
