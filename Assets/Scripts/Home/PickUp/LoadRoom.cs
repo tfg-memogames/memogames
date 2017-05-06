@@ -28,8 +28,11 @@ public class LoadRoom : MonoBehaviour {
 		dictionary = PickUpManager.house [room];
 
 		for (int i = 0; i < sites.Length; i++)
-			if (!dictionary[sites [i].name].Equals ("."))
+			if (!dictionary[sites [i].name].Equals (".")){
 				foundObject (dictionary[sites [i].name]).transform.position = sites [i].transform.position;
+				Vector3 v=foundObject (dictionary[sites [i].name]).transform.position;
+				foundObject (dictionary[sites [i].name]).transform.position=new Vector3(v.x, v.y, -1);
+			}
 	}
 
 	GameObject foundObject(string name){
