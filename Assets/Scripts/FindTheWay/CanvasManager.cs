@@ -146,13 +146,51 @@ public class CanvasManager : MonoBehaviour
     }
 
 
-
+   /* private string levelToString(int level)
+    {
+        string levelName = "";
+        switch(level)
+        {
+            case 1: levelName = "Fácil";
+                break;
+            case 2: levelName = "Medio";
+                break;
+            case 3: levelName = "Difícil";
+                break;
+            default: levelName = "Fácil";
+                break;
+        }
+        return levelName;
+    }
+    */
+    private string levelToString(string scene)
+    {
+        string levelName = "";
+        switch (scene)
+        {
+            case "Easy_Level":
+                levelName = "Fácil";
+                break;
+            case "Medium_Level":
+                levelName = "Medio";
+                break;
+            case "Hard_Level":
+                levelName = "Difícil";
+                break;
+            default:
+                levelName = "Fácil";
+                break;
+        }
+        return levelName;
+    }
 
 
     //Muestra popup con que has ganado (desbloqueará el siguiente nivel)
     public void win()
     {
+
         car.stopCar();
+        storeInTxt(this.distance, gs.playerName, gm.mapTimes, true);
         int path = gm.pathLength;
 
         float points = path / distance;
@@ -192,9 +230,30 @@ public class CanvasManager : MonoBehaviour
     {
         //DestroyObject(car);
         car.destroyCar();
-        //car.stopCar();
+        storeInTxt(this.distance, gs.playerName, gm.mapTimes, false);
         restart.gameObject.SetActive(true);
         exit.gameObject.SetActive(true);
         wastedEnergy.enabled = true;
     }
+
+    private void storeInTxt(int distance,string name, int map, bool goal)
+    {
+        string level = levelToString(SceneManager.GetActiveScene().name);
+        string path = "./Assets/LocalTracker/prueba_" + name + "_" + level + ".txt";
+        string content = "Jugador: " + name + "\n";
+        content += "Nivel: " + level + "\n";
+        string finished = "Sí";
+        if (!goal)
+            finished = "No";
+        content += "Conseguido: " + finished + "\n";
+        content += "Distancia: " + distance + "\n";
+        content += "Mapa: " + map + "\n";
+        
+        System.IO.File.WriteAllText(path, content);
+
+
+    }
 }
+
+
+

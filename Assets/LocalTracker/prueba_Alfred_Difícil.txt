@@ -1,0 +1,5 @@
+Jugador: Alfred
+Nivel: Difícil
+Conseguido: Sí
+Distancia: 62
+Mapa: 2

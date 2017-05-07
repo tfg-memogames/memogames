@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
 
     //Número máximo de veces que el jugador puede ver el mapa completo.
-    private const int MAP_COUNTER = 4;
+    public int MAP_COUNTER = 4;
 
     //Length of optimal path
     private int _pathLength;
@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
     //Muestra el mapa 
     public void showMap()
     {
+ 
         if (!car.mapOpened)
         {
             if (mapCounter > 0)
@@ -83,10 +84,6 @@ public class GameManager : MonoBehaviour
                 car.stopCar();
                 car.carArrow.SetActive(true);
                 mapCounter--;
-
-				//Tracker.T.Alternative.Selected("qid","rid",Alternative.AlternativeType.Question)
-
-				//Tracker.T.setVar("name", "nombrejugador");
 				Tracker.T.trackedGameObject.Interacted("map");
 
 			
@@ -136,16 +133,9 @@ public class GameManager : MonoBehaviour
 
 
    
+ 
 
-
-    //Se llama desde CarMove cuando el coche se queda sin energía o combustible
-    //Muestra popup con que has perdido (reiniciar o salir)
-
-    //De momento esto se hace en Canvas Manager
-    public void lose()
-    {
-
-    }
+ 
 
     public int pathLength
     {
@@ -153,7 +143,14 @@ public class GameManager : MonoBehaviour
         set { this._pathLength = value; }
     }
 
-   
+
+
+    public int mapTimes
+    {
+        get { return (MAP_COUNTER - this.mapCounter); }
+    }
+
+
 
 
 }

@@ -1,0 +1,5 @@
+Jugador: Alfred
+Nivel: Medio
+Conseguido: No
+Distancia: 100
+Mapa: 1
