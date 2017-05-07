@@ -8,6 +8,7 @@ public class DissapearCharacter : Isometra.EventManager
 {
 
     public GameObject parent;
+    public LockDoor door;
 
 
     public override void ReceiveEvent(IGameEvent ev)
@@ -17,6 +18,7 @@ public class DissapearCharacter : Isometra.EventManager
             //Fernando se va
             if (this.parent != null)
                 this.parent.SetActive(false);
+            door.openDoor();
         }
     }
 
