@@ -20,7 +20,7 @@ public class InputManager : Isometra.EventManager
         this._input.gameObject.SetActive(false);
         processing = null;
         this._gs = GameObject.FindObjectOfType<GameState>();
-        this.phone.SetActive(false);
+        //this.phone.SetActive(false);
     }
 
 
@@ -43,16 +43,18 @@ public class InputManager : Isometra.EventManager
         }
         else if(ev.Name == "Fernando_Leaves")
         {
+            
             //Fernando se va
             if (this.mainCharacter != null)
                 this.mainCharacter.SetActive(false);
             //Y le llaman al teléfono
             this.phone.SetActive(true);
+
         }
         else if(ev.Name == "Change_To_Maria_Scene")
         {
             //Cambia a escena con María.
-            SceneManager.LoadScene("Conver with María");
+            SceneManager.LoadScene("Conver with Maria");
         }
     }
 
