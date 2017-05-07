@@ -2,7 +2,6 @@
 using Isometra.Sequences;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PhoneBehaviour : MonoBehaviour {
@@ -26,8 +25,8 @@ public class PhoneBehaviour : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (!visibleAtStart)
-            this.gameObject.SetActive(false);
+        if (visibleAtStart)
+            this.gameObject.SetActive(true);
 
         
 
@@ -60,8 +59,6 @@ public class PhoneBehaviour : MonoBehaviour {
                 source.loop = true;
                 source.Play();
                 StartCoroutine(Wait());
-                
-            //
         }
             else
             {

@@ -11,7 +11,6 @@ public class ShadowEffect : MonoBehaviour {
     public Vector3 finalPosition;
 
     private Image image;
-
     private Color startColor;
     private Vector3 startPosition;
 
