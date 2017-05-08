@@ -18,6 +18,7 @@ public class CanvasManager : MonoBehaviour
     private float currentConsum = 0;
 
     private int distance;
+    private int distanceWrongPath;
     public Text dist_Text;
 
 
@@ -32,6 +33,11 @@ public class CanvasManager : MonoBehaviour
 
     //GameManager
     private GameManager gm;
+
+
+    //Time
+    private float time = 0;
+    private bool _counting;
 
     //PopUp
     public Button exit;
@@ -53,8 +59,10 @@ public class CanvasManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        this._counting = false;
         this.dist_Text.text = "Distance: 0";
         this.distance = 0;
+        this.distanceWrongPath = 0;
         gs = GameObject.FindObjectOfType<GameState>();
         gm = GameObject.FindObjectOfType<GameManager>();
 
@@ -91,6 +99,15 @@ public class CanvasManager : MonoBehaviour
     }
 
 
+
+    private void FixedUpdate()
+    {
+        if(this._counting) { 
+            time += Time.deltaTime;
+            Debug.Log((int)time);
+        }
+
+    }
 
     //newValue es el porcentaje consumido
     private void setPercentageOfEnergy(float newValue)
@@ -133,36 +150,43 @@ public class CanvasManager : MonoBehaviour
     public void restartButtonClicked()
     {
 
-        Debug.Log(SceneManager.GetActiveScene().name);
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
-    public void incrDistance()
+    //El coche llama a este método cada vez que cambia de baldosa
+    
+    public void incrDistance(GameObject road)
     {
         distance++;
         this.dist_Text.text = "Distance " + distance;
         decreaseEnergy();
-    }
-
-
-   /* private string levelToString(int level)
-    {
-        string levelName = "";
-        switch(level)
-        {
-            case 1: levelName = "Fácil";
-                break;
-            case 2: levelName = "Medio";
-                break;
-            case 3: levelName = "Difícil";
-                break;
-            default: levelName = "Fácil";
-                break;
+        //HAY QUE COMPROBAR SI LA BALDOSA ESTÁ EN EL ARRAY BEST_PATH DE GAMEMANAGER
+        if (!gm.isBestPath(road)) { 
+            this.distanceWrongPath++;
+            Debug.Log(road.name);
         }
-        return levelName;
     }
-    */
+
+
+    /* private string levelToString(int level)
+     {
+         string levelName = "";
+         switch(level)
+         {
+             case 1: levelName = "Fácil";
+                 break;
+             case 2: levelName = "Medio";
+                 break;
+             case 3: levelName = "Difícil";
+                 break;
+             default: levelName = "Fácil";
+                 break;
+         }
+         return levelName;
+     }
+     */
     private string levelToString(string scene)
     {
         string levelName = "";
@@ -188,12 +212,15 @@ public class CanvasManager : MonoBehaviour
     //Muestra popup con que has ganado (desbloqueará el siguiente nivel)
     public void win()
     {
-
+        counting = false;
         car.stopCar();
-        storeInTxt(this.distance, gs.playerName, gm.mapTimes, true);
-        int path = gm.pathLength;
+        
+        float path = gm.pathLength;
 
-        float points = path / distance;
+        float dist = distance;
+
+        float points = path / dist;
+        int stars = 0;
 
         if (points >= 0.95)
         {
@@ -201,20 +228,29 @@ public class CanvasManager : MonoBehaviour
             stars3.gameObject.SetActive(true);
             stars1.gameObject.SetActive(true);
             stars2.gameObject.SetActive(true);
+            stars = 3;
         }
-        else if (points > 0.75 && points < 0.95)
+        else if (points > 0.80 && points < 0.95)
         {
+            score.text = "¡Has conseguido 2 estrellas (Max. 3)!";
             stars4.gameObject.SetActive(true);
             stars5.gameObject.SetActive(true);
+            stars = 2;
         }
-        else if (points > 0.5 && points < 0.75)
+        else if (points > 0.6 && points < 0.80)
+        {
+            score.text = "¡Has conseguido 1 estrella (Max. 3)!";
             stars6.gameObject.SetActive(true);
-        else if (points < 0.5)
+            stars = 1;
+        }
+            
+        else 
         {
             score.text = "No has conseguido ninguna estrella :(";
             score.enabled = true;
 
         }
+        storeInTxt(this.distance, gm.mapTimes, true, points, stars,(int)this.time);
 
         exit.gameObject.SetActive(true);
 
@@ -230,28 +266,55 @@ public class CanvasManager : MonoBehaviour
     {
         //DestroyObject(car);
         car.destroyCar();
-        storeInTxt(this.distance, gs.playerName, gm.mapTimes, false);
+        counting = false;
+        storeInTxt(this.distance, gm.mapTimes, false, 0, 0,(int) this.time);
         restart.gameObject.SetActive(true);
         exit.gameObject.SetActive(true);
         wastedEnergy.enabled = true;
     }
 
-    private void storeInTxt(int distance,string name, int map, bool goal)
+
+    //Tiempo, icono google maps para el destino
+    private void storeInTxt(int distance, int map, bool goal, float score, int stars, int seconds)
     {
+        string name = gs.playerName;
         string level = levelToString(SceneManager.GetActiveScene().name);
         string path = "./Assets/LocalTracker/prueba_" + name + "_" + level + ".txt";
-        string content = "Jugador: " + name + "\n";
-        content += "Nivel: " + level + "\n";
+        string content = "";
         string finished = "Sí";
         if (!goal)
             finished = "No";
-        content += "Conseguido: " + finished + "\n";
-        content += "Distancia: " + distance + "\n";
-        content += "Mapa: " + map + "\n";
         
+        if (score > 1)
+            score = 1;
+        // Máxima puntuación 100
+        score *= 100;
+        int punt = (int)score;
+
+        
+        content = "Jugador: " + name + "\n";
+        content += "Nivel: " + level + "\n";
+        content += "Conseguido: " + finished + "\n";
+        content += "Distancia total: " + distance + "(Óptimo: " + gm.pathLength + ")\n";
+        content += "Distancia fuera del camino óptimo: " + this.distanceWrongPath + "\n";
+        content += "Puntuacion: " + punt + " (Max: 100 puntos)\n";
+        content += "Estrellas: " + stars + " (Max: 3 estrellas)\n";
+        
+        content += "Veces consultado el mapa: " + map + " (Min: 1, Max: " + gm.MAP_COUNTER + ")\n";
+        content += "Tiempo transcurrido: " + seconds + " segundos\n";
+
         System.IO.File.WriteAllText(path, content);
 
 
+    }
+
+
+
+
+    public bool counting
+    {
+        get { return this._counting; }
+        set { this._counting = value; }
     }
 }
 

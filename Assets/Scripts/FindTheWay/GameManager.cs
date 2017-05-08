@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using RAGE.Analytics;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
@@ -73,6 +74,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /*bool found = false;
+        int i = 0;
+        while (!found && i < bestPath.Length)
+        {
+            if (bestPath[i].Equals(road))
+                found = true;
+            else
+                i++;
+        }
+        return found;*/
+
+
+    public bool isBestPath(GameObject road)
+    {
+        return ArrayUtility.Contains(bestPath, road);
+    }
+
     //Muestra el mapa 
     public void showMap()
     {
@@ -83,7 +101,8 @@ public class GameManager : MonoBehaviour
             {
                 car.stopCar();
                 car.carArrow.SetActive(true);
-                mapCounter--;
+                
+                this.mapCounter--;
 				Tracker.T.trackedGameObject.Interacted("map");
 
 			
@@ -105,9 +124,13 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-        else
+        
+        else //Está cerrando el mapa
         {
+            //El contador del tiempo empieza cuando el jugador cierra por primera vez el mapa
+            //Y el coche empieza a moverse
+            if (this.mapCounter == MAP_COUNTER - 1)
+                cm.counting = true;
             if (mapCounter > 0)
             {
                 buttonShow.image.sprite = mapOpenedSprite;
@@ -149,7 +172,6 @@ public class GameManager : MonoBehaviour
     {
         get { return (MAP_COUNTER - this.mapCounter); }
     }
-
 
 
 

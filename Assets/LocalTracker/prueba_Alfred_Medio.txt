@@ -1,5 +1,9 @@
 Jugador: Alfred
 Nivel: Medio
-Conseguido: No
-Distancia: 100
-Mapa: 1
+Conseguido: Sí
+Distancia total: 36(Óptimo: 38)
+Distancia fuera del camino óptimo: 3
+Puntuacion: 100 (Max: 100 puntos)
+Estrellas: 3 (Max: 3 estrellas)
+Veces consultado el mapa: 2 (Min: 1, Max: 3)
+Tiempo transcurrido: 19 segundos

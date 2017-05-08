@@ -151,7 +151,7 @@ public class CarMove : MonoBehaviour
     
     void OnTriggerExit2D(Collider2D other)
     {
-        cv.incrDistance();
+        cv.incrDistance(other.gameObject);
         //Recto
         if (other.gameObject.tag == Tag.S.ToString())
         {
