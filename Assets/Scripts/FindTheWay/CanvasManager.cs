@@ -18,7 +18,10 @@ public class CanvasManager : MonoBehaviour
     private float currentConsum = 0;
 
     private int distance;
+    //Distancia fuera del camino óptimo
     private int distanceWrongPath;
+    //Booleano que indica si se ha estado siempre en el camino óptimo
+    private bool bestP;
     public Text dist_Text;
 
 
@@ -59,6 +62,7 @@ public class CanvasManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        this.bestP = true;
         this._counting = false;
         this.dist_Text.text = "Distance: 0";
         this.distance = 0;
@@ -104,7 +108,6 @@ public class CanvasManager : MonoBehaviour
     {
         if(this._counting) { 
             time += Time.deltaTime;
-            Debug.Log((int)time);
         }
 
     }
@@ -162,10 +165,18 @@ public class CanvasManager : MonoBehaviour
         distance++;
         this.dist_Text.text = "Distance " + distance;
         decreaseEnergy();
-        //HAY QUE COMPROBAR SI LA BALDOSA ESTÁ EN EL ARRAY BEST_PATH DE GAMEMANAGER
-        if (!gm.isBestPath(road)) { 
-            this.distanceWrongPath++;
-            Debug.Log(road.name);
+
+        if(this.bestP) { 
+            //Si la función devuelve true 3 veces seguidas ya podemos asegurar que se ha salido del camino óptimo
+            if (!gm.isBestPath(road)) { 
+                this.distanceWrongPath++;
+                if (this.distanceWrongPath > 2)
+                    this.bestP = false;
+            }
+            else
+            {
+                this.distanceWrongPath = 0;
+            }
         }
     }
 
@@ -282,9 +293,11 @@ public class CanvasManager : MonoBehaviour
         string path = "./Assets/LocalTracker/prueba_" + name + "_" + level + ".txt";
         string content = "";
         string finished = "Sí";
+        string bestPath = "Sí";
+        if (!this.bestP)
+            bestPath = "No";
         if (!goal)
             finished = "No";
-        
         if (score > 1)
             score = 1;
         // Máxima puntuación 100
@@ -295,8 +308,8 @@ public class CanvasManager : MonoBehaviour
         content = "Jugador: " + name + "\n";
         content += "Nivel: " + level + "\n";
         content += "Conseguido: " + finished + "\n";
-        content += "Distancia total: " + distance + "(Óptimo: " + gm.pathLength + ")\n";
-        content += "Distancia fuera del camino óptimo: " + this.distanceWrongPath + "\n";
+        content += "Distancia total: " + distance + "(Óptimo: (" + (gm.pathLength - 3) + " - " + (gm.pathLength + 1) + ")\n";
+        content += "Camino óptimo: " + bestPath + "\n";
         content += "Puntuacion: " + punt + " (Max: 100 puntos)\n";
         content += "Estrellas: " + stars + " (Max: 3 estrellas)\n";
         
