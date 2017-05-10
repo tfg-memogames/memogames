@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using RAGE.Analytics;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -262,6 +263,8 @@ public class CanvasManager : MonoBehaviour
 
         }
         storeInTxt(this.distance, gm.mapTimes, true, points, stars,(int)this.time);
+
+        //Tracker.T.completable.Completed();
 
         exit.gameObject.SetActive(true);
 
