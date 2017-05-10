@@ -105,7 +105,8 @@ public class GameManager : MonoBehaviour
                 this.mapCounter--;
 				Tracker.T.trackedGameObject.Interacted("map");
 
-			
+
+
                 car.mapOpened = true;
                 buttonShow.image.sprite = mapClosedSprite;
                 camCurrPos = mainCamera.transform.position;

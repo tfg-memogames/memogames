@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using RAGE.Analytics;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -261,7 +262,10 @@ public class CanvasManager : MonoBehaviour
             score.enabled = true;
 
         }
-        storeInTxt(this.distance, gm.mapTimes, true, points, stars,(int)this.time);
+        storeTracker(this.distance, gm.mapTimes, true, points, stars,(int)this.time);
+
+
+        
 
         exit.gameObject.SetActive(true);
 
@@ -278,15 +282,16 @@ public class CanvasManager : MonoBehaviour
         //DestroyObject(car);
         car.destroyCar();
         counting = false;
-        storeInTxt(this.distance, gm.mapTimes, false, 0, 0,(int) this.time);
+        storeTracker(this.distance, gm.mapTimes, false, 0, 0,(int) this.time);
         restart.gameObject.SetActive(true);
         exit.gameObject.SetActive(true);
         wastedEnergy.enabled = true;
     }
 
 
+
     //Tiempo, icono google maps para el destino
-    private void storeInTxt(int distance, int map, bool goal, float score, int stars, int seconds)
+    private void storeTracker(int distance, int map, bool goal, float score, int stars, int seconds)
     {
         string name = gs.playerName;
         string level = levelToString(SceneManager.GetActiveScene().name);
@@ -318,6 +323,11 @@ public class CanvasManager : MonoBehaviour
 
         System.IO.File.WriteAllText(path, content);
 
+
+        Tracker.T.completable.Completed("Nivel: " + level, CompletableTracker.Completable.Completable, goal,score);
+        Tracker.T.alternative.Selected("¿Camino óptimo?", bestPath, AlternativeTracker.Alternative.Path);
+        Tracker.T.alternative.Selected("Tiempo", seconds.ToString(), AlternativeTracker.Alternative.Question);
+        Tracker.T.alternative.Selected("Mapa", map.ToString(), AlternativeTracker.Alternative.Question);
 
     }
 
