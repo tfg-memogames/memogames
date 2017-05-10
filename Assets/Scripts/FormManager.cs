@@ -9,11 +9,11 @@ public class FormManager : MonoBehaviour {
     public InputField _inputName;
     public InputField _inputSurname;
     public Text _messageError;
-    //private GameState _gs;
+    private GameState _gs;
 
     // Use this for initialization
     void Start () {
-        //this._gs = GameObject.FindObjectOfType<GameState>();
+        this._gs = GameObject.FindObjectOfType<GameState>();
         this._messageError.gameObject.SetActive(false);
     }
 	
@@ -32,9 +32,9 @@ public class FormManager : MonoBehaviour {
             return;
         }
 
-        //this._gs.name = _inputName.text;
-        //this._gs.surname = _inputSurname.text;
-        //SceneManager.LoadScene("Level_Selector");
+        this._gs.playerName = _inputName.text;
+        this._gs.playerSurname = _inputSurname.text;
+        SceneManager.LoadScene("Level_Selector");
     }
 
     private void DisplayErrorMessage(string text)

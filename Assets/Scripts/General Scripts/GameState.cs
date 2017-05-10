@@ -11,6 +11,8 @@ public class GameState : MonoBehaviour
 
     //Player Name
     private string _playerName;
+    //Player Surname
+    private string _playerSurname;
     //Player Gender
     private Gender _playerGender;
 
@@ -34,8 +36,6 @@ public class GameState : MonoBehaviour
         else
             Destroy(this.gameObject);
 
-        
-
         this.playerName = "Alfred";
         this.playerGender = Gender.F;
         this.level = 1;
@@ -46,6 +46,12 @@ public class GameState : MonoBehaviour
     {
         get { return this._playerName; }
         set { this._playerName = value; }
+    }
+
+    public string playerSurname
+    {
+        get { return this._playerSurname; }
+        set { this._playerSurname = value; }
     }
 
     public Gender playerGender
@@ -65,8 +71,4 @@ public class GameState : MonoBehaviour
         get { return this._level; }
         set { this._level = value; }
     }
-
-
-
-
 }

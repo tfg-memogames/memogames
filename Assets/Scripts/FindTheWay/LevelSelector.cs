@@ -6,67 +6,34 @@ using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour {
 
-    /* public Button buttonLevel1;
-     public Button buttonLevel2;
-     public Button buttonLevel3;
-     public Button buttonLevel4;
-     public Button buttonLevelElectricCar;
-     public Button buttonLevelGasCar;
-     */
-
-    public Button startButton;
-    public GameState gameS;
+    private GameState gameS;
 
 	// Use this for initialization
 	void Start () {
-        startButton.enabled = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        this.gameS = GameObject.FindObjectOfType<GameState>();
+        Debug.Log(gameS.playerName + " " + gameS.playerSurname);
+    }
 
     public void level1Clicked()
     {
-        Debug.Log("Button 1");
         gameS.level = 1;
+        SceneManager.LoadScene("Easy_Level");
     }
 
     public void level2Clicked()
     {
-        Debug.Log("Button 2");
         gameS.level = 2;
+        SceneManager.LoadScene("Medium_Level");
     }
 
     public void level3Clicked()
     {
-        Debug.Log("Button 3");
         gameS.level = 3;
+        SceneManager.LoadScene("Hard_Level");
     }
 
-   
-
-    public void electricCarClicked()
+    public void tutorialClicked()
     {
-        Debug.Log("Electric");
-        gameS.carType = GameState.Car.ELECTRIC;
-        startButton.enabled = true;
-
+        SceneManager.LoadScene("TutorialFindTheWay");
     }
-
-    public void gasCarClicked()
-    {
-        Debug.Log("Gas");
-        gameS.carType = GameState.Car.GAS;
-        startButton.enabled = true;
-    }
-
-    public void startButtonClicked()
-    {
-        string level = "Level" + gameS.level;
-        SceneManager.LoadScene(level);
-        
-    }
-
 }
