@@ -1,0 +1,9 @@
+Jugador: Alfred
+Nivel: Fácil
+Conseguido: Sí
+Distancia total: 37(Óptimo: (36 - 40)
+Camino óptimo: Sí
+Puntuacion: 100 (Max: 100 puntos)
+Estrellas: 3 (Max: 3 estrellas)
+Veces consultado el mapa: 4 (Min: 1, Max: 4)
+Tiempo transcurrido: 38 segundos
