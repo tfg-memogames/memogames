@@ -12,7 +12,9 @@ public class CanvasManager : MonoBehaviour
     public GameObject bar;
     public GameObject gas;
     public GameObject electric;
+    public Text omitir;
 
+    public static bool end=false;
     private RectTransform rt;
     private float totalEnergy;
 
@@ -59,6 +61,8 @@ public class CanvasManager : MonoBehaviour
     public Button stars2;
     public Button stars1;
 
+    public bool tutorial=false;
+
 
     // Use this for initialization
     void Start()
@@ -101,14 +105,33 @@ public class CanvasManager : MonoBehaviour
         stars2.gameObject.SetActive(false);
         stars1.gameObject.SetActive(false);
 
+
+        if(tutorial){
+        	electric.gameObject.SetActive(false);
+        	this.dist_Text.gameObject.SetActive(false);
+        	GameObject.Find("mapButton").SetActive(false);
+        }else{
+        	GameObject.Find("Panel").SetActive(false);
+        }
+
     }
 
-
+    public void video(){
+    	electric.gameObject.SetActive(true);
+        this.dist_Text.gameObject.SetActive(true);
+    }
 
     private void FixedUpdate()
     {
+        if(end){
+            /*electric.gameObject.SetActive(true);
+            this.dist_Text.gameObject.SetActive(true);*/
+            omitir.text = "Salir";
+        }
+
         if(this._counting) { 
             time += Time.deltaTime;
+			Debug.Log (time);
         }
 
     }
@@ -153,9 +176,7 @@ public class CanvasManager : MonoBehaviour
 
     public void restartButtonClicked()
     {
-
-        
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Level_Selector");
     }
 
 
