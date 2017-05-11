@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using RAGE.Analytics;
-using UnityEditor;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     public bool isBestPath(GameObject road)
     {
-        return ArrayUtility.Contains(bestPath, road);
+        return bestPath.ToList().Contains(road);
     }
 
     //Muestra el mapa 
