@@ -114,8 +114,10 @@ public class GameManager : MonoBehaviour
                 //Vector3 vec = camCurrPos;
                 //vec.z = vec.z - 50;
                 mainCamera.GetComponent<CameraMove>().chase = false;
-                mainCamera.fieldOfView = 159;
-                mainCamera.gameObject.GetComponent<Transform>().position = new Vector3(-1394f, -583f, -40);
+                mainCamera.fieldOfView *= 2.3f;
+                
+                //Ahora mismo la cámara tiene al coche centradp, hay que conseguir que centre el mapa.
+                //mainCamera.gameObject.GetComponent<Transform>().position = new Vector3(-1394f, -583f, -40);
                 mapCounterText.text = "" + mapCounter;
 
                 //Llamamos al método que muestra las rutas óptimas
@@ -143,7 +145,8 @@ public class GameManager : MonoBehaviour
 
             car.carArrow.SetActive(false);
             mainCamera.transform.position = camCurrPos;
-            mainCamera.fieldOfView = 70;
+            mainCamera.fieldOfView /= 2.3f;
+            
             //Llamamos al método que muestra las rutas óptimas
             foreach (GameObject road in bestPath)
             {
