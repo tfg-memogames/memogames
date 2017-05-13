@@ -29,7 +29,7 @@ public class SetupIntersections : MonoBehaviour {
                     GameObject a = Instantiate(arrow, child.transform);
                     a.transform.localPosition = Vector3.zero;
                     //Rotación
-                    Quaternion temp = a.transform.rotation;
+                    
                     a.transform.rotation = Quaternion.Euler(180, 0, 0);
 
                     a.SetActive(false);
@@ -40,7 +40,7 @@ public class SetupIntersections : MonoBehaviour {
                     GameObject a = Instantiate(arrow, child.transform);
                     a.transform.localPosition = Vector3.zero;
                     //Rotación
-                    Quaternion temp = a.transform.rotation;
+                    
                     a.transform.rotation = Quaternion.Euler(180, 180, 0);
 
 
@@ -51,6 +51,7 @@ public class SetupIntersections : MonoBehaviour {
                 {
                     GameObject a = Instantiate(arrow, child.transform);
                     a.transform.localPosition = Vector3.zero;
+                    a.transform.rotation = Quaternion.Euler(0, 0, 0);
                     a.SetActive(false);
                     inter.AddArrow(a);
                 }
@@ -59,7 +60,7 @@ public class SetupIntersections : MonoBehaviour {
                     GameObject a = Instantiate(arrow, child.transform);
                     a.transform.localPosition = Vector3.zero;
                     //Rotación
-                    Quaternion temp = a.transform.rotation;
+                    
                     a.transform.rotation = Quaternion.Euler(0, 180, 0);
 
                     a.SetActive(false);
