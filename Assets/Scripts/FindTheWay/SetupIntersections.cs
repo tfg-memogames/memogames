@@ -10,12 +10,10 @@ public class SetupIntersections : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        GameObject[] arrows = Resources.LoadAll<GameObject>(path);
+        //GameObject[] arrows = Resources.LoadAll<GameObject>(path);
 
-        GameObject arrow_NE = Resources.Load<GameObject>(path + "/Arrow_NE");
-        GameObject arrow_NW = Resources.Load<GameObject>(path + "/Arrow_NW");
-        GameObject arrow_SE = Resources.Load<GameObject>(path + "/Arrow_SE");
-        GameObject arrow_SW = Resources.Load<GameObject>(path + "/Arrow_SW");
+        GameObject arrow = Resources.Load<GameObject>(path + "/General_Arrow");
+        
 
         GameObject[] intersections = GameObject.FindGameObjectsWithTag("I");		
         foreach (GameObject i in intersections)
@@ -30,33 +28,46 @@ public class SetupIntersections : MonoBehaviour {
 
                 if (child.name == dirs.NE.ToString())
                 {
-                    GameObject a = Instantiate(arrow_NE, child.transform);
+                    GameObject a = Instantiate(arrow, child.transform);
                     a.transform.localPosition = Vector3.zero;
+                    //Rotación
+                    Quaternion temp = a.transform.rotation;
+                    a.transform.rotation = new Quaternion(180, temp.y, 0, 0);
                     
                     a.SetActive(false);
                     inter.AddArrow(a);
 
                 } else if (child.name == dirs.NW.ToString())
                 {
-                    GameObject a = Instantiate(arrow_NW, child.transform);
+                    GameObject a = Instantiate(arrow, child.transform);
                     a.transform.localPosition = Vector3.zero;
-                    
+                    //Rotación
+                    Quaternion temp = a.transform.rotation;
+                    a.transform.rotation = new Quaternion(180, 180, 0, 0);
+
+
                     a.SetActive(false);
                     inter.AddArrow(a);
                 }
                 else if (child.name == dirs.SE.ToString())
                 {
-                    GameObject a = Instantiate(arrow_SE, child.transform);
+                    GameObject a = Instantiate(arrow, child.transform);
                     a.transform.localPosition = Vector3.zero;
-                    
+                    //Rotación
+                    Quaternion temp = a.transform.rotation;
+                    a.transform.rotation = new Quaternion(temp.x, temp.y, 0, 0);
+
                     a.SetActive(false);
                     inter.AddArrow(a);
                 }
                 else if (child.name == dirs.SW.ToString())
                 {
-                    GameObject a = Instantiate(arrow_SW, child.transform);
+                    GameObject a = Instantiate(arrow, child.transform);
                     a.transform.localPosition = Vector3.zero;
-                    
+                    //Rotación
+                    Quaternion temp = a.transform.rotation;
+                    a.transform.rotation = new Quaternion(temp.x, 180, 0, 0);
+
                     a.SetActive(false);
                     inter.AddArrow(a);
                 }
