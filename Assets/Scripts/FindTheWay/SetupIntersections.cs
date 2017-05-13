@@ -10,8 +10,6 @@ public class SetupIntersections : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        //GameObject[] arrows = Resources.LoadAll<GameObject>(path);
-
         GameObject arrow = Resources.Load<GameObject>(path + "/General_Arrow");
         
 
@@ -32,8 +30,8 @@ public class SetupIntersections : MonoBehaviour {
                     a.transform.localPosition = Vector3.zero;
                     //Rotación
                     Quaternion temp = a.transform.rotation;
-                    a.transform.rotation = new Quaternion(180, temp.y, 0, 0);
-                    
+                    a.transform.rotation = Quaternion.Euler(180, 0, 0);
+
                     a.SetActive(false);
                     inter.AddArrow(a);
 
@@ -43,7 +41,7 @@ public class SetupIntersections : MonoBehaviour {
                     a.transform.localPosition = Vector3.zero;
                     //Rotación
                     Quaternion temp = a.transform.rotation;
-                    a.transform.rotation = new Quaternion(180, 180, 0, 0);
+                    a.transform.rotation = Quaternion.Euler(180, 180, 0);
 
 
                     a.SetActive(false);
@@ -53,10 +51,6 @@ public class SetupIntersections : MonoBehaviour {
                 {
                     GameObject a = Instantiate(arrow, child.transform);
                     a.transform.localPosition = Vector3.zero;
-                    //Rotación
-                    Quaternion temp = a.transform.rotation;
-                    a.transform.rotation = new Quaternion(temp.x, temp.y, 0, 0);
-
                     a.SetActive(false);
                     inter.AddArrow(a);
                 }
@@ -66,7 +60,7 @@ public class SetupIntersections : MonoBehaviour {
                     a.transform.localPosition = Vector3.zero;
                     //Rotación
                     Quaternion temp = a.transform.rotation;
-                    a.transform.rotation = new Quaternion(temp.x, 180, 0, 0);
+                    a.transform.rotation = Quaternion.Euler(0, 180, 0);
 
                     a.SetActive(false);
                     inter.AddArrow(a);
