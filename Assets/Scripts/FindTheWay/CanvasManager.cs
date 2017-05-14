@@ -330,9 +330,8 @@ public class CanvasManager : MonoBehaviour
         score *= 100;
         int punt = (int)score;
 
-        
-        content = "Jugador: " + name + "\n";
-        content = "Edad: " + edad + "\n";
+        content += "Jugador: " + name + "\n";
+        content += "Edad: " + edad + "\n";
         content += "Nivel: " + level + "\n";
         content += "Conseguido: " + finished + "\n";
         content += "Distancia total: " + distance + "(Óptimo: (" + (gm.pathLength - 3) + " - " + (gm.pathLength + 1) + ")\n";
