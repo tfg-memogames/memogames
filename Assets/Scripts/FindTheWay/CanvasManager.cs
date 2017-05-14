@@ -131,7 +131,6 @@ public class CanvasManager : MonoBehaviour
 
         if(this._counting) { 
             time += Time.deltaTime;
-			Debug.Log (time);
         }
 
     }
@@ -153,10 +152,10 @@ public class CanvasManager : MonoBehaviour
 
 
         //Si es de gasolina el gasto es 1.5 el del eléctrico
-        if (gs.carType == GameState.Car.ELECTRIC)
-            this.currentConsum += this.consumption;
-        else
+        if (gs.carType == GameState.Car.GAS)
             this.currentConsum += this.consumption * 1.5f;
+        else
+            this.currentConsum += this.consumption;
 
         setPercentageOfEnergy(this.currentConsum);
 
@@ -316,7 +315,7 @@ public class CanvasManager : MonoBehaviour
     {
         string name = gs.playerName;
         string level = levelToString(SceneManager.GetActiveScene().name);
-        string path = "./Assets/LocalTracker/prueba_" + name + "_" + level + ".txt";
+        string path = "./prueba_" + name + "_" + level + ".txt";
         string content = "";
         string finished = "Sí";
         string bestPath = "Sí";
