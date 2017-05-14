@@ -8,6 +8,7 @@ public class FormManager : MonoBehaviour {
 
     public InputField _inputName;
     public InputField _inputSurname;
+    public InputField _inputAge;
     public Text _messageError;
     private GameState _gs;
 
@@ -32,8 +33,16 @@ public class FormManager : MonoBehaviour {
             return;
         }
 
+        if (this._inputAge.text == "")
+        {
+            DisplayErrorMessage("Debes introducir una edad");
+            return;
+        }
+
+
         this._gs.playerName = _inputName.text;
         this._gs.playerSurname = _inputSurname.text;
+        this._gs.playerAge = _inputAge.text;
         SceneManager.LoadScene("Level_Selector");
     }
 

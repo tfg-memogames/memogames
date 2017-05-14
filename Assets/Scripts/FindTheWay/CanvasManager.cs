@@ -313,7 +313,8 @@ public class CanvasManager : MonoBehaviour
     //Tiempo, icono google maps para el destino
     private void storeTracker(int distance, int map, bool goal, float score, int stars, int seconds)
     {
-        string name = gs.playerName;
+        string name = gs.playerName + "_" + gs.playerSurname;
+        string edad = gs.playerAge;
         string level = levelToString(SceneManager.GetActiveScene().name);
         string path = "./prueba_" + name + "_" + level + ".txt";
         string content = "";
@@ -331,6 +332,7 @@ public class CanvasManager : MonoBehaviour
 
         
         content = "Jugador: " + name + "\n";
+        content = "Edad: " + edad + "\n";
         content += "Nivel: " + level + "\n";
         content += "Conseguido: " + finished + "\n";
         content += "Distancia total: " + distance + "(Óptimo: (" + (gm.pathLength - 3) + " - " + (gm.pathLength + 1) + ")\n";

@@ -24,7 +24,7 @@ public class CameraMove : MonoBehaviour {
         {
             Vector3 v = city.GetComponent<Transform>().position;
             this.gameObject.GetComponent<Transform>().position = new Vector3(v.x, v.y, -45);
-            //this.gameObject.GetComponent<Transform>().position = new Vector3(v.x, v.y, -30);
+            this.gameObject.GetComponent<Transform>().position = new Vector3(v.x, v.y, -30);
         }
     }
 

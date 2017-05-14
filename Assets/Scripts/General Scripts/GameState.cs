@@ -13,6 +13,8 @@ public class GameState : MonoBehaviour
     private string _playerName;
     //Player Surname
     private string _playerSurname;
+    //Player Age
+    private string _playerAge;
     //Player Gender
     private Gender _playerGender;
 
@@ -37,7 +39,9 @@ public class GameState : MonoBehaviour
             Destroy(this.gameObject);
 
         this.playerName = "Alfred";
+        this.playerSurname = "Pennyworth Wayne";
         this.playerGender = Gender.F;
+        this.playerAge = "22";
         this.level = 1;
         this.carType = Car.ELECTRIC;
     }
@@ -71,4 +75,10 @@ public class GameState : MonoBehaviour
         get { return this._level; }
         set { this._level = value; }
     }
+    public string playerAge
+    {
+        get { return this._playerAge; }
+        set { this._playerAge = value; }
+    }
+
 }
