@@ -65,6 +65,7 @@ public class CanvasManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		print(Application.persistentDataPath);
         this.bestP = true;
         this._counting = false;
         this.dist_Text.text = "Distance: 0";
@@ -340,7 +341,7 @@ public class CanvasManager : MonoBehaviour
         System.IO.File.WriteAllText(path, content);
 
 
-        Tracker.T.completable.Completed("Nivel: " + level, CompletableTracker.Completable.Completable, goal,score);
+		Tracker.T.completable.Completed("Nivel_" + level, CompletableTracker.Completable.Level, goal,score);
         Tracker.T.alternative.Selected("¿Camino óptimo?", bestPath, AlternativeTracker.Alternative.Path);
         Tracker.T.alternative.Selected("Tiempo", seconds.ToString(), AlternativeTracker.Alternative.Question);
         Tracker.T.alternative.Selected("Mapa", map.ToString(), AlternativeTracker.Alternative.Question);

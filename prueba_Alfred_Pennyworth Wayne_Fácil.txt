@@ -2,9 +2,9 @@ Jugador: Alfred_Pennyworth Wayne
 Edad: 22
 Nivel: Fácil
 Conseguido: Sí
-Distancia total: 37(Óptimo: (35 - 39)
-Camino óptimo: No
-Puntuacion: 100 (Max: 100 puntos)
+Distancia total: 40(Óptimo: (36 - 40)
+Camino óptimo: Sí
+Puntuacion: 97 (Max: 100 puntos)
 Estrellas: 3 (Max: 3 estrellas)
-Veces consultado el mapa: 1 (Min: 1, Max: 4)
-Tiempo transcurrido: 17 segundos
+Veces consultado el mapa: 3 (Min: 1, Max: 4)
+Tiempo transcurrido: 67 segundos
