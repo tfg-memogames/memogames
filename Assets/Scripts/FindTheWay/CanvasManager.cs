@@ -118,9 +118,24 @@ public class CanvasManager : MonoBehaviour
         }
         //Mandar una traza del tipo initialized al comenzar el nivel.
         //Con el nombre del jugador,apellidos,edad, el nivel, distancia óptima
-        Tracker.T.setVar("Name", this.gs.name);
+        /*
+         
+        Tracker.T.setVar("Surname", this.gs.playerSurname);
+        Tracker.T.setVar("Age", this.gs.playerAge);
         Tracker.T.setVar("Optimum distance", (gm.pathLength - 3) + " - " + (gm.pathLength + 1));
+        Tracker.T.setVar("Maximun score", 100);
         Tracker.T.completable.Initialized(this.level);
+        */
+
+        
+        Tracker.T.setVar("Name", this.gs.playerName);
+        Tracker.T.setVar("Surname", this.gs.playerSurname);
+        Tracker.T.setVar("Age", this.gs.playerAge);
+        Tracker.T.setVar("Optimum_Distance", (gm.pathLength - 3) + "-" + (gm.pathLength + 1));
+        Tracker.T.setVar("Max_score", 100);
+        Tracker.T.completable.Initialized(this.level);
+       
+
 
     }
 
@@ -318,35 +333,17 @@ public class CanvasManager : MonoBehaviour
     //Tiempo, icono google maps para el destino
     private void storeTracker(int distance, int map, bool goal, float score, int stars, int seconds)
     {
-        string name = gs.playerName + "_" + gs.playerSurname;
-        string edad = gs.playerAge;
         string path = "./prueba_" + name + "_" + level + ".txt";
-        string content = "";
-        string finished = "Sí";
-        string bestPath = "Sí";
-        if (!this.bestP)
-            bestPath = "No";
-        if (!goal)
-            finished = "No";
         if (score > 1)
             score = 1;
         // Máxima puntuación 100
         score *= 100;
         int punt = (int)score;
 
-        content += "Jugador: " + name + "\n";
-        content += "Edad: " + edad + "\n";
-        content += "Nivel: " + this.level + "\n";
-        content += "Conseguido: " + finished + "\n";
-        content += "Distancia total: " + distance + "(Óptimo: (" + (gm.pathLength - 3) + " - " + (gm.pathLength + 1) + ")\n";
-        content += "Camino óptimo: " + bestPath + "\n";
-        content += "Puntuacion: " + punt + " (Max: 100 puntos)\n";
-        content += "Estrellas: " + stars + " (Max: 3 estrellas)\n";
-        
-        content += "Veces consultado el mapa: " + map + " (Min: 1, Max: " + gm.MAP_COUNTER + ")\n";
-        content += "Tiempo transcurrido: " + seconds + " segundos\n";
 
-        System.IO.File.WriteAllText(path, content);
+
+
+        
 
 
         Tracker.T.setVar("Time", seconds);
@@ -354,10 +351,12 @@ public class CanvasManager : MonoBehaviour
         Tracker.T.setVar("Distance", distance);
         Tracker.T.setVar("Optimum", bestP);
         Tracker.T.setVar("Stars", stars);
-        Tracker.T.completable.Completed(level, CompletableTracker.Completable.Level, goal,score);
-        //Tracker.T.alternative.Selected("¿Camino óptimo?", bestPath, AlternativeTracker.Alternative.Path);
-        //Tracker.T.alternative.Selected("Tiempo", seconds.ToString(), AlternativeTracker.Alternative.Question);
-        //Tracker.T.alternative.Selected("Mapa", map.ToString(), AlternativeTracker.Alternative.Question);
+        Tracker.T.completable.Completed(this.level, CompletableTracker.Completable.Level, goal,score);
+
+        
+
+
+
 
     }
 
