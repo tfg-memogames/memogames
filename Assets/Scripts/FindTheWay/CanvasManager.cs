@@ -9,6 +9,8 @@ using RAGE.Analytics;
 public class CanvasManager : MonoBehaviour
 {
 
+	public CarMove car;
+
     public GameObject bar;
     public GameObject gas;
     public GameObject electric;
@@ -32,8 +34,6 @@ public class CanvasManager : MonoBehaviour
     //Gasto de energía
     private float consumption = 1f;
 
-    public CarMove car;
-
     //GameState
     private GameState gs;
 
@@ -46,8 +46,6 @@ public class CanvasManager : MonoBehaviour
     private bool _counting;
 
     //PopUp
-    public Button exit;
-    public Button restart;
     public Button next;
     public Text wastedEnergy;
     public Text level_up;
@@ -91,13 +89,13 @@ public class CanvasManager : MonoBehaviour
         this.totalEnergy = rt.sizeDelta.x;
 
 
-        restart.gameObject.SetActive(false);
+
         wastedEnergy.enabled = false;
         next.gameObject.SetActive(false);
         level_up.enabled = false;
         score.enabled = false;
 
-        exit.gameObject.SetActive(false);
+
         stars6.gameObject.SetActive(false);
         stars5.gameObject.SetActive(false);
         stars4.gameObject.SetActive(false);
@@ -111,7 +109,7 @@ public class CanvasManager : MonoBehaviour
         	this.dist_Text.gameObject.SetActive(false);
         	GameObject.Find("mapButton").SetActive(false);
         }else{
-        	GameObject.Find("Panel").SetActive(false);
+        	//GameObject.Find("Panel").SetActive(false);
         }
 
     }
@@ -287,8 +285,7 @@ public class CanvasManager : MonoBehaviour
 
         
 
-        exit.gameObject.SetActive(true);
-
+        
         next.gameObject.SetActive(true);
 
         level_up.enabled = true;
@@ -303,8 +300,6 @@ public class CanvasManager : MonoBehaviour
         car.destroyCar();
         counting = false;
         storeTracker(this.distance, gm.mapTimes, false, 0, 0,(int) this.time);
-        restart.gameObject.SetActive(true);
-        exit.gameObject.SetActive(true);
         wastedEnergy.enabled = true;
     }
 
