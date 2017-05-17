@@ -12,7 +12,7 @@ VideoClipImporter:
   frameRange: 0
   startFrame: -1
   endFrame: -1
-  frameCount: 2673
+  frameCount: 2674
   frameRate: 59.940059661865234
   colorSpace: 0
   deinterlace: 0
@@ -26,7 +26,7 @@ VideoClipImporter:
   sourceAudioSampleRate: 
   targetSettings: {}
   output:
-    format: 0
+    format: 1
     settings:
       enableTranscoding: 0
       codec: 0
@@ -39,7 +39,7 @@ VideoClipImporter:
     encodedWidth: 1280
     encodedHeight: 720
     encodedStartFrame: 0
-    encodedEndFrame: 2673
+    encodedEndFrame: 2674
     streamedResource:
       source: 
       offset: 0

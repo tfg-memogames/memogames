@@ -61,10 +61,15 @@ public class CanvasManager : MonoBehaviour
 
     public bool tutorial=false;
 
+    private string level;
+
 
     // Use this for initialization
     void Start()
     {
+
+        this.level = levelToString(SceneManager.GetActiveScene().name);
+        
         this.bestP = true;
         this._counting = false;
         this.dist_Text.text = "Distance: 0";
@@ -111,6 +116,11 @@ public class CanvasManager : MonoBehaviour
         }else{
         	//GameObject.Find("Panel").SetActive(false);
         }
+        //Mandar una traza del tipo initialized al comenzar el nivel.
+        //Con el nombre del jugador,apellidos,edad, el nivel, distancia óptima
+        Tracker.T.setVar("Name", this.gs.name);
+        Tracker.T.setVar("Optimum distance", (gm.pathLength - 3) + " - " + (gm.pathLength + 1));
+        Tracker.T.completable.Initialized(this.level);
 
     }
 
@@ -310,7 +320,6 @@ public class CanvasManager : MonoBehaviour
     {
         string name = gs.playerName + "_" + gs.playerSurname;
         string edad = gs.playerAge;
-        string level = levelToString(SceneManager.GetActiveScene().name);
         string path = "./prueba_" + name + "_" + level + ".txt";
         string content = "";
         string finished = "Sí";
@@ -327,7 +336,7 @@ public class CanvasManager : MonoBehaviour
 
         content += "Jugador: " + name + "\n";
         content += "Edad: " + edad + "\n";
-        content += "Nivel: " + level + "\n";
+        content += "Nivel: " + this.level + "\n";
         content += "Conseguido: " + finished + "\n";
         content += "Distancia total: " + distance + "(Óptimo: (" + (gm.pathLength - 3) + " - " + (gm.pathLength + 1) + ")\n";
         content += "Camino óptimo: " + bestPath + "\n";
@@ -340,10 +349,15 @@ public class CanvasManager : MonoBehaviour
         System.IO.File.WriteAllText(path, content);
 
 
-        Tracker.T.completable.Completed("Nivel: " + level, CompletableTracker.Completable.Completable, goal,score);
-        Tracker.T.alternative.Selected("¿Camino óptimo?", bestPath, AlternativeTracker.Alternative.Path);
-        Tracker.T.alternative.Selected("Tiempo", seconds.ToString(), AlternativeTracker.Alternative.Question);
-        Tracker.T.alternative.Selected("Mapa", map.ToString(), AlternativeTracker.Alternative.Question);
+        Tracker.T.setVar("Time", seconds);
+        Tracker.T.setVar("Map", map);
+        Tracker.T.setVar("Distance", distance);
+        Tracker.T.setVar("Optimum", bestP);
+        Tracker.T.setVar("Stars", stars);
+        Tracker.T.completable.Completed(level, CompletableTracker.Completable.Level, goal,score);
+        //Tracker.T.alternative.Selected("¿Camino óptimo?", bestPath, AlternativeTracker.Alternative.Path);
+        //Tracker.T.alternative.Selected("Tiempo", seconds.ToString(), AlternativeTracker.Alternative.Question);
+        //Tracker.T.alternative.Selected("Mapa", map.ToString(), AlternativeTracker.Alternative.Question);
 
     }
 
