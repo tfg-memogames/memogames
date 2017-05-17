@@ -127,12 +127,14 @@ public class CanvasManager : MonoBehaviour
         Tracker.T.completable.Initialized(this.level);
         */
 
+        
+        Tracker.T.setVar("Name", this.gs.playerName);
         Tracker.T.setVar("Surname", this.gs.playerSurname);
         Tracker.T.setVar("Age", this.gs.playerAge);
+        Tracker.T.setVar("Optimum_Distance", (gm.pathLength - 3) + "-" + (gm.pathLength + 1));
+        Tracker.T.setVar("Max_score", 100);
         Tracker.T.completable.Initialized(this.level);
-        //Tracker.T.setVar("Optimum distance", (gm.pathLength - 3) + " - " + (gm.pathLength + 1));
-        //Tracker.T.setVar("Maximun score", 100);
-        //Tracker.T.alternative.Unlocked("Alt", "opciAsas");
+       
 
 
     }
@@ -350,8 +352,6 @@ public class CanvasManager : MonoBehaviour
         Tracker.T.setVar("Optimum", bestP);
         Tracker.T.setVar("Stars", stars);
         Tracker.T.completable.Completed(this.level, CompletableTracker.Completable.Level, goal,score);
-        Tracker.T.alternative.Unlocked("Alternativa", "opcion");
-        Tracker.T.alternative.Unlocked("Alternatadasdasdva", "opciAsas");
 
         
 
