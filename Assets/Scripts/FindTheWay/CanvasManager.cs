@@ -11,10 +11,8 @@ public class CanvasManager : MonoBehaviour
 
 	public CarMove car;
 
-    public GameObject bar;
-    public GameObject gas;
+    private GameObject bar;
     public GameObject electric;
-    public Text omitir;
 
     public static bool end=false;
     private RectTransform rt;
@@ -46,20 +44,12 @@ public class CanvasManager : MonoBehaviour
     private bool _counting;
 
     //PopUp
-    public Button next;
-    public Text wastedEnergy;
-    public Text level_up;
-    public Text score;
-
-
-    public Button stars6;
-    public Button stars5;
-    public Button stars4;
-    public Button stars3;
-    public Button stars2;
-    public Button stars1;
-
-    public bool tutorial=false;
+	public GameObject endOfGamePanel;
+    public Button goToMenu;
+    public Text message;
+	public Text scoreText;
+	public GameObject starsPanel;
+	public GameObject star;
 
     private string level;
 
@@ -79,44 +69,14 @@ public class CanvasManager : MonoBehaviour
         gs = GameObject.FindObjectOfType<GameState>();
         gm = GameObject.FindObjectOfType<GameManager>();
 
-
-        if (gs.carType == GameState.Car.ELECTRIC)
-        {
-            gas.SetActive(false);
-            bar = electric.transform.GetChild(0).transform.GetChild(0).gameObject;
-        }
-        else { 
-            electric.SetActive(false);
-            bar = gas.transform.GetChild(0).transform.GetChild(0).gameObject;
-        }
-
+        bar = electric.transform.GetChild(0).transform.GetChild(0).gameObject;
 
         this.rt = bar.GetComponent<RectTransform>();
         this.totalEnergy = rt.sizeDelta.x;
 
+		this.endOfGamePanel.SetActive (false);
+		this.star.SetActive (false);
 
-
-        wastedEnergy.enabled = false;
-        next.gameObject.SetActive(false);
-        level_up.enabled = false;
-        score.enabled = false;
-
-
-        stars6.gameObject.SetActive(false);
-        stars5.gameObject.SetActive(false);
-        stars4.gameObject.SetActive(false);
-        stars3.gameObject.SetActive(false);
-        stars2.gameObject.SetActive(false);
-        stars1.gameObject.SetActive(false);
-
-
-        if(tutorial){
-        	electric.gameObject.SetActive(false);
-        	this.dist_Text.gameObject.SetActive(false);
-        	GameObject.Find("mapButton").SetActive(false);
-        }else{
-        	//GameObject.Find("Panel").SetActive(false);
-        }
         //Mandar una traza del tipo initialized al comenzar el nivel.
         //Con el nombre del jugador,apellidos,edad, el nivel, distancia óptima
         /*
@@ -148,9 +108,7 @@ public class CanvasManager : MonoBehaviour
     private void FixedUpdate()
     {
         if(end){
-            /*electric.gameObject.SetActive(true);
-            this.dist_Text.gameObject.SetActive(true);*/
-            omitir.text = "Salir";
+			this.endOfGamePanel.SetActive (true);
         }
 
         if(this._counting) { 
@@ -264,12 +222,22 @@ public class CanvasManager : MonoBehaviour
         return levelName;
     }
 
+	private void instatiateStars(int number) {
+		for (int i = 0; i < number; i++) {
+			GameObject star = Instantiate (this.star);
+			star.SetActive (true);
+			star.transform.parent = this.starsPanel.transform;
+			star.transform.localPosition = Vector3.zero;
+			star.transform.localScale = Vector3.one;
+		}
+	}
 
     //Muestra popup con que has ganado (desbloqueará el siguiente nivel)
     public void win()
     {
         counting = false;
         car.stopCar();
+		this.endOfGamePanel.SetActive (true);
         
         float path = gm.pathLength;
 
@@ -278,55 +246,41 @@ public class CanvasManager : MonoBehaviour
         float points = path / dist;
         int stars = 0;
 
+		this.message.text = "¡Has llegado a tu destino!";
+		this.message.color = Color.green; //015707FF
+
         if (points >= 0.95)
         {
-            score.text = "¡Has conseguido la máxima puntuación!";
-            stars3.gameObject.SetActive(true);
-            stars1.gameObject.SetActive(true);
-            stars2.gameObject.SetActive(true);
-            stars = 3;
+			this.scoreText.text = "¡Has conseguido el máximo de estrellas!";
+			instatiateStars (3);
         }
         else if (points > 0.80 && points < 0.95)
         {
-            score.text = "¡Has conseguido 2 estrellas (Max. 3)!";
-            stars4.gameObject.SetActive(true);
-            stars5.gameObject.SetActive(true);
-            stars = 2;
+			this.scoreText.text = "¡Has conseguido 2 estrellas (Max. 3)!";
+			instatiateStars (2);
         }
         else if (points > 0.6 && points < 0.80)
         {
-            score.text = "¡Has conseguido 1 estrella (Max. 3)!";
-            stars6.gameObject.SetActive(true);
-            stars = 1;
+			this.scoreText.text = "¡Has conseguido 1 estrella (Max. 3)!";
+			instatiateStars (1);
         }
             
         else 
         {
-            score.text = "No has conseguido ninguna estrella :(";
-            score.enabled = true;
-
+			this.scoreText.text = "No has conseguido ninguna estrella :(";
         }
         storeTracker(this.distance, gm.mapTimes, true, points, stars,(int)this.time);
-
-
-        
-
-        
-        next.gameObject.SetActive(true);
-
-        level_up.enabled = true;
-
-
-
     }
 
     private void lose()
     {
+		this.endOfGamePanel.SetActive (true);
         //DestroyObject(car);
         car.destroyCar();
         counting = false;
         storeTracker(this.distance, gm.mapTimes, false, 0, 0,(int) this.time);
-        wastedEnergy.enabled = true;
+		this.message.text = "¡Te has quedado sin combustible!";
+		this.message.color = Color.red; //D62800FF
     }
 
 
@@ -340,12 +294,6 @@ public class CanvasManager : MonoBehaviour
         // Máxima puntuación 100
         score *= 100;
         int punt = (int)score;
-
-
-
-
-        
-
 
         Tracker.T.setVar("Time", seconds);
         Tracker.T.setVar("Map", map);
