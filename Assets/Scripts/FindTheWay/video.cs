@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class video : MonoBehaviour {
 
@@ -16,11 +17,18 @@ public class video : MonoBehaviour {
 
         // Start function WaitAndPrint as a coroutine.
 
-        coroutine = WaitAndPrint(45.0f);
+        coroutine = WaitAndPrint(38.0f);
         StartCoroutine(coroutine);
 
         
     }
+	public void Repeat(){
+		
+		StopAllCoroutines ();
+		coroutine = WaitAndPrint(38.0f);
+		StartCoroutine(coroutine);
+			
+	}
 
     // every 2 seconds perform the print()
     private IEnumerator WaitAndPrint(float waitTime)
@@ -28,9 +36,13 @@ public class video : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds(waitTime);
-        	CanvasManager.end=true;	
+			ChangeScene ();
         }
         
     }
+
+	public void ChangeScene(){
+		SceneManager.LoadScene("Tutorial_Jugable");	
+	}
 }
 

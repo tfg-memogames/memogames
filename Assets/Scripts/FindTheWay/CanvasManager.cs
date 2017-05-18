@@ -141,8 +141,8 @@ public class CanvasManager : MonoBehaviour
     }
 
     public void video(){
-    	electric.gameObject.SetActive(true);
-        this.dist_Text.gameObject.SetActive(true);
+		SceneManager.LoadScene("Video_Tutorial");
+    	
     }
 
     private void FixedUpdate()
