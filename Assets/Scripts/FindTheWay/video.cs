@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class video : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class video : MonoBehaviour {
     // continue executing the function in parallel.
 
     private IEnumerator coroutine;
+	public GameObject panel;
+	public Text text;
 
     void Start()
     {
@@ -23,7 +26,6 @@ public class video : MonoBehaviour {
         
     }
 	public void Repeat(){
-		
 		StopAllCoroutines ();
 		coroutine = WaitAndPrint(38.0f);
 		StartCoroutine(coroutine);
@@ -36,7 +38,8 @@ public class video : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds(waitTime);
-			ChangeScene ();
+			panel.gameObject.SetActive (true);
+			text.text="Jugar ahora";
         }
         
     }
