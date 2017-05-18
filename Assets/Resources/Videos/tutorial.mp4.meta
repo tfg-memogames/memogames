@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: a983a0e3179c343b490c7b5683b7ac63
-timeCreated: 1494498934
-licenseType: Free
 VideoClipImporter:
   serializedVersion: 2
   useLegacyImporter: 0
@@ -12,11 +10,7 @@ VideoClipImporter:
   frameRange: 0
   startFrame: -1
   endFrame: -1
-<<<<<<< HEAD
-  frameCount: 2251
-=======
-  frameCount: 2674
->>>>>>> 29c1dc7daa52825c61aedddf1a6c771536bad3a2
+  frameCount: 2252
   frameRate: 59.940059661865234
   colorSpace: 0
   deinterlace: 0
@@ -43,11 +37,7 @@ VideoClipImporter:
     encodedWidth: 1280
     encodedHeight: 720
     encodedStartFrame: 0
-<<<<<<< HEAD
-    encodedEndFrame: 2251
-=======
-    encodedEndFrame: 2674
->>>>>>> 29c1dc7daa52825c61aedddf1a6c771536bad3a2
+    encodedEndFrame: 2252
     streamedResource:
       source: 
       offset: 0

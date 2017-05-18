@@ -67,13 +67,10 @@ public class CanvasManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-<<<<<<< HEAD
 		print(Application.persistentDataPath);
-=======
 
         this.level = levelToString(SceneManager.GetActiveScene().name);
         
->>>>>>> 29c1dc7daa52825c61aedddf1a6c771536bad3a2
         this.bestP = true;
         this._counting = false;
         this.dist_Text.text = "Distance: 0";
@@ -356,19 +353,6 @@ public class CanvasManager : MonoBehaviour
         Tracker.T.setVar("Optimum", bestP);
         Tracker.T.setVar("Stars", stars);
         Tracker.T.completable.Completed(this.level, CompletableTracker.Completable.Level, goal,score);
-
-        
-
-
-
-<<<<<<< HEAD
-		Tracker.T.completable.Completed("Nivel_" + level, CompletableTracker.Completable.Level, goal,score);
-        Tracker.T.alternative.Selected("¿Camino óptimo?", bestPath, AlternativeTracker.Alternative.Path);
-        Tracker.T.alternative.Selected("Tiempo", seconds.ToString(), AlternativeTracker.Alternative.Question);
-        Tracker.T.alternative.Selected("Mapa", map.ToString(), AlternativeTracker.Alternative.Question);
-=======
->>>>>>> 29c1dc7daa52825c61aedddf1a6c771536bad3a2
-
     }
 
 
