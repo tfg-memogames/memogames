@@ -103,7 +103,6 @@ public class GameManager : MonoBehaviour
                 car.carArrow.SetActive(true);
                 
                 this.mapCounter--;
-				Tracker.T.trackedGameObject.Interacted("map");
 
 
 
@@ -111,13 +110,11 @@ public class GameManager : MonoBehaviour
                 buttonShow.image.sprite = mapClosedSprite;
                 camCurrPos = mainCamera.transform.position;
                 
-                //Vector3 vec = camCurrPos;
-                //vec.z = vec.z - 50;
+                
                 mainCamera.GetComponent<CameraMove>().chase = false;
                 mainCamera.fieldOfView *= 2.4f;
                 
-                //Ahora mismo la cámara tiene al coche centradp, hay que conseguir que centre el mapa.
-                //mainCamera.gameObject.GetComponent<Transform>().position = new Vector3(-1394f, -583f, -40);
+                
                 mapCounterText.text = "" + mapCounter;
 
                 //Llamamos al método que muestra las rutas óptimas
@@ -140,8 +137,13 @@ public class GameManager : MonoBehaviour
 
             }
             //Si el coche no está en una intersección se reanuda la marcha
-            if(!car.intersection)
+            //Y no ha terminado el nivel
+            if (this.car != null && !this.car.intersection)
                 car.ResumeCar();
+
+
+            Tracker.T.trackedGameObject.Interacted("map");
+
 
             car.carArrow.SetActive(false);
             mainCamera.transform.position = camCurrPos;

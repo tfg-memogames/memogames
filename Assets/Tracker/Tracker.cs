@@ -48,8 +48,10 @@ namespace RAGE.Analytics
 		public string trackingCode="58f7860df33181006e13eb562wscfoxzalq2rzfr";
 		public Boolean debug = false;
 
+        //GameState
+        private GameState gs;
 
-		public string username;
+        public string username;
 		public string password;
 
 		public static TrackerAsset T
@@ -102,15 +104,21 @@ namespace RAGE.Analytics
 			TrackerAsset.Instance.Bridge = new UnityBridge();
 			TrackerAsset.Instance.Settings = tracker_settings;
 		}
-        
-		/// <summary>
-		/// DONT USE THIS METHOD. UNITY INTERNAL MONOBEHAVIOUR.
-		/// </summary>
-		public void Start ()
-		{
-			if (!String.IsNullOrEmpty (username))
-				TrackerAsset.Instance.Login (username, password);
 
+        /// <summary>
+        /// DONT USE THIS METHOD. UNITY INTERNAL MONOBEHAVIOUR.
+        /// </summary>
+        public void Start()
+        {
+            /*gs = GameObject.FindObjectOfType<GameState>();
+            this.username = gs.playerName;
+            this.password = gs.playerName;
+            */
+            //Cargar username y password
+
+            if (!String.IsNullOrEmpty(username)) {
+                TrackerAsset.Instance.Login(username, password);
+            }
 			TrackerAsset.Instance.Start ();
 			this.nextFlush = flushInterval;
 			UnityEngine.Object.DontDestroyOnLoad (this);

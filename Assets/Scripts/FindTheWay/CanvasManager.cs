@@ -57,9 +57,9 @@ public class CanvasManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		print(Application.persistentDataPath);
+		//print(Application.persistentDataPath);
 
-        this.level = levelToString(SceneManager.GetActiveScene().name);
+        this.level = SceneManager.GetActiveScene().name;
         
         this.bestP = true;
         this._counting = false;
@@ -79,21 +79,14 @@ public class CanvasManager : MonoBehaviour
 
         //Mandar una traza del tipo initialized al comenzar el nivel.
         //Con el nombre del jugador,apellidos,edad, el nivel, distancia óptima
-        /*
-         
-        Tracker.T.setVar("Surname", this.gs.playerSurname);
-        Tracker.T.setVar("Age", this.gs.playerAge);
-        Tracker.T.setVar("Optimum distance", (gm.pathLength - 3) + " - " + (gm.pathLength + 1));
-        Tracker.T.setVar("Maximun score", 100);
-        Tracker.T.completable.Initialized(this.level);
-        */
-
+        
         
         Tracker.T.setVar("Name", this.gs.playerName);
         Tracker.T.setVar("Surname", this.gs.playerSurname);
         Tracker.T.setVar("Age", this.gs.playerAge);
         Tracker.T.setVar("Optimum_Distance", (gm.pathLength - 3) + "-" + (gm.pathLength + 1));
         Tracker.T.setVar("Max_score", 100);
+        
         Tracker.T.completable.Initialized(this.level);
        
 
@@ -133,11 +126,8 @@ public class CanvasManager : MonoBehaviour
 
 
 
-        //Si es de gasolina el gasto es 1.5 el del eléctrico
-        if (gs.carType == GameState.Car.GAS)
-            this.currentConsum += this.consumption * 1.5f;
-        else
-            this.currentConsum += this.consumption;
+        
+        this.currentConsum += this.consumption;
 
         setPercentageOfEnergy(this.currentConsum);
 
@@ -183,24 +173,6 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-
-    /* private string levelToString(int level)
-     {
-         string levelName = "";
-         switch(level)
-         {
-             case 1: levelName = "Fácil";
-                 break;
-             case 2: levelName = "Medio";
-                 break;
-             case 3: levelName = "Difícil";
-                 break;
-             default: levelName = "Fácil";
-                 break;
-         }
-         return levelName;
-     }
-     */
     private string levelToString(string scene)
     {
         string levelName = "";
@@ -236,8 +208,9 @@ public class CanvasManager : MonoBehaviour
     public void win()
     {
         counting = false;
-        car.stopCar();
-		this.endOfGamePanel.SetActive (true);
+        //car.stopCar();
+        car.destroyCar();
+        this.endOfGamePanel.SetActive (true);
         
         float path = gm.pathLength;
 
@@ -288,18 +261,18 @@ public class CanvasManager : MonoBehaviour
     //Tiempo, icono google maps para el destino
     private void storeTracker(int distance, int map, bool goal, float score, int stars, int seconds)
     {
-        string path = "./prueba_" + name + "_" + level + ".txt";
+        //string path = "./prueba_" + name + "_" + level + ".txt";
         if (score > 1)
             score = 1;
         // Máxima puntuación 100
         score *= 100;
         int punt = (int)score;
 
-        Tracker.T.setVar("Time", seconds);
-        Tracker.T.setVar("Map", map);
-        Tracker.T.setVar("Distance", distance);
-        Tracker.T.setVar("Optimum", bestP);
-        Tracker.T.setVar("Stars", stars);
+        Tracker.T.setVar("Time", seconds.ToString());
+        Tracker.T.setVar("Map", map.ToString());
+        Tracker.T.setVar("Distance", distance.ToString());
+        Tracker.T.setVar("Optimum", bestP.ToString());
+        Tracker.T.setVar("Stars", stars.ToString());
         Tracker.T.completable.Completed(this.level, CompletableTracker.Completable.Level, goal,score);
     }
 
