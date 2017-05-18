@@ -45,7 +45,7 @@ namespace RAGE.Analytics
 		public string storageType = "net";
 		public string traceFormat = "xapi";
 		public string host="https://rage.e-ucm.es/";
-		public string trackingCode="58f7860df33181006e13eb562wscfoxzalq2rzfr";
+		public string trackingCode= "58f7860df33181006e13eb562wscfoxzalq2rzfr";
 		public Boolean debug = false;
 
         //GameState

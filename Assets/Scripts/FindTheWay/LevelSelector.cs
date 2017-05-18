@@ -11,7 +11,6 @@ public class LevelSelector : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         this.gameS = GameObject.FindObjectOfType<GameState>();
-        Debug.Log(gameS.playerName + " " + gameS.playerSurname);
     }
 
     public void level1Clicked()

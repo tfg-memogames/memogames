@@ -59,7 +59,7 @@ public class CanvasManager : MonoBehaviour
     {
 		//print(Application.persistentDataPath);
 
-        this.level = SceneManager.GetActiveScene().name;
+        this.level = this.levelToString(SceneManager.GetActiveScene().name);
         
         this.bestP = true;
         this._counting = false;
@@ -79,7 +79,7 @@ public class CanvasManager : MonoBehaviour
 
         //Mandar una traza del tipo initialized al comenzar el nivel.
         //Con el nombre del jugador,apellidos,edad, el nivel, distancia óptima
-        
+
         
         Tracker.T.setVar("Name", this.gs.playerName);
         Tracker.T.setVar("Surname", this.gs.playerSurname);
@@ -88,7 +88,8 @@ public class CanvasManager : MonoBehaviour
         Tracker.T.setVar("Max_score", 100);
         
         Tracker.T.completable.Initialized(this.level);
-       
+        
+
 
 
     }
@@ -178,6 +179,9 @@ public class CanvasManager : MonoBehaviour
         string levelName = "";
         switch (scene)
         {
+            case "Tutorial_Jugable":
+                levelName = "Tutorial";
+                break;
             case "Easy_Level":
                 levelName = "Fácil";
                 break;
@@ -242,7 +246,7 @@ public class CanvasManager : MonoBehaviour
         {
 			this.scoreText.text = "No has conseguido ninguna estrella :(";
         }
-        storeTracker(this.distance, gm.mapTimes, true, points, stars,(int)this.time);
+        storeTracker(this.distance, gm.mapTimes, true, points,(int)this.time);
     }
 
     private void lose()
@@ -251,7 +255,7 @@ public class CanvasManager : MonoBehaviour
         //DestroyObject(car);
         car.destroyCar();
         counting = false;
-        storeTracker(this.distance, gm.mapTimes, false, 0, 0,(int) this.time);
+        storeTracker(this.distance, gm.mapTimes, false,0,(int) this.time);
 		this.message.text = "¡Te has quedado sin combustible!";
 		this.message.color = Color.red; //D62800FF
     }
@@ -259,7 +263,7 @@ public class CanvasManager : MonoBehaviour
 
 
     //Tiempo, icono google maps para el destino
-    private void storeTracker(int distance, int map, bool goal, float score, int stars, int seconds)
+    private void storeTracker(int distance, int map, bool goal, float score, int seconds)
     {
         //string path = "./prueba_" + name + "_" + level + ".txt";
         if (score > 1)
@@ -268,12 +272,13 @@ public class CanvasManager : MonoBehaviour
         score *= 100;
         int punt = (int)score;
 
-        Tracker.T.setVar("Time", seconds.ToString());
-        Tracker.T.setVar("Map", map.ToString());
-        Tracker.T.setVar("Distance", distance.ToString());
-        Tracker.T.setVar("Optimum", bestP.ToString());
-        Tracker.T.setVar("Stars", stars.ToString());
+        
+        Tracker.T.setVar("Time", seconds);
+        Tracker.T.setVar("Map", map);
+        Tracker.T.setVar("Distance", distance);
+        Tracker.T.setVar("Optimum", bestP);
         Tracker.T.completable.Completed(this.level, CompletableTracker.Completable.Level, goal,score);
+        
     }
 
 
