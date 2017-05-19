@@ -26,6 +26,7 @@ public class video : MonoBehaviour {
         
     }
 	public void Repeat(){
+		panel.gameObject.SetActive (false);
 		StopAllCoroutines ();
 		coroutine = WaitAndPrint(38.0f);
 		StartCoroutine(coroutine);
