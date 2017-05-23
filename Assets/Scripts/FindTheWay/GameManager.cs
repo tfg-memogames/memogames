@@ -189,6 +189,9 @@ public class GameManager : MonoBehaviour
         get { return (MAP_COUNTER - this.mapCounter); }
     }
 
+	public int maxMap {
+		get{ return MAP_COUNTER;}
+	}
 
 
 }

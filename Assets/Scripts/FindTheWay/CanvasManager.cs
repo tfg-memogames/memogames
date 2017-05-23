@@ -84,7 +84,8 @@ public class CanvasManager : MonoBehaviour
         Tracker.T.setVar("Surname", this.gs.playerSurname);
         Tracker.T.setVar("Age", this.gs.playerAge);
         Tracker.T.setVar("Optimum_Distance", (gm.pathLength - 3) + "-" + (gm.pathLength + 1));
-        Tracker.T.setVar("Max_score", 100);
+		Tracker.T.setVar("Map_range",   "1-" + gm.maxMap);
+		Tracker.T.setVar("Max_score", 100);
         
         Tracker.T.completable.Initialized(this.level);
         
