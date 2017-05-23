@@ -46,11 +46,16 @@ public class GameManager : MonoBehaviour
 
     public CarMove car;
 
+	private GameObject miniDestination;
+	private GameObject destination;
+
 	//private Tracker tracker;
 
 
     void Awake()
     {
+		miniDestination = GameObject.Find ("mini-destination");
+		destination = GameObject.Find ("destination");
         _pathLength = bestPath.Length;
         this.mapCounter = MAP_COUNTER;
     }
@@ -91,6 +96,11 @@ public class GameManager : MonoBehaviour
         return bestPath.ToList().Contains(road);
     }
 
+	private void openMap(bool opened){
+		car.carArrow.SetActive (opened);
+		miniDestination.SetActive (!opened);
+		destination.SetActive (opened);
+	}
     //Muestra el mapa 
     public void showMap()
     {
@@ -100,7 +110,7 @@ public class GameManager : MonoBehaviour
             if (mapCounter > 0)
             {
                 car.stopCar();
-                car.carArrow.SetActive(true);
+				openMap (true);
                 
                 this.mapCounter--;
 
@@ -144,8 +154,8 @@ public class GameManager : MonoBehaviour
 
             Tracker.T.trackedGameObject.Interacted("map");
 
-
-            car.carArrow.SetActive(false);
+			//Aquí modificas la escala
+			openMap(false);
             mainCamera.transform.position = camCurrPos;
             mainCamera.fieldOfView /= 2.4f;
             

@@ -33,7 +33,7 @@ public class LevelSelector : MonoBehaviour {
 
     public void tutorialClicked()
     {
-        SceneManager.LoadScene("Tutorial_new");
+        SceneManager.LoadScene("Video_tutorial");
     }
 
 	public void Quit()

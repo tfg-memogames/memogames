@@ -57,13 +57,12 @@ public class CanvasManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		//print(Application.persistentDataPath);
-
+		print(Application.persistentDataPath);
         this.level = this.levelToString(SceneManager.GetActiveScene().name);
         
         this.bestP = true;
         this._counting = false;
-        this.dist_Text.text = "Distance: 0";
+        this.dist_Text.text = "Distancia: 0";
         this.distance = 0;
         this.distanceWrongPath = 0;
         gs = GameObject.FindObjectOfType<GameState>();
@@ -89,8 +88,6 @@ public class CanvasManager : MonoBehaviour
         
         Tracker.T.completable.Initialized(this.level);
         
-
-
 
     }
 
@@ -157,7 +154,7 @@ public class CanvasManager : MonoBehaviour
     public void incrDistance(GameObject road)
     {
         distance++;
-        this.dist_Text.text = "Distance " + distance;
+        this.dist_Text.text = "Distancia: " + distance;
         decreaseEnergy();
 
         if(this.bestP) { 
@@ -224,7 +221,7 @@ public class CanvasManager : MonoBehaviour
         int stars = 0;
 
 		this.message.text = "¡Has llegado a tu destino!";
-		this.message.color = Color.green; //015707FF
+		this.message.color = new Color(0.34F, 0.41F, 0.39F, 1); // 586A45FF divide (100 / FF (256 bits)) * rgb
 
         if (points >= 0.95)
         {
@@ -257,9 +254,9 @@ public class CanvasManager : MonoBehaviour
         counting = false;
         storeTracker(this.distance, gm.mapTimes, false,0,(int) this.time);
 		this.message.text = "¡Te has quedado sin combustible!";
-		this.message.color = Color.red; //D62800FF
+		scoreText.text = "";
+		this.message.color = new Color(0.4F, 0.04F, 0.16F, 1); // 680C2AFF divide (100 / FF (256 bits)) * rgb
     }
-
 
 
     //Tiempo, icono google maps para el destino
