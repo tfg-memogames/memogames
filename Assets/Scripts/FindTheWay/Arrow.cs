@@ -16,7 +16,7 @@ public class Arrow : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("Pulsado. Soy: " + this.gameObject.name);
+        
 
         //Si esta baldosa tiene la flecha activada entonces permitimos que se pulse en ella
         bool arrowActive = false;
