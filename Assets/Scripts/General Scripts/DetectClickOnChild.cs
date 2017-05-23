@@ -12,3 +12,4 @@ public class DetectClickOnChild : MonoBehaviour {
 		parent.SendMessage ("childClicked", this.gameObject);	
 	}
 }
+

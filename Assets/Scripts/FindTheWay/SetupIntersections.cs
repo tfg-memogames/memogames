@@ -10,6 +10,10 @@ public class SetupIntersections : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+
+        //En vez de añadir el script Arrow a la baldosa de la intersección añadimos únicamente el prefab
+        //Este prefab ya tendrá el script Arrow
+
         GameObject arrow = Resources.Load<GameObject>(path + "/General_Arrow");
         
 
@@ -21,8 +25,11 @@ public class SetupIntersections : MonoBehaviour {
             for (int count = 0; count < i.transform.childCount; count++)
             {
                 GameObject child = i.transform.GetChild(count).gameObject;
+                
+                //No incluimos el script Arrow a las baldosas
                 child.AddComponent<Arrow>();
                 
+                //Ahora incluimos otro script que comprueba si una flecha ha sido pulsada
 
                 if (child.name == dirs.NE.ToString())
                 {

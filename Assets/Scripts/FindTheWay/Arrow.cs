@@ -4,11 +4,31 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour {
 
-	void OnMouseDown()
+
+    CarMove car;
+
+    private void Start()
     {
-        CarMove car = GameObject.FindGameObjectWithTag("Car").GetComponent<CarMove>();
-        //No se permite pulsar una flecha si está el mapa completo activado
-        if (!car.mapOpened)
+        //Debug.Log("Soy: " + this.gameObject.name);
+        car = GameObject.FindGameObjectWithTag("Car").GetComponent<CarMove>();
+        //Debug.Log(car);
+    }
+
+    void OnMouseDown()
+    {
+        Debug.Log("Pulsado. Soy: " + this.gameObject.name);
+
+        //Si esta baldosa tiene la flecha activada entonces permitimos que se pulse en ella
+        bool arrowActive = false;
+        GameObject arrow = this.gameObject.transform.GetChild(0).gameObject;
+        
+        if (arrow.activeInHierarchy)
+            arrowActive = true;
+        
+        
+
+        //No se permite pulsar una flecha si está el mapa abierto
+        if (!car.mapOpened && arrowActive)
         {
             string tagPosition = null;
 
@@ -20,7 +40,7 @@ public class Arrow : MonoBehaviour {
             //El coche ya no está en una interseción.
             car.intersection = false;
             
-
+            
             switch (car.dir)
             {
                 case CarMove.Direction.NE:
