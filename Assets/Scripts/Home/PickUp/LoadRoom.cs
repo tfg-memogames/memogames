@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LoadRoom : MonoBehaviour {
 
 	public string room;
+	public GameObject pickup;
 
 	public GameObject[] roomSites;
 	public static GameObject[] sites;
@@ -15,6 +16,12 @@ public class LoadRoom : MonoBehaviour {
 	public static Dictionary<string, string> dictionary;
 	// Use this for initialization
 	void Awake () {
+
+		if (GameObject.Find("PickUpManager") == null){
+			GameObject pum = Instantiate (pickup);
+			pum.name="PickUpManager";
+			DontDestroyOnLoad(pum);
+		}
 
 		sites=new GameObject[roomSites.Length];
 
