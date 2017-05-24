@@ -11,7 +11,11 @@ public class Door : MonoBehaviour {
 
     void OnMouseDown()
     {
+		PickUpManager.totalDoorsOpened++;
         SceneManager.LoadScene(scene);
+		if (scene.Equals ("Kitchen")) {
+			PickUpManager.data ();
+		}
     }
     
 }

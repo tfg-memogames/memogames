@@ -14,7 +14,13 @@ public class LoadRoom : MonoBehaviour {
 
 	public GameObject[] objects;
 	public static Dictionary<string, string> dictionary;
-	// Use this for initialization
+	public static Dictionary<string, string> order;
+
+	public static int corrects;
+	public static int mistakes;
+	public static int caught;
+
+
 	void Awake () {
 
 		if (GameObject.Find("PickUpManager") == null){
@@ -23,23 +29,29 @@ public class LoadRoom : MonoBehaviour {
 			DontDestroyOnLoad(pum);
 		}
 
-		sites=new GameObject[roomSites.Length];
+		sites=new GameObject[roomSites.Length]; 
 
 		for (int i = 0; i < roomSites.Length; i++) {
 			sites [i] = roomSites [i];
 		}
-
-		Button btn = GameObject.FindGameObjectWithTag("Back").GetComponent<Button>();
-		btn.onClick.AddListener(TaskOnClick);	
+		if (!room.Equals ("Hall")) {
+			Button btn = GameObject.FindGameObjectWithTag ("Back").GetComponent<Button> ();
+			btn.onClick.AddListener (TaskOnClick);	
+		}
 
 		dictionary = PickUpManager.house [room];
+		order = PickUpManager.orderHouse [room];
 
 		for (int i = 0; i < sites.Length; i++)
-			if (!dictionary[sites [i].name].Equals (".")){
-				foundObject (dictionary[sites [i].name]).transform.position = sites [i].transform.position;
-				Vector3 v=foundObject (dictionary[sites [i].name]).transform.position;
-				foundObject (dictionary[sites [i].name]).transform.position=new Vector3(v.x, v.y, -1);
-			}
+			if (!dictionary[sites [i].name].Equals ("."))
+				foundObject (dictionary[sites [i].name]).transform.position = new Vector3(sites [i].transform.position.x, sites [i].transform.position.y, -0.1F);
+			
+	}
+
+	void Start(){
+		corrects = 0;
+		mistakes = 0;
+		caught = 0;
 	}
 
 	GameObject foundObject(string name){
@@ -49,7 +61,6 @@ public class LoadRoom : MonoBehaviour {
 			i++;
 
 		return objects [i];
-	
 	}
 
 	void TaskOnClick(){
@@ -57,7 +68,13 @@ public class LoadRoom : MonoBehaviour {
 			SceneManager.LoadScene("Hall");
 		else
 			SceneManager.LoadScene("Hallway");
+		
 		PickUpManager.house [room]=dictionary;
+		PickUpManager.totalMistakes+=mistakes;
+		PickUpManager.totalCorrects+=corrects;
+		PickUpManager.totalCaught +=caught;
 	}
+
+
 
 }

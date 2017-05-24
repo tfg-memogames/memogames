@@ -13,6 +13,7 @@ public class DragDrop: MonoBehaviour {
 
 	void OnMouseDown(){
         startPoint = transform.position;
+		LoadRoom.caught++;
     }
 
     void OnMouseDrag(){
@@ -31,10 +32,17 @@ public class DragDrop: MonoBehaviour {
             i++;
 
 
-		if (i == LoadRoom.sites.Length) 
+		if (i == LoadRoom.sites.Length){
 			transform.position = startPoint;
-        else
-			LoadRoom.dictionary[LoadRoom.sites[i].name]=this.name;
-        
+			//LoadRoom.mistakes++;
+		}else {
+			if (LoadRoom.order[LoadRoom.sites [i].name] == this.name)
+				LoadRoom.corrects++;
+			else 
+				LoadRoom.mistakes++;
+			
+
+			LoadRoom.dictionary [LoadRoom.sites [i].name] = this.name;
+		}
     }
 }
