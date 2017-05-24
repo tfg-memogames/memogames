@@ -16,6 +16,9 @@ public class Door : MonoBehaviour {
 		if (scene.Equals ("Kitchen")) {
 			PickUpManager.data ();
 		}
+		if (scene.Equals ("Hall") || scene.Equals ("Hallway")) {
+			LoadRoom.store ();
+		}
     }
     
 }

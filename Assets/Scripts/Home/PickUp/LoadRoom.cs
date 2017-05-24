@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LoadRoom : MonoBehaviour {
 
 	public string room;
+	public static string theRoom;
 	public GameObject pickup;
 
 	public GameObject[] roomSites;
@@ -20,9 +21,8 @@ public class LoadRoom : MonoBehaviour {
 	public static int mistakes;
 	public static int caught;
 
-
 	void Awake () {
-
+		theRoom = room;
 		if (GameObject.Find("PickUpManager") == null){
 			GameObject pum = Instantiate (pickup);
 			pum.name="PickUpManager";
@@ -68,13 +68,16 @@ public class LoadRoom : MonoBehaviour {
 			SceneManager.LoadScene("Hall");
 		else
 			SceneManager.LoadScene("Hallway");
-		
-		PickUpManager.house [room]=dictionary;
+
+		store ();
+	}
+
+	public static void store(){
+		PickUpManager.house [theRoom]=dictionary;
 		PickUpManager.totalMistakes+=mistakes;
 		PickUpManager.totalCorrects+=corrects;
 		PickUpManager.totalCaught +=caught;
+
 	}
-
-
 
 }

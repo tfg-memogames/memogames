@@ -4,25 +4,28 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
-
+using RAGE.Analytics;
 
 public class PickUpManager : MonoBehaviour {
 	
 	public static Dictionary<string, Dictionary<string, string>> orderHouse;
 	public static Dictionary<string, Dictionary<string, string>> house;
 
-	public static Time t;
 	public static int totalMistakes;
 	public static int totalCorrects;
 	public static int totalCaught;
 	public static int totalDoorsOpened;
-
 	public static int totalObjects;
+	public static float time;
 
 	void Awake(){
 		DontDestroyOnLoad (transform.gameObject);
 		initObjects ();
 		orderObjects ();
+
+		Tracker.T.setVar("TotalObjects", totalObjects);
+
+		Tracker.T.completable.Initialized("house");
 	}
 
 	void Start(){
@@ -30,6 +33,11 @@ public class PickUpManager : MonoBehaviour {
 		totalCorrects = 0;
 		totalCaught = 0;
 		totalDoorsOpened = 0;
+	}
+
+	private void FixedUpdate(){
+		time += Time.deltaTime;
+	
 	}
 
 	public static void initObjects(){
@@ -168,5 +176,15 @@ public class PickUpManager : MonoBehaviour {
 		print ("Mistakes: "+totalMistakes);
 		print ("Objects: "+totalObjects);
 		print ("Doors: "+totalDoorsOpened);
+		print ("Time: " + time);
+
+
+		Tracker.T.setVar("Time", time);
+		Tracker.T.setVar("Corrects", totalCorrects);
+		Tracker.T.setVar("Mistakes", totalMistakes);
+		Tracker.T.setVar("Doors", totalDoorsOpened);
+		Tracker.T.completable.Completed("house", CompletableTracker.Completable.Level, (totalCorrects==totalObjects), totalCorrects);
+
+
 	}
 }

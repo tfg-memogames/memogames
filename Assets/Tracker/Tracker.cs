@@ -110,10 +110,10 @@ namespace RAGE.Analytics
         /// </summary>
         public void Start()
         {
-            gs = GameObject.FindObjectOfType<GameState>();
+            /*gs = GameObject.FindObjectOfType<GameState>();
             this.username = gs.playerName;
             this.password = gs.playerName;
-
+			*/
             //Cargar username y password
             bool a;
             if (!String.IsNullOrEmpty(username)) {
