@@ -51,4 +51,12 @@ public class FormManager : MonoBehaviour {
         this._messageError.gameObject.SetActive(true);
         this._messageError.text = text;
     }
+	public void Quit()
+	{
+		#if UNITY_EDITOR
+		UnityEditor.EditorApplication.isPlaying = false;
+		#else
+		Application.Quit();
+		#endif
+	}
  }

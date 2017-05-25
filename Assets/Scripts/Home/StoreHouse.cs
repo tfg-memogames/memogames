@@ -16,6 +16,7 @@ public class StoreHouse : Isometra.EventManager
 	public override void ReceiveEvent(IGameEvent ev){
 		if (ev.Name == "Store"){
 			pickUp.GetComponent<PickUpManager> ().data();
+			pickUp.GetComponent<PickUpManager> ().feedBack++;
 		}
 	}
 

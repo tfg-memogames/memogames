@@ -16,6 +16,7 @@ public class PickUpManager : MonoBehaviour {
 	private int _totalCaught;
 	private int _totalDoorsOpened;
 	private int _totalObjects;
+	private int _feedBack;
 	private float _time;
 
 	void Awake(){
@@ -35,6 +36,7 @@ public class PickUpManager : MonoBehaviour {
 		_totalCorrects = 0;
 		_totalCaught = 0;
 		_totalDoorsOpened = 0;
+		_feedBack = 0;
 	}
 
 	private void FixedUpdate(){
@@ -179,8 +181,9 @@ public class PickUpManager : MonoBehaviour {
 		print ("Objects: "+_totalObjects);
 		print ("Doors: "+_totalDoorsOpened);
 		print ("Time: " + _time);
+		print ("FeedBack: " + _feedBack);
 
-
+		Tracker.T.setVar("FeedBack", _feedBack);
 		Tracker.T.setVar("Time", _time);
 		Tracker.T.setVar("Corrects", _totalCorrects);
 		Tracker.T.setVar("Mistakes", _totalMistakes);
@@ -226,5 +229,9 @@ public class PickUpManager : MonoBehaviour {
 		set { _totalObjects= value; }
 	}
 
+	public int feedBack{
+		get { return _feedBack; }
+		set { _feedBack= value; }
+	}
 
 }
