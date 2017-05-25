@@ -56,7 +56,9 @@ public class InputManager : Isometra.EventManager
         }
         else if(ev.Name == "Enable_Maria")
         {
+            this.phone.SetActive(false);
             this.maria.active = true;
+            //Añadir zoom a la cámara
 
         }
 
