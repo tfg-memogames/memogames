@@ -6,52 +6,56 @@ using UnityEngine.SceneManagement;
 
 public class LoadRoom : MonoBehaviour {
 
+
+	public GameObject tracker;
 	public string room;
-	public static string theRoom;
 	public GameObject pickup;
 
 	public GameObject[] roomSites;
-	public static GameObject[] sites;
 
 	public GameObject[] objects;
-	public static Dictionary<string, string> dictionary;
-	public static Dictionary<string, string> order;
+	private Dictionary<string, string> _dictionary;
+	private Dictionary<string, string> _order;
 
-	public static int corrects;
-	public static int mistakes;
-	public static int caught;
+	private int _corrects;
+	private int _mistakes;
+	private int _caught;
+
+	private GameObject pum;
 
 	void Awake () {
-		theRoom = room;
-		if (GameObject.Find("PickUpManager") == null){
-			GameObject pum = Instantiate (pickup);
-			pum.name="PickUpManager";
-			DontDestroyOnLoad(pum);
+		pum = GameObject.Find ("PickUpManager");
+		if (pum == null) {
+			pum = Instantiate (pickup);
+			pum.name = "PickUpManager";
 		}
 
-		sites=new GameObject[roomSites.Length]; 
-
-		for (int i = 0; i < roomSites.Length; i++) {
-			sites [i] = roomSites [i];
+		if (GameObject.Find ("Tracker") == null) {
+			GameObject t = Instantiate (tracker);
+			t.name="Tracker";
+			DontDestroyOnLoad (t);
 		}
+
+
+
 		if (!room.Equals ("Hall")) {
 			Button btn = GameObject.FindGameObjectWithTag ("Back").GetComponent<Button> ();
 			btn.onClick.AddListener (TaskOnClick);	
 		}
 
-		dictionary = PickUpManager.house [room];
-		order = PickUpManager.orderHouse [room];
+		_dictionary = pum.GetComponent<PickUpManager>().house [room];
+		_order = pum.GetComponent<PickUpManager>().orderHouse [room];
 
-		for (int i = 0; i < sites.Length; i++)
-			if (!dictionary[sites [i].name].Equals ("."))
-				foundObject (dictionary[sites [i].name]).transform.position = new Vector3(sites [i].transform.position.x, sites [i].transform.position.y, -0.1F);
+		for (int i = 0; i < roomSites.Length; i++)
+			if (!_dictionary[roomSites [i].name].Equals ("."))
+				foundObject (_dictionary[roomSites [i].name]).transform.position = new Vector3(roomSites [i].transform.position.x, roomSites [i].transform.position.y, -0.1F);
 			
 	}
 
 	void Start(){
-		corrects = 0;
-		mistakes = 0;
-		caught = 0;
+		_corrects = 0;
+		_mistakes = 0;
+		_caught = 0;
 	}
 
 	GameObject foundObject(string name){
@@ -72,12 +76,40 @@ public class LoadRoom : MonoBehaviour {
 		store ();
 	}
 
-	public static void store(){
-		PickUpManager.house [theRoom]=dictionary;
-		PickUpManager.totalMistakes+=mistakes;
-		PickUpManager.totalCorrects+=corrects;
-		PickUpManager.totalCaught +=caught;
+	public void store(){
+		print (room);
+		pum.GetComponent<PickUpManager>().house [room]=_dictionary;
+		pum.GetComponent<PickUpManager>().totalMistakes+=_mistakes;
+		pum.GetComponent<PickUpManager>().totalCorrects+=_corrects;
+		pum.GetComponent<PickUpManager>().totalCaught +=_caught;
 
 	}
+
+
+	public Dictionary<string, string> dictionary{
+		get { return _dictionary; }
+		set { _dictionary = value; }
+	}
+
+	public Dictionary<string, string> order{
+		get { return _order; }
+		set { _order = value; }
+	}
+
+	public int corrects{
+		get { return _corrects; }
+		set { _corrects = value; }
+	}
+
+	public int mistakes{
+		get { return _mistakes; }
+		set { _mistakes = value; }
+	}
+
+	public int caught{
+		get { return _caught; }
+		set { _caught = value; }
+	}
+
 
 }

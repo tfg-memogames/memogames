@@ -8,17 +8,19 @@ using RAGE.Analytics;
 
 public class PickUpManager : MonoBehaviour {
 	
-	public static Dictionary<string, Dictionary<string, string>> orderHouse;
-	public static Dictionary<string, Dictionary<string, string>> house;
+	private Dictionary<string, Dictionary<string, string>> _orderHouse;
+	private Dictionary<string, Dictionary<string, string>> _house;
 
-	public static int totalMistakes;
-	public static int totalCorrects;
-	public static int totalCaught;
-	public static int totalDoorsOpened;
-	public static int totalObjects;
-	public static float time;
+	private int _totalMistakes;
+	private int _totalCorrects;
+	private int _totalCaught;
+	private int _totalDoorsOpened;
+	private int _totalObjects;
+	private float _time;
 
 	void Awake(){
+		print(Application.persistentDataPath);
+
 		DontDestroyOnLoad (transform.gameObject);
 		initObjects ();
 		orderObjects ();
@@ -29,29 +31,29 @@ public class PickUpManager : MonoBehaviour {
 	}
 
 	void Start(){
-		totalMistakes = 0;
-		totalCorrects = 0;
-		totalCaught = 0;
-		totalDoorsOpened = 0;
+		_totalMistakes = 0;
+		_totalCorrects = 0;
+		_totalCaught = 0;
+		_totalDoorsOpened = 0;
 	}
 
 	private void FixedUpdate(){
-		time += Time.deltaTime;
+		_time += Time.deltaTime;
 	
 	}
 
-	public static void initObjects(){
-		totalObjects = 0;
+	public void initObjects(){
+		_totalObjects = 0;
 
-		house = new Dictionary<string, Dictionary<string, string>> ();
+		_house = new Dictionary<string, Dictionary<string, string>> ();
 
 		Dictionary<string,string> hall = new Dictionary<string, string> (); //hall
 		hall.Add ("Mesa", "Abrigo");
 		hall.Add ("Suelo1", "Llaves");
 		hall.Add ("Suelo2", ".");
 		hall.Add ("Perchero", ".");
-		house.Add ("Hall", hall);
-		totalObjects += 2;
+		_house.Add ("Hall", hall);
+		_totalObjects += 2;
 
 
 		Dictionary<string,string> hallway = new Dictionary<string, string> (); //hall
@@ -59,8 +61,8 @@ public class PickUpManager : MonoBehaviour {
 		hallway.Add ("Suelo2", ".");
 		hallway.Add ("Suelo3", "Maceta");
 		hallway.Add ("Mesa", ".");
-		house.Add ("Hallway", hallway);
-		totalObjects += 2;
+		_house.Add ("Hallway", hallway);
+		_totalObjects += 2;
 
 
 		Dictionary<string,string> main = new Dictionary<string, string> (); //main bedroom
@@ -70,8 +72,8 @@ public class PickUpManager : MonoBehaviour {
 		main.Add ("Cama", ".");
 		main.Add ("Armario", ".");
 		main.Add ("Mesilla", ".");
-		house.Add ("Main_bedroom", main);
-		totalObjects += 3;
+		_house.Add ("Main_bedroom", main);
+		_totalObjects += 3;
 
 
 		Dictionary<string,string> second = new Dictionary<string, string> (); //second bedroom
@@ -81,8 +83,8 @@ public class PickUpManager : MonoBehaviour {
 		second.Add ("Cama", ".");
 		second.Add ("Mesa1", "Papeles");
 		second.Add ("Mesa2", "Boli");
-		house.Add ("Second_bedroom", second);
-		totalObjects += 2;
+		_house.Add ("Second_bedroom", second);
+		_totalObjects += 2;
 
 
 		Dictionary<string,string> living = new Dictionary<string, string> (); //livingroom
@@ -94,8 +96,8 @@ public class PickUpManager : MonoBehaviour {
 		living.Add ("Mesa1b", ".");
 		living.Add ("Mesa2", "Libro");
 		living.Add ("Estanteria", ".");
-		house.Add ("Livingroom", living);
-		totalObjects += 4;
+		_house.Add ("Livingroom", living);
+		_totalObjects += 4;
 
 		Dictionary<string,string> bath = new Dictionary<string, string> (); //bathroom
 		bath.Add ("Suelo1", "Albornoz");
@@ -106,26 +108,26 @@ public class PickUpManager : MonoBehaviour {
 		bath.Add ("Toallero", ".");
 		bath.Add ("Estante", ".");
 		bath.Add ("Ducha", ".");
-		house.Add ("Bathroom", bath);
-		totalObjects += 4;
+		_house.Add ("Bathroom", bath);
+		_totalObjects += 4;
 
 	}
-	public static void orderObjects(){
-		orderHouse = new Dictionary<string, Dictionary<string, string>> ();
+	public void orderObjects(){
+		_orderHouse = new Dictionary<string, Dictionary<string, string>> ();
 
 		Dictionary<string,string> hall = new Dictionary<string, string> (); //hall
 		hall.Add ("Mesa", "Llaves");
 		hall.Add ("Suelo1", ".");
 		hall.Add ("Suelo2", ".");
 		hall.Add ("Perchero", "Abrigo");
-		orderHouse.Add ("Hall", hall);
+		_orderHouse.Add ("Hall", hall);
 
 		Dictionary<string,string> hallway = new Dictionary<string, string> (); //hall
 		hallway.Add ("Suelo1", ".");
 		hallway.Add ("Suelo2", "Zapato");
 		hallway.Add ("Suelo3", ".");
 		hallway.Add ("Mesa", "Maceta");
-		orderHouse.Add ("Hallway", hallway);
+		_orderHouse.Add ("Hallway", hallway);
 
 
 		Dictionary<string,string> main = new Dictionary<string, string> (); //main bedroom
@@ -135,7 +137,7 @@ public class PickUpManager : MonoBehaviour {
 		main.Add ("Cama", "Almohada");
 		main.Add ("Armario", "Jersey");
 		main.Add ("Mesilla", "Cartera");
-		orderHouse.Add ("Main_bedroom", main);
+		_orderHouse.Add ("Main_bedroom", main);
 
 		Dictionary<string,string> second = new Dictionary<string, string> (); //second bedroom
 		second.Add ("Suelo1", ".");
@@ -144,7 +146,7 @@ public class PickUpManager : MonoBehaviour {
 		second.Add ("Cama", ".");
 		second.Add ("Mesa1", "Papeles");
 		second.Add ("Mesa2", "Boli");
-		orderHouse.Add ("Second_bedroom", second);
+		_orderHouse.Add ("Second_bedroom", second);
 
 		Dictionary<string,string> living = new Dictionary<string, string> (); //livingroom
 		living.Add ("Suelo1", ".");
@@ -155,7 +157,7 @@ public class PickUpManager : MonoBehaviour {
 		living.Add ("Mesa1b", "Manta");
 		living.Add ("Mesa2", "Mando");
 		living.Add ("Estanteria", "Libro");
-		orderHouse.Add ("Livingroom", living);
+		_orderHouse.Add ("Livingroom", living);
 
 		Dictionary<string,string> bath = new Dictionary<string, string> (); //bathroom
 		bath.Add ("Suelo1", ".");
@@ -166,25 +168,63 @@ public class PickUpManager : MonoBehaviour {
 		bath.Add ("Toallero", "Toalla");
 		bath.Add ("Estante", "Secador");
 		bath.Add ("Ducha", "Champu");
-		orderHouse.Add ("Bathroom", bath);
+		_orderHouse.Add ("Bathroom", bath);
 				
 	}
 
-	public static void data(){
-		print ("Corrects: "+totalCorrects);
-		print ("Caught: "+totalCaught);
-		print ("Mistakes: "+totalMistakes);
-		print ("Objects: "+totalObjects);
-		print ("Doors: "+totalDoorsOpened);
-		print ("Time: " + time);
+	public void data(){
+		print ("Corrects: "+_totalCorrects);
+		print ("Caught: "+_totalCaught);
+		print ("Mistakes: "+_totalMistakes);
+		print ("Objects: "+_totalObjects);
+		print ("Doors: "+_totalDoorsOpened);
+		print ("Time: " + _time);
 
 
-		Tracker.T.setVar("Time", time);
-		Tracker.T.setVar("Corrects", totalCorrects);
-		Tracker.T.setVar("Mistakes", totalMistakes);
-		Tracker.T.setVar("Doors", totalDoorsOpened);
-		Tracker.T.completable.Completed("house", CompletableTracker.Completable.Level, (totalCorrects==totalObjects), totalCorrects);
+		Tracker.T.setVar("Time", _time);
+		Tracker.T.setVar("Corrects", _totalCorrects);
+		Tracker.T.setVar("Mistakes", _totalMistakes);
+		Tracker.T.setVar("Doors", _totalDoorsOpened);
+		Tracker.T.completable.Completed("house", CompletableTracker.Completable.Level, (_totalCorrects==_totalObjects), _totalCorrects);
 
 
 	}
+
+
+	public Dictionary<string, Dictionary<string, string>> orderHouse{
+		get { return _orderHouse; }
+		set { _orderHouse = value; }
+	}
+
+	public Dictionary<string, Dictionary<string, string>> house{
+		get { return _house; }
+		set { _house = value; }
+	}
+
+	public int totalCorrects{
+		get { return _totalCorrects; }
+		set { _totalCorrects= value; }
+	}
+
+	public int totalCaught{
+		get { return _totalCaught; }
+		set { _totalCaught= value; }
+	}
+
+	public int totalMistakes{
+		get { return _totalMistakes; }
+		set { _totalMistakes= value; }
+	}
+
+	public int totalDoorsOpened{
+		get { return _totalDoorsOpened; }
+		set { _totalDoorsOpened= value; }
+	}
+
+	public int totalObjects{
+		get { return _totalObjects; }
+		set { _totalObjects= value; }
+	}
+
+
 }

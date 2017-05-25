@@ -6,14 +6,19 @@ public class DragDrop: MonoBehaviour {
 
     private Collider2D coll;
     private Vector2 startPoint;
+	public Sprite newSprite;
+
+	private GameObject room;
 
 	void Start(){
+		room = GameObject.Find ("PickUp");
+
         coll = GetComponent<Collider2D>();
     }
 
 	void OnMouseDown(){
         startPoint = transform.position;
-		LoadRoom.caught++;
+		room.GetComponent<LoadRoom> ().caught++;
     }
 
     void OnMouseDrag(){
@@ -28,21 +33,21 @@ public class DragDrop: MonoBehaviour {
 
         int i = 0;
 	
-		while (i < LoadRoom.sites.Length && !coll.IsTouching(LoadRoom.sites[i].GetComponent<Collider2D>()))
+		while (i < room.GetComponent<LoadRoom> ().roomSites.Length && !coll.IsTouching(room.GetComponent<LoadRoom> ().roomSites[i].GetComponent<Collider2D>()))
             i++;
 
 
-		if (i == LoadRoom.sites.Length){
+		if (i == room.GetComponent<LoadRoom> ().roomSites.Length){
 			transform.position = startPoint;
-			//LoadRoom.mistakes++;
 		}else {
-			if (LoadRoom.order[LoadRoom.sites [i].name] == this.name)
-				LoadRoom.corrects++;
-			else 
-				LoadRoom.mistakes++;
+			if (room.GetComponent<LoadRoom> ().order [room.GetComponent<LoadRoom> ().roomSites[i].name] == this.name) {
+				room.GetComponent<LoadRoom> ().corrects++;
+				gameObject.GetComponent<SpriteRenderer> ().sprite = newSprite;
+			}else 
+				room.GetComponent<LoadRoom> ().mistakes++;
 			
 
-			LoadRoom.dictionary [LoadRoom.sites [i].name] = this.name;
+			room.GetComponent<LoadRoom> ().dictionary [room.GetComponent<LoadRoom> ().roomSites [i].name] = this.name;
 		}
     }
 }

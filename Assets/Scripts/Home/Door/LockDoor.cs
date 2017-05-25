@@ -8,10 +8,18 @@ public class LockDoor : MonoBehaviour
     private bool locked = true;
     
 
+	private GameObject room;
+
+	void Start(){
+		room = GameObject.Find ("PickUp");
+	}
+
     void OnMouseDown()
     {
-        if(!locked)
-            SceneManager.LoadScene(scene);
+		if (!locked) {
+			SceneManager.LoadScene (scene);
+			room.GetComponent<LoadRoom>().store ();
+		}
     }
 
 

@@ -9,15 +9,21 @@ public class Door : MonoBehaviour {
 
     public string scene;
 
+	private GameObject room;
+	private GameObject pickUp;
+
+	void Start(){
+		room = GameObject.Find ("PickUp");
+		pickUp = GameObject.Find ("PickUpManager");
+	}
+
     void OnMouseDown()
     {
-		PickUpManager.totalDoorsOpened++;
+		pickUp.GetComponent<PickUpManager> ().totalDoorsOpened++;
+		room.GetComponent<LoadRoom>().store ();
         SceneManager.LoadScene(scene);
 		if (scene.Equals ("Kitchen")) {
-			PickUpManager.data ();
-		}
-		if (scene.Equals ("Hall") || scene.Equals ("Hallway")) {
-			LoadRoom.store ();
+			pickUp.GetComponent<PickUpManager> ().data();
 		}
     }
     
