@@ -8,6 +8,7 @@ public class ConversationLauncher : MonoBehaviour {
 
 
     public Sequence seq;
+    public bool active = true;
 
     public void startDialog()
     {
@@ -21,8 +22,8 @@ public class ConversationLauncher : MonoBehaviour {
 
     private void childClicked(GameObject go)
     {
-        //Debug.Log("aaaaaaaaa");
-        startDialog();
+        if(active)
+            startDialog();
     }
 
 

@@ -15,12 +15,15 @@ public class InputManager : Isometra.EventManager
     public GameObject mainCharacter;
     public GameObject phone;
 
+    private ConversationLauncher maria;
+
     private void Start()
     {
+
         this._input.gameObject.SetActive(false);
         processing = null;
         this._gs = GameObject.FindObjectOfType<GameState>();
-        //this.phone.SetActive(false);
+        this.maria = GameObject.Find("Maria").GetComponent<ConversationLauncher>();
     }
 
 
@@ -35,7 +38,7 @@ public class InputManager : Isometra.EventManager
     public override void Tick() { }
     public override void ReceiveEvent(IGameEvent ev)
     {
-        if (ev.Name == "Player Name Input")
+        if (ev.Name == "Player_Name_Input")
         {
             processing = ev;
             _input.gameObject.SetActive(true);
@@ -51,10 +54,36 @@ public class InputManager : Isometra.EventManager
             this.phone.SetActive(true);
 
         }
-        else if(ev.Name == "Change_To_Maria_Scene")
+        else if(ev.Name == "Enable_Maria")
         {
-            //Cambia a escena con María.
-            SceneManager.LoadScene("Conver with Maria");
+            this.maria.active = true;
+
+        }
+
+        else if (ev.Name == "Right_Destination")
+        {
+            Debug.Log("Right_Destination");
+        }
+        else if (ev.Name == "Wrong_Destination")
+        {
+            Debug.Log("Wrong_Destination");
+        }
+        else if (ev.Name == "Right_Time")
+        {
+            Debug.Log("Right_Time");
+        }
+        else if (ev.Name == "Wrong_Time")
+        {
+            Debug.Log("Wrong_Time");
+        }
+        else if (ev.Name == "Right_Suitcase")
+        {
+            Debug.Log("Right_Suitcase");
+
+        }
+        else if (ev.Name == "Wrong__Suitcase")
+        {
+            Debug.Log("Wrong_Suitcase");
         }
     }
 
