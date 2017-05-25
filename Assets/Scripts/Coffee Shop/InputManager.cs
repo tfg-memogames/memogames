@@ -19,11 +19,13 @@ public class InputManager : Isometra.EventManager
 
     private void Start()
     {
-
-        this._input.gameObject.SetActive(false);
-        processing = null;
+        if(this._input != null) { 
+            this._input.gameObject.SetActive(false);
+            this.maria = GameObject.Find("Maria").GetComponent<ConversationLauncher>();
+        }
+        this.processing = null;
         this._gs = GameObject.FindObjectOfType<GameState>();
-        this.maria = GameObject.Find("Maria").GetComponent<ConversationLauncher>();
+        
     }
 
 
@@ -86,6 +88,12 @@ public class InputManager : Isometra.EventManager
         else if (ev.Name == "Wrong__Suitcase")
         {
             Debug.Log("Wrong_Suitcase");
+        }
+
+        else if(ev.Name == "Start_FTW")
+        {
+            Debug.Log("cargando");
+            SceneManager.LoadScene("Video_tutorial");
         }
     }
 
