@@ -18,6 +18,9 @@ public class PhoneBehaviour : MonoBehaviour {
     //Si el móvil se debe esconder o no
     public bool visibleAtStart = false;
 
+    //Indica si el móvil se utilizará para recibir llamadas o enviarlas.
+    public bool incoming = false;
+
     private void Awake()
     {
         source = GetComponent<AudioSource>();
@@ -55,10 +58,16 @@ public class PhoneBehaviour : MonoBehaviour {
             if(go == target) {
 
                 source.Stop();
-                source.clip = playerCallingSound;
-                source.loop = true;
-                source.Play();
-                StartCoroutine(Wait());
+
+                if (!incoming)
+                {
+                    source.clip = playerCallingSound;
+                    source.loop = true;
+                    source.Play();
+                    StartCoroutine(Wait());
+                }
+                else
+                    startDialog();
         }
             else
             {
