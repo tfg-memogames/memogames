@@ -19,6 +19,7 @@ public class ShadowEffect : MonoBehaviour {
 
     void Start()
     {
+		print ("anim");
         image = GetComponent<Image>();
         startColor = image.color;
         startPosition = transform.localPosition;
