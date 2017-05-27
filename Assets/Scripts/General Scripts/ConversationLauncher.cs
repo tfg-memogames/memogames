@@ -7,10 +7,16 @@ public class ConversationLauncher : MonoBehaviour {
 
     public Sequence seq;
     public bool active = true;
+ 
+
+
+  
+
 
     public void startDialog()
     {
-        /*
+
+                /*
         var ge = new GameEvent();
         ge.Name = "start sequence";
         ge.setParameter("sequence", seq);
