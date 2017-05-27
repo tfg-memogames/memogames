@@ -77,15 +77,15 @@ namespace Isometra {
 	                    UnityEditor.AssetDatabase.AddObjectToAsset(c as Object, this);
 						
 	                }
-#endif
 
+#endif
                     if (args.ContainsKey(param)) args[param] = (Object)c;
 	                else args.Add(param, (Object)c);
 	            }
 			}
-	        
 
-			this.keys = new List<string> (args.Keys);
+
+            this.keys = new List<string> (args.Keys);
 			this.values = new List<Object> (args.Values);
 		}
 
