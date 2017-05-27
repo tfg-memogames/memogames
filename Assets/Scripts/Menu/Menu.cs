@@ -10,8 +10,15 @@ public class Menu : MonoBehaviour {
 	private string _gender="";
 	private int _level=0;
 	private Gender g;
+	private GameState _gs;
 
 	public GameObject error;
+
+
+	void Start(){
+		this._gs = GameObject.FindObjectOfType<GameState> ();
+		//_gs.playerGender = Gender.M;
+	}
 
 	public void iniGame(){
 		if (_gender.Equals ("") || _level == 0) {
@@ -23,6 +30,8 @@ public class Menu : MonoBehaviour {
 				g = Gender.F;
 
 			//guardar g en gameState
+			//_gs.playerGender=g;
+			_gs.level = _level;
 			//guardar _level en gameState
 			SceneManager.LoadScene("Conver With Fernando");
 
