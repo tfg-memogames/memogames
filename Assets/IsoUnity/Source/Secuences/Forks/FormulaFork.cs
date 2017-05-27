@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using NCalc;
 using System.Reflection;
 
 namespace Isometra.Sequences {

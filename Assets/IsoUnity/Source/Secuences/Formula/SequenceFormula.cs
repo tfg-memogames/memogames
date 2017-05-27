@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Reflection;
 using NCalc;
+using System.Reflection;
 
 namespace Isometra.Sequences {
 	public class SequenceFormula {
@@ -16,7 +16,7 @@ namespace Isometra.Sequences {
 	    {
 	        this.Formula = formula;
 	    }
-  
+
 	    public string Formula
 	    {
 	        get

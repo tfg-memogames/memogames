@@ -9,14 +9,21 @@ public class Zoom : MonoBehaviour {
 	public int speed;
 	public int near;
 
-	private bool zm=true;
+	private bool zm;
 	private Vector3 o;
 	private float zIniCamera;
 
 
-	void Start(){
+    private void Awake()
+    {
+        this.zm = false;
+    }
+
+
+    void Start(){
 		o = obj.GetComponent<Transform> ().position;
 		zIniCamera = Camera.main.GetComponent<Transform> ().position.z;
+        this.zm = false;
 	}
 
 	public void zoom(){

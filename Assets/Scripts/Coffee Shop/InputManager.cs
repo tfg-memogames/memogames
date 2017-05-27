@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Isometra;
+﻿using Isometra;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class InputManager : Isometra.EventManager
+
+public class InputManager : EventManager
 {
 
-    private Isometra.IGameEvent processing;
+    private IGameEvent processing;
     public InputField _input;
     private GameState _gs;
     public GameObject mainCharacter;

@@ -1,7 +1,5 @@
 ﻿using Isometra;
 using Isometra.Sequences;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ConversationLauncher : MonoBehaviour {
@@ -18,7 +16,6 @@ public class ConversationLauncher : MonoBehaviour {
         Game.main.enqueueEvent(ge);
     }
 
-   
 
     private void childClicked(GameObject go)
     {

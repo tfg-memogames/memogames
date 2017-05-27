@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Isometra;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Isometra;
 using UnityEngine;
 
-public class DissapearCharacter : Isometra.EventManager
+public class DissapearCharacter : EventManager
 {
 
     public GameObject parent;
