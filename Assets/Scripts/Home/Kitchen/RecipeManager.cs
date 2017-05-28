@@ -25,6 +25,8 @@ public class RecipeManager : MonoBehaviour
     private static int _counterHints = 0;
     private static GameObject _instanceButtonPanel;
     private static GameObject _instanceRecipePanel;
+
+    private static GameObject _instanceTimer;
     
     //Recipe
     public List<Step> steps;
@@ -50,7 +52,7 @@ public class RecipeManager : MonoBehaviour
     {
         // Load the timer
         displayPanel = GetComponent<DisplayPanel>();
-        displayPanel.instantiatePanel(timer);
+        _instanceTimer = displayPanel.instantiatePanel(timer);
         lastStep = new Step();
 
         _currentStep = 0;
@@ -146,6 +148,7 @@ public class RecipeManager : MonoBehaviour
                 Debug.Log("Has ganado");
                 enableClickOnObjects(false);
                 displayPanel.instantiatePanel(winPanel);
+                Destroy(_instanceTimer);
             }
         }
         else
