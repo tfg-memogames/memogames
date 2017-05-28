@@ -2,12 +2,12 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
-using System.Collections.Generic;
 using Isometra.Sequences;
+using System.Collections.Generic;
 
-public class CustomDialogManager : Isometra.Sequences.DialogEventManager
+public class CustomDialogManager : DialogEventManager
 {
-    
+
     public enum State
     {
         Opening, Showing, Closing, Idle, Options
@@ -16,26 +16,35 @@ public class CustomDialogManager : Isometra.Sequences.DialogEventManager
     // Public variables
     public float timePerCharacter;
     public float fadeTime;
+    public Text nameText;
     public Text textHolder;
     public Text optionsMessage;
+    public GameObject interactionBlocker;
     public CanvasGroup dialogGroup;
     public CanvasGroup optionsGroup;
-    public GridLayoutGroup optionsGrid;
+    public LayoutGroup optionsHolder;
     public GameObject optionPrefab;
+    public Scrollbar scroll;
+    public float scrollSpeed = 10f;
+    public float scrollTime = .2f;
 
     // Private variables
     private State state = State.Idle;
     private Fragment frg;
     private List<Option> opt;
+    private List<GameObject> instancedOptions = new List<GameObject>();
     private int charactersShown;
     private float accumulated;
     private string msg = "";
     private CanvasGroup managingGroup;
     private Option optionSelected;
+    private float scrollWantsToBe;
 
 
     //Info between scenes
     private GameState _gs;
+
+
 
     void Start()
     {
@@ -51,50 +60,62 @@ public class CustomDialogManager : Isometra.Sequences.DialogEventManager
     {
         frg = fragment;
         msg = frg.Msg;
+        nameText.text = frg.Name;
         //Añado las keyWords si las hubiese.
-        if (_gs != null) { 
+        if (_gs != null)
+        {
             msg = changeKeyWords(msg);
         }
         charactersShown = 0;
+        UpdateText();
+        scroll.value = 1;
         state = State.Opening;
         managingGroup = dialogGroup;
+        managingGroup.gameObject.SetActive(true);
+        interactionBlocker.SetActive(true);
 
-        if(frg.Character != "" && frg.Parameter != "")
+        if (frg.Character != "" && frg.Parameter != "")
         {
             GameObject.Find(frg.Character).SendMessage(frg.Parameter);
         }
     }
 
+   
+
     protected override void DoOptions(string question, List<Option> options)
     {
         opt = options;
         msg = question;
-        
 
         optionSelected = null;
         optionsMessage.text = msg;
         managingGroup = optionsGroup;
+        managingGroup.gameObject.SetActive(true);
+        interactionBlocker.SetActive(true);
         state = State.Opening;
         foreach (var o in opt)
         {
             // create the options
             var option = GameObject.Instantiate(optionPrefab);
-            option.transform.SetParent(optionsGrid.transform);
+            option.transform.SetParent(optionsHolder.transform);
             var text = option.transform.GetChild(0).GetComponent<Text>().text = o.Text;
             option.GetComponent<Button>().onClick.AddListener(() => {
                 optionSelected = opt.Find(e => e.Text == text);
             });
+            instancedOptions.Add(option);
         }
     }
 
     protected override bool IsFragmentFinised() { return frg == null; }
-    protected override int IsOptionSelected() { return state == State.Idle ? opt.FindIndex(o => o == optionSelected) : -1;}
+    protected override int IsOptionSelected() { return state == State.Idle ? opt.FindIndex(o => o == optionSelected) : -1; }
 
     // -----------------------------------
     // State management during update
     // -----------------------------------
-	
-	void Update () {
+
+    private Vector2 speed = Vector2.zero;
+    void Update()
+    {
         switch (state)
         {
             case State.Opening:
@@ -122,9 +143,14 @@ public class CustomDialogManager : Isometra.Sequences.DialogEventManager
                     accumulated += Time.deltaTime;
                     while (accumulated > timePerCharacter)
                     {
+                        accumulated -= timePerCharacter;
                         charactersShown = Mathf.Clamp(charactersShown + 1, 0, msg.Length);
                         UpdateText();
                     }
+
+                    var scrollpos = new Vector2(scroll.value, 0);
+                    scrollpos = Vector2.SmoothDamp(scrollpos, new Vector2(scrollWantsToBe, 0), ref speed, scrollTime, scrollSpeed, Time.deltaTime);
+                    scroll.value = scrollpos.x;
                 }
                 else if (managingGroup == optionsGroup)
                 {
@@ -137,10 +163,15 @@ public class CustomDialogManager : Isometra.Sequences.DialogEventManager
                 managingGroup.alpha = Mathf.Clamp01(managingGroup.alpha - Time.deltaTime / fadeTime);
                 if (managingGroup.alpha == 0)
                 {
+                    managingGroup.gameObject.SetActive(false);
+                    interactionBlocker.SetActive(false);
                     state = State.Idle;
                     textHolder.text = "";
+                    textHolder.rectTransform.anchoredPosition = Vector2.zero;
                     frg = null;
-
+                    speed = Vector2.zero;
+                    foreach (var io in instancedOptions)
+                        GameObject.DestroyImmediate(io);
                 }
                 break;
             case State.Idle:
@@ -148,12 +179,29 @@ public class CustomDialogManager : Isometra.Sequences.DialogEventManager
         }
     }
 
-
     private void UpdateText()
     {
-        accumulated -= timePerCharacter;
+        textHolder.text = msg.Substring(0, charactersShown) + "<color=#00000000>" + msg.Substring(charactersShown) + "</color>";
 
-        textHolder.text = msg.Substring(0, charactersShown);
+        var lineCount = textHolder.cachedTextGenerator.lineCount;
+        if (lineCount <= 1)
+        {
+            scrollWantsToBe = 1;
+        }
+        else
+        {
+            var lineOfCurrentChar = 0;
+            for (int i = 0; i < lineCount; i++)
+            {
+                var line = textHolder.cachedTextGenerator.lines[i];
+                if (line.startCharIdx < charactersShown)
+                {
+                    lineOfCurrentChar = i;
+                }
+            }
+
+            scrollWantsToBe = 1f - (((float)lineOfCurrentChar) / (lineCount - 1f));
+        }
     }
 
     private string changeKeyWords(string msg)
@@ -161,9 +209,9 @@ public class CustomDialogManager : Isometra.Sequences.DialogEventManager
         string[] wList = msg.Split(' ');
         string nMsg = "";
         int wordCounter = 0;
-        while(wordCounter < wList.Length)
+        while (wordCounter < wList.Length)
         {
-            if(wList[wordCounter].Contains("&name"))
+            if (wList[wordCounter].Contains("&name"))
                 wList[wordCounter] = _gs.playerName;
             //A space between every 2 words.
             nMsg += wList[wordCounter];
@@ -171,10 +219,8 @@ public class CustomDialogManager : Isometra.Sequences.DialogEventManager
             wordCounter++;
         }
 
-        
+
 
         return nMsg.ToString();
     }
-
-    
 }

@@ -31,7 +31,7 @@ public class Menu : MonoBehaviour {
 
 			//guardar g en gameState
 			//_gs.playerGender=g;
-			_gs.level = _level;
+			//_gs.level = _level;
 			//guardar _level en gameState
 			SceneManager.LoadScene("Conver With Fernando");
 

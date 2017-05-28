@@ -68,20 +68,24 @@ namespace Isometra {
 	                    c = content;
 #if UNITY_EDITOR
                     else if (Application.isEditor && !Application.isPlaying
-                        && (UnityEditor.AssetDatabase.IsMainAsset(this) || UnityEditor.AssetDatabase.IsSubAsset(this)))
-                    {
-	                    (c as ScriptableObject).hideFlags = HideFlags.HideInHierarchy;
-	                    UnityEditor.AssetDatabase.AddObjectToAsset(c as Object, this);
-                    }
-#endif
 
+                        && (UnityEditor.AssetDatabase.IsMainAsset(this) || UnityEditor.AssetDatabase.IsSubAsset(this)))
+
+                    {
+
+                        (c as ScriptableObject).hideFlags = HideFlags.HideInHierarchy;
+	                    UnityEditor.AssetDatabase.AddObjectToAsset(c as Object, this);
+						
+	                }
+
+#endif
                     if (args.ContainsKey(param)) args[param] = (Object)c;
 	                else args.Add(param, (Object)c);
 	            }
 			}
-	        
 
-			this.keys = new List<string> (args.Keys);
+
+            this.keys = new List<string> (args.Keys);
 			this.values = new List<Object> (args.Values);
 		}
 
