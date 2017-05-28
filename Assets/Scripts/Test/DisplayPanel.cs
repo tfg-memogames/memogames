@@ -35,30 +35,21 @@ public class DisplayPanel : MonoBehaviour {
 
         //now you can set the position of the ui element
         panelTransform.anchoredPosition = WorldObject_ScreenPosition;
+        panelTransform.localScale = Vector3.one;
     }
 
-    public void instantiatePanel(GameObject panel)
+    public GameObject instantiatePanel(GameObject panel)
     {
         p = Instantiate(panel);
         p.transform.SetParent(canvasRect);
         p.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        p.transform.localScale = Vector3.one;
+        return p;
     }
 
     //Elimina el ultimo panel instanciado
     public void DestroyPanel()
     {
         Destroy(p);
-    }
-
-    //Muestra una X que se desvanece con el tiempo
-    public void ShowError()
-    {
-
-    }
-
-    //Muestra un tick que se desvanece con el tiempo
-    public void ShowSucces()
-    {
-
     }
 }

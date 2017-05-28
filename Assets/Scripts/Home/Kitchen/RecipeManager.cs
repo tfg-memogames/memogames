@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RecipeManager : MonoBehaviour
 {
     public static RecipeManager instance;
 
-    public float cameraZoom = 3.9f;
     public GameObject ovenPanel;
     public GameObject tapPanel;
     public GameObject ceramicHobPanel;
@@ -17,13 +17,21 @@ public class RecipeManager : MonoBehaviour
     public GameObject timer;
     public GameObject winPanel;
     public GameObject gameOverPanel;
+    public GameObject buttonPanel;
+    public GameObject recipePanel;
 
+    // Numero de veces que puede ver el panel de las recetas
+    private const int MAX_HINTS = 3;
+    private static int _counterHints = 0;
+    private static GameObject _instanceButtonPanel;
+    private static GameObject _instanceRecipePanel;
+    
     //Recipe
     public List<Step> steps;
     private float _time = 280.0f;
 
 
-    private static int currentStep = 0;
+    private static int _currentStep = 0;
     private static DisplayPanel displayPanel;
     private static Step lastStep;
 
@@ -36,18 +44,26 @@ public class RecipeManager : MonoBehaviour
 
         else if (instance != this)
             Destroy(gameObject);
-
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().orthographicSize = cameraZoom;
-        GameObject.Find("Chairs").SetActive(false);
-        Instantiate(timer);
     }
 
     void Start()
     {
+        // Load the timer
         displayPanel = GetComponent<DisplayPanel>();
+        displayPanel.instantiatePanel(timer);
         lastStep = new Step();
-        currentStep = 0;
 
+        _currentStep = 0;
+        _counterHints = 0;
+        
+        _instanceButtonPanel = displayPanel.instantiatePanel(buttonPanel);
+        _instanceRecipePanel = displayPanel.instantiatePanel(recipePanel);
+
+        UpdateHintsCounter(MAX_HINTS);
+
+        _instanceRecipePanel.SetActive(true);
+        _instanceButtonPanel.SetActive(false);
+        enableClickOnObjects(false);
     }
 
     public void ItemWasDropped(GameObject drag, GameObject drop)
@@ -89,27 +105,27 @@ public class RecipeManager : MonoBehaviour
     //Compara lastStep con el paso que tocaba realizar y actualiza el juego
     private void CheckStep()
     {
-        Debug.Log(currentStep);
+        Debug.Log(_currentStep);
         //Si era el paso que tenia que hacer
-        if (lastStep.Equals(steps[currentStep]))
+        if (lastStep.Equals(steps[_currentStep]))
         {
             //Cambiamos el sprite
-            if (steps[currentStep].sprite != null)
+            if (steps[_currentStep].sprite != null)
             {
-                if (steps[currentStep].action == Action.Ninguno)
+                if (steps[_currentStep].action == Action.Ninguno)
                 {
                     //steps[0].drop.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
-                    lastStep.drop.GetComponent<SpriteRenderer>().sprite = steps[currentStep].sprite;
+                    lastStep.drop.GetComponent<SpriteRenderer>().sprite = steps[_currentStep].sprite;
 
                 }
                 else
                 {
                     //steps[0].drag.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
-                    lastStep.drag.GetComponent<SpriteRenderer>().sprite = steps[currentStep].sprite;
+                    lastStep.drag.GetComponent<SpriteRenderer>().sprite = steps[_currentStep].sprite;
                 }
             }
 
-            if (steps[currentStep].action == Action.Ninguno)
+            if (steps[_currentStep].action == Action.Ninguno)
             {
                 Destroy(lastStep.drag);
             }
@@ -120,16 +136,16 @@ public class RecipeManager : MonoBehaviour
 
                 //Mostramos éxito y lo tachamos de la receta
                 Debug.Log("Éxito");
-            currentStep++;
+            _currentStep++;
 
             //Instanciar el tick del shadowEffect como que ha tenido exito
             displayPanel.instantiatePanel(correct, lastStep.drop);
 
-            if (steps.Count == currentStep)
+            if (steps.Count == _currentStep)
             {
                 Debug.Log("Has ganado");
                 enableClickOnObjects(false);
-                //displayPanel.instantiatePanel(winPanel);
+                displayPanel.instantiatePanel(winPanel);
             }
         }
         else
@@ -156,7 +172,7 @@ public class RecipeManager : MonoBehaviour
         CheckStep();
     }
 
-    //Cuando se le abre un panel y presiona la X
+    // Cunaod hay un menu abierto y el usuario pulsa la X
     public void CancelAction()
     {
         enableClickOnObjects(true);
@@ -179,6 +195,37 @@ public class RecipeManager : MonoBehaviour
         Debug.Log("You lose");
         enableClickOnObjects(false);
         displayPanel.instantiatePanel(gameOverPanel);
+    }
+    
+    // Muestra el panel con los pasos que debe realizar
+    public void ShowHints()
+    {
+        if (_counterHints >= MAX_HINTS)
+            return;
+
+        enableClickOnObjects(false);
+
+        Debug.Log("Mostrar (" + _counterHints + " veces abierto)");
+
+        _instanceRecipePanel.SetActive(true);
+        _counterHints++;
+
+        // Actualizamos el contador del boton y lo escondemos
+        UpdateHintsCounter(MAX_HINTS - _counterHints);
+        _instanceButtonPanel.SetActive(false);
+    }
+
+    private void UpdateHintsCounter(int value)
+    {
+        _instanceButtonPanel.GetComponentInChildren<Text>().text = "" + value;
+    }
+
+    public void HideHints()
+    {
+        enableClickOnObjects(true);
+        _instanceRecipePanel.SetActive(false);
+        _instanceButtonPanel.SetActive(true);
+        Debug.Log("Ocultar (" + _counterHints + " veces abierto)");
     }
 
     public float time
