@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
-	public enum Gender { M, F };
+	
 
 	private string _gender="";
 	private int _level=0;
-	private Gender g;
+	private GameState.Gender g;
 	private GameState _gs;
 
 	public GameObject error;
@@ -25,15 +25,16 @@ public class Menu : MonoBehaviour {
 			error.gameObject.SetActive (true);
 		} else {
 			if (_gender.Equals ("M"))
-				g = Gender.M;
+				g = GameState.Gender.M;
 			else
-				g = Gender.F;
+				g = GameState.Gender.F;
 
 			//guardar g en gameState
-			//_gs.playerGender=g;
-			//_gs.level = _level;
-			//guardar _level en gameState
-			SceneManager.LoadScene("Conver With Fernando");
+			this._gs.playerGender=g;
+            //guardar _level en gameState
+            this._gs.level = _level;
+			
+			SceneManager.LoadScene("Coffee_Shop");
 
 		}
 	
