@@ -14,7 +14,7 @@ public class Counter : MonoBehaviour {
 
     void Awake()
     {
-        time = GameObject.FindGameObjectWithTag("GameController").GetComponent<RecipeManager>().time;
+        time = GameObject.FindGameObjectWithTag("GameController").GetComponent<RecipeManager>().MAXTIME;
     }
 
 	// Use this for initialization
