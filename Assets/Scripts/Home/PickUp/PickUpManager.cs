@@ -26,9 +26,6 @@ public class PickUpManager : MonoBehaviour {
 		initObjects ();
 		orderObjects ();
 
-		Tracker.T.setVar("TotalObjects", totalObjects);
-
-		Tracker.T.completable.Initialized("house");
 	}
 
 	void Start(){
@@ -37,6 +34,11 @@ public class PickUpManager : MonoBehaviour {
 		_totalCaught = 0;
 		_totalDoorsOpened = 0;
 		_feedBack = 0;
+
+		Tracker.T.setVar("TotalObjects", totalObjects);
+
+		Tracker.T.completable.Initialized("house");
+
 	}
 
 	private void FixedUpdate(){

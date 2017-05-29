@@ -31,7 +31,7 @@ public class RecipeManager : MonoBehaviour
     
     //Recipe
     public List<Step> steps;
-    private float _time = 280.0f;
+    private float _time = 60.0f;
 
     private static int _currentStep = 0;
     private static DisplayPanel displayPanel;
@@ -136,7 +136,8 @@ public class RecipeManager : MonoBehaviour
             _currentStep++;
 
             // Sacamos el objeto arrastrado de su padre (KitchenCupBoard) para que no se oculte al cerrar el armario
-            lastStep.drag.transform.SetParent(lastStep.drag.transform.parent.parent);
+			if(lastStep.drag.transform.parent.name.Equals("KitchenCupBoard"))
+				lastStep.drag.transform.SetParent(lastStep.drag.transform.parent.parent);
 
 
             //Instanciar el tick del shadowEffect como que ha tenido exito

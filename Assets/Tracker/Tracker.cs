@@ -115,10 +115,10 @@ namespace RAGE.Analytics
             this.password = gs.playerName;
 			*/
             //Cargar username y password
-            bool a;
+            
             if (!String.IsNullOrEmpty(username)) {
                 
-                a = TrackerAsset.Instance.Login(username, password);
+                TrackerAsset.Instance.Login(username, password);
             }
 			TrackerAsset.Instance.Start ();
 			this.nextFlush = flushInterval;
