@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RecipeManager : MonoBehaviour
 {
@@ -31,7 +32,6 @@ public class RecipeManager : MonoBehaviour
     //Recipe
     public List<Step> steps;
     private float _time = 280.0f;
-
 
     private static int _currentStep = 0;
     private static DisplayPanel displayPanel;
@@ -116,13 +116,11 @@ public class RecipeManager : MonoBehaviour
             {
                 if (steps[_currentStep].action == Action.Ninguno)
                 {
-                    //steps[0].drop.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
                     lastStep.drop.GetComponent<SpriteRenderer>().sprite = steps[_currentStep].sprite;
 
                 }
                 else
                 {
-                    //steps[0].drag.GetComponent<SpriteRenderer>().sprite = steps[0].sprite;
                     lastStep.drag.GetComponent<SpriteRenderer>().sprite = steps[_currentStep].sprite;
                 }
             }
@@ -132,13 +130,14 @@ public class RecipeManager : MonoBehaviour
                 Destroy(lastStep.drag);
             }
 
-                //Eliminamos de la receta el paso realizado correctamente
-                //steps.RemoveAt(0);
-
-
                 //Mostramos éxito y lo tachamos de la receta
                 Debug.Log("Éxito");
+
             _currentStep++;
+
+            // Sacamos el objeto arrastrado de su padre (KitchenCupBoard) para que no se oculte al cerrar el armario
+            lastStep.drag.transform.SetParent(lastStep.drag.transform.parent.parent);
+
 
             //Instanciar el tick del shadowEffect como que ha tenido exito
             displayPanel.instantiatePanel(correct, lastStep.drop);
@@ -191,6 +190,14 @@ public class RecipeManager : MonoBehaviour
             if (flag) go.layer = 0; //Default
             else go.layer = 2; //Ignore raycast
         }
+
+        GameObject[] cupBoards = GameObject.FindGameObjectsWithTag("KitchenCupBoard");
+
+        foreach (GameObject go in cupBoards)
+        {
+            if (flag) go.layer = 0; //Default
+            else go.layer = 2; //Ignore raycast
+        }
     }
 
     public void GameOver()
@@ -198,6 +205,8 @@ public class RecipeManager : MonoBehaviour
         Debug.Log("You lose");
         enableClickOnObjects(false);
         displayPanel.instantiatePanel(gameOverPanel);
+        Destroy(_instanceRecipePanel);
+        Destroy(_instanceButtonPanel);
     }
     
     // Muestra el panel con los pasos que debe realizar
@@ -229,6 +238,11 @@ public class RecipeManager : MonoBehaviour
         _instanceRecipePanel.SetActive(false);
         _instanceButtonPanel.SetActive(true);
         Debug.Log("Ocultar (" + _counterHints + " veces abierto)");
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("KitchenRecipe");
     }
 
     public float time
