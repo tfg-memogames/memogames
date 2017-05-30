@@ -27,7 +27,7 @@ public class ChoosePartner : MonoBehaviour {
         SpriteRenderer sp = this._partner.GetComponent<SpriteRenderer>();
        
         sp.sprite = this._sprite;
-        Instantiate(this._partner);
+        //Instantiate(this._partner);
     }
 	
 	// Update is called once per frame

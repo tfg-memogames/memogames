@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Isometra;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StoreHouse : Isometra.EventManager
 {
@@ -17,6 +18,11 @@ public class StoreHouse : Isometra.EventManager
 		if (ev.Name == "Store"){
 			pickUp.GetComponent<PickUpManager> ().data();
 			pickUp.GetComponent<PickUpManager> ().feedBack++;
+			print ("store");
+		}
+		if (ev.Name == "LoadHallWay"){
+			SceneManager.LoadScene("HallWay");
+			print ("scene");
 		}
 	}
 
