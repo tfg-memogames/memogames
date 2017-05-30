@@ -16,15 +16,16 @@ public class Zoom : MonoBehaviour {
 
     private void Awake()
     {
-        this.zm = false;
+        this.zm = true;
+        
     }
 
 
     void Start(){
-		o = obj.GetComponent<Transform> ().position;
-		zIniCamera = Camera.main.GetComponent<Transform> ().position.z;
-        this.zm = false;
-	}
+		o = obj.GetComponent<Transform>().position;
+		zIniCamera = Camera.main.GetComponent<Transform>().position.z;
+        
+    }
 
 	public void zoom(){
 		zm = !zm;

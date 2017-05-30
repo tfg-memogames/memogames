@@ -14,6 +14,7 @@ public class InputManager : EventManager
     public GameObject phone;
 
     private ConversationLauncher maria;
+    private Zoom _zoom;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class InputManager : EventManager
         }
         this.processing = null;
         this._gs = GameObject.FindObjectOfType<GameState>();
-        
+        this._zoom = GameObject.FindObjectOfType<Zoom>();
     }
 
 
@@ -59,6 +60,7 @@ public class InputManager : EventManager
             this.phone.SetActive(false);
             this.maria.active = true;
             //Añadir zoom a la cámara
+            this._zoom.zoom();
 
         }
 
@@ -97,7 +99,7 @@ public class InputManager : EventManager
 
     private void finishEvent()
     {
-        _gs.playerName = _input.text;
+        this._gs.playerName = _input.text;
         Game.main.eventFinished(processing);
         processing = null;
         _input.gameObject.SetActive(false);
