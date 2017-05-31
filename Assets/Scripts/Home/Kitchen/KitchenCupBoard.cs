@@ -74,4 +74,9 @@ public class KitchenCupBoard : MonoBehaviour
         }
     }
 
+    public bool open
+    {
+        get { return !this.isClose; }
+    }
+
 }
