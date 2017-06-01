@@ -54,6 +54,7 @@ public class Wardrove : MonoBehaviour {
         this.render.sprite = openned;
         ShowChildObjects(true);
         EnableColliders(true);
+        //Tracker: what objects were shown
     }
 
     private void ShowChildObjects(bool show)
