@@ -16,20 +16,21 @@ public class ChoosePartner : MonoBehaviour {
 
     //No se puede instanciar un prefab porque en cada escena necesitará unos scripts distintos
     void Start () {
-        this._gs = GameObject.FindObjectOfType<GameState>();
-        this._partner = GameObject.Find("Partner");
+		this._gs = GameObject.FindObjectOfType<GameState> ();
+		this._partner = GameObject.Find ("Partner");
 
-        if (_gs.playerGender == GameState.Gender.M)
-            this._sprite = Resources.Load<Sprite>(wifePath);
-        else
-            this._sprite = Resources.Load<Sprite>(husbandPath);
 
-        SpriteRenderer sp = this._partner.GetComponent<SpriteRenderer>();
+			if (_gs.playerGender == GameState.Gender.M)
+				this._sprite = Resources.Load<Sprite> (wifePath);
+			else
+				this._sprite = Resources.Load<Sprite> (husbandPath);
+
+			SpriteRenderer sp = this._partner.GetComponent<SpriteRenderer> ();
        
-        sp.sprite = this._sprite;
-        //Instantiate(this._partner);
-    }
-	
+			sp.sprite = this._sprite;
+			//Instantiate(this._partner);
+
+	}
 	// Update is called once per frame
 	void Update () {
 		

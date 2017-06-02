@@ -19,6 +19,7 @@ public class DissapearCharacter : EventManager
             if (this.parent != null)
                 this.parent.SetActive(false);
             door.openDoor();
+			GameObject.Find ("PickUpManager").GetComponent<PickUpManager>().ini=false;
         }
     }
 

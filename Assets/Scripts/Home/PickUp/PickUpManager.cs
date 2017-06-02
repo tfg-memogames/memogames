@@ -18,6 +18,7 @@ public class PickUpManager : MonoBehaviour {
 	private int _totalObjects;
 	private int _feedBack;
 	private float _time;
+	private bool _ini;
 
 	void Awake(){
 		print(Application.persistentDataPath);
@@ -25,10 +26,11 @@ public class PickUpManager : MonoBehaviour {
 		DontDestroyOnLoad (transform.gameObject);
 		initObjects ();
 		orderObjects ();
-
+		_ini = true;
 	}
 
 	void Start(){
+		
 		_totalMistakes = 0;
 		_totalCorrects = 0;
 		_totalCaught = 0;
@@ -210,6 +212,11 @@ public class PickUpManager : MonoBehaviour {
 	public int totalCorrects{
 		get { return _totalCorrects; }
 		set { _totalCorrects= value; }
+	}
+
+	public bool ini{
+		get { return _ini; }
+		set { _ini= value; }
 	}
 
 	public int totalCaught{
