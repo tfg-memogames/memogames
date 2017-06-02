@@ -4424,7 +4424,7 @@ MonoBehaviour:
   buttonCloseDrawer: {fileID: 58424756}
   floorPanel: {fileID: 1785170832}
   timer: {fileID: 1093810604}
-  time: 5
+  time: 60
 --- !u!4 &2109119231
 Transform:
   m_ObjectHideFlags: 0

@@ -25,7 +25,6 @@ public class ClothesController : MonoBehaviour {
         for (int i = 0; i < this.representation.Length; i++)
         {
             this.representation[i] = this.transform.GetChild(i).gameObject;
-            Debug.Log(representation[i].name);
             this.representation[i].SetActive(false);
         }
 
