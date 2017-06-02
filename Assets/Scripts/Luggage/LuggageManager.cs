@@ -7,8 +7,6 @@ public class LuggageManager : MonoBehaviour {
 
     // This images shows the target
     public GameObject popUpPanel;
-    // Time to complete the level
-    public float time = 60.0f;
 
     public GameObject luggagePanel;
     public GameObject buttonCloseDrawer;
@@ -24,6 +22,16 @@ public class LuggageManager : MonoBehaviour {
     private int numTargets;
     private Sprite[] targets;
 
+    //Timer
+    public GameObject timer;
+    private Counter counter;
+    // Time to complete the level
+    public float time = 5.0f;
+    private float actualTime = 0;
+
+    private bool gameCompleted = false;
+
+
     // Use this for initialization
     void Start () {
         this.actualTarget = 0;
@@ -34,7 +42,18 @@ public class LuggageManager : MonoBehaviour {
         this.floorPanel.SetActive(false);
         this.targetImage = this.popUpPanel.transform.GetChild(0).GetComponent<Image>();
         ShowCurrentTarget();
+        counter = timer.GetComponent<Counter>();
+        this.gameCompleted = false;
         // Tracker: sprites, time, lifes?
+    }
+
+    void Update()
+    {
+        if (!gameCompleted && actualTime < time)
+        {
+            actualTime += Time.deltaTime;
+            counter.PaintTheTime(actualTime, time);
+        }
     }
 
     // This function initialize the target sprites getting the sprite of the image of luggagePanel
@@ -52,11 +71,22 @@ public class LuggageManager : MonoBehaviour {
     public void TargetCompleted()
     {
         this.actualTarget++;
+        //Tracker: sprite, time
+        //Tracker: sprite found at time X
 
         // Close drawer (target can be completed without oppening a drawer, opening the wardrove)
         CloseDrawer();
 
-        ShowCurrentTarget();
+        if (this.actualTarget >= this.numTargets)
+        {
+            Debug.Log("You win");
+            this.interactable = false;
+            this.gameCompleted = true;
+            //Tracker: time, completed
+        } else
+        {
+            ShowCurrentTarget();
+        }
     }
 
     private void ShowCurrentTarget()
@@ -66,7 +96,13 @@ public class LuggageManager : MonoBehaviour {
         this.targetImage.type = Image.Type.Simple;
         this.targetImage.preserveAspect = true;
         this.interactable = false;
-        //Tracker: sprite found at time X
+    }
+
+    public void ShowPopUpInfo()
+    {
+        this.popUpPanel.SetActive(true);
+        this.interactable = false;
+        // Tracker: player forgot the target and opens the popUp 
     }
 	
     public void ClickOnDrawer(GameObject go)
@@ -82,7 +118,7 @@ public class LuggageManager : MonoBehaviour {
 
     public void CloseDrawer()
     {
-        this.panelShow.SetActive(false);
+        if (this.panelShow != null) this.panelShow.SetActive(false);
         this.panelShow = null;
         this.buttonCloseDrawer.SetActive(false);
         this.luggagePanel.SetActive(false);
@@ -105,5 +141,11 @@ public class LuggageManager : MonoBehaviour {
     public int actualTargetNum
     {
         get { return this.actualTarget; }
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game over");
+        gameCompleted = true;
     }
 }

@@ -60,7 +60,7 @@ public class InputManager : EventManager
             this.phone.SetActive(false);
             this.maria.active = true;
             //Añadir zoom a la cámara
-            this._zoom.zoom();
+            Camera.main.gameObject.GetComponent<Zoom>().enabled = true;
 
         }
 

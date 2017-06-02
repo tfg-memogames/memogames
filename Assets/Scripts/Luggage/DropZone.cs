@@ -23,11 +23,8 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             if (this.dropController.TargetWasDropped(d.gameObject))
             {
                 d.ObjectDroppedCorrectly();
-                //***Mostrar algo de feedback al usuario y hacer un peque delay despues
-            } else
-            {
-                ////***Mostrar algo de feedback al usuario y hacer un peque delay despues
-            }
+                
+            } 
         }
             
     }

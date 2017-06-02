@@ -2,49 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zoom : MonoBehaviour {
+[RequireComponent(typeof(Camera))]
+public class Zoom : MonoBehaviour
+{
 
+    public GameObject target;
 
-	public GameObject obj;
-	public int speed;
-	public int near;
+    public float targetNear;
+    public float time = 5.0f;
+    public Vector2 offset;
 
-	private bool zm;
-	private Vector3 o;
-	private float zIniCamera;
+    private float _currentTime;
+    private float _nearIncrement;
+    private Camera _camera;
+    private Vector2 _targetPosition;
+    private Vector2 _positionIncrement;
 
-
-    private void Awake()
+    void Start()
     {
-        this.zm = true;
-        
+        _camera = this.GetComponent<Camera>();
+        _currentTime = 0;
+        _nearIncrement = this.targetNear - this._camera.orthographicSize;
+        _targetPosition = target.transform.position;
+        float actualX = this.transform.position.x;
+        float actualY = this.transform.position.y;
+        _positionIncrement = (_targetPosition - new Vector2(actualX, actualY)) + offset;
+        Debug.Log(_positionIncrement);
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        _currentTime += Time.deltaTime;
+        float percOfTime = Time.deltaTime / time;
+        _camera.orthographicSize += _nearIncrement * percOfTime;
+        _camera.transform.position += new Vector3(_positionIncrement.x * percOfTime, _positionIncrement.y * percOfTime);
 
-    void Start(){
-		o = obj.GetComponent<Transform>().position;
-		zIniCamera = Camera.main.GetComponent<Transform>().position.z;
-        
+        // When zoom is completed, destroy this component
+        if (_currentTime >= time)
+            Destroy(this);
     }
-
-	public void zoom(){
-		zm = !zm;
-	}
-
-
-	// Update is called once per frame
-	void FixedUpdate () {
-		print (zm);
-		if (zm) {
-			Vector3 v = Camera.main.GetComponent<Transform> ().position;
-			print (v.z);
-			Camera.main.GetComponent<Transform> ().position = new Vector3 (o.x, o.y, v.z + 0.01F * speed);
-
-		
-			if (v.z > ((zIniCamera + o.z) / near))
-				zoom ();
-		}
-
-	}
 
 }
