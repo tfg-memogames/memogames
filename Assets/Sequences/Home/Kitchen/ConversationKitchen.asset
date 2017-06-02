@@ -22,7 +22,6 @@ MonoBehaviour:
   - {fileID: 114915953779262030}
   - {fileID: 114135621568410780}
   - {fileID: 114040194858757848}
-  - {fileID: 114845380182282478}
   - {fileID: 114168017715779668}
   - {fileID: 114331056063951206}
   ids:
@@ -34,7 +33,6 @@ MonoBehaviour:
   - -56584
   - -65852
   - -71694
-  - -111320
   - -16804
   - -33246
   assetinited: 1
@@ -153,19 +151,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forks: []
---- !u!114 &114101591328853700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dceab41990a77394aa0aede67dc01b11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iswitch: r
-  formula: 
 --- !u!114 &114135621568410780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,7 +311,7 @@ MonoBehaviour:
   m_Name: GameEvent
   m_EditorClassIdentifier: 
   childs:
-  - {fileID: 114915953779262030}
+  - {fileID: 114168017715779668}
   isUnityObject: 1
   objectContent: {fileID: 114964687546449002}
   secuence: {fileID: 11400000}
@@ -391,7 +376,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: LoadHallWay
+  m_Name: 
   m_EditorClassIdentifier: 
   keys:
   - synchronous
@@ -406,7 +391,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: LoadRecipes
+  m_Name: 
   m_EditorClassIdentifier: 
   keys:
   - synchronous
@@ -421,7 +406,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: LoadHallWay
+  m_Name: 
   m_EditorClassIdentifier: 
   keys:
   - synchronous
@@ -511,29 +496,6 @@ MonoBehaviour:
   b: 0
   c: 0
   whatIs: System.Boolean
---- !u!114 &114845380182282478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
-  m_Name: Switches/Formula setter
-  m_EditorClassIdentifier: 
-  childs:
-  - {fileID: 0}
-  isUnityObject: 1
-  objectContent: {fileID: 114101591328853700}
-  secuence: {fileID: 11400000}
-  position:
-    serializedVersion: 2
-    x: 588
-    y: 27
-    width: 342
-    height: 58
-  collapsed: 0
 --- !u!114 &114874849983791386
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -82,6 +82,7 @@ public class LoadRoom : MonoBehaviour {
 
 	public void store(){
 		print (room);
+		print ("   corr: "+_corrects+"   cau: "+_caught+"   mist: "+_mistakes);
 		pum.GetComponent<PickUpManager>().house [room]=_dictionary;
 		pum.GetComponent<PickUpManager>().totalMistakes+=_mistakes;
 		pum.GetComponent<PickUpManager>().totalCorrects+=_corrects;

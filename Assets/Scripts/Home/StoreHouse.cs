@@ -8,10 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class StoreHouse : Isometra.EventManager
 {
-	public Sequence s;
+	//public Sequence s;
 	private GameObject pickUp;
 
-	public bool order;
+	private bool order;
 
 	void Start(){
 		order = false;
@@ -26,7 +26,7 @@ public class StoreHouse : Isometra.EventManager
 			pickUp.GetComponent<PickUpManager> ().feedBack++;
 			print ("store");
 
-			IsoSwitchesManager.getInstance ().getIsoSwitches ().getSwitch ("order").State = true;
+			IsoSwitchesManager.getInstance ().getIsoSwitches ().getSwitch ("order").State = order;
 	
 		}
 		if (ev.Name == "LoadHallWay"){

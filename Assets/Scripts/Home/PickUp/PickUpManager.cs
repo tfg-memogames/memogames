@@ -113,7 +113,7 @@ public class PickUpManager : MonoBehaviour {
 		bath.Add ("Estante", ".");
 		bath.Add ("Ducha", ".");
 		_house.Add ("Bathroom", bath);
-		_totalObjects += 4;
+		_totalObjects += 3;
 
 	}
 	public void orderObjects(){
