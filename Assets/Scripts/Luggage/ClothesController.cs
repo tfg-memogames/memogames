@@ -55,8 +55,11 @@ public class ClothesController : MonoBehaviour {
         {
             this.representation[actualTarget].SetActive(true);
             this.gameManager.TargetCompleted();
+            //***Mostrar algo de feedback al usuario y hacer un peque delay despues
             return true;
         }
+        ////***Mostrar algo de feedback al usuario y hacer un peque delay despues
+        //Tracker: Error user drag sprite incorrectly
         return false;
     }
 }

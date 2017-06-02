@@ -35,6 +35,7 @@ public class RecipeManager : MonoBehaviour
     private const float _MAXTIME = 280.0f;
     private static float _time = 0;
     private bool _gameCompleted = false;
+    private Counter _counter;
 
     private static int _currentStep = 0;
     private static DisplayPanel displayPanel;
@@ -58,6 +59,7 @@ public class RecipeManager : MonoBehaviour
         // Load the timer
         displayPanel = GetComponent<DisplayPanel>();
         _instanceTimer = displayPanel.instantiatePanel(timer);
+        _counter = _instanceTimer.GetComponent<Counter>();
         lastStep = new Step();
 
         _currentStep = 0;
@@ -95,6 +97,7 @@ public class RecipeManager : MonoBehaviour
         if (!_gameCompleted && _time < _MAXTIME)
         {
             _time += Time.deltaTime;
+            _counter.PaintTheTime(_time, _MAXTIME);
         }
     }
 
@@ -210,7 +213,7 @@ public class RecipeManager : MonoBehaviour
         Tracker.T.setVar("ArrastradoA", lastStep.drop.name);
         Tracker.T.setVar("Accion", lastStep.action.ToString());
 
-        string id = correctStep ? "PasoCorrectp" : "PasoEquivocado";
+        string id = correctStep ? "PasoCorrecto" : "PasoEquivocado";
 
         Tracker.T.trackedGameObject.Interacted(id);
     }

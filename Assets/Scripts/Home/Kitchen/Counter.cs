@@ -7,34 +7,31 @@ using UnityEngine.UI;
 public class Counter : MonoBehaviour {
 
     public Text timeToGo;
-    private float time;
 
     private Image image;
-    private float restTime;
+    private GameObject gameManager;
 
     void Awake()
     {
-        time = GameObject.FindGameObjectWithTag("GameController").GetComponent<RecipeManager>().MAXTIME;
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
     }
 
 	// Use this for initialization
 	void Start () {
         transform.SetParent(GameObject.Find("Canvas").GetComponent<RectTransform>());
         GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
-
         image = GetComponent<Image>();
-        timeToGo.text = "" + (int)time;
-        restTime = time;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        restTime -= Time.deltaTime;
-        image.fillAmount = restTime / time;
-        timeToGo.text = "" + (int)restTime;
-        if (restTime <= 0)
+
+    // Time since the game started and maxTime
+    public void PaintTheTime(float time, float maxTime)
+    {
+        float timeToFinish = maxTime - time;
+        image.fillAmount = timeToFinish / maxTime;
+        timeToGo.text = "" + (int)timeToFinish;
+        if (time >= maxTime)
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<RecipeManager>().GameOver();
+            gameManager.SendMessage("GameOver");
             Destroy(gameObject);
         }
     }
