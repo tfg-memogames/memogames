@@ -40,7 +40,8 @@ public class DragDrop: MonoBehaviour {
 		if (i == room.GetComponent<LoadRoom> ().roomSites.Length){
 			transform.position = startPoint;
 		}else {
-			if (room.GetComponent<LoadRoom> ().order [room.GetComponent<LoadRoom> ().roomSites[i].name] == this.name) {
+			if (room.GetComponent<LoadRoom> ().order [room.GetComponent<LoadRoom> ().roomSites[i].name] == this.name && 
+				room.GetComponent<LoadRoom> ().dictionary [room.GetComponent<LoadRoom> ().roomSites[i].name] != this.name) {
 				room.GetComponent<LoadRoom> ().corrects++;
 				gameObject.GetComponent<SpriteRenderer> ().sprite = newSprite;
 			}else 
