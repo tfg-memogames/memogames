@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 30993777}
   - component: {fileID: 30993776}
   - component: {fileID: 30993778}
+  - component: {fileID: 30993779}
   m_Layer: 0
   m_Name: Partner
   m_TagString: Untagged
@@ -534,6 +535,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 30993771}
+  door: {fileID: 190144691}
+--- !u!114 &30993779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 30993771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4429e4a3ba1c74996996f4ad99650cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   door: {fileID: 190144691}
 --- !u!1 &190144689
 GameObject:
