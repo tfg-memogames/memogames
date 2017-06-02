@@ -23,6 +23,8 @@ MonoBehaviour:
   - {fileID: 114126695715809662}
   - {fileID: 114355956447701798}
   - {fileID: 114186880758282460}
+  - {fileID: 114157256361390350}
+  - {fileID: 114059507922571054}
   ids:
   - -113656
   - -120824
@@ -33,6 +35,8 @@ MonoBehaviour:
   - -130670
   - -131864
   - -136144
+  - -122966
+  - -125854
   assetinited: 1
 --- !u!114 &114047730243015014
 MonoBehaviour:
@@ -56,6 +60,51 @@ MonoBehaviour:
     y: 184
     width: 300
     height: 256
+  collapsed: 0
+--- !u!114 &114055285917496232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daaa0a8c5652f247939f4ab49339994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  f: 0
+  d: 0
+  s: 
+  v2: {x: 0, y: 0}
+  v3: {x: 0, y: 0, z: 0}
+  v4: {x: 0, y: 0, z: 0, w: 0}
+  q: {x: 0, y: 0, z: 0, w: 0}
+  b: 0
+  c: 0
+  whatIs: System.Boolean
+--- !u!114 &114059507922571054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114157256361390350}
+  isUnityObject: 1
+  objectContent: {fileID: 114555837767731928}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 3400
+    y: 149
+    width: 300
+    height: 326
   collapsed: 0
 --- !u!114 &114126695715809662
 MonoBehaviour:
@@ -89,12 +138,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: 
+  m_Name: FourthStep
   m_EditorClassIdentifier: 
   keys:
   - synchronous
   values:
   - {fileID: 114730948242265816}
+--- !u!114 &114157256361390350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: GameEvent
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 0}
+  isUnityObject: 1
+  objectContent: {fileID: 114460617957109790}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 3768
+    y: 138
+    width: 300
+    height: 109
+  collapsed: 0
 --- !u!114 &114162089926122088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,14 +195,14 @@ MonoBehaviour:
   m_Name: GameEvent
   m_EditorClassIdentifier: 
   childs:
-  - {fileID: 0}
+  - {fileID: 114059507922571054}
   isUnityObject: 1
   objectContent: {fileID: 114131832960568066}
   secuence: {fileID: 11400000}
   position:
     serializedVersion: 2
-    x: 3234
-    y: 362
+    x: 3101
+    y: 131
     width: 300
     height: 109
   collapsed: 0
@@ -165,7 +237,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: 
+  m_Name: FirstStep
   m_EditorClassIdentifier: 
   keys:
   - synchronous
@@ -302,12 +374,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: 
+  m_Name: ThirdStep
   m_EditorClassIdentifier: 
   keys:
   - synchronous
   values:
   - {fileID: 114610421513932184}
+--- !u!114 &114460617957109790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
+  m_Name: Go
+  m_EditorClassIdentifier: 
+  keys:
+  - synchronous
+  values:
+  - {fileID: 114055285917496232}
 --- !u!114 &114549831493470540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,6 +409,30 @@ MonoBehaviour:
   fragments:
   - name: "Mar\xEDa"
     msg: "Para darle el toque final, debes echar tomate y or\xE9gano."
+    character: 
+    parameter: 
+--- !u!114 &114555837767731928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: Go
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: Bueno, manos a la obra.
+    character: 
+    parameter: 
+  - name: "Mar\xEDa"
+    msg: "Ya me contar\xE1s que tal te han salido."
+    character: 
+    parameter: 
+  - name: "Mar\xEDa"
+    msg: "\xA1Nos vemos ma\xF1ana!"
     character: 
     parameter: 
 --- !u!114 &114575546576471382
@@ -424,7 +535,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: 
+  m_Name: SecondStep
   m_EditorClassIdentifier: 
   keys:
   - synchronous

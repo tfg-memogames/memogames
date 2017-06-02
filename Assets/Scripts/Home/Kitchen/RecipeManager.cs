@@ -305,6 +305,10 @@ public class RecipeManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+	public void end(){
+		SceneManager.LoadScene("Living_room");
+
+	}
 
     public float time
     {

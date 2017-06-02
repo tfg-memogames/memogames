@@ -12,9 +12,9 @@ public class RecipeAppearing : MonoBehaviour {
     public Text step_Four;
 
     const string one = "1- Llenar una cacerola \nde agua";
-    const string two = "2- Cuando esté hirviendo, introducir los Spaguetti";
+	const string two = "2- Cuando hierva, \nintroducir los Spaguetti";
     const string three = "3- Dejarlos en un plato";
-    const string four = "4- Echar tomate y orégano.";
+    const string four = "4- Echar tomate y oregano.";
 
 
     // Use this for initialization
