@@ -56,7 +56,14 @@ public class LuggageManager : MonoBehaviour {
         // Close drawer (target can be completed without oppening a drawer, opening the wardrove)
         CloseDrawer();
 
-        ShowCurrentTarget();
+        if (this.actualTarget >= this.numTargets)
+        {
+            Debug.Log("You win");
+            this.interactable = false;
+        } else
+        {
+            ShowCurrentTarget();
+        }
     }
 
     private void ShowCurrentTarget()
@@ -82,7 +89,7 @@ public class LuggageManager : MonoBehaviour {
 
     public void CloseDrawer()
     {
-        this.panelShow.SetActive(false);
+        if (this.panelShow != null) this.panelShow.SetActive(false);
         this.panelShow = null;
         this.buttonCloseDrawer.SetActive(false);
         this.luggagePanel.SetActive(false);

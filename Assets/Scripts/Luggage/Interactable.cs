@@ -14,9 +14,9 @@ public class Interactable : MonoBehaviour {
         this.panel.SetActive(false);
     }
 
-    private void OnMouseDown()
+    private void OnMouseOver()
     {
-        if (this.gameManager.isInteractable)
+        if (this.gameManager.isInteractable && Input.GetMouseButtonDown(1))
             this.gameManager.ClickOnDrawer(this.panel);
     }
 }

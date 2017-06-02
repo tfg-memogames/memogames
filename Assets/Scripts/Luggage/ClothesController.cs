@@ -6,6 +6,9 @@ using UnityEngine;
 //can be put into.
 public class ClothesController : MonoBehaviour {
 
+    // Non canvas object representation of luggage
+    public GameObject dropObject;
+
     //Each GameObject target, has an image that represents it inside the luggage
     public GameObject[] targets;
     private GameObject[] representation;
@@ -24,6 +27,22 @@ public class ClothesController : MonoBehaviour {
             this.representation[i] = this.transform.GetChild(i).gameObject;
             Debug.Log(representation[i].name);
             this.representation[i].SetActive(false);
+        }
+
+        initializeTargets();
+    }
+
+    // Getting the targets that are inside the wardrove (not canvas renderer)
+    // and adding BoxCollider2D and script DragObject
+    private void initializeTargets()
+    {
+        for (int i = 0; i < this.targets.Length; i++)
+        {
+            if (this.targets[i].GetComponent<CanvasRenderer>() == null)
+            {
+                this.targets[i].GetComponent<DragObject>().destiny = new GameObject[1];
+                this.targets[i].GetComponent<DragObject>().destiny.SetValue(dropObject, 0);
+            }
         }
     }
 

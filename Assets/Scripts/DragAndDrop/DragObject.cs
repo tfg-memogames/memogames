@@ -14,8 +14,14 @@ public class DragObject: MonoBehaviour {
         coll = GetComponent<Collider2D>();
     }
 
+    private void OnMouseOver()
+    {
+        //Debug.Log("OnMouseOver");
+    }
+
     void OnMouseDown()
     {
+        Debug.Log("click on" + gameObject.name);
         startPoint = transform.position;
     }
 
