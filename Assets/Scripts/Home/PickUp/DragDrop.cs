@@ -26,7 +26,7 @@ public class DragDrop: MonoBehaviour {
 
         Vector3 pos_move = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
 
-        transform.position = new Vector3(pos_move.x, pos_move.y, -1);
+        transform.position = new Vector3(pos_move.x, pos_move.y, -0.01F);
     }
 
     void OnMouseUp(){

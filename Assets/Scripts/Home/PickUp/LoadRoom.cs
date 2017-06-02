@@ -47,9 +47,13 @@ public class LoadRoom : MonoBehaviour {
 		_order = pum.GetComponent<PickUpManager>().orderHouse [room];
 
 		for (int i = 0; i < roomSites.Length; i++)
-			if (!_dictionary[roomSites [i].name].Equals ("."))
-				foundObject (_dictionary[roomSites [i].name]).transform.position = new Vector3(roomSites [i].transform.position.x, roomSites [i].transform.position.y, -0.1F);
-			
+			if (!_dictionary [roomSites [i].name].Equals (".")) {
+				foundObject (_dictionary [roomSites [i].name]).transform.position = new Vector3 (roomSites [i].transform.position.x, roomSites [i].transform.position.y, -0.001F);
+				if (_dictionary [roomSites [i].name].Equals (_order [roomSites [i].name])){
+					Sprite s= foundObject (_dictionary [roomSites [i].name]).GetComponent<DragDrop> ().newSprite;
+					foundObject (_dictionary [roomSites [i].name]).GetComponent<SpriteRenderer> ().sprite = s;
+				}
+			}
 	}
 
 	void Start(){

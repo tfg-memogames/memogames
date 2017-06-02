@@ -33,12 +33,13 @@ public class Zoom : MonoBehaviour {
 
 
 	// Update is called once per frame
-	void Update () {
-
+	void FixedUpdate () {
+		print (zm);
 		if (zm) {
 			Vector3 v = Camera.main.GetComponent<Transform> ().position;
-
+			print (v.z);
 			Camera.main.GetComponent<Transform> ().position = new Vector3 (o.x, o.y, v.z + 0.01F * speed);
+
 		
 			if (v.z > ((zIniCamera + o.z) / near))
 				zoom ();

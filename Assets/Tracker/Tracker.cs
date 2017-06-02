@@ -98,7 +98,8 @@ namespace RAGE.Analytics
 				Secure = splitted[0] == "https:",
 				StorageType = storage,
 				TraceFormat = format,
-				BackupStorage = rawCopy
+				BackupStorage = rawCopy,
+				BackupFile = "trazas.csv"
 			};
 
 			TrackerAsset.Instance.Bridge = new UnityBridge();

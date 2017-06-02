@@ -57,7 +57,7 @@ public class CanvasManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		//print(Application.persistentDataPath);
+		print(Application.persistentDataPath);
         this.level = this.levelToString(SceneManager.GetActiveScene().name);
         
         this.bestP = true;
