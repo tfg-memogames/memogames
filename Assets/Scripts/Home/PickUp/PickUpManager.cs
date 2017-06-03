@@ -22,7 +22,7 @@ public class PickUpManager : MonoBehaviour {
 	private bool _endDinner;
 
 	void Awake(){
-		print(Application.persistentDataPath);
+		//print(Application.persistentDataPath);
 
 		DontDestroyOnLoad (transform.gameObject);
 		initObjects ();
