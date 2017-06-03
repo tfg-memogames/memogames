@@ -53,10 +53,14 @@ public class CanvasManager : MonoBehaviour
 
     private string level;
 
+    //True significa que es para hacer experimento con usuarios
+    private bool experiment;
+
 
     // Use this for initialization
     void Start()
     {
+        this.experiment = false;
 		//print(Application.persistentDataPath);
         this.level = this.levelToString(SceneManager.GetActiveScene().name);
         
@@ -207,12 +211,14 @@ public class CanvasManager : MonoBehaviour
 	}
 
     //Muestra popup con que has ganado (desbloqueará el siguiente nivel)
+    //Versión para experimento
     public void win()
     {
         counting = false;
-        //car.stopCar();
         car.destroyCar();
-        this.endOfGamePanel.SetActive (true);
+
+        if(experiment)
+            this.endOfGamePanel.SetActive (true);
         
         float path = gm.pathLength;
 
@@ -245,18 +251,37 @@ public class CanvasManager : MonoBehaviour
 			this.scoreText.text = "No has conseguido ninguna estrella :(";
         }
         storeTracker(this.distance, gm.mapTimes, true, points,(int)this.time);
+
+        if(!this.experiment)
+        {
+            SceneManager.LoadScene("Hall");
+        }
+
     }
+
+
+
+
+
+
 
     private void lose()
     {
-		this.endOfGamePanel.SetActive (true);
-        //DestroyObject(car);
+
         car.destroyCar();
         counting = false;
-        storeTracker(this.distance, gm.mapTimes, false,0,(int) this.time);
-		this.message.text = "¡Te has quedado sin combustible!";
-		scoreText.text = "";
-		this.message.color = new Color(0.4F, 0.04F, 0.16F, 1); // 680C2AFF divide (100 / FF (256 bits)) * rgb
+        storeTracker(this.distance, gm.mapTimes, false, 0, (int)this.time);
+
+
+        if (this.experiment) {
+            this.endOfGamePanel.SetActive(true);
+            this.message.text = "¡Te has quedado sin combustible!";
+            scoreText.text = "";
+            this.message.color = new Color(0.4F, 0.04F, 0.16F, 1); // 680C2AFF divide (100 / FF (256 bits)) * rgb
+        }
+        else { 
+            SceneManager.LoadScene("Hall");
+        }
     }
 
 
