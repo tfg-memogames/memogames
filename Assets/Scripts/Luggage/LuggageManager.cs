@@ -8,42 +8,73 @@ public class LuggageManager : MonoBehaviour {
     // This images shows the target
     public GameObject popUpPanel;
 
+
     public GameObject luggagePanel;
     public GameObject buttonCloseDrawer;
     public GameObject floorPanel;
 
     // Image inside the popUpPanel which shows the actual target
     private Image targetImage;
-    private int actualTarget;
     private GameObject panelShow;
-    private bool interactable;
 
     // Clothes that the user has to move into the luggage
     private int numTargets;
     private Sprite[] targets;
+    private int actualTarget;
 
     //Timer
     public GameObject timer;
     private Counter counter;
     // Time to complete the level
-    public float time = 5.0f;
+    public float time = 60.0f;
     private float actualTime = 0;
 
+    // Is the game ended?
     private bool gameCompleted = false;
+    // Can the user interact with objects in the scene? Example: when the pop up is open, player can't drag object
+    private bool interactable;
 
+    // Feedback when player does a correct drag or not
+    private DisplayPanel displayPanel;
+    public GameObject right;
+    public GameObject wrong;
+
+    public GameObject openInfoButton;
+
+    // End of game panels
+    public GameObject gameOver;
+    public GameObject youWin;
+
+    private void Awake()
+    {
+        this.right.SetActive(false);
+        this.wrong.SetActive(false);
+    }
 
     // Use this for initialization
     void Start () {
+        // Initialize targets
         this.actualTarget = 0;
+        IntializeTargets();
+
+        // Getting the displayPanel component
+        displayPanel = GetComponent<DisplayPanel>();
+   
+        // Setup panels
         this.panelShow = null;
         this.buttonCloseDrawer.SetActive(false);
-        intializeTargets();
         this.luggagePanel.SetActive(false);
         this.floorPanel.SetActive(false);
+        this.youWin.SetActive(false);
         this.targetImage = this.popUpPanel.transform.GetChild(0).GetComponent<Image>();
         ShowCurrentTarget();
+
+        // Getting the counter component from the timer
         counter = timer.GetComponent<Counter>();
+
+        // Setting the gameCompleted to false
         this.gameCompleted = false;
+
         // Tracker: sprites, time, lifes?
     }
 
@@ -57,7 +88,7 @@ public class LuggageManager : MonoBehaviour {
     }
 
     // This function initialize the target sprites getting the sprite of the image of luggagePanel
-    private void intializeTargets()
+    private void IntializeTargets()
     {
         this.numTargets = this.luggagePanel.transform.childCount;
         this.targets = new Sprite[numTargets];
@@ -68,11 +99,17 @@ public class LuggageManager : MonoBehaviour {
         }
     }
 
+    public void ShowFeedback(bool success)
+    {
+        GameObject instance = null;
+        instance = (success) ? displayPanel.instantiatePanel(right) : displayPanel.instantiatePanel(wrong);
+        instance.SetActive(true);
+    }
+
     public void TargetCompleted()
     {
         this.actualTarget++;
         //Tracker: sprite, time
-        //Tracker: sprite found at time X
 
         // Close drawer (target can be completed without oppening a drawer, opening the wardrove)
         CloseDrawer();
@@ -82,25 +119,27 @@ public class LuggageManager : MonoBehaviour {
             Debug.Log("You win");
             this.interactable = false;
             this.gameCompleted = true;
+            this.youWin.SetActive(true);
             //Tracker: time, completed
         } else
         {
+            ShowFeedback(true);
             ShowCurrentTarget();
         }
     }
 
     private void ShowCurrentTarget()
     {
-        this.popUpPanel.SetActive(true);
+        ShowPopUpInfo();
         this.targetImage.sprite = this.targets[this.actualTarget];
         this.targetImage.type = Image.Type.Simple;
         this.targetImage.preserveAspect = true;
-        this.interactable = false;
     }
 
     public void ShowPopUpInfo()
     {
         this.popUpPanel.SetActive(true);
+        this.openInfoButton.SetActive(false);
         this.interactable = false;
         // Tracker: player forgot the target and opens the popUp 
     }
@@ -129,6 +168,7 @@ public class LuggageManager : MonoBehaviour {
     public void ClosePopUp()
     {
         this.popUpPanel.SetActive(false);
+        this.openInfoButton.SetActive(true);
         this.interactable = true;
     }
 

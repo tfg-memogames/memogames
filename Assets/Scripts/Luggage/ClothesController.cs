@@ -35,12 +35,12 @@ public class ClothesController : MonoBehaviour {
     // and adding BoxCollider2D and script DragObject
     private void initializeTargets()
     {
-        for (int i = 0; i < this.targets.Length; i++)
-        {
-            if (this.targets[i].GetComponent<CanvasRenderer>() == null)
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Item"))
+        { 
+            if (go.GetComponent<CanvasRenderer>() == null)
             {
-                this.targets[i].GetComponent<DragObject>().destiny = new GameObject[1];
-                this.targets[i].GetComponent<DragObject>().destiny.SetValue(dropObject, 0);
+                go.GetComponent<DragObject>().destiny = new GameObject[1];
+                go.GetComponent<DragObject>().destiny.SetValue(dropObject, 0);
             }
         }
     }
@@ -54,11 +54,11 @@ public class ClothesController : MonoBehaviour {
         {
             this.representation[actualTarget].SetActive(true);
             this.gameManager.TargetCompleted();
-            //***Mostrar algo de feedback al usuario y hacer un peque delay despues
             return true;
         }
-        ////***Mostrar algo de feedback al usuario y hacer un peque delay despues
+        this.gameManager.ShowFeedback(false);
         //Tracker: Error user drag sprite incorrectly
         return false;
     }
+  
 }
