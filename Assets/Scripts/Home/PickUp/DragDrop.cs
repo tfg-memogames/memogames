@@ -45,7 +45,8 @@ public class DragDrop: MonoBehaviour {
 				room.GetComponent<LoadRoom> ().corrects++;
 				gameObject.GetComponent<SpriteRenderer> ().sprite = newSprite;
 			}else 
-				room.GetComponent<LoadRoom> ().mistakes++;
+				if(room.GetComponent<LoadRoom> ().dictionary [room.GetComponent<LoadRoom> ().roomSites[i].name] != this.name)
+					room.GetComponent<LoadRoom> ().mistakes++;
 			
 
 			room.GetComponent<LoadRoom> ().dictionary [room.GetComponent<LoadRoom> ().roomSites [i].name] = this.name;

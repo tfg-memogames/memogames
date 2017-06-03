@@ -152,8 +152,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: reset
+      - m_Target: {fileID: 114769399303867344, guid: 109e5044014d99a4986124c0dcf15d1b,
+          type: 2}
+        m_MethodName: end
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

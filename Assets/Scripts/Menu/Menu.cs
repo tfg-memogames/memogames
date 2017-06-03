@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
@@ -13,6 +14,7 @@ public class Menu : MonoBehaviour {
 	private GameState _gs;
 
 	public GameObject error;
+
 
 
 	void Start(){
@@ -43,6 +45,7 @@ public class Menu : MonoBehaviour {
 		SceneManager.LoadScene("Ready");
 	}
 	public void Credits(){
+		print ("credits");
 		SceneManager.LoadScene("Credits");
 	}
 
@@ -62,6 +65,15 @@ public class Menu : MonoBehaviour {
 		get { return _level; }
 		set { _level = value; }
 		
+	}
+
+	public void Change(Text t){
+		
+		if (t.color == Color.white)
+			t.color = new Color (0.1F, 0.2F, 0.3F, 1);
+		else
+			t.color = Color.white;
+
 	}
 
 	public void Quit()

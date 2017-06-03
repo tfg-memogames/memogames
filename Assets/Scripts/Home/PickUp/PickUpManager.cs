@@ -19,6 +19,7 @@ public class PickUpManager : MonoBehaviour {
 	private int _feedBack;
 	private float _time;
 	private bool _ini;
+	private bool _endDinner;
 
 	void Awake(){
 		print(Application.persistentDataPath);
@@ -27,6 +28,7 @@ public class PickUpManager : MonoBehaviour {
 		initObjects ();
 		orderObjects ();
 		_ini = true;
+		_endDinner = false;
 	}
 
 	void Start(){
@@ -242,6 +244,11 @@ public class PickUpManager : MonoBehaviour {
 	public int feedBack{
 		get { return _feedBack; }
 		set { _feedBack= value; }
+	}
+
+	public bool endDinner{
+		get { return _endDinner; }
+		set { _endDinner= value; }
 	}
 
 }
