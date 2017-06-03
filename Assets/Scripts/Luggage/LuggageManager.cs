@@ -66,6 +66,7 @@ public class LuggageManager : MonoBehaviour {
         this.luggagePanel.SetActive(false);
         this.floorPanel.SetActive(false);
         this.youWin.SetActive(false);
+        this.gameOver.SetActive(false);
         this.targetImage = this.popUpPanel.transform.GetChild(0).GetComponent<Image>();
         ShowCurrentTarget();
 
@@ -187,5 +188,8 @@ public class LuggageManager : MonoBehaviour {
     {
         Debug.Log("Game over");
         gameCompleted = true;
+        interactable = false;
+        this.gameOver.SetActive(true);
+        // Tracker: gameOver, actualTarget
     }
 }

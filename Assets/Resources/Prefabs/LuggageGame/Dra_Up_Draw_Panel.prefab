@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 224230280381103452}
   - component: {fileID: 222572835119115888}
   - component: {fileID: 114622635874072226}
+  - component: {fileID: 225005709699291446}
+  - component: {fileID: 114047046799266296}
   m_Layer: 5
   m_Name: Brown_Shoes
   m_TagString: Untagged
@@ -38,6 +40,8 @@ GameObject:
   - component: {fileID: 224003764380645776}
   - component: {fileID: 222953941865627568}
   - component: {fileID: 114427954402029210}
+  - component: {fileID: 225575324449109508}
+  - component: {fileID: 114693999889175500}
   m_Layer: 5
   m_Name: Diving_Accesories
   m_TagString: Untagged
@@ -62,6 +66,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114047046799266296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118491218337734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a054ec2670c1634f86908f43eadcff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114427954402029210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +158,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114693999889175500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1301663467954662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a054ec2670c1634f86908f43eadcff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222174685977204492
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -217,3 +243,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 348, y: 224}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!225 &225005709699291446
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118491218337734}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!225 &225575324449109508
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1301663467954662}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

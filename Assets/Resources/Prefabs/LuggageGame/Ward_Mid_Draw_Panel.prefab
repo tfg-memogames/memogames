@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 224058931406571086}
   - component: {fileID: 222348428168781902}
   - component: {fileID: 114975484343927314}
+  - component: {fileID: 225147613282247182}
+  - component: {fileID: 114190561862303712}
   m_Layer: 5
   m_Name: Classic_Sandals
   m_TagString: Untagged
@@ -55,6 +57,8 @@ GameObject:
   - component: {fileID: 224378381338900076}
   - component: {fileID: 222131512591296662}
   - component: {fileID: 114048966552111374}
+  - component: {fileID: 225834198121759594}
+  - component: {fileID: 114262817229794150}
   m_Layer: 5
   m_Name: Blue_Shoes
   m_TagString: Untagged
@@ -89,6 +93,28 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114190561862303712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064329756878594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a054ec2670c1634f86908f43eadcff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114262817229794150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963122169242808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a054ec2670c1634f86908f43eadcff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114685491700700296
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,7 +161,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c2bc5c322cc797c4ebc4708d594b9742, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6da9752162ed8cb40b6a2c05bc963dcf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -217,3 +243,25 @@ RectTransform:
   m_AnchoredPosition: {x: -54, y: -24.5}
   m_SizeDelta: {x: 95, y: 126}
   m_Pivot: {x: 1, y: 1}
+--- !u!225 &225147613282247182
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064329756878594}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!225 &225834198121759594
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1963122169242808}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
