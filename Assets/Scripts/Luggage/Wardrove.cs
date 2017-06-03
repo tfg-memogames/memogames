@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RAGE.Analytics;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -54,7 +55,23 @@ public class Wardrove : MonoBehaviour {
         this.render.sprite = openned;
         ShowChildObjects(true);
         EnableColliders(true);
+
         //Tracker: what objects were shown
+        WhatItemsWereShown();
+    }
+
+    private void WhatItemsWereShown()
+    {
+        string var = "";
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            var += transform.GetChild(i).gameObject.name + "-";
+        }
+
+        Tracker.T.setVar("ObjetosVistos", var);
+
+        Tracker.T.trackedGameObject.Interacted("AbrioArmario");
     }
 
     private void ShowChildObjects(bool show)

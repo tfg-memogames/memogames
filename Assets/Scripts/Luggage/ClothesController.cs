@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RAGE.Analytics;
 
 //The luggage panel has this script, because this controls what clothes
 //can be put into.
@@ -28,15 +29,15 @@ public class ClothesController : MonoBehaviour {
             this.representation[i].SetActive(false);
         }
 
-        initializeTargets();
+        InitializeTargets();
     }
 
     // Getting the targets that are inside the wardrove (not canvas renderer)
     // and adding BoxCollider2D and script DragObject
-    private void initializeTargets()
+    private void InitializeTargets()
     {
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Item"))
-        { 
+        {
             if (go.GetComponent<CanvasRenderer>() == null)
             {
                 go.GetComponent<DragObject>().destiny = new GameObject[1];
@@ -53,12 +54,30 @@ public class ClothesController : MonoBehaviour {
         if (targets[actualTarget].Equals(go))
         {
             this.representation[actualTarget].SetActive(true);
+
+            //Tracker: object name, time
+            SendTrackerDragInfo(true, go.name);
+
             this.gameManager.TargetCompleted();
+            
             return true;
         }
+
         this.gameManager.ShowFeedback(false);
-        //Tracker: Error user drag sprite incorrectly
+
+        //Tracker: Error user drag a wrong item
+        SendTrackerDragInfo(false, go.name);
+
         return false;
     }
-  
+
+    private void SendTrackerDragInfo(bool right, string name)
+    {
+        Tracker.T.setVar("Tiempo", this.gameManager.ActualTime);
+        Tracker.T.setVar("Item", name);
+
+        string id = right ? "AccionCorrecta" : "AccionErronea";
+
+        Tracker.T.trackedGameObject.Interacted(id);
+    }
 }

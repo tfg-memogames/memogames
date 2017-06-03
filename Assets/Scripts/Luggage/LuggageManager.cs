@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using RAGE.Analytics;
 
 public class LuggageManager : MonoBehaviour {
 
     // This images shows the target
     public GameObject popUpPanel;
-
 
     public GameObject luggagePanel;
     public GameObject buttonCloseDrawer;
@@ -39,11 +40,15 @@ public class LuggageManager : MonoBehaviour {
     public GameObject right;
     public GameObject wrong;
 
+    // Button that oppens the popUpInfo
     public GameObject openInfoButton;
 
     // End of game panels
     public GameObject gameOver;
     public GameObject youWin;
+
+    // Name of the level
+    private string level;
 
     private void Awake()
     {
@@ -76,7 +81,12 @@ public class LuggageManager : MonoBehaviour {
         // Setting the gameCompleted to false
         this.gameCompleted = false;
 
-        // Tracker: sprites, time, lifes?
+        // Tracker: NumberOfItem, time, lifes?
+        this.level = SceneManager.GetActiveScene().name;
+
+        Tracker.T.setVar("Tiempo", this.time);
+        Tracker.T.setVar("NumPrendas", this.targets.Length);
+        Tracker.T.Completable.Initialized(this.level);
     }
 
     void Update()
@@ -109,8 +119,8 @@ public class LuggageManager : MonoBehaviour {
 
     public void TargetCompleted()
     {
+
         this.actualTarget++;
-        //Tracker: sprite, time
 
         // Close drawer (target can be completed without oppening a drawer, opening the wardrove)
         CloseDrawer();
@@ -122,6 +132,7 @@ public class LuggageManager : MonoBehaviour {
             this.gameCompleted = true;
             this.youWin.SetActive(true);
             //Tracker: time, completed
+            NotifyEndOfGameToTracker(true);
         } else
         {
             ShowFeedback(true);
@@ -131,7 +142,9 @@ public class LuggageManager : MonoBehaviour {
 
     private void ShowCurrentTarget()
     {
-        ShowPopUpInfo();
+        this.popUpPanel.SetActive(true);
+        this.openInfoButton.SetActive(false);
+        this.interactable = false;
         this.targetImage.sprite = this.targets[this.actualTarget];
         this.targetImage.type = Image.Type.Simple;
         this.targetImage.preserveAspect = true;
@@ -143,6 +156,7 @@ public class LuggageManager : MonoBehaviour {
         this.openInfoButton.SetActive(false);
         this.interactable = false;
         // Tracker: player forgot the target and opens the popUp 
+        Tracker.T.trackedGameObject.Interacted("OlvidoPrendaAGuardar");
     }
 	
     public void ClickOnDrawer(GameObject go)
@@ -154,6 +168,21 @@ public class LuggageManager : MonoBehaviour {
         this.floorPanel.SetActive(true);
         this.interactable = false;
         // Tracker: what objects were shown
+        SendTrackerWhatItemsWereShown(go);
+    }
+
+    private void SendTrackerWhatItemsWereShown(GameObject go)
+    {
+        string var = "";
+
+        for (int i = 0; i < go.transform.childCount; i++)
+        {
+            var += go.transform.GetChild(i).gameObject.name + "-";
+        }
+
+        Tracker.T.setVar("ObjetosVistos", var);
+
+        Tracker.T.trackedGameObject.Interacted("AbrioCajon");
     }
 
     public void CloseDrawer()
@@ -184,6 +213,11 @@ public class LuggageManager : MonoBehaviour {
         get { return this.actualTarget; }
     }
 
+    public float ActualTime
+    {
+        get { return this.actualTime; }
+    }
+
     public void GameOver()
     {
         Debug.Log("Game over");
@@ -191,5 +225,20 @@ public class LuggageManager : MonoBehaviour {
         interactable = false;
         this.gameOver.SetActive(true);
         // Tracker: gameOver, actualTarget
+        NotifyEndOfGameToTracker(false);
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    //Send the tracker 
+    private void NotifyEndOfGameToTracker(bool playerWon)
+    {
+        if (playerWon)
+            Tracker.T.setVar("Time", this.actualTime);
+
+        Tracker.T.Completable.Completed(this.level, CompletableTracker.Completable.Level, playerWon, this.actualTarget);
     }
 }
