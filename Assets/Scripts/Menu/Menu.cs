@@ -73,7 +73,7 @@ public class Menu : MonoBehaviour {
 			t.color = new Color (0.1F, 0.2F, 0.3F, 1);
 		else
 			t.color = Color.white;
-	
+
 	}
 
 	public void Quit()
