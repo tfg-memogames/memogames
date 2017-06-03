@@ -216,10 +216,6 @@ public class CanvasManager : MonoBehaviour
     {
         counting = false;
         car.destroyCar();
-
-        if(experiment)
-            this.endOfGamePanel.SetActive (true);
-        
         float path = gm.pathLength;
 
         float dist = distance;
@@ -227,35 +223,36 @@ public class CanvasManager : MonoBehaviour
         float points = path / dist;
         int stars = 0;
 
-		this.message.text = "¡Has llegado a tu destino!";
-		this.message.color = new Color(0.34F, 0.41F, 0.39F, 1); // 586A45FF divide (100 / FF (256 bits)) * rgb
+        this.message.text = "¡Has llegado a tu destino!";
+        this.message.color = new Color(0.34F, 0.41F, 0.39F, 1); // 586A45FF divide (100 / FF (256 bits)) * rgb
 
         if (points >= 0.95)
         {
-			this.scoreText.text = "¡Has conseguido el máximo de estrellas!";
-			instatiateStars (3);
+            this.scoreText.text = "¡Has conseguido el máximo de estrellas!";
+            instatiateStars(3);
         }
         else if (points > 0.80 && points < 0.95)
         {
-			this.scoreText.text = "¡Has conseguido 2 estrellas (Max. 3)!";
-			instatiateStars (2);
+            this.scoreText.text = "¡Has conseguido 2 estrellas (Max. 3)!";
+            instatiateStars(2);
         }
         else if (points > 0.6 && points < 0.80)
         {
-			this.scoreText.text = "¡Has conseguido 1 estrella (Max. 3)!";
-			instatiateStars (1);
+            this.scoreText.text = "¡Has conseguido 1 estrella (Max. 3)!";
+            instatiateStars(1);
         }
-            
-        else 
-        {
-			this.scoreText.text = "No has conseguido ninguna estrella :(";
-        }
-        storeTracker(this.distance, gm.mapTimes, true, points,(int)this.time);
 
-        if(!this.experiment)
+        else
         {
-            SceneManager.LoadScene("Hall");
+            this.scoreText.text = "No has conseguido ninguna estrella :(";
         }
+        storeTracker(this.distance, gm.mapTimes, true, points, (int)this.time);
+
+        if (experiment)
+            this.endOfGamePanel.SetActive (true);
+        else 
+            SceneManager.LoadScene("Hall");
+        
 
     }
 
