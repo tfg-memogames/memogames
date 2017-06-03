@@ -30,7 +30,7 @@ public class CanvasManager : MonoBehaviour
 
 
     //Gasto de energía
-    private float consumption = 1f;
+    private float consumption = 10f;
 
     //GameState
     private GameState gs;
@@ -50,14 +50,20 @@ public class CanvasManager : MonoBehaviour
 	public Text scoreText;
 	public GameObject starsPanel;
 	public GameObject star;
+    public Button nextLevelButton;
+    public Button restartButton;
 
     private string level;
+
+    //True significa que es para hacer experimento con usuarios
+    private bool experiment;
 
 
     // Use this for initialization
     void Start()
     {
-		print(Application.persistentDataPath);
+        this.experiment = false;
+		//print(Application.persistentDataPath);
         this.level = this.levelToString(SceneManager.GetActiveScene().name);
         
         this.bestP = true;
@@ -144,14 +150,19 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    public void restartButtonClicked()
+    public void menuButtonClicked()
     {
         SceneManager.LoadScene("Level_Selector");
     }
 
+    public void restartButtonClicked()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 
     //El coche llama a este método cada vez que cambia de baldosa
-    
+
     public void incrDistance(GameObject road)
     {
         distance++;
@@ -207,13 +218,11 @@ public class CanvasManager : MonoBehaviour
 	}
 
     //Muestra popup con que has ganado (desbloqueará el siguiente nivel)
+    //Versión para experimento
     public void win()
     {
         counting = false;
-        //car.stopCar();
         car.destroyCar();
-        this.endOfGamePanel.SetActive (true);
-        
         float path = gm.pathLength;
 
         float dist = distance;
@@ -221,42 +230,64 @@ public class CanvasManager : MonoBehaviour
         float points = path / dist;
         int stars = 0;
 
-		this.message.text = "¡Has llegado a tu destino!";
-		this.message.color = new Color(0.34F, 0.41F, 0.39F, 1); // 586A45FF divide (100 / FF (256 bits)) * rgb
+        this.message.text = "¡Has llegado a tu destino!";
+        this.message.color = new Color(0.34F, 0.41F, 0.39F, 1); // 586A45FF divide (100 / FF (256 bits)) * rgb
 
         if (points >= 0.95)
         {
-			this.scoreText.text = "¡Has conseguido el máximo de estrellas!";
-			instatiateStars (3);
+            this.scoreText.text = "¡Has conseguido el máximo de estrellas!";
+            instatiateStars(3);
         }
         else if (points > 0.80 && points < 0.95)
         {
-			this.scoreText.text = "¡Has conseguido 2 estrellas (Max. 3)!";
-			instatiateStars (2);
+            this.scoreText.text = "¡Has conseguido 2 estrellas (Max. 3)!";
+            instatiateStars(2);
         }
         else if (points > 0.6 && points < 0.80)
         {
-			this.scoreText.text = "¡Has conseguido 1 estrella (Max. 3)!";
-			instatiateStars (1);
+            this.scoreText.text = "¡Has conseguido 1 estrella (Max. 3)!";
+            instatiateStars(1);
         }
-            
-        else 
+
+        else
         {
-			this.scoreText.text = "No has conseguido ninguna estrella :(";
+            this.scoreText.text = "No has conseguido ninguna estrella :(";
         }
-        storeTracker(this.distance, gm.mapTimes, true, points,(int)this.time);
+        storeTracker(this.distance, gm.mapTimes, true, points, (int)this.time);
+
+        if (experiment)
+            this.endOfGamePanel.SetActive (true);
+        else 
+            SceneManager.LoadScene("Hall");
+        
+
     }
+
+
+
+
+
+
 
     private void lose()
     {
-		this.endOfGamePanel.SetActive (true);
-        //DestroyObject(car);
+
         car.destroyCar();
         counting = false;
-        storeTracker(this.distance, gm.mapTimes, false,0,(int) this.time);
-		this.message.text = "¡Te has quedado sin combustible!";
-		scoreText.text = "";
-		this.message.color = new Color(0.4F, 0.04F, 0.16F, 1); // 680C2AFF divide (100 / FF (256 bits)) * rgb
+        storeTracker(this.distance, gm.mapTimes, false, 0, (int)this.time);
+
+
+         
+            this.endOfGamePanel.SetActive(true);
+            this.message.text = "¡Te has quedado sin combustible!";
+            scoreText.text = "";
+            this.message.color = new Color(0.4F, 0.04F, 0.16F, 1); // 680C2AFF divide (100 / FF (256 bits)) * rgb
+        
+        if (!this.experiment) { 
+            this.restartButton.gameObject.SetActive(true);
+            this.nextLevelButton.gameObject.SetActive(false);
+        }
+
     }
 
 

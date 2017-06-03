@@ -7,7 +7,7 @@ public class DisplayPanel : MonoBehaviour {
     //first you need the RectTransform component of your canvas
     private RectTransform canvasRect;
 
-    private static GameObject p; //??? static
+    private static GameObject p;
 
     void Awake()
     {
