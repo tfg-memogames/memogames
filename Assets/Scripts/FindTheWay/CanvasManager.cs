@@ -30,7 +30,7 @@ public class CanvasManager : MonoBehaviour
 
 
     //Gasto de energía
-    private float consumption = 1f;
+    private float consumption = 10f;
 
     //GameState
     private GameState gs;
@@ -50,6 +50,8 @@ public class CanvasManager : MonoBehaviour
 	public Text scoreText;
 	public GameObject starsPanel;
 	public GameObject star;
+    public Button nextLevelButton;
+    public Button restartButton;
 
     private string level;
 
@@ -148,14 +150,19 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    public void restartButtonClicked()
+    public void menuButtonClicked()
     {
         SceneManager.LoadScene("Level_Selector");
     }
 
+    public void restartButtonClicked()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 
     //El coche llama a este método cada vez que cambia de baldosa
-    
+
     public void incrDistance(GameObject road)
     {
         distance++;
@@ -270,15 +277,17 @@ public class CanvasManager : MonoBehaviour
         storeTracker(this.distance, gm.mapTimes, false, 0, (int)this.time);
 
 
-        if (this.experiment) {
+         
             this.endOfGamePanel.SetActive(true);
             this.message.text = "¡Te has quedado sin combustible!";
             scoreText.text = "";
             this.message.color = new Color(0.4F, 0.04F, 0.16F, 1); // 680C2AFF divide (100 / FF (256 bits)) * rgb
+        
+        if (!this.experiment) { 
+            this.restartButton.gameObject.SetActive(true);
+            this.nextLevelButton.gameObject.SetActive(false);
         }
-        else { 
-            SceneManager.LoadScene("Hall");
-        }
+
     }
 
 
