@@ -8,9 +8,10 @@ using UnityEngine.SceneManagement;
 public class EventsCall : EventManager {
 
 	private RecipeAppearing r;
+	public GameObject recipe;
 
 	void Start(){
-		r = GameObject.Find ("Recipe").GetComponent<RecipeAppearing>();
+		r = recipe.GetComponent<RecipeAppearing>();
 	}
 
 	public override void ReceiveEvent(IGameEvent ev)
@@ -35,7 +36,7 @@ public class EventsCall : EventManager {
 			r.showFourthStep ();
 		}
 
-		if (ev.Name == "Go")
+		if (ev.Name == "RecipeLoad")
 		{
 			SceneManager.LoadScene("SpaguettiRecipe");
 		}
