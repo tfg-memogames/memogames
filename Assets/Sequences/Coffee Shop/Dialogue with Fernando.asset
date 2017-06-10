@@ -267,8 +267,8 @@ MonoBehaviour:
   secuence: {fileID: 11400000}
   position:
     serializedVersion: 2
-    x: 440
-    y: 95
+    x: 629
+    y: 8
     width: 300
     height: 151
   collapsed: 0
@@ -308,7 +308,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 71
     y: 26
-    width: 300
+    width: 483
     height: 256
   collapsed: 0
 --- !u!114 &114616583830595250
@@ -436,8 +436,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragments:
   - name: Fernando
-    msg: "Buenos d\xEDas, me llamo Fernando y soy la persona encargada de organizar
-      el viaje de este fin de semana."
+    msg: "Buenos d\xEDas, me llamo Fernando y soy la persona encargada de \norganizar
+      el viaje de ma\xF1ana. Se ha quedado una plaza libre y como me dijiste que estabas
+      interesado te la he reservado."
     character: 
     parameter: 
   - name: Fernando

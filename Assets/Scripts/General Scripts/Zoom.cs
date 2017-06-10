@@ -18,8 +18,12 @@ public class Zoom : MonoBehaviour
     private Vector2 _targetPosition;
     private Vector2 _positionIncrement;
 
+
+    private InputManager inputM;
+
     void Start()
     {
+        this.inputM = GameObject.FindObjectOfType<InputManager>();
         _camera = this.GetComponent<Camera>();
         _currentTime = 0;
         _nearIncrement = this.targetNear - this._camera.orthographicSize;
@@ -27,7 +31,8 @@ public class Zoom : MonoBehaviour
         float actualX = this.transform.position.x;
         float actualY = this.transform.position.y;
         _positionIncrement = (_targetPosition - new Vector2(actualX, actualY)) + offset;
-        Debug.Log(_positionIncrement);
+        this.enabled = false;
+        //Debug.Log(_positionIncrement);
     }
 
     // Update is called once per frame
@@ -39,8 +44,13 @@ public class Zoom : MonoBehaviour
         _camera.transform.position += new Vector3(_positionIncrement.x * percOfTime, _positionIncrement.y * percOfTime);
 
         // When zoom is completed, destroy this component
-        if (_currentTime >= time)
+        if (_currentTime >= time) {
+            this.inputM.startDialogWithMaria();
             Destroy(this);
+
+        }
     }
+
+
 
 }

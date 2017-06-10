@@ -18,6 +18,9 @@ public class GameState : MonoBehaviour
     //Player Gender
     private Gender _playerGender;
 
+    //Player says the right time to Maria
+    private bool _rightTime;
+
 
     /////////FindTheWay Information/////////////
     //Level selected
@@ -79,6 +82,12 @@ public class GameState : MonoBehaviour
     {
         get { return this._playerAge; }
         set { this._playerAge = value; }
+    }
+
+    public bool rightTime
+    {
+        get { return this._rightTime; }
+        set { this._rightTime = value; }
     }
 
 }
