@@ -15,19 +15,19 @@ public class LevelSelector : MonoBehaviour {
 
     public void level1Clicked()
     {
-        gameS.level = 1;
+        gameS.level = GameState.Level.Easy;
         SceneManager.LoadScene("Easy_Level");
     }
 
     public void level2Clicked()
     {
-        gameS.level = 2;
+        gameS.level = GameState.Level.Medium;
         SceneManager.LoadScene("Medium_Level");
     }
 
     public void level3Clicked()
     {
-        gameS.level = 3;
+        gameS.level = GameState.Level.Hard;
         SceneManager.LoadScene("Hard_Level");
     }
 

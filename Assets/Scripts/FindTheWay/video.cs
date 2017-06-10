@@ -14,12 +14,12 @@ public class video : MonoBehaviour {
     private IEnumerator coroutine;
 	public GameObject panel;
 	public Text text;
-
+    private GameState _gs;
     void Start()
     {
 
         // Start function WaitAndPrint as a coroutine.
-
+        this._gs = GameObject.FindObjectOfType<GameState>();
         coroutine = WaitAndPrint(38.0f);
         StartCoroutine(coroutine);
 
@@ -46,7 +46,8 @@ public class video : MonoBehaviour {
     }
 
 	public void ChangeScene(){
-		SceneManager.LoadScene("Tutorial_Jugable");	
+        
+		SceneManager.LoadScene(this._gs.level + "level");	
 	}
 }
 

@@ -8,6 +8,7 @@ public class GameState : MonoBehaviour
     public static GameState gameS;
 
     public enum Gender { M, F };
+    public enum Level { Easy, Medium, Hard };
 
     //Player Name
     private string _playerName;
@@ -24,7 +25,7 @@ public class GameState : MonoBehaviour
 
     /////////FindTheWay Information/////////////
     //Level selected
-    private int _level;
+    private Level _level;
 
     public enum Car { GAS, ELECTRIC};
     //Type of car
@@ -45,7 +46,7 @@ public class GameState : MonoBehaviour
         this.playerSurname = "Pennyworth Wayne";
         this.playerGender = Gender.F;
         this.playerAge = "22";
-        this.level = 1;
+        this._level = Level.Easy;
         this.carType = Car.ELECTRIC;
     }
 
@@ -73,7 +74,7 @@ public class GameState : MonoBehaviour
         set { this._carType = value; }
     }
 
-    public int level
+    public Level level
     {
         get { return this._level; }
         set { this._level = value; }
