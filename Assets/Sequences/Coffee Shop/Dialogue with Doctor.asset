@@ -109,8 +109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragments:
   - name: Doctor
-    msg: "Buenos d\xEDas, Don &name . Soy el doctor Ogallar, solo llamaba para recordarle
-      que a partir de hoy debe comenzar con la nueva medicaci\xF3n."
+    msg: "Buenos d\xEDas, Don &name . Soy el doctor Javier Ogallar, solo llamaba para
+      recordarle que a partir de hoy debe comenzar con la nueva medicaci\xF3n."
     character: 
     parameter: 
 --- !u!114 &114590396524725050
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: Enable_Maria
+  m_Name: 
   m_EditorClassIdentifier: 
   keys:
   - synchronous
