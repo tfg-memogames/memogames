@@ -10,7 +10,8 @@ public class Menu : MonoBehaviour {
 
 	private string _gender="";
 	private int _level=0;
-	private GameState.Gender g;
+    
+    private GameState.Gender g;
 	private GameState _gs;
 
 	public GameObject error;
@@ -34,13 +35,32 @@ public class Menu : MonoBehaviour {
 			//guardar g en gameState
 			this._gs.playerGender=g;
             //guardar _level en gameState
-            this._gs.level = _level;
+            this._gs.level = this.intToEnumLevel(_level);
 			
 			SceneManager.LoadScene("Coffee_Shop");
 
 		}
 	
 	}
+
+    private GameState.Level intToEnumLevel(int l)
+    {
+        GameState.Level difficultyLevel;
+        switch(l)
+        {
+            case 1: difficultyLevel = GameState.Level.Easy;
+                break;
+            case 2: difficultyLevel = GameState.Level.Medium;
+                break;
+            case 3: difficultyLevel = GameState.Level.Hard;
+                break;
+            default: difficultyLevel = GameState.Level.Easy;
+                break;
+
+        }
+        return difficultyLevel;
+    }
+
 	public void Ready(){
 		SceneManager.LoadScene("Ready");
 	}

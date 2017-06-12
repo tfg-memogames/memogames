@@ -1,4 +1,5 @@
 ﻿using Isometra;
+using RAGE.Analytics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class InputManager : EventManager
 {
 
     private IGameEvent processing;
+    public GameObject inputPanel;
     public InputField _input;
     private GameState _gs;
     public GameObject mainCharacter;
@@ -18,8 +20,12 @@ public class InputManager : EventManager
 
     private void Start()
     {
-        if(this._input != null) { 
-            this._input.gameObject.SetActive(false);
+
+        
+        if(this._input != null) {
+            //this.inputPanel = GameObject.Find("InputPanel");
+            this.inputPanel.SetActive(false);
+            //this._input.gameObject.SetActive(false);
             this.maria = GameObject.Find("Maria").GetComponent<ConversationLauncher>();
         }
         this.processing = null;
@@ -42,7 +48,7 @@ public class InputManager : EventManager
         if (ev.Name == "Player_Name_Input")
         {
             processing = ev;
-            _input.gameObject.SetActive(true);
+            this.inputPanel.gameObject.SetActive(true);
 
         }
         else if(ev.Name == "Fernando_Leaves")
@@ -58,41 +64,49 @@ public class InputManager : EventManager
         else if(ev.Name == "Enable_Maria")
         {
             this.phone.SetActive(false);
-            this.maria.active = true;
+            //this.maria.active = true;
             //Añadir zoom a la cámara
             Camera.main.gameObject.GetComponent<Zoom>().enabled = true;
+
 
         }
 
         else if (ev.Name == "Right_Destination")
         {
-            Debug.Log("Right_Destination");
+            Tracker.T.Alternative.Selected("destination", "rightAnswer");
         }
         else if (ev.Name == "Wrong_Destination")
         {
-            Debug.Log("Wrong_Destination");
+            Tracker.T.Alternative.Selected("destination", "wrongAnswer");
         }
         else if (ev.Name == "Right_Time")
         {
-            Debug.Log("Right_Time");
+            Tracker.T.Alternative.Selected("departure_time", "rightAnswer");
+            this._gs.rightTime = true;
         }
         else if (ev.Name == "Wrong_Time")
         {
-            Debug.Log("Wrong_Time");
+            Tracker.T.Alternative.Selected("departure_time", "wrongAnswer");
+            this._gs.rightTime = false;
         }
         else if (ev.Name == "Right_Suitcase")
         {
-            Debug.Log("Right_Suitcase");
+            Tracker.T.Alternative.Selected("luggage", "rightAnswer");
 
         }
         else if (ev.Name == "Wrong__Suitcase")
         {
-            Debug.Log("Wrong_Suitcase");
+            Tracker.T.Alternative.Selected("luggage", "wrongAnswer");
+        }
+
+        else if(ev.Name == "Leave_Coffee_Shop")
+        {
+            SceneManager.LoadScene("Conver_Before_FTW");
         }
 
         else if(ev.Name == "Start_FTW")
         {
-            Debug.Log("cargando");
+            
             SceneManager.LoadScene("Video_tutorial");
         }
     }
@@ -102,7 +116,13 @@ public class InputManager : EventManager
         this._gs.playerName = _input.text;
         Game.main.eventFinished(processing);
         processing = null;
-        _input.gameObject.SetActive(false);
+        this.inputPanel.gameObject.SetActive(false);
 
+    }
+
+
+    public void startDialogWithMaria()
+    {
+        maria.startDialog();
     }
 }

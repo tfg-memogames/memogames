@@ -61,10 +61,18 @@ public class CustomDialogManager : DialogEventManager
         frg = fragment;
         msg = frg.Msg;
         nameText.text = frg.Name;
+
+        
+        
+
+
+
         //Añado las keyWords si las hubiese.
         if (_gs != null)
         {
             msg = changeKeyWords(msg);
+            nameText.text = changeKeyWords(nameText.text);
+            
         }
         charactersShown = 0;
         UpdateText();
@@ -78,6 +86,7 @@ public class CustomDialogManager : DialogEventManager
         {
             GameObject.Find(frg.Character).SendMessage(frg.Parameter);
         }
+        
     }
 
    
@@ -213,6 +222,12 @@ public class CustomDialogManager : DialogEventManager
         {
             if (wList[wordCounter].Contains("&name"))
                 wList[wordCounter] = _gs.playerName;
+            else if (wList[wordCounter].Contains("&partner")) {
+                if(_gs.playerGender == GameState.Gender.M)
+                    wList[wordCounter] = "Mercedes";
+                else
+                    wList[wordCounter] = "Marcos";
+            }
             //A space between every 2 words.
             nMsg += wList[wordCounter];
             nMsg += " ";

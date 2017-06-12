@@ -12477,6 +12477,7 @@ Transform:
   - {fileID: 1777316434}
   - {fileID: 1011095078}
   - {fileID: 507992976}
+  - {fileID: 2118788502}
   - {fileID: 17806983}
   - {fileID: 1201723971}
   - {fileID: 1732726330}
@@ -12488,7 +12489,6 @@ Transform:
   - {fileID: 177884093}
   - {fileID: 1447224814}
   - {fileID: 2125450463}
-  - {fileID: 2118788502}
   - {fileID: 10141717}
   - {fileID: 1896921077}
   - {fileID: 1811882805}
@@ -42614,7 +42614,7 @@ Prefab:
     - target: {fileID: 224511321178813004, guid: 02b5438e038783745be5bb8ea8e8ab5d,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114334419013354110, guid: 02b5438e038783745be5bb8ea8e8ab5d,
         type: 2}
@@ -72700,7 +72700,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 372198642}
-  m_RootOrder: 105
+  m_RootOrder: 94
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2118788503
 SpriteRenderer:

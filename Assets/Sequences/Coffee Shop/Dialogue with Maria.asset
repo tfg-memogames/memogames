@@ -30,6 +30,7 @@ MonoBehaviour:
   - {fileID: 114258208198750778}
   - {fileID: 114072241857626286}
   - {fileID: 114073811405331846}
+  - {fileID: 114312673946011556}
   ids:
   - -31520
   - -35980
@@ -47,7 +48,23 @@ MonoBehaviour:
   - -149398
   - -158366
   - -159144
+  - -98614
   assetinited: 1
+--- !u!114 &114013007589663626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
+  m_Name: Leave_Coffee_Shop
+  m_EditorClassIdentifier: 
+  keys:
+  - synchronous
+  values:
+  - {fileID: 114390509991251258}
 --- !u!114 &114016332852589684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -382,6 +399,29 @@ MonoBehaviour:
   - synchronous
   values:
   - {fileID: 114842301519856798}
+--- !u!114 &114312673946011556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: GameEvent
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 0}
+  isUnityObject: 1
+  objectContent: {fileID: 114013007589663626}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 4218
+    y: 356
+    width: 300
+    height: 109
+  collapsed: 0
 --- !u!114 &114332725525263584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +462,28 @@ MonoBehaviour:
       &name.
     character: 
     parameter: 
+--- !u!114 &114390509991251258
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daaa0a8c5652f247939f4ab49339994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  f: 0
+  d: 0
+  s: 
+  v2: {x: 0, y: 0}
+  v3: {x: 0, y: 0, z: 0}
+  v4: {x: 0, y: 0, z: 0, w: 0}
+  q: {x: 0, y: 0, z: 0, w: 0}
+  b: 0
+  c: 0
+  whatIs: System.Boolean
 --- !u!114 &114399235760877516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,14 +539,14 @@ MonoBehaviour:
   m_Name: Dialog
   m_EditorClassIdentifier: 
   childs:
-  - {fileID: 0}
+  - {fileID: 114312673946011556}
   isUnityObject: 1
   objectContent: {fileID: 114364027147307794}
   secuence: {fileID: 11400000}
   position:
     serializedVersion: 2
-    x: 3771
-    y: 246
+    x: 3661
+    y: 238
     width: 300
     height: 326
   collapsed: 0

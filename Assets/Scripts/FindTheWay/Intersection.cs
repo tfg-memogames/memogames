@@ -49,34 +49,34 @@ public class Intersection : MonoBehaviour
         {
             case CarMove.Direction.NW:
                 //Busco a mi hijo SE
-                this.lastRoad = transform.FindChild("SE").gameObject;
+                this.lastRoad = transform.Find("SE").gameObject;
                 this.lastTag = this.lastRoad.tag;
 
-                transform.FindChild("SE").gameObject.tag = newTag;
+                transform.Find("SE").gameObject.tag = newTag;
                 break;
             case CarMove.Direction.SE:
                 //Busco a mi hijo NW
-                this.lastRoad = transform.FindChild("NW").gameObject;
+                this.lastRoad = transform.Find("NW").gameObject;
                 this.lastTag = this.lastRoad.tag;
 
-                transform.FindChild("NW").gameObject.tag = newTag;
+                transform.Find("NW").gameObject.tag = newTag;
                 break;
             case CarMove.Direction.NE:
                 //Busco a mi hijo SW
-                this.lastRoad = transform.FindChild("SW").gameObject;
+                this.lastRoad = transform.Find("SW").gameObject;
                 this.lastTag = this.lastRoad.tag;
 
 
-                transform.FindChild("SW").gameObject.tag = newTag;
+                transform.Find("SW").gameObject.tag = newTag;
                 break;
             case CarMove.Direction.SW:
                 //Busco a mi hijo NE
 
-                this.lastRoad = transform.FindChild("NE").gameObject;
+                this.lastRoad = transform.Find("NE").gameObject;
                 this.lastTag = this.lastRoad.tag;
 
 
-                transform.FindChild("NE").gameObject.tag = newTag;
+                transform.Find("NE").gameObject.tag = newTag;
                 break;
         }
         Debug.Log(lastTag);

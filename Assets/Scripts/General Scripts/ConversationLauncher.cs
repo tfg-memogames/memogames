@@ -7,23 +7,11 @@ public class ConversationLauncher : MonoBehaviour {
 
     public Sequence seq;
     public bool active = true;
- 
-
-
-  
 
 
     public void startDialog()
     {
-
-                /*
-        var ge = new GameEvent();
-        ge.Name = "start sequence";
-        ge.setParameter("sequence", seq);
-        Game.main.enqueueEvent(ge);
-        */
-
-
+        this.active = false;
         // Remote start
         var ge = new GameEvent("start sequence", new System.Collections.Generic.Dictionary<string, object>() {
                     { "sequence", seq }
