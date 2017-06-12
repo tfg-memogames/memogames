@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef1030ee2e6884749bb35d6555258428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipe: {fileID: 0}
+  recipe: {fileID: 1530423521}
 --- !u!82 &1732188078
 AudioSource:
   m_ObjectHideFlags: 0

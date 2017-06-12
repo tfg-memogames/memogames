@@ -1192,7 +1192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dec1ba63fabc4dfeb6a60085dcfafa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracker: {fileID: 1658850938989692, guid: 2368d04e5926afe498ac3b9d840c089b, type: 2}
+  tracker: {fileID: 1599322168402698, guid: 7e6542425ec51cb4a83e321ecc7bff8e, type: 2}
   room: Hall
   pickup: {fileID: 1820974711037086, guid: c71c2d46bca1b45cca12bd56e4ed3747, type: 2}
   roomSites:

@@ -11,29 +11,28 @@ public class EventsCall : EventManager {
 	public GameObject recipe;
 
 	void Start(){
-		r = recipe.GetComponent<RecipeAppearing>();
 	}
 
 	public override void ReceiveEvent(IGameEvent ev)
 	{
 		if (ev.Name == "FirstStep")
 		{
-			r.showFirstStep ();
+			recipe.GetComponent<RecipeAppearing> ().showFirstStep ();
 		}
 
 		if (ev.Name == "SecondStep")
 		{
-			r.showSecondtStep ();
+			recipe.GetComponent<RecipeAppearing>().showSecondtStep ();
 		}
 
 		if (ev.Name == "ThirdStep")
 		{
-			r.showThirdStep ();
+			recipe.GetComponent<RecipeAppearing>().showThirdStep ();
 		}
 
 		if (ev.Name == "FourthStep")
 		{
-			r.showFourthStep ();
+			recipe.GetComponent<RecipeAppearing>().showFourthStep ();
 		}
 
 		if (ev.Name == "RecipeLoad")

@@ -40,6 +40,7 @@ public class RecipeAppearing : MonoBehaviour {
     }
     public void showSecondtStep()
     {
+		print ("two");
         step_Two.text = two;
     }
     public void showThirdStep()

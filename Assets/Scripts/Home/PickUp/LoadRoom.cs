@@ -30,12 +30,12 @@ public class LoadRoom : MonoBehaviour {
 			pum.name = "PickUpManager";
 		}
 
-		/*if (GameObject.Find ("Tracker") == null) {
+		if (GameObject.Find ("Tracker") == null) {
 			GameObject t = Instantiate (tracker);
 			t.name="Tracker";
 			DontDestroyOnLoad (t);
 		}
-*/
+
 
 
 		if (!room.Equals ("Hall")) {
