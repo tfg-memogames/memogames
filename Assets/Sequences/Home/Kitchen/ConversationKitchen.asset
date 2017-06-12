@@ -269,13 +269,13 @@ MonoBehaviour:
   m_Name: Ordenado
   m_EditorClassIdentifier: 
   fragments:
-  - name: Pareja
+  - name: '&partner'
     msg: "No s\xE9 que hacer de comer... \nNecesito tu ayuda."
-    character: Pareja
+    character: 
     parameter: 
-  - name: Pareja
+  - name: '&partner'
     msg: "\xBFYa has recogido todo?"
-    character: Pareja
+    character: 
     parameter: 
 --- !u!114 &114377181936376120
 MonoBehaviour:
@@ -424,13 +424,13 @@ MonoBehaviour:
   m_Name: Pedir Recoger
   m_EditorClassIdentifier: 
   fragments:
-  - name: Pareja
+  - name: '&partner'
     msg: "Vale, pues comprueba que todo est\xE9 en su sitio."
-    character: Pareja
+    character: 
     parameter: 
-  - name: Pareja
+  - name: '&partner'
     msg: Y luego ven a ayudarme.
-    character: Pareja
+    character: 
     parameter: 
 --- !u!114 &114802566702467990
 MonoBehaviour:
@@ -520,18 +520,18 @@ MonoBehaviour:
   m_Name: ok
   m_EditorClassIdentifier: 
   fragments:
-  - name: Pareja
+  - name: '&partner'
     msg: "\xA1Muy bien!"
-    character: Pareja
+    character: 
     parameter: 
-  - name: Pareja
+  - name: '&partner'
     msg: "Me ha llamado tu hija. \nNecesita que vaya a recoger a Sofia, tu nieta,
       al colegio."
-    character: Pareja
+    character: 
     parameter: 
-  - name: Pareja
+  - name: '&partner'
     msg: "\xBFPuedes encargarte t\xFA de hacer la comida?"
-    character: Pareja
+    character: 
     parameter: 
   - name: Pareja
     msg: "Vuelvo enseguida \xA1Hasta luego!"
@@ -587,15 +587,15 @@ MonoBehaviour:
   m_Name: FeedBack
   m_EditorClassIdentifier: 
   fragments:
-  - name: Pareja
-    msg: "\xBFEst\xE1s seguro? \xBFTambien has mirado en el $room?"
-    character: Pareja
+  - name: '&partner'
+    msg: "\xBFEst\xE1s seguro? \xBFTambien has mirado en &room ?"
+    character: 
     parameter: 
-  - name: Pareja
+  - name: '&partner'
     msg: "Anda, comprueba que est\xE9 todo en su sitio."
-    character: Pareja
+    character: 
     parameter: 
-  - name: Pareja
+  - name: '&partner'
     msg: "\xA1Pero date prisa!"
-    character: Pareja
+    character: 
     parameter: 

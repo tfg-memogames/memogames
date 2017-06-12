@@ -43,11 +43,13 @@ public class CustomDialogManager : DialogEventManager
 
     //Info between scenes
     private GameState _gs;
+	private GameObject pum;
 
 
 
     void Start()
     {
+		pum = null;
         state = State.Idle;
         this._gs = GameObject.FindObjectOfType<GameState>();
     }
@@ -215,19 +217,51 @@ public class CustomDialogManager : DialogEventManager
 
     private string changeKeyWords(string msg)
     {
-        string[] wList = msg.Split(' ');
+		string[] wList = msg.Split(' ');
         string nMsg = "";
         int wordCounter = 0;
+
+		if(GameObject.Find ("PickUpManager")!=null)
+			pum=GameObject.Find ("PickUpManager");
+
+
         while (wordCounter < wList.Length)
         {
-            if (wList[wordCounter].Contains("&name"))
-                wList[wordCounter] = _gs.playerName;
-            else if (wList[wordCounter].Contains("&partner")) {
-                if(_gs.playerGender == GameState.Gender.M)
-                    wList[wordCounter] = "Mercedes";
-                else
-                    wList[wordCounter] = "Marcos";
-            }
+			if (wList [wordCounter].Contains ("&name"))
+				wList [wordCounter] = _gs.playerName;
+			else if (wList [wordCounter].Contains ("&partner")) {
+				if (_gs.playerGender == GameState.Gender.M)
+					wList [wordCounter] = "Mercedes";
+				else
+					wList [wordCounter] = "Marcos";
+			} else if (wList [wordCounter].Contains ("&room")) {
+				string room=pum.GetComponent<PickUpManager>().room;
+				if(room.Equals("."))
+					room ="todas las habitaciones";
+				else{
+					
+					char c = room [0];
+					switch(c){
+					case 'B':
+						room = "el baño";
+						break;
+					case 'L':
+						room = "el salón";
+						break;
+					case 'M': 
+						room = "nuestro dormitorio";
+						break;
+					case 'S': 
+						room = "la habitación de invitados";
+						break;
+					case 'H': 
+						room = "el hall";
+						break;
+					}
+
+				}
+				wList [wordCounter] = room;
+			}
             //A space between every 2 words.
             nMsg += wList[wordCounter];
             nMsg += " ";

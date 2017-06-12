@@ -20,10 +20,10 @@ public class PickUpManager : MonoBehaviour {
 	private float _time;
 	private bool _ini;
 	private bool _endDinner;
+	private string _room;
 
 	void Awake(){
 		//print(Application.persistentDataPath);
-
 		DontDestroyOnLoad (transform.gameObject);
 		initObjects ();
 		orderObjects ();
@@ -38,6 +38,7 @@ public class PickUpManager : MonoBehaviour {
 		_totalCaught = 0;
 		_totalDoorsOpened = 0;
 		_feedBack = 0;
+		_room = ".";
 
 		Tracker.T.setVar("TotalObjects", totalObjects);
 
@@ -251,4 +252,8 @@ public class PickUpManager : MonoBehaviour {
 		set { _endDinner= value; }
 	}
 
+	public string room{
+		get { return _room; }
+		set { _room= value; }
+	}
 }

@@ -115,11 +115,11 @@ MonoBehaviour:
   m_Name: Hi parnert
   m_EditorClassIdentifier: 
   fragments:
-  - name: '&Partner'
+  - name: '&partner'
     msg: "Bueno cari\xF1o, voy a la cocina a preparar unas cuantas cosas."
     character: 
     parameter: 
-  - name: '&Partner'
+  - name: '&partner'
     msg: "Por favor mira que la casa est\xE9 bien recogida y ven a ayudarme cuando
       acabes."
     character: 

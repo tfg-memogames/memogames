@@ -88,6 +88,8 @@ public class LoadRoom : MonoBehaviour {
 		pum.GetComponent<PickUpManager>().totalCorrects+=_corrects;
 		pum.GetComponent<PickUpManager>().totalCaught +=_caught;
 
+		if(_corrects<objects.Length)
+			pum.GetComponent<PickUpManager>().room=room;
 	}
 
 
