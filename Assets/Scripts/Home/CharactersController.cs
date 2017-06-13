@@ -15,6 +15,17 @@ public class CharactersController : MonoBehaviour {
 
 		if(!GameObject.Find ("PickUpManager").GetComponent<PickUpManager> ().ini)
 			door.openDoor();
+		/*
+		if (room.Equals ("Livingroom") && pum.GetComponent<PickUpManager>().endDinner) {
+			//Camera.main.GetComponent<CameraController> ();
+			b.SetActive (true);
+
+			partner.SetActive (true);
+
+			StartCoroutine(WaitAndDestroy());
+
+		}
+*/
 	}
 	// Update is called once per frame
 	void Update () {

@@ -20,8 +20,10 @@ public class LoadRoom : MonoBehaviour {
 	private int _corrects;
 	private int _mistakes;
 	private int _caught;
-
 	private GameObject pum;
+
+	public GameObject b;
+	public GameObject partner;
 
 	void Awake () {
 		pum = GameObject.Find ("PickUpManager");
@@ -60,7 +62,25 @@ public class LoadRoom : MonoBehaviour {
 		_corrects = 0;
 		_mistakes = 0;
 		_caught = 0;
+
+
+
 	}
+
+
+
+	private IEnumerator WaitAndDestroy()
+	{
+		Color c = b.GetComponent<Image> ().color;
+
+		c.a -= 0.1f;
+
+		b.GetComponent<Image> ().color = c;
+
+		yield return new WaitForSeconds(3);
+		Destroy(b);
+	}
+
 
 	GameObject foundObject(string name){
 		int i=0;

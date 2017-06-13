@@ -36,7 +36,7 @@ public class StoreHouse : Isometra.EventManager
 			SceneManager.LoadScene("HallWay");
 		}
 		if (ev.Name == "LoadRecipes"){
-
+			pickUp.GetComponent<PickUpManager> ().endDinner = true;
 			partner.SetActive (false);
 			phone.gameObject.GetComponent<Transform> ().position = new Vector3(0,0,0);
 		}

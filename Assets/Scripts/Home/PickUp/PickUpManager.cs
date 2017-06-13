@@ -20,6 +20,7 @@ public class PickUpManager : MonoBehaviour {
 	private float _time;
 	private bool _ini;
 	private bool _endDinner;
+	private bool _medical;
 	private string _room;
 
 	void Awake(){
@@ -29,6 +30,7 @@ public class PickUpManager : MonoBehaviour {
 		orderObjects ();
 		_ini = true;
 		_endDinner = false;
+		_medical = false;
 	}
 
 	void Start(){
@@ -256,4 +258,10 @@ public class PickUpManager : MonoBehaviour {
 		get { return _room; }
 		set { _room= value; }
 	}
+
+	public bool medical{
+		get {  return _medical;}
+		set { _medical = value;}
+	}
+
 }
