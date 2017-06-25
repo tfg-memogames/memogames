@@ -30,7 +30,7 @@ public class CanvasManager : MonoBehaviour
 
 
     //Gasto de energía
-    private float consumption = 10f;
+    private float consumption = 1f;
 
     //GameState
     private GameState gs;

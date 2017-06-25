@@ -72,6 +72,7 @@ public class CustomDialogManager : DialogEventManager
         //Añado las keyWords si las hubiese.
         if (_gs != null)
         {
+			Debug.Log ("----------------------------------------------------");
             msg = changeKeyWords(msg);
             nameText.text = changeKeyWords(nameText.text);
             

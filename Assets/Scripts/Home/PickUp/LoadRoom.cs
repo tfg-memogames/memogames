@@ -26,6 +26,11 @@ public class LoadRoom : MonoBehaviour {
 	public GameObject partner;
 
 	void Awake () {
+
+		CharactersController c = GameObject.Find ("CharacterController").GetComponent<CharactersController> ();
+
+		c.control ();
+
 		pum = GameObject.Find ("PickUpManager");
 		if (pum == null) {
 			pum = Instantiate (pickup);
@@ -62,9 +67,6 @@ public class LoadRoom : MonoBehaviour {
 		_corrects = 0;
 		_mistakes = 0;
 		_caught = 0;
-
-
-
 	}
 
 

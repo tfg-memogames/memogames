@@ -18,9 +18,6 @@ public class PickUpManager : MonoBehaviour {
 	private int _totalObjects;
 	private int _feedBack;
 	private float _time;
-	private bool _ini;
-	private bool _endDinner;
-	private bool _medical;
 	private string _room;
 
 	void Awake(){
@@ -28,9 +25,6 @@ public class PickUpManager : MonoBehaviour {
 		DontDestroyOnLoad (transform.gameObject);
 		initObjects ();
 		orderObjects ();
-		_ini = true;
-		_endDinner = false;
-		_medical = false;
 	}
 
 	void Start(){
@@ -218,12 +212,7 @@ public class PickUpManager : MonoBehaviour {
 		get { return _totalCorrects; }
 		set { _totalCorrects= value; }
 	}
-
-	public bool ini{
-		get { return _ini; }
-		set { _ini= value; }
-	}
-
+		
 	public int totalCaught{
 		get { return _totalCaught; }
 		set { _totalCaught= value; }
@@ -249,19 +238,10 @@ public class PickUpManager : MonoBehaviour {
 		set { _feedBack= value; }
 	}
 
-	public bool endDinner{
-		get { return _endDinner; }
-		set { _endDinner= value; }
-	}
-
 	public string room{
 		get { return _room; }
 		set { _room= value; }
 	}
 
-	public bool medical{
-		get {  return _medical;}
-		set { _medical = value;}
-	}
 
 }

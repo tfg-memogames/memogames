@@ -13,6 +13,11 @@ public class FirstStaid : MonoBehaviour {
 
 	void OnMouseUp(){
 		c.SetActive (true);
+		bool game=GameObject.Find ("CharacterController").GetComponent<CharactersController> ().game ();
+
+		if (game)
+			c.GetComponent<ChooseMecicine> ().ini ();
+
 	}
 
 	// Update is called once per frame

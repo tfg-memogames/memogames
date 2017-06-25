@@ -7,18 +7,18 @@ using UnityEngine;
 public class Medical : EventManager
 {
 
-	public GameObject parent;
-	public GameObject pickup;
+	private GameObject parent;
 
 	public override void ReceiveEvent(IGameEvent ev)
 	{
-		PickUpManager p = pickup.GetComponent<PickUpManager> ();
+		parent = gameObject;
+		CharactersController c = GameObject.Find ("CharacterController").GetComponent<CharactersController> ();
 
 		if (ev.Name == "Medical"){
 			if (this.parent != null)
-				this.parent.SetActive(false);
+				Destroy (parent);
 
-			p.medical = true;
+			c.medical = true;
 		}
 	}
 

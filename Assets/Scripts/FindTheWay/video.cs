@@ -47,7 +47,7 @@ public class video : MonoBehaviour {
 
 	public void ChangeScene(){
         
-		SceneManager.LoadScene(this._gs.level + "level");	
+		SceneManager.LoadScene(this._gs.level + "_Level");	
 	}
 }
 

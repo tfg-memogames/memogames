@@ -16,10 +16,10 @@ public class DissapearCharacter : EventManager
         if (ev.Name == "Parent_Leaves")
         {
             //Fernando se va
-            if (this.parent != null)
-                this.parent.SetActive(false);
+			if (this.parent != null)
+				Destroy (this.parent);
             door.openDoor();
-			GameObject.Find ("PickUpManager").GetComponent<PickUpManager>().ini=false;
+			GameObject.Find ("CharacterController").GetComponent<CharactersController>().ini=false;
         }
     }
 

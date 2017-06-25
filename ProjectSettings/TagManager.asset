@@ -20,6 +20,7 @@ TagManager:
   - Item
   - Map
   - KitchenCupBoard
+  - Partner
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - 
   - Sites
   - Objects
-  - 
+  - Characters
   - 
   - 
   - 

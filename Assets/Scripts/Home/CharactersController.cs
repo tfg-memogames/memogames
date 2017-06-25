@@ -4,31 +4,80 @@ using UnityEngine;
 
 public class CharactersController : MonoBehaviour {
 
+	public GameObject kit;
+	private LockDoor _door;
 	private GameObject _partner;
-	public LockDoor door;
+	private string _room;
 
-	// Use this for initialization
-	void Start () {
-		this._partner = GameObject.Find ("Partner");
+	private bool _ini;
+	private bool _medical; 
+	private bool _endDinner;
+	private bool _sleep;
+	private bool _airport;
 
-		_partner.SetActive (GameObject.Find ("PickUpManager").GetComponent<PickUpManager> ().ini);
+	void Awake(){
+		_ini = true;
+		_medical = false;
+		_endDinner = false;
+		_sleep = false;
+		_airport = false;
+		DontDestroyOnLoad (gameObject);	
+	}
 
-		if(!GameObject.Find ("PickUpManager").GetComponent<PickUpManager> ().ini)
-			door.openDoor();
-		/*
-		if (room.Equals ("Livingroom") && pum.GetComponent<PickUpManager>().endDinner) {
-			//Camera.main.GetComponent<CameraController> ();
-			b.SetActive (true);
+	public void control(){
+		_room = GameObject.Find ("PickUp").GetComponent<LoadRoom> ().room;
 
-			partner.SetActive (true);
+		if(GameObject.Find("Partner")){
+			_partner = GameObject.Find ("Partner");
+		}
 
-			StartCoroutine(WaitAndDestroy());
+		if (_room.Equals ("Hall") && !_ini) {
+			Destroy (_partner);
+			_door = GameObject.Find ("Door").GetComponent<LockDoor> ();
+			_door.openDoor ();
 
 		}
-*/
-	}
-	// Update is called once per frame
-	void Update () {
+
+		if (_room.Equals ("Livingroom") && _endDinner) {
+			//Camera.main.GetComponent<CameraController> ();
+			//b.SetActive (true);
 		
+			_partner.transform.position = new Vector3 (0, -3.82F, 0);
+			//_partner.GetComponent<ConversationLauncher> ().active = true;
+			//StartCoroutine(WaitAndDestroy());
+		}
+
+		if (_room.Equals ("Main_bedroom") && _sleep) {
+			GameObject.Find ("maleta").transform.position = new Vector3 (-1.29F, -1.61F, 0F);
+		}
+	}
+
+	public bool game(){
+		return (_room.Equals ("Bathroom") && _medical);
+	}
+
+	public bool medical{
+		get { return _medical; }
+		set { _medical = value; }
+	}
+
+	public bool sleep{
+		get { return _sleep; }
+		set { _sleep = value; }
+	}
+
+	public bool ini{
+		get { return _ini; }
+		set { _ini= value; }
+	}
+
+	public bool endDinner{
+		get { return _endDinner; }
+		set { _endDinner= value; }
+	}
+
+	public bool airport{
+		get { return _airport; }
+		set { _airport= value; }
 	}
 }

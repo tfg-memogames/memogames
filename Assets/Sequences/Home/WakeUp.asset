@@ -9,8 +9,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e0d983d07aae244b4199260a850e12, type: 3}
-  m_Name: AfterDinner
-  m_EditorClassIdentifier:
+  m_Name: WakeUp
+  m_EditorClassIdentifier: 
   root: {fileID: 114574836530878274}
   localVariables: {fileID: 114928630504863646}
   nodes:
@@ -29,12 +29,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8daaa0a8c5652f247939f4ab49339994, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   i: 0
   f: 0
   d: 0
-  s:
+  s: 
   v2: {x: 0, y: 0}
   v3: {x: 0, y: 0, z: 0}
   v4: {x: 0, y: 0, z: 0, w: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
   m_Name: Dialog
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   childs:
   - {fileID: 114684891281859558}
   isUnityObject: 1
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
   m_Name: GameEvent
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   childs:
   - {fileID: 0}
   isUnityObject: 1
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: Parent_Leaves
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   keys:
   - synchronous
   values:
@@ -113,17 +113,17 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
   m_Name: Hi parnert
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   fragments:
   - name: '&partner'
-    msg: "Bueno cari\xF1o, voy a la cocina a preparar unas cuantas cosas."
-    character:
-    parameter:
+    msg: Buenas noches
+    character: 
+    parameter: 
   - name: '&partner'
     msg: "Por favor mira que la casa est\xE9 bien recogida y ven a ayudarme cuando
       acabes."
-    character:
-    parameter:
+    character: 
+    parameter: 
 --- !u!114 &114928630504863646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +133,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f903b5c05730594280dcba273e69bc4, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   switches: []

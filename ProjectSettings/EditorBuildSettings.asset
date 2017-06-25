@@ -67,6 +67,9 @@ EditorBuildSettings:
     guid: 1ca69e9a5cbf1cf4ebf3131f8b6b5332
   - enabled: 1
     path: Assets/Scenes/Recipes/SpaguettiRecipe.unity
+    guid: 2415914bc744bff428e36e7176ebe809
+  - enabled: 1
+    path: Assets/Scenes/Coffee Shop/Conver_Before_FTW.unity
     guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/LuggageGame.unity
