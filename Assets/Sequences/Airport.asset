@@ -11,11 +11,322 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e0d983d07aae244b4199260a850e12, type: 3}
   m_Name: Airport
   m_EditorClassIdentifier: 
-  root: {fileID: 0}
+  root: {fileID: 114544272837161804}
   localVariables: {fileID: 114860717761983852}
-  nodes: []
-  ids: []
-  assetinited: 0
+  nodes:
+  - {fileID: 114544272837161804}
+  - {fileID: 114473948673742564}
+  - {fileID: 114964175499078458}
+  - {fileID: 114013170195935950}
+  - {fileID: 114167607474917578}
+  - {fileID: 114491162841531786}
+  - {fileID: 114486157781842202}
+  ids:
+  - -533588
+  - -535160
+  - -536888
+  - -542528
+  - -548498
+  - -551102
+  - -559086
+  assetinited: 1
+--- !u!114 &114013170195935950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114486157781842202}
+  isUnityObject: 1
+  objectContent: {fileID: 114932952811109474}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 916
+    y: 274
+    width: 300
+    height: 186
+  collapsed: 0
+--- !u!114 &114019839160288106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c01c67f8a983ba4c917bf0e5c8114df, type: 3}
+  m_Name: maria=True
+  m_EditorClassIdentifier: 
+  comparationType: 0
+  id: maria
+  value: {fileID: 114839740636388692}
+--- !u!114 &114167607474917578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: GameEvent
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114491162841531786}
+  isUnityObject: 1
+  objectContent: {fileID: 114648441284154990}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 183
+    y: 448
+    width: 300
+    height: 109
+  collapsed: 0
+--- !u!114 &114248189465855890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daaa0a8c5652f247939f4ab49339994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  f: 0
+  d: 0
+  s: 
+  v2: {x: 0, y: 0}
+  v3: {x: 0, y: 0, z: 0}
+  v4: {x: 0, y: 0, z: 0, w: 0}
+  q: {x: 0, y: 0, z: 0, w: 0}
+  b: 0
+  c: 0
+  whatIs: System.Boolean
+--- !u!114 &114473948673742564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Fork/Single/Switch Fork
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114964175499078458}
+  - {fileID: 114167607474917578}
+  isUnityObject: 1
+  objectContent: {fileID: 114019839160288106}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 462
+    y: 224
+    width: 300
+    height: 89
+  collapsed: 0
+--- !u!114 &114486157781842202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: GameEvent
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 0}
+  isUnityObject: 1
+  objectContent: {fileID: 114572973868425334}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 1246
+    y: 353
+    width: 300
+    height: 109
+  collapsed: 0
+--- !u!114 &114491162841531786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114013170195935950}
+  isUnityObject: 1
+  objectContent: {fileID: 114855462468176798}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 571
+    y: 375
+    width: 300
+    height: 186
+  collapsed: 0
+--- !u!114 &114522395277445310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: fernando
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: Fernando
+    msg: "\xA1Hola &name! \xA1Por fin has llegado!"
+    character: 
+    parameter: 
+--- !u!114 &114544272837161804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114473948673742564}
+  isUnityObject: 1
+  objectContent: {fileID: 114522395277445310}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 99
+    y: 196
+    width: 300
+    height: 186
+  collapsed: 0
+--- !u!114 &114572973868425334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
+  m_Name: TheEnd
+  m_EditorClassIdentifier: 
+  keys:
+  - synchronous
+  values:
+  - {fileID: 114822226327356574}
+--- !u!114 &114648441284154990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys:
+  - synchronous
+  values:
+  - {fileID: 114248189465855890}
+--- !u!114 &114809403852126062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: marianoviene
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: Fernando
+    msg: "Creo que Mar\xEDa no va a llegar a tiempo de coger el vuelo..."
+    character: 
+    parameter: 
+--- !u!114 &114822226327356574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daaa0a8c5652f247939f4ab49339994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  f: 0
+  d: 0
+  s: 
+  v2: {x: 0, y: 0}
+  v3: {x: 0, y: 0, z: 0}
+  v4: {x: 0, y: 0, z: 0, w: 0}
+  q: {x: 0, y: 0, z: 0, w: 0}
+  b: 0
+  c: 0
+  whatIs: System.Boolean
+--- !u!114 &114839740636388692
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daaa0a8c5652f247939f4ab49339994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  f: 0
+  d: 0
+  s: 
+  v2: {x: 0, y: 0}
+  v3: {x: 0, y: 0, z: 0}
+  v4: {x: 0, y: 0, z: 0, w: 0}
+  q: {x: 0, y: 0, z: 0, w: 0}
+  b: 1
+  c: 0
+  whatIs: System.Boolean
+--- !u!114 &114855462468176798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: mariavine
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "\xA1Aqu\xED estoy! \xA1Nos lo vamos a pasar genial!"
+    character: 
+    parameter: 
 --- !u!114 &114860717761983852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,3 +339,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switches: []
+--- !u!114 &114932952811109474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: go
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: Fernando
+    msg: "\xA1Bueno, es la hora! \xA1Por fin podemos disfrutar de nuestras vacaciones!"
+    character: 
+    parameter: 
+--- !u!114 &114964175499078458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114013170195935950}
+  isUnityObject: 1
+  objectContent: {fileID: 114809403852126062}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 823
+    y: 49
+    width: 300
+    height: 186
+  collapsed: 0

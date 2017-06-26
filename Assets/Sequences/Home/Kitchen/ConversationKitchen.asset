@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: 
+  m_Name: LoadHallWay
   m_EditorClassIdentifier: 
   keys:
   - synchronous
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: 
+  m_Name: LoadRecipes
   m_EditorClassIdentifier: 
   keys:
   - synchronous
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: 
+  m_Name: LoadHallWay
   m_EditorClassIdentifier: 
   keys:
   - synchronous
@@ -533,9 +533,9 @@ MonoBehaviour:
     msg: "\xBFPuedes encargarte t\xFA de hacer la comida?"
     character: 
     parameter: 
-  - name: Pareja
+  - name: '&partner'
     msg: "Vuelvo enseguida \xA1Hasta luego!"
-    character: Pareja
+    character: 
     parameter: 
 --- !u!114 &114915953779262030
 MonoBehaviour:
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: 
+  m_Name: Store
   m_EditorClassIdentifier: 
   keys:
   - synchronous
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragments:
   - name: '&partner'
-    msg: "\xBFEst\xE1s seguro? \xBFTambien has mirado en &room ?"
+    msg: "\xBFEst\xE1s seguro? \xBFTambi\xE9n has mirado en &room ?"
     character: 
     parameter: 
   - name: '&partner'

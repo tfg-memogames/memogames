@@ -11,15 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e0d983d07aae244b4199260a850e12, type: 3}
   m_Name: WakeUp
   m_EditorClassIdentifier: 
-  root: {fileID: 114091315383687840}
+  root: {fileID: 114571216649264752}
   localVariables: {fileID: 114090989028362924}
   nodes:
   - {fileID: 114990794995430740}
-  - {fileID: 114091315383687840}
+  - {fileID: 114571216649264752}
+  - {fileID: 114801937479792570}
+  - {fileID: 114214471488591714}
   ids:
   - -462070
-  - -463810
-  assetinited: 0
+  - -565072
+  - -566904
+  - -579894
+  assetinited: 1
 --- !u!114 &114090989028362924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,7 +36,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switches: []
---- !u!114 &114091315383687840
+--- !u!114 &114108543922759412
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daaa0a8c5652f247939f4ab49339994, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i: 0
+  f: 0
+  d: 0
+  s: 
+  v2: {x: 0, y: 0}
+  v3: {x: 0, y: 0, z: 0}
+  v4: {x: 0, y: 0, z: 0, w: 0}
+  q: {x: 0, y: 0, z: 0, w: 0}
+  b: 1
+  c: 0
+  whatIs: System.Boolean
+--- !u!114 &114169612738806780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
+  m_Name: Colgar
+  m_EditorClassIdentifier: 
+  keys:
+  - synchronous
+  values:
+  - {fileID: 114706007903133270}
+--- !u!114 &114214471488591714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -44,14 +85,14 @@ MonoBehaviour:
   m_Name: GameEvent
   m_EditorClassIdentifier: 
   childs:
-  - {fileID: 114990794995430740}
+  - {fileID: 0}
   isUnityObject: 1
-  objectContent: {fileID: 114969383564326492}
+  objectContent: {fileID: 114169612738806780}
   secuence: {fileID: 11400000}
   position:
     serializedVersion: 2
-    x: 204
-    y: 131
+    x: 908
+    y: 202
     width: 300
     height: 109
   collapsed: 0
@@ -68,14 +109,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragments:
   - name: "Mar\xEDa"
-    msg: "\xA1&name!"
+    msg: "\xA1&name me dijiste mal la hora!"
     character: 
     parameter: 
   - name: "Mar\xEDa"
-    msg: 
+    msg: Menos mal que me ha llamado Fernando.
     character: 
     parameter: 
---- !u!114 &114774384570702104
+  - name: "Mar\xEDa"
+    msg: "Espero llegar a tiempo por que a\xFAn no he hecho la maleta..."
+    character: 
+    parameter: 
+--- !u!114 &114571216649264752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Fork/Single/Switch Fork
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114801937479792570}
+  - {fileID: 114990794995430740}
+  isUnityObject: 1
+  objectContent: {fileID: 114626052130316500}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 139
+    y: 230
+    width: 300
+    height: 89
+  collapsed: 0
+--- !u!114 &114582882079844218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: maleta
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "\xA1&name! \xBF\xA1Donde est\xE1s!? \xA1Te estamos esperando!"
+    character: 
+    parameter: 
+  - name: "Mar\xEDa"
+    msg: "\xBF\xA1Te has quedado dormido!? Corre, coge tu maleta y ven r\xE1pido."
+    character: 
+    parameter: 
+  - name: "Mar\xEDa"
+    msg: Espero que tengas la maleta preparada...
+    character: 
+    parameter: 
+--- !u!114 &114626052130316500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c01c67f8a983ba4c917bf0e5c8114df, type: 3}
+  m_Name: maria=True
+  m_EditorClassIdentifier: 
+  comparationType: 0
+  id: maria
+  value: {fileID: 114108543922759412}
+--- !u!114 &114706007903133270
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -97,7 +204,7 @@ MonoBehaviour:
   b: 0
   c: 0
   whatIs: System.Boolean
---- !u!114 &114969383564326492
+--- !u!114 &114801937479792570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -105,13 +212,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: 
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
   m_EditorClassIdentifier: 
-  keys:
-  - synchronous
-  values:
-  - {fileID: 114774384570702104}
+  childs:
+  - {fileID: 114214471488591714}
+  isUnityObject: 1
+  objectContent: {fileID: 114582882079844218}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 469
+    y: -2
+    width: 300
+    height: 326
+  collapsed: 0
 --- !u!114 &114990794995430740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,14 +239,14 @@ MonoBehaviour:
   m_Name: Dialog
   m_EditorClassIdentifier: 
   childs:
-  - {fileID: 0}
+  - {fileID: 114214471488591714}
   isUnityObject: 1
   objectContent: {fileID: 114435946555980180}
   secuence: {fileID: 11400000}
   position:
     serializedVersion: 2
-    x: 626
-    y: 171
+    x: 483
+    y: 249
     width: 300
-    height: 256
+    height: 326
   collapsed: 0

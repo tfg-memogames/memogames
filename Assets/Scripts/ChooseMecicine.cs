@@ -34,7 +34,8 @@ public class ChooseMecicine : MonoBehaviour {
 			correct++;
 			text.text = "¡Muy bien!";
 			exit ();
-			SceneManager.LoadScene ("Main_bedroom");
+			GameObject.Find ("CharacterController").GetComponent<CharactersController> ().sleep = true;
+			SceneManager.LoadScene ("Black");
 		}
 	}
 

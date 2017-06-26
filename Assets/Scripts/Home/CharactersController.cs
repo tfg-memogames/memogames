@@ -49,6 +49,7 @@ public class CharactersController : MonoBehaviour {
 
 		if (_room.Equals ("Main_bedroom") && _sleep) {
 			GameObject.Find ("maleta").transform.position = new Vector3 (-1.29F, -1.61F, 0F);
+			GameObject.Find ("Phone").transform.position = new Vector3 (0, 0, 0);
 		}
 	}
 

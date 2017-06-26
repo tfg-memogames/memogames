@@ -26,9 +26,9 @@ public class Wait : MonoBehaviour {
 			if(c.airport)
 				SceneManager.LoadScene ("Airport");
 			else if(c.sleep)
-				SceneManager.LoadScene ("Main_Bedroom");
+				SceneManager.LoadScene ("Main_bedroom");
 			else if (c.endDinner)
-				SceneManager.LoadScene ("Livingroom");
+				SceneManager.LoadScene ("Living_room");
 		}
 
 
