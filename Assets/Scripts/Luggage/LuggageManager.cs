@@ -233,6 +233,13 @@ public class LuggageManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+	public void Continue(){
+		if(GameObject.Find ("CharacterController"))
+			GameObject.Find ("CharacterController").GetComponent<CharactersController>().airport=true;
+
+		SceneManager.LoadScene ("Black");
+	}
+
     //Send the tracker 
     private void NotifyEndOfGameToTracker(bool playerWon)
     {

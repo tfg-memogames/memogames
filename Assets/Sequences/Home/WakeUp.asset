@@ -11,16 +11,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e0d983d07aae244b4199260a850e12, type: 3}
   m_Name: WakeUp
   m_EditorClassIdentifier: 
-  root: {fileID: 114574836530878274}
-  localVariables: {fileID: 114928630504863646}
+  root: {fileID: 114091315383687840}
+  localVariables: {fileID: 114090989028362924}
   nodes:
-  - {fileID: 114574836530878274}
-  - {fileID: 114684891281859558}
+  - {fileID: 114990794995430740}
+  - {fileID: 114091315383687840}
   ids:
-  - -6604
-  - -12262
-  assetinited: 1
---- !u!114 &114459424929935152
+  - -462070
+  - -463810
+  assetinited: 0
+--- !u!114 &114090989028362924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f903b5c05730594280dcba273e69bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switches: []
+--- !u!114 &114091315383687840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: GameEvent
+  m_EditorClassIdentifier: 
+  childs:
+  - {fileID: 114990794995430740}
+  isUnityObject: 1
+  objectContent: {fileID: 114969383564326492}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 204
+    y: 131
+    width: 300
+    height: 109
+  collapsed: 0
+--- !u!114 &114435946555980180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
+  m_Name: player
+  m_EditorClassIdentifier: 
+  fragments:
+  - name: "Mar\xEDa"
+    msg: "\xA1&name!"
+    character: 
+    parameter: 
+  - name: "Mar\xEDa"
+    msg: 
+    character: 
+    parameter: 
+--- !u!114 &114774384570702104
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -42,53 +97,7 @@ MonoBehaviour:
   b: 0
   c: 0
   whatIs: System.Boolean
---- !u!114 &114574836530878274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
-  m_Name: Dialog
-  m_EditorClassIdentifier: 
-  childs:
-  - {fileID: 114684891281859558}
-  isUnityObject: 1
-  objectContent: {fileID: 114855153037822070}
-  secuence: {fileID: 11400000}
-  position:
-    serializedVersion: 2
-    x: 115
-    y: 145
-    width: 300
-    height: 256
-  collapsed: 0
---- !u!114 &114684891281859558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
-  m_Name: GameEvent
-  m_EditorClassIdentifier: 
-  childs:
-  - {fileID: 0}
-  isUnityObject: 1
-  objectContent: {fileID: 114808322890950538}
-  secuence: {fileID: 11400000}
-  position:
-    serializedVersion: 2
-    x: 525
-    y: 182
-    width: 300
-    height: 109
-  collapsed: 0
---- !u!114 &114808322890950538
+--- !u!114 &114969383564326492
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -102,8 +111,8 @@ MonoBehaviour:
   keys:
   - synchronous
   values:
-  - {fileID: 114459424929935152}
---- !u!114 &114855153037822070
+  - {fileID: 114774384570702104}
+--- !u!114 &114990794995430740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -111,28 +120,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 548e5e0d049bc4d4693000a78d1e305f, type: 3}
-  m_Name: Hi parnert
+  m_Script: {fileID: 11500000, guid: 20fbd0b6e627da04c86fdd3bf4b7fffb, type: 3}
+  m_Name: Dialog
   m_EditorClassIdentifier: 
-  fragments:
-  - name: '&partner'
-    msg: Buenas noches
-    character: 
-    parameter: 
-  - name: '&partner'
-    msg: "Por favor mira que la casa est\xE9 bien recogida y ven a ayudarme cuando
-      acabes."
-    character: 
-    parameter: 
---- !u!114 &114928630504863646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f903b5c05730594280dcba273e69bc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  switches: []
+  childs:
+  - {fileID: 0}
+  isUnityObject: 1
+  objectContent: {fileID: 114435946555980180}
+  secuence: {fileID: 11400000}
+  position:
+    serializedVersion: 2
+    x: 626
+    y: 171
+    width: 300
+    height: 256
+  collapsed: 0

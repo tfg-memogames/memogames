@@ -310,7 +310,8 @@ public class RecipeManager : MonoBehaviour
     }
 
     public void end(){
-		SceneManager.LoadScene("Living_room");
+		//
+		SceneManager.LoadScene("Black");
 
 	}
 

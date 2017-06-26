@@ -82,14 +82,14 @@ public class PickUpManager : MonoBehaviour {
 
 
 		Dictionary<string,string> second = new Dictionary<string, string> (); //second bedroom
-		second.Add ("Suelo1", ".");
+		second.Add ("Suelo1", "Osito");
 		second.Add ("Suelo2", "Boli");
 		second.Add ("Suelo3", "Papeles");
 		second.Add ("Cama", ".");
 		second.Add ("Mesa1", ".");
 		second.Add ("Mesa2", ".");
 		_house.Add ("Second_bedroom", second);
-		_totalObjects += 2;
+		_totalObjects += 3;
 
 
 		Dictionary<string,string> living = new Dictionary<string, string> (); //livingroom
@@ -148,7 +148,7 @@ public class PickUpManager : MonoBehaviour {
 		second.Add ("Suelo1", ".");
 		second.Add ("Suelo2", ".");
 		second.Add ("Suelo3", ".");
-		second.Add ("Cama", ".");
+		second.Add ("Cama", "Osito");
 		second.Add ("Mesa1", "Papeles");
 		second.Add ("Mesa2", "Boli");
 		_orderHouse.Add ("Second_bedroom", second);
