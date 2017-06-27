@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fragments:
   - name: '&partner'
-    msg: "No s\xE9 que hacer de comer... \nNecesito tu ayuda."
+    msg: "No s\xE9 qu\xE9 hacer de comer... \nNecesito tu ayuda."
     character: 
     parameter: 
   - name: '&partner'
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: LoadRecipes
+  m_Name: LoadHallWay
   m_EditorClassIdentifier: 
   keys:
   - synchronous
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a413602f9429a24e943fe8c6b8b2508, type: 3}
-  m_Name: LoadHallWay
+  m_Name: LoadRecipes
   m_EditorClassIdentifier: 
   keys:
   - synchronous
