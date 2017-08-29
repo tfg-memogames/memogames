@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu/Menu.unity
+    guid: 2d5264ee4322445b9b476da0fa7cc726
+  - enabled: 1
     path: Assets/Scenes/FindTheWay/Form.unity
     guid: 8662e9adb6410974b9b404d3f609d4a5
   - enabled: 1
     path: Assets/Scenes/Home/Black.unity
-    guid: 00000000000000000000000000000000
+    guid: d1845721650d14ccda9eb81861783342
   - enabled: 1
     path: Assets/Scenes/FindTheWay/Level_Selector.unity
     guid: ba38be43717eca1499fa2d6c941c066d
@@ -26,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FindTheWay/Easy_Level.unity
     guid: 6e8b8ffeac138124c9ce12dadf3dfecc
+  - enabled: 1
+    path: Assets/Scenes/Home/Hall.unity
+    guid: cbcd674a311c48142a6000d2e3c37a1b
   - enabled: 0
     path: Assets/Scenes/FindTheWay/Tutorial_new.unity
     guid: 00000000000000000000000000000000
@@ -36,23 +42,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Coffee Shop/Coffee_Shop.unity
     guid: 25427cf6cb6e81f40a76a01476499b92
   - enabled: 1
-    path: Assets/Scenes/Menu/Menu.unity
-    guid: 2d5264ee4322445b9b476da0fa7cc726
-  - enabled: 1
     path: Assets/Scenes/Menu/Ready.unity
     guid: 9195c699f90884adbb9c394257a1a645
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu/Config.unity
     guid: a14a0f4f6502a425484fe9b82b4f1465
-  - enabled: 1
-    path: Assets/Scenes/Menu/Credits.unity
-    guid: 48006228868f145c29d5fcb11c06a576
-  - enabled: 1
-    path: Assets/Scenes/Home/Hall.unity
-    guid: cbcd674a311c48142a6000d2e3c37a1b
+  - enabled: 0
+    path: Assets/Scenes/LuggageGame.unity
+    guid: ee1ba81de2baff8419f8f0af9cb7b284
   - enabled: 1
     path: Assets/Scenes/Home/Bathroom.unity
     guid: 317c9f1b14cd7c24baf7d5fbf658e678
+  - enabled: 1
+    path: Assets/Scenes/Menu/Credits.unity
+    guid: 48006228868f145c29d5fcb11c06a576
   - enabled: 1
     path: Assets/Scenes/Home/Hallway.unity
     guid: 296732f0154584449963be5811326034
@@ -74,9 +77,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Coffee Shop/Conver_Before_FTW.unity
     guid: 3cbf50599bcdeaa4fbb8108d47fc224d
-  - enabled: 1
-    path: Assets/Scenes/LuggageGame.unity
-    guid: ee1ba81de2baff8419f8f0af9cb7b284
   - enabled: 1
     path: Assets/Scenes/Airport.unity
     guid: def9cf597cfcd43ef927d6a96f5d6fdf
