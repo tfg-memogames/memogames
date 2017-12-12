@@ -7,7 +7,9 @@ public class KitchenCupBoard : MonoBehaviour
 { 
     public Sprite openned;
     public Sprite closed;
-
+    public Texture2D cursorTexture;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotSpot = Vector2.zero;
     private SpriteRenderer sr;
     private bool isClose = false;
 
@@ -33,12 +35,16 @@ public class KitchenCupBoard : MonoBehaviour
 
     void OnMouseOver()
     {
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown(0))
         {
             OpenCloseDoor();
         }
+        if(isClose)Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
-
+    void OnMouseExit()
+    {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+    }
     private void OpenCloseDoor()
     {
         if (isClose)
