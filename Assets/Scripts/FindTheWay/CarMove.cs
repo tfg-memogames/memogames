@@ -61,7 +61,7 @@ public class CarMove : MonoBehaviour
         else car = gasCar;
         move = true;
        //anim = gameObject.GetComponent<Animator>();
-        ChangeCarView();
+       ChangeCarView();
         carArrow.SetActive(false);
 
     }
@@ -69,12 +69,27 @@ public class CarMove : MonoBehaviour
     private void ChangeCarView()
     {
         Vector3 v = this.GetComponent<Transform>().localScale;
-        this.gameObject.GetComponent<Transform>().localScale = new Vector3(-v.x, v.y, v.z);     //Se actualiza la escala del coche.Para hacer espejo con el sprite.
-
-       if (car.dir == Direction.SW || car.dir == Direction.SE)
-            this.GetComponent<SpriteRenderer>().sprite = car.front;                             //Según la dirección del coche se muestra un sprite u otro.
-        else
-            this.GetComponent<SpriteRenderer>().sprite = car.back;
+        switch (car.dir)
+        {
+            case Direction.SW: //+x
+                if (v.x < 0)
+                    this.gameObject.GetComponent<Transform>().localScale = new Vector3(-v.x, v.y, v.z);
+                this.GetComponent<SpriteRenderer>().sprite = car.front;
+                break;
+            case Direction.SE: //+y
+                this.gameObject.GetComponent<Transform>().localScale = new Vector3(-v.x, v.y, v.z);
+                this.GetComponent<SpriteRenderer>().sprite = car.front;
+                break;
+            case Direction.NE: //-x
+                if (v.x < 0)
+                    this.gameObject.GetComponent<Transform>().localScale = new Vector3(-v.x, v.y, v.z);
+                this.GetComponent<SpriteRenderer>().sprite = car.back;
+                break;
+            case Direction.NW: //-y
+                this.gameObject.GetComponent<Transform>().localScale = new Vector3(-v.x, v.y, v.z);
+                this.GetComponent<SpriteRenderer>().sprite = car.back;
+                break;
+        }
     }
 
     // Update is called once per frame

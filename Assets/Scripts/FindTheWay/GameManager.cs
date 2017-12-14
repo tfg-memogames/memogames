@@ -8,46 +8,26 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
 
-    //Asignar en el inspector las road que son camino óptimo
-    public GameObject[] bestPath;
-    //Canvas Manager
-    public CanvasManager cm;
 
-    //Asignar boton que muestra mapa
-    public Button buttonShow;
-
-    //Asignar texto con el contador de vidas
-    public Text mapCounterText;
-
-    //Posición de la cámara al pulsar el mapa
-    private static Vector3 cameraPosition = new Vector3(-273.4f, 10.85f, -350.0f);
-    //Posición actual de la cámara
-    private Vector3 camCurrPos;
-
-    //Main Camera
-    public Camera mainCamera;
-
-    //Contador de consultas al mapa
-    private int mapCounter;
-
-
-    //Número máximo de veces que el jugador puede ver el mapa completo.
-    public int MAP_COUNTER = 4;
-
-    //Length of optimal path
-    private int _pathLength;
-
-    public static GameState gameS;
-
-    //private bool _mapOpened;
-
-    public Sprite mapOpenedSprite;
+    public GameObject[] bestPath;                                                                   //Asignar en el inspector las road que son camino óptimo
+    public CanvasManager cm;                                                                        //Canvas Manager
+    public Button buttonShow;                                                                       //Asignar boton que muestra mapa
+    public int MAP_COUNTER = 4;                                                                     //Número máximo de veces que el jugador puede ver el mapa completo.
+    public Text mapCounterText;                                                                     //Asignar texto con el contador de vidas
+    public Sprite mapOpenedSprite;                                                                  //Sprites del mapa
     public Sprite mapClosedSprite;
+    public Camera mainCamera;                                                                       //Main Camera
+    public static GameState gameS;                                                                  //Estado del juego
+    public CarMove car;                                                                             //Script de movimiento del coche
 
-    public CarMove car;
 
-	private GameObject miniDestination;
-	private GameObject destination;
+    private static Vector3 cameraPosition = new Vector3(-273.4f, 10.85f, -350.0f);                  //Posición de la cámara al pulsar el mapa
+    private Vector3 camCurrPos;                                                                     //Posición actual de la cámara
+
+    private int mapCounter;                                                                         //Contador de consultas al mapa
+    private int _pathLength;                                                                        //Longitud del camino óptimo
+	private GameObject miniDestination;                                                             //Destino pequeño
+	private GameObject destination;                                                                 //Destino grande
 
 	//private Tracker tracker;
 
@@ -65,9 +45,6 @@ public class GameManager : MonoBehaviour
 	{
 		//tracker = GameObject.FindObjectOfType<Tracker> ();
         car.mapOpened = false;
-        
-        //_mapOpened = false;
-        
     }
 
     // Update is called once per frame
@@ -104,7 +81,6 @@ public class GameManager : MonoBehaviour
     //Muestra el mapa 
     public void showMap()
     {
- 
         if (!car.mapOpened)
         {
             if (mapCounter > 0)
@@ -164,7 +140,6 @@ public class GameManager : MonoBehaviour
             {
                 road.GetComponent<SpriteRenderer>().color = Color.white;
             }
-            //_mapOpened = false;
             car.mapOpened = false;
             mainCamera.GetComponent<CameraMove>().chase = true;
         }

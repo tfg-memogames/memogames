@@ -56,13 +56,13 @@ public class CanvasManager : MonoBehaviour
     private string level;
 
     //True significa que es para hacer experimento con usuarios
-    private bool experiment;
+    public bool miniGame;
 
 
     // Use this for initialization
     void Start()
     {
-        this.experiment = false;
+        //this.experiment = true;
 		//print(Application.persistentDataPath);
         this.level = this.levelToString(SceneManager.GetActiveScene().name);
         
@@ -255,7 +255,7 @@ public class CanvasManager : MonoBehaviour
         }
         storeTracker(this.distance, gm.mapTimes, true, points, (int)this.time);
 
-        if (experiment)
+        if (miniGame)
             this.endOfGamePanel.SetActive (true);
         else 
             SceneManager.LoadScene("Hall");
@@ -283,7 +283,7 @@ public class CanvasManager : MonoBehaviour
             scoreText.text = "";
             this.message.color = new Color(0.4F, 0.04F, 0.16F, 1); // 680C2AFF divide (100 / FF (256 bits)) * rgb
         
-        if (!this.experiment) { 
+        if (!this.miniGame) { 
             this.restartButton.gameObject.SetActive(true);
             this.nextLevelButton.gameObject.SetActive(false);
         }
