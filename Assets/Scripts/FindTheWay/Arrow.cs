@@ -41,7 +41,7 @@ public class Arrow : MonoBehaviour {
             car.intersection = false;
             
             
-            switch (car.dir)
+            switch (car.dir())
             {
                 case CarMove.Direction.NE:
 
@@ -111,7 +111,7 @@ public class Arrow : MonoBehaviour {
                     break;
             }
 
-            inter.ChangeTag(tagPosition, car.dir);
+            inter.ChangeTag(tagPosition, car.dir());
         }
     }
 }
