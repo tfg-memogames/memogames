@@ -19,7 +19,8 @@ public class CarMove : MonoBehaviour
         public Sprite front, back;
      
         public Direction dir;
-        public float speed;       
+        public float speed;
+        public float consumption;
         
         private Collider2D _coll;                           //Variable privada para el collider del coche
         public Collider2D coll
@@ -31,7 +32,7 @@ public class CarMove : MonoBehaviour
     }
     public Car electricCar;                                 //Coche eléctrico.
     public Car gasCar;                                      //Coche de gasolina.
-    public CanvasManager cv;                                //Canvads manager 
+    public GameManager gm;                                  //Canvads manager 
 
     private bool _intersection = false;                     //Booleano que indica si el coche está en una intersección
     public bool intersection
@@ -137,7 +138,7 @@ public class CarMove : MonoBehaviour
     
     void OnTriggerExit2D(Collider2D other)
     {
-        cv.incrDistance(other.gameObject);                                        //Actualizamos el canvas.
+        gm.incrDistance(other.gameObject);                                        //Actualizamos el canvas.
         //Recto
         if (other.gameObject.tag == Tag.S.ToString())
         {
@@ -210,6 +211,7 @@ public class CarMove : MonoBehaviour
     }
 
     public Direction dir() { return car.dir; }          //Getter para la variable dir del coche
+    public float getConsumption() { return car.consumption; }
 }
 //=====================================================================================================================
 

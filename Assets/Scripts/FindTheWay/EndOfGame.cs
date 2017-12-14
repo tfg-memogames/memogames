@@ -2,12 +2,12 @@
 
 public class EndOfGame : MonoBehaviour {
 
-    public CanvasManager cm;
+    public GameManager gm;
 
     //Crear etiqueta llamada GameState y asignarsela a GameState
     void Start()
     {
-        cm = GameObject.FindObjectOfType<CanvasManager>();
+        gm = GameObject.FindObjectOfType<GameManager>();
         
     }
 
@@ -15,7 +15,7 @@ public class EndOfGame : MonoBehaviour {
     {
         if (col.gameObject.tag == "Car")
         {
-            cm.win();
+            gm.win();
         }
     }
 }
