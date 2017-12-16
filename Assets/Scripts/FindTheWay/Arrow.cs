@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+///<summary>
+///Take care of the instructions that the car will take
+///Se encarga de las direcciones que va a tomar el coche
+///</summary>
 public class Arrow : MonoBehaviour {
 
 
     CarMove car;
-
+    ///Start´s the processes of entry and exit of the car
+    ///Inicializa los procesos de entrada y salida del coche
     private void Start()
     {
         //Debug.Log("Soy: " + this.gameObject.name);
@@ -14,32 +18,28 @@ public class Arrow : MonoBehaviour {
         //Debug.Log(car);
     }
 
+    ///<summary>
+    ///Take care of the instructions that the car will take
+    ///Se encarga de las direcciones que va a tomar el coche
+    ///</summary>
     void OnMouseDown()
     {
-        
-
         //Si esta baldosa tiene la flecha activada entonces permitimos que se pulse en ella
         bool arrowActive = false;
         GameObject arrow = this.gameObject.transform.GetChild(0).gameObject;
         
         if (arrow.activeInHierarchy)
             arrowActive = true;
-        
-        
 
         //No se permite pulsar una flecha si está el mapa abierto
         if (!car.mapOpened && arrowActive)
         {
             string tagPosition = null;
-
             Intersection inter = transform.parent.gameObject.GetComponent<Intersection>();
             inter.HideArrows();
-
-
             car.ResumeCar();
             //El coche ya no está en una interseción.
-            car.intersection = false;
-            
+            car.intersection = false;       
             
             switch (car.dir())
             {
