@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RAGE.Analytics;
 
+///<summary>
+///Class that controls the whole game
+///Clase que controla todo el juego
+///</summary>
 public class CanvasManager : MonoBehaviour
 {
 
@@ -43,8 +47,9 @@ public class CanvasManager : MonoBehaviour
 
 
     //=======================================================================================================================
-
-    // Use this for initialization
+    ///<summary>
+    /// Use this for initialization
+    ///</summary>
     void Start()
     {
         this.dist_Text.text = "Distancia: 0";                                                           //Se escribe el cartel con la distancia
@@ -61,7 +66,10 @@ public class CanvasManager : MonoBehaviour
 		this.popUp.endOfGamePanel.SetActive (false);                                                    //Se ocultan los popUps de partida completa y fin de la partida.
         this.popUp.star.SetActive(false);
     }
-
+    ///<summary>
+    ///Load the tutorial video
+    /// Carga el video tutorial
+    ///</summary>
     public void video(){
 		SceneManager.LoadScene("Video_Tutorial");
     	
@@ -75,8 +83,10 @@ public class CanvasManager : MonoBehaviour
 
     }
     //======================================================================================================================================
-
-   //Configura la barra según el porcentaje de consumo
+    ///<summary>
+    ///Set the bar according to the percentage of consumption
+    /// Configura la barra según el porcentaje de consumo
+    ///</summary>
     public void setPercentageOfEnergy(float newValue)
     {
         float x = (newValue * totalEnergy) / 100;
