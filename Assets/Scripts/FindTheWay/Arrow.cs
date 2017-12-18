@@ -32,7 +32,7 @@ public class Arrow : MonoBehaviour {
             arrowActive = true;
 
         //No se permite pulsar una flecha si está el mapa abierto
-        if (!car.mapOpened && arrowActive)
+        if (!car.mapOpened && arrowActive && !car.isMoving())
         {
             string tagPosition = null;
             Intersection inter = transform.parent.gameObject.GetComponent<Intersection>();

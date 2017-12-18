@@ -100,17 +100,20 @@ public class CanvasManager : MonoBehaviour
     //Botones
     public void mapButton_Clicked()
     {
+        if(!end)
         gm.showMap();
 
     }
 
     public void menuButtonClicked()
     {
+        end = false;
         SceneManager.LoadScene("Level_Selector");
     }
 
     public void restartButtonClicked()
     {
+        end = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -132,6 +135,7 @@ public class CanvasManager : MonoBehaviour
     //Muestra popup con que has ganado (desbloqueará el siguiente nivel)
     public void win(float points)
     {
+        end = true;
         gm.destroyCar();                                                                                    //Se destruye el coche
         this.popUp.message.text = "¡Has llegado a tu destino!";                                             //Se escribe el mensaje de finalización
         this.popUp.message.color = new Color(0.34F, 0.41F, 0.39F, 1);                                       // 586A45FF divide (100 / FF (256 bits)) * rgb
@@ -167,6 +171,7 @@ public class CanvasManager : MonoBehaviour
     //Se llama a este método cuando la partida perdida 
     public void lose()
     {
+        end = true;
         gm.destroyCar();                                                                                    //Se destruye el coche
         this.popUp.endOfGamePanel.SetActive(true);                                                          //Se activa el panel de fin de la partida
         this.popUp.message.text = "¡Te has quedado sin combustible!";                                       //Se actualiza el mensaje

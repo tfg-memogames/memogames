@@ -94,7 +94,7 @@ public class CarMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (move)
             MoveCar();                                                                          //Si el coche puede moverse, actualizamos su movimiento.
@@ -128,6 +128,7 @@ public class CarMove : MonoBehaviour
 
     public void stopCar()
     {
+        Debug.Log("Stop");
         this.move = false;                                                      //El coche no puede moverse
     }
 
@@ -180,11 +181,12 @@ public class CarMove : MonoBehaviour
             other.gameObject.name == "NE" ||
             other.gameObject.name == "SE" ||
             other.gameObject.name == "SW") && (car.dir.ToString() != other.gameObject.name)
-            && other != car.coll)
+            && other != car.coll )
         {
             //Solo se muestran las flechas tras haber pasado por una carretera con la etiqueta Straight
             if (arrowsEnabled)
             {
+
                 other.transform.parent.gameObject.GetComponent<Intersection>().ShowArrows(other.gameObject);
                 car.coll = other;
                 //Tras mostrar las flechas hay que esperar a pasar por una carretera recta.
@@ -209,7 +211,7 @@ public class CarMove : MonoBehaviour
         get { return this._mapOpened; }
         set { this._mapOpened = value; }
     }
-
+    public bool isMoving() { return move; }
     public Direction dir() { return car.dir; }          //Getter para la variable dir del coche
     public float getConsumption() { return car.consumption; }
 }
