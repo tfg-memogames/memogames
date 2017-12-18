@@ -16,19 +16,19 @@ public class LevelSelector : MonoBehaviour {
     public void level1Clicked()
     {
         gameS.level = GameState.Level.Easy;
-        SceneManager.LoadScene("Easy_Level");
+        SceneManager.LoadScene("Car_Selector");
     }
 
     public void level2Clicked()
     {
         gameS.level = GameState.Level.Medium;
-        SceneManager.LoadScene("Medium_Level");
+        SceneManager.LoadScene("Car_Selector");
     }
 
     public void level3Clicked()
     {
         gameS.level = GameState.Level.Hard;
-        SceneManager.LoadScene("Hard_Level");
+        SceneManager.LoadScene("Car_Selector");
     }
 
     public void tutorialClicked()

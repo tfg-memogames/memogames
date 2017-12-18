@@ -253,7 +253,6 @@ public class GameManager : MonoBehaviour
     //Método que destruye el coche
     public void destroyCar() { car.destroyCar(); }
     //===========================================================================================================================
-
     //Getters y setters
     public bool counting
     {

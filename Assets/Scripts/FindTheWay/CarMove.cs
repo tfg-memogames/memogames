@@ -128,7 +128,6 @@ public class CarMove : MonoBehaviour
 
     public void stopCar()
     {
-        Debug.Log("Stop");
         this.move = false;                                                      //El coche no puede moverse
     }
 
