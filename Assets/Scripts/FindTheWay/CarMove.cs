@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-   
+///<summary>
+///Class that controls the car move
+///Clase que controla el movimiento del coche
+///</summary>   
 public class CarMove : MonoBehaviour
 {
     private GameState gs;
@@ -35,6 +38,11 @@ public class CarMove : MonoBehaviour
     public GameManager gm;                                  //Canvads manager 
 
     private bool _intersection = false;                     //Booleano que indica si el coche está en una intersección
+
+    ///<summary>
+    ///Returns the state of the intersection and modifies it
+    ///Devuelve el estado de la intersection y la modifica
+    ///</summary>  
     public bool intersection
     {
         get { return this._intersection; }                  //Definición de getters y setters para la variable interseccion
@@ -66,7 +74,10 @@ public class CarMove : MonoBehaviour
         carArrow.SetActive(false);
 
     }
-
+    /// <summary>
+    /// Change the view of the car following the directions changes of this
+    /// Cambia la vista del coche siguiendo los cambios de direcciones de este
+    /// </summary>
     private void ChangeCarView()
     {
         Vector3 v = this.GetComponent<Transform>().localScale;
@@ -92,14 +103,16 @@ public class CarMove : MonoBehaviour
                 break;
         }
     }
-
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame 
+    /// Actualiza el estado del juego frame a frame
+    /// </summary>
     void Update()
     {
         if (move)
             MoveCar();                                                                          //Si el coche puede moverse, actualizamos su movimiento.
     }
-
+    //Controla el movimiento del coche
     private void MoveCar()
     {
         Vector3 v = this.GetComponent<Transform>().position;                                    
@@ -120,22 +133,34 @@ public class CarMove : MonoBehaviour
                 break;
         }
     }
-
+    /// <summary>
+    /// The car can move
+    /// El coche ya puede moverse
+    /// </summary>
     public void ResumeCar()
     {
         this.move = true;                                                       //El coche ya puede moverse
     }
-
+    /// <summary>
+    /// The car can not  move
+    /// El coche no puede moverse
+    /// </summary>
     public void stopCar()
     {
         this.move = false;                                                      //El coche no puede moverse
     }
-
+    /// <summary>
+    /// The car is destroyed 
+    /// El coche es destruido
+    /// </summary>
     public void destroyCar()
     {
         Destroy(this);
     }
-    
+    /// <summary>
+    /// Controller the car moves and update the canvas
+    ///Controla los movimientos del coche y actuliza canvas    ///
+    ///</summary>
     void OnTriggerExit2D(Collider2D other)
     {
         gm.incrDistance(other.gameObject);                                        //Actualizamos el canvas.
@@ -161,19 +186,22 @@ public class CarMove : MonoBehaviour
         }   
     }
 
-
+    /// <summary>
+    ///La parte de cógido que quieres que se detenga debe estar dentro del método IEnumerator
+    ///</summary>
     //La parte de cógido que quieres que se detenga debe estar dentro del método IEnumerator
     public IEnumerator WaitToTurn()
     {
         float delay = 0.17f;
         yield return new WaitForSeconds(delay);
-
         car.dir = (Direction)(((int)car.dir + 1) % 4);                           //Cambiamos la dirección con aritmetica modular sobre el enumerado Direction
         ChangeCarView();
-
     }
+    /// <summary>
+    /// Arrows appear in the places you can go
+    ///Aparecen las flechas en los sitios a los que puede ir
+    ///</summary>
 
-    //aparecen las flechas en los sitios a los que puede ir
     void OnTriggerEnter2D(Collider2D other)
     {
        if ((other.gameObject.name == "NW" ||

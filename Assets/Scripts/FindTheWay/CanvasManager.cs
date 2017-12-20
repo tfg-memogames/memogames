@@ -97,14 +97,20 @@ public class CanvasManager : MonoBehaviour
     }
 
     //========================================================================================================================================
-    //Botones
+    ///<summary>   
+    ///Buttons
+    ///Botones
+    ///</summary>
     public void mapButton_Clicked()
     {
         if(!end)
         gm.showMap();
 
     }
-
+    ///<summary>        
+    ///Menu Buttons
+    ///Menu Botones
+    ///</summary>
     public void menuButtonClicked()
     {
         end = false;
@@ -131,14 +137,16 @@ public class CanvasManager : MonoBehaviour
 	}
 
     //===========================================================================================================================================
-
-    //Muestra popup con que has ganado (desbloqueará el siguiente nivel)
+    ///<summary>
+    ///Sample popup you've won (unlock the next level)
+    ///Muestra popup con que has ganado (desbloqueará el siguiente nivel)
+    ///</summary>
     public void win(float points)
     {
         end = true;
-        gm.destroyCar();                                                                                    //Se destruye el coche
-        this.popUp.message.text = "¡Has llegado a tu destino!";                                             //Se escribe el mensaje de finalización
-        this.popUp.message.color = new Color(0.34F, 0.41F, 0.39F, 1);                                       // 586A45FF divide (100 / FF (256 bits)) * rgb
+        gm.destroyCar();                                                             //Se destruye el coche
+        this.popUp.message.text = "¡Has llegado a tu destino!";                      //Se escribe el mensaje de finalización
+        this.popUp.message.color = new Color(0.34F, 0.41F, 0.39F, 1);                // 586A45FF divide (100 / FF (256 bits)) * rgb
 
         //Se configura el mensaje en función de los puntos obtenidos.
         if (points >= 0.95)
@@ -167,8 +175,10 @@ public class CanvasManager : MonoBehaviour
             SceneManager.LoadScene("Hall");                                                                //Si estamos en modo historia se carga la escena del hall
     }
     //=======================================================================================================================================
-
-    //Se llama a este método cuando la partida perdida 
+    ///<summary>
+    ///It is called when you lose the game and finish everything
+    ///Se llama cuando pierdes la partida e finaliza todo 
+    ///</summary>
     public void lose()
     {
         end = true;

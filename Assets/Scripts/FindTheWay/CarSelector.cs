@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+///<summary>
+///The class that is responsible for selecting the type of car and the level of difficulty
+///La clase que se encarga de seleccionar el tipo de coche y el nivel de dificultad
+///</summary>   
 public class CarSelector : MonoBehaviour
 {
 
@@ -13,8 +16,14 @@ public class CarSelector : MonoBehaviour
     {
         this.gameS = GameObject.FindObjectOfType<GameState>();
     }
-
-   string getLevel()
+    ///<summary>
+    ///Returns the level in which we are
+    ///Devuelve el nivel en que nos encontramos
+    ///<returns>
+    ///String level;
+    /// </returns>  
+    ///</summary>
+    string getLevel()
     {
         GameState.Level currentLevel = this.gameS.level;
         string level = "Null";
@@ -26,12 +35,19 @@ public class CarSelector : MonoBehaviour
         }
         return level;
     }
+    ///<summary>
+    ///Select the type of electric car and load the level
+    ///Selecciona el tipo de coche electico y carga el nivel
+    ///</summary> 
     public void electtricCarClicked()
     {
         gameS.carType = GameState.Car.ELECTRIC;
         SceneManager.LoadScene(getLevel());
     }
-
+    ///<summary>
+    ///Select the type of gasoline car and load the level
+    ///Selecciona el tipo de coche gasolina y carga el nivel
+    ///</summary> 
     public void gasoilCarClicked()
     {
         gameS.carType = GameState.Car.GAS;
