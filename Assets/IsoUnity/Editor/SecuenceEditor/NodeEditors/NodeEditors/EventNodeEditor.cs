@@ -51,7 +51,7 @@ namespace Isometra.Sequences {
 
 			node.Content = currentEditor.Result;
 			
-			if (Event.current.type != EventType.layout){
+			if (Event.current.type != EventType.Layout){
 	            node.ChildSlots = 1;
 			}
 		}
