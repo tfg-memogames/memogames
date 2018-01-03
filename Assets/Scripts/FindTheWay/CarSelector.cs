@@ -9,7 +9,7 @@ using UnityEngine.UI;
 ///</summary>   
 public class CarSelector : MonoBehaviour
 {
-
+    private CursorMode cursorMode = CursorMode.Auto;
     private GameState gameS;
     // Use this for initialization
     void Start()
@@ -41,6 +41,7 @@ public class CarSelector : MonoBehaviour
     ///</summary> 
     public void electtricCarClicked()
     {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
         gameS.carType = GameState.Car.ELECTRIC;
         SceneManager.LoadScene(getLevel());
     }
@@ -50,6 +51,7 @@ public class CarSelector : MonoBehaviour
     ///</summary> 
     public void gasoilCarClicked()
     {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
         gameS.carType = GameState.Car.GAS;
         SceneManager.LoadScene(getLevel());
     }
