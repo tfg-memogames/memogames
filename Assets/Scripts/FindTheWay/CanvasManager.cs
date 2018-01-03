@@ -12,9 +12,8 @@ using RAGE.Analytics;
 ///</summary>
 public class CanvasManager : MonoBehaviour
 {
-
-    public static bool end=false;                                                       //Flag que determina el final del juego
-   
+    private CursorMode cursorMode = CursorMode.Auto;
+    public static bool end=false;                                                       //Flag que determina el final del juego   
     public GameObject electricBar;                                                      //Barra de combustible para el coche electrico.
     public GameObject gasoilBar;                                                        //Barra de combustible para el coche de gasolina.
     public Text dist_Text;                                                              //Texto con la distancia recorrida
@@ -113,6 +112,7 @@ public class CanvasManager : MonoBehaviour
     ///</summary>
     public void menuButtonClicked()
     {
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
         end = false;
         SceneManager.LoadScene("Level_Selector");
     }

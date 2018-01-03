@@ -2,8 +2,9 @@
 using UnityEngine.EventSystems;
 
 public class ButtonColor : MonoBehaviour {
-	
-	public void reset(){
-		EventSystem.current.SetSelectedGameObject(null);
+    private CursorMode cursorMode = CursorMode.Auto;
+    public void reset(){
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
+        EventSystem.current.SetSelectedGameObject(null);
 	}
 }

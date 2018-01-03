@@ -11,6 +11,7 @@ public class FormManager : MonoBehaviour {
     public InputField _inputAge;
     public Text _messageError;
     private GameState _gs;
+    private CursorMode cursorMode = CursorMode.Auto;
 
     // Use this for initialization
     void Start () {
@@ -19,8 +20,9 @@ public class FormManager : MonoBehaviour {
     }
 	
 	public void ClickStart()
-    {
+    {   
 
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
         if (this._inputName.text == "")
         {
             DisplayErrorMessage("Debes introducir un nombre");
