@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1658850938989692}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 278.5, y: 158.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,16 +48,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1658850938989692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f96f0a1591a944f801ecb456e9e6a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 58f050008e04f6442b5577e4c2ef9162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rawCopy: 1
-  flushInterval: 1
+  rawCopy: 0
+  flushInterval: 3
   checkInterval: 3
   storageType: net
   traceFormat: xapi
-  host: https://rage.e-ucm.es/api/proxy/gleaner/collector/
-  trackingCode: 58c01b4ecc1da9006de2c9c04ctz64mmwdk7qfr
+  host: https://analytics.e-ucm.es/
+  trackingCode: 
   debug: 0
   username: 
   password: 

@@ -34,24 +34,21 @@ namespace RAGE.Analytics
 	public class Tracker : MonoBehaviour
 	{
 		public static DateTime START_DATE = new DateTime (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-		public bool rawCopy=true;
+		public bool rawCopy;
 		public static bool strictMode = true;
 		private float nextFlush;
 		private bool flushRequested = false;
-		public float flushInterval = -1;
+		public float flushInterval = 3;
 		[Range(3, int.MaxValue)]
 		public float checkInterval = 3;
 		private float nextCheck;
 		public string storageType = "net";
 		public string traceFormat = "xapi";
-		public string host="https://rage.e-ucm.es/";
-		public string trackingCode= "58f7860df33181006e13eb562wscfoxzalq2rzfr";
+		public string host = "https://analytics.e-ucm.es/";
+		public string trackingCode;
 		public Boolean debug = false;
 
-        //GameState
-        private GameState gs;
-
-        public string username;
+		public string username;
 		public string password;
 
 		public static TrackerAsset T
@@ -59,12 +56,19 @@ namespace RAGE.Analytics
 			get { return TrackerAsset.Instance; }
 		}
 
-		void Awake ()
-		{
-			string [] splitted = host.Split ('/');
-			string [] host_splitted = splitted [2].Split (':');
-			string domain = host_splitted [0];
-			int port = (host_splitted.Length > 1) ? int.Parse(host_splitted[1]) : (splitted[0] == "https:" ? 443 : 80);
+        void Awake()
+        {
+            string domain = "";
+            int port = 80;
+            bool secure = false;
+
+            if (host != "") { 
+                string[] splitted = host.Split('/');
+                string[] host_splitted = splitted[2].Split(':');
+                domain = host_splitted[0];
+                port = (host_splitted.Length > 1) ? int.Parse(host_splitted[1]) : (splitted[0] == "https:" ? 443 : 80);
+                secure = splitted[0] == "https:";
+            }
 
 			TrackerAsset.TraceFormats format;
 			switch (traceFormat) {
@@ -95,32 +99,24 @@ namespace RAGE.Analytics
 				TrackingCode = trackingCode,
 				BasePath = "/api",
 				Port = port,
-				Secure = splitted[0] == "https:",
-				StorageType = storage,
+				Secure = secure,
+                StorageType = storage,
 				TraceFormat = format,
-				BackupStorage = rawCopy,
-				BackupFile = "trazas.csv"
+				BackupStorage = rawCopy
 			};
 
 			TrackerAsset.Instance.Bridge = new UnityBridge();
 			TrackerAsset.Instance.Settings = tracker_settings;
 		}
+        
+		/// <summary>
+		/// DONT USE THIS METHOD. UNITY INTERNAL MONOBEHAVIOUR.
+		/// </summary>
+		public void Start ()
+		{
+			if (!String.IsNullOrEmpty (username))
+				TrackerAsset.Instance.Login (username, password);
 
-        /// <summary>
-        /// DONT USE THIS METHOD. UNITY INTERNAL MONOBEHAVIOUR.
-        /// </summary>
-        public void Start()
-        {
-            /*gs = GameObject.FindObjectOfType<GameState>();
-            this.username = gs.playerName;
-            this.password = gs.playerName;
-			*/
-            //Cargar username y password
-            
-            if (!String.IsNullOrEmpty(username)) {
-                
-                TrackerAsset.Instance.Login(username, password);
-            }
 			TrackerAsset.Instance.Start ();
 			this.nextFlush = flushInterval;
 			UnityEngine.Object.DontDestroyOnLoad (this);
