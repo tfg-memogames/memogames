@@ -1,7 +1,4 @@
-﻿using Isometra;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using IsoUnity.Events;
 using UnityEngine;
 
 public class EventReceiver : EventManager

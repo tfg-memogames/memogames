@@ -1,26 +1,21 @@
-﻿using Isometra;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using IsoUnity.Events;
 using UnityEngine;
 
-public class Medical : EventManager
+public class Medical : EventedEventManager
 {
 
 	private GameObject parent;
 
-	public override void ReceiveEvent(IGameEvent ev)
-	{
-		parent = gameObject;
-		CharactersController c = GameObject.Find ("CharacterController").GetComponent<CharactersController> ();
+    [GameEvent(true, false)]
+    public void medical()
+    {
+        CharactersController c = GameObject.Find("CharacterController").GetComponent<CharactersController>();
+        parent = gameObject;
+        if (this.parent != null)
+            Destroy(parent);
 
-		if (ev.Name == "Medical"){
-			if (this.parent != null)
-				Destroy (parent);
-
-			c.medical = true;
-		}
-	}
+        c.medical = true;
+    }
 
 	public override void Tick() {}
 

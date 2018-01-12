@@ -1,5 +1,6 @@
-﻿using Isometra;
-using Isometra.Sequences;
+﻿using IsoUnity;
+using IsoUnity.Events;
+using IsoUnity.Sequences;
 using UnityEngine;
 
 public class ConversationLauncher : MonoBehaviour {

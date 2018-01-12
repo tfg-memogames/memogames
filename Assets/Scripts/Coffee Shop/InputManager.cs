@@ -1,4 +1,5 @@
-﻿using Isometra;
+﻿using IsoUnity;
+using IsoUnity.Events;
 using RAGE.Analytics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
