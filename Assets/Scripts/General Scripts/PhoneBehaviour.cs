@@ -1,5 +1,6 @@
-﻿using Isometra;
-using Isometra.Sequences;
+﻿using IsoUnity;
+using IsoUnity.Events;
+using IsoUnity.Sequences;
 using System;
 using System.Collections;
 using UnityEngine;

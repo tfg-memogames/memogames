@@ -72,7 +72,6 @@ public class GameManager : MonoBehaviour
         Tracker.T.setVar("Optimum_Distance", (pathLength - 3) + "-" + (pathLength + 1));
         Tracker.T.setVar("Map_range", "1-" + maxMap);
         Tracker.T.setVar("Max_score", 100);
-
         Tracker.T.completable.Initialized(this.level);
     }
     //=========================================================================================================================

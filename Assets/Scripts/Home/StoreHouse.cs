@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Isometra;
-using Isometra.Sequences;
+﻿using IsoUnity;
+using IsoUnity.Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StoreHouse : Isometra.EventManager
+public class StoreHouse : EventManager
 {
 	private GameObject phone;
 	//public Sequence s;
