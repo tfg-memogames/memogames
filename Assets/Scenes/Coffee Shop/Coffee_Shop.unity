@@ -696,8 +696,7 @@ Prefab:
         type: 2}
       propertyPath: m_FontData.m_Font
       value: 
-      objectReference: {fileID: 12800000, guid: 95c2e0da698754499b4582be170cf57b,
-        type: 3}
+      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 20405134973521862, guid: 15d3c90c250917f408dd0a02b6edc49d,
         type: 2}
       propertyPath: m_CullingMask.m_Bits

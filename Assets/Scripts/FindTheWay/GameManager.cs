@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     private bool bestP;                                                                             //Booleano que indica si se ha estado siempre en el camino óptimo
     private float currentConsum = 0;                                                                //Variable que gestiona el consumo.
     private float consumption = 1f;                                                                 //Gasto de energía
-	//private Tracker tracker;
+	private Tracker tracker;
     private float time = 0;                                                                         //Time
     private bool _counting;                                                                         //Booleano que indica si está corriendo el tiempo
     private string level;                                                                           //Nivel actual
