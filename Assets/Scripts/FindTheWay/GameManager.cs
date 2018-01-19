@@ -28,14 +28,14 @@ public class GameManager : MonoBehaviour
 
     private int mapCounter;                                                                         //Contador de consultas al mapa
     private int _pathLength;                                                                        //Longitud del camino óptimo
-	private GameObject miniDestination;                                                             //Destino pequeño
-	private GameObject destination;                                                                 //Destino grande
+    private GameObject miniDestination;                                                             //Destino pequeño
+    private GameObject destination;                                                                 //Destino grande
     private int distance;                                                                           //Contador de distancia recorrida.
     private int distanceWrongPath;                                                                  //Distancia recorrida fuera del camino óptimo
     private bool bestP;                                                                             //Booleano que indica si se ha estado siempre en el camino óptimo
     private float currentConsum = 0;                                                                //Variable que gestiona el consumo.
     private float consumption = 1f;                                                                 //Gasto de energía
-	private Tracker tracker;
+                                                                                                    //private Tracker tracker;
     private float time = 0;                                                                         //Time
     private bool _counting;                                                                         //Booleano que indica si está corriendo el tiempo
     private string level;                                                                           //Nivel actual
@@ -44,17 +44,17 @@ public class GameManager : MonoBehaviour
     //===================================================================================================================
     void Awake()
     {
-		miniDestination = GameObject.Find ("mini-destination");                                     
-		destination = GameObject.Find ("destination");
+        miniDestination = GameObject.Find("mini-destination");
+        destination = GameObject.Find("destination");
         _pathLength = bestPath.Length;
         this.mapCounter = MAP_COUNTER;
-        
+
     }
     //======================================================================================================================
 
     // Use this for initialization
     void Start()
-	{
+    {
         gs = GameObject.FindObjectOfType<GameState>();                                                                  //Buscamos el objeto GameState y lo asignamos
         this.level = this.levelToString(SceneManager.GetActiveScene().name);                                            //Cargamos el nombre del nivel 
         this.bestP = true;                                                                                              //Inicializamos las vriables relativas a la ruta
@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
         Tracker.T.setVar("Optimum_Distance", (pathLength - 3) + "-" + (pathLength + 1));
         Tracker.T.setVar("Map_range", "1-" + maxMap);
         Tracker.T.setVar("Max_score", 100);
+
         Tracker.T.completable.Initialized(this.level);
     }
     //=========================================================================================================================
@@ -100,11 +101,12 @@ public class GameManager : MonoBehaviour
     //============================================================================================================================
 
     //Método que activa los elementos del mapa o los desactiva segun el valor de opened.
-	private void openMap(bool opened){
-		car.carArrow.SetActive (opened);
-		miniDestination.SetActive (!opened);
-		destination.SetActive (opened);
-	}
+    private void openMap(bool opened)
+    {
+        car.carArrow.SetActive(opened);
+        miniDestination.SetActive(!opened);
+        destination.SetActive(opened);
+    }
 
     //Muestra el mapa 
     public void showMap()
@@ -112,16 +114,16 @@ public class GameManager : MonoBehaviour
         if (!car.mapOpened)
         {
             if (mapCounter > 0)                                                                         //Si aún nos quedan pistas...
-            {   
+            {
                 car.stopCar();                                                                          //Paramos el coche.
-				openMap (true);                                                                         //Se abre el mapa
-                this.mapCounter--;                                                                      
+                openMap(true);                                                                         //Se abre el mapa
+                this.mapCounter--;
                 car.mapOpened = true;
                 buttonShow.image.sprite = mapClosedSprite;
                 camCurrPos = mainCamera.transform.position;                                             //Se actualiza la posición actual de la camara.
                 mainCamera.GetComponent<CameraMove>().chase = false;                                    //Se configura l camara
                 mainCamera.fieldOfView *= 2.4f;
-                mapCounterText.text = "" + mapCounter;                                      
+                mapCounterText.text = "" + mapCounter;
 
                 //Llamamos al método que muestra las rutas óptimas
                 foreach (GameObject road in bestPath)
@@ -130,7 +132,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        
+
         else //Está cerrando el mapa
         {
             //El contador del tiempo empieza cuando el jugador cierra por primera vez el mapa
@@ -146,11 +148,11 @@ public class GameManager : MonoBehaviour
 
             Tracker.T.trackedGameObject.Interacted("map");
 
-			//Aquí modificas la escala
-			openMap(false);
+            //Aquí modificas la escala
+            openMap(false);
             mainCamera.transform.position = camCurrPos;
             mainCamera.fieldOfView /= 2.4f;
-            
+
             //Llamamos al método que muestra las rutas óptimas
             foreach (GameObject road in bestPath)
             {
@@ -164,38 +166,40 @@ public class GameManager : MonoBehaviour
     //=====================================================================================================================
 
     //El coche llama a este método cada vez que cambia de baldosa
-   public void incrDistance(GameObject road)
-   {
-      distance++;                                                                                         //Se incrementa la distancia recorrida  
-      cm.dist_Text.text = "Distancia: " + distance;                                                       //Se dice al Canvas Manager que actualice el cartel.  
-      decreaseEnergy();                                                                                   //Se decremeta la energía
+    public void incrDistance(GameObject road)
+    {
+        distance++;                                                                                         //Se incrementa la distancia recorrida  
+        cm.dist_Text.text = "Distancia: " + distance;                                                       //Se dice al Canvas Manager que actualice el cartel.  
+        decreaseEnergy();                                                                                   //Se decremeta la energía
 
-       if(this.bestP) { 
-           if (!isBestPath(road)) { 
-               this.distanceWrongPath++;
-               if (this.distanceWrongPath > 2)                                                             //Se comprueba que se siga por el mejor camino.
-                   this.bestP = false;
-           }
-           else
-               this.distanceWrongPath = 0;
-       }
-   }
+        if (this.bestP)
+        {
+            if (!isBestPath(road))
+            {
+                this.distanceWrongPath++;
+                if (this.distanceWrongPath > 2)                                                             //Se comprueba que se siga por el mejor camino.
+                    this.bestP = false;
+            }
+            else
+                this.distanceWrongPath = 0;
+        }
+    }
 
-   //Método que decrementa la energía
-   private void decreaseEnergy()
-   {
-       this.currentConsum += this.consumption;                                                         //El consumo actual se incrementa con el consumo del coche
-       cm.setPercentageOfEnergy(this.currentConsum);                                                   //Se dice al Canvas Manager que actualice el gráfico barra de combustible.
+    //Método que decrementa la energía
+    private void decreaseEnergy()
+    {
+        this.currentConsum += this.consumption;                                                         //El consumo actual se incrementa con el consumo del coche
+        cm.setPercentageOfEnergy(this.currentConsum);                                                   //Se dice al Canvas Manager que actualice el gráfico barra de combustible.
 
-       //Si el consumo llega al 100% se para de contar, 
-       //se manda una traza con los datos y se termina la partida.
-       if (this.currentConsum >= 100)
-       {
-           counting = false;
-           storeTracker(this.distance, mapTimes, false, 0, (int)this.time);
-           cm.lose();                                                                                   //Se avisa al canvas manager de que se ha acabado para que muestre el pop up.
-       }
-   }
+        //Si el consumo llega al 100% se para de contar, 
+        //se manda una traza con los datos y se termina la partida.
+        if (this.currentConsum >= 100)
+        {
+            counting = false;
+            storeTracker(this.distance, mapTimes, false, 0, (int)this.time);
+            cm.lose();                                                                                   //Se avisa al canvas manager de que se ha acabado para que muestre el pop up.
+        }
+    }
     //=============================================================================================================================================
 
     //Se llama a este método cuando se termina la partida habiendo completado el camino
@@ -268,9 +272,10 @@ public class GameManager : MonoBehaviour
         get { return (MAP_COUNTER - this.mapCounter); }
     }
 
-	public int maxMap {
-		get{ return MAP_COUNTER;}
-	}
+    public int maxMap
+    {
+        get { return MAP_COUNTER; }
+    }
 
 
 }

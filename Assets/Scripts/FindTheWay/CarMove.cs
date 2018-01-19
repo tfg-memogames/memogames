@@ -20,17 +20,17 @@ public class CarMove : MonoBehaviour
     public struct Car
     {
         public Sprite front, back;
-     
+
         public Direction dir;
         public float speed;
         public float consumption;
-        
+
         private Collider2D _coll;                           //Variable privada para el collider del coche
         public Collider2D coll
         {
             get { return this._coll; }                      //Definición de getters y setters para el coche
             set { this._coll = value; }
-        }     
+        }
 
     }
     public Car electricCar;                                 //Coche eléctrico.
@@ -57,7 +57,7 @@ public class CarMove : MonoBehaviour
     private bool _mapOpened = false;                         //Booleano que permite saber si el mapa está pulsado.
     public GameObject carArrow;                              //Flecha indicador de posicion
     private Car car;                                         //Coche de con el que se va a jugar
-   
+
     //private Animator anim;
 
     //======================================================================================================
@@ -69,8 +69,8 @@ public class CarMove : MonoBehaviour
         if (gs.carType == GameState.Car.ELECTRIC) car = electricCar;                //Se actualiza el tipo de coche.
         else car = gasCar;
         move = true;
-       //anim = gameObject.GetComponent<Animator>();
-       ChangeCarView();
+        //anim = gameObject.GetComponent<Animator>();
+        ChangeCarView();
         carArrow.SetActive(false);
 
     }
@@ -115,7 +115,7 @@ public class CarMove : MonoBehaviour
     //Controla el movimiento del coche
     private void MoveCar()
     {
-        Vector3 v = this.GetComponent<Transform>().position;                                    
+        Vector3 v = this.GetComponent<Transform>().position;
 
         switch (car.dir)                                                                        //Movemos el coche en función de su dirección.
         {
@@ -172,10 +172,11 @@ public class CarMove : MonoBehaviour
                 turn = true;
         }
         //Intersección
-        else if(turn){
+        else if (turn)
+        {
 
             if (other.gameObject.tag == Tag.L.ToString())                       //Si el giro es hacia la izquierda debe girar más tarde para continuar por el carril derecho.
-                StartCoroutine(WaitToTurn());      
+                StartCoroutine(WaitToTurn());
             else if (other.gameObject.tag == Tag.R.ToString())                  //Si el giro es hacia la derecha gira en la dirección correspondiente.
             {
                 if (car.dir > 0) car.dir--;                                     //Actualizamos la direccion.
@@ -183,7 +184,7 @@ public class CarMove : MonoBehaviour
                 ChangeCarView();                                                //Se actualiza el sprite
             }
             turn = false;
-        }   
+        }
     }
 
     /// <summary>
@@ -204,11 +205,11 @@ public class CarMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-       if ((other.gameObject.name == "NW" ||
-            other.gameObject.name == "NE" ||
-            other.gameObject.name == "SE" ||
-            other.gameObject.name == "SW") && (car.dir.ToString() != other.gameObject.name)
-            && other != car.coll )
+        if ((other.gameObject.name == "NW" ||
+             other.gameObject.name == "NE" ||
+             other.gameObject.name == "SE" ||
+             other.gameObject.name == "SW") && (car.dir.ToString() != other.gameObject.name)
+             && other != car.coll)
         {
             //Solo se muestran las flechas tras haber pasado por una carretera con la etiqueta Straight
             if (arrowsEnabled)
@@ -220,7 +221,7 @@ public class CarMove : MonoBehaviour
                 arrowsEnabled = false;
             }
         }
-        
+
         //Tras pasar por una carretera recta ya se pueden volver a mostrar las flechas.
         if (other.gameObject.tag == "S")
             arrowsEnabled = true;
@@ -230,7 +231,7 @@ public class CarMove : MonoBehaviour
             this.intersection = true;
             stopCar();
         }
-            
+
     }
 
     public bool mapOpened
@@ -243,6 +244,5 @@ public class CarMove : MonoBehaviour
     public float getConsumption() { return car.consumption; }
 }
 //=====================================================================================================================
-
 
 

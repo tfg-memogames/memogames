@@ -13,7 +13,7 @@ using RAGE.Analytics;
 public class CanvasManager : MonoBehaviour
 {
     private CursorMode cursorMode = CursorMode.Auto;
-    public static bool end=false;                                                       //Flag que determina el final del juego   
+    public static bool end = false;                                                       //Flag que determina el final del juego   
     public GameObject electricBar;                                                      //Barra de combustible para el coche electrico.
     public GameObject gasoilBar;                                                        //Barra de combustible para el coche de gasolina.
     public Text dist_Text;                                                              //Texto con la distancia recorrida
@@ -62,22 +62,24 @@ public class CanvasManager : MonoBehaviour
         bar = currentBar.transform.GetChild(0).transform.GetChild(0).gameObject;                        //Se asigna la barra de porcentaje de combustible
         this.rt = bar.GetComponent<RectTransform>();                                                    //Se configura el rectángulo de la barra para poder decrementarla
         this.totalEnergy = rt.sizeDelta.x;                                                              //Se inicializa el valor total del combstible
-		this.popUp.endOfGamePanel.SetActive (false);                                                    //Se ocultan los popUps de partida completa y fin de la partida.
+        this.popUp.endOfGamePanel.SetActive(false);                                                    //Se ocultan los popUps de partida completa y fin de la partida.
         this.popUp.star.SetActive(false);
     }
     ///<summary>
     ///Load the tutorial video
     /// Carga el video tutorial
     ///</summary>
-    public void video(){
-		SceneManager.LoadScene("Video_Tutorial");
-    	
+    public void video()
+    {
+        SceneManager.LoadScene("Video_Tutorial");
+
     }
 
     private void FixedUpdate()
     {
-        if(end){
-			this.popUp.endOfGamePanel.SetActive (true);
+        if (end)
+        {
+            this.popUp.endOfGamePanel.SetActive(true);
         }
 
     }
@@ -102,8 +104,8 @@ public class CanvasManager : MonoBehaviour
     ///</summary>
     public void mapButton_Clicked()
     {
-        if(!end)
-        gm.showMap();
+        if (!end)
+            gm.showMap();
 
     }
     ///<summary>        
@@ -124,17 +126,19 @@ public class CanvasManager : MonoBehaviour
     }
 
     //=========================================================================================================================================
-   
+
     //Se colocan las estrellas al ganar la partida. Number contiene el número de estrellas consegudas.
-	private void instatiateStars(int number) {
-		for (int i = 0; i < number; i++) {
-			GameObject star = Instantiate (this.popUp.star);                                                //Se instancian las estrellas
-			star.SetActive (true);                                                                          //Se activan para hacerlas visibles
-			star.transform.parent = this.popUp.starsPanel.transform;                                        //Se transforma el panel de estrellas para encajarlo en el popUp
-			star.transform.localPosition = Vector3.zero;
-			star.transform.localScale = Vector3.one;
-		}
-	}
+    private void instatiateStars(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            GameObject star = Instantiate(this.popUp.star);                                                //Se instancian las estrellas
+            star.SetActive(true);                                                                          //Se activan para hacerlas visibles
+            star.transform.parent = this.popUp.starsPanel.transform;                                        //Se transforma el panel de estrellas para encajarlo en el popUp
+            star.transform.localPosition = Vector3.zero;
+            star.transform.localScale = Vector3.one;
+        }
+    }
 
     //===========================================================================================================================================
     ///<summary>
@@ -169,9 +173,9 @@ public class CanvasManager : MonoBehaviour
             this.popUp.scoreText.text = "No has conseguido ninguna estrella :(";
         }
 
-        if (miniGame)                                   
-            this.popUp.endOfGamePanel.SetActive (true);                                                    //Si estamos en modo minijuego activamos el panel de fin de partida.
-        else 
+        if (miniGame)
+            this.popUp.endOfGamePanel.SetActive(true);                                                    //Si estamos en modo minijuego activamos el panel de fin de partida.
+        else
             SceneManager.LoadScene("Hall");                                                                //Si estamos en modo historia se carga la escena del hall
     }
     //=======================================================================================================================================
@@ -187,9 +191,10 @@ public class CanvasManager : MonoBehaviour
         this.popUp.message.text = "¡Te has quedado sin combustible!";                                       //Se actualiza el mensaje
         popUp.scoreText.text = "";
         this.popUp.message.color = new Color(0.4F, 0.04F, 0.16F, 1);                                        // 680C2AFF divide (100 / FF (256 bits)) * rgb
-        
+
         //Si estamos en modo hitoria
-        if (!this.miniGame) { 
+        if (!this.miniGame)
+        {
             this.popUp.restartButton.gameObject.SetActive(true);
             this.popUp.nextLevelButton.gameObject.SetActive(false);
         }
@@ -197,6 +202,5 @@ public class CanvasManager : MonoBehaviour
     }
     //=======================================================================================================================================
 }
-
 
 

@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LevelSelector : MonoBehaviour {
+public class LevelSelector : MonoBehaviour
+{
 
     private GameState gameS;
     private CursorMode cursorMode = CursorMode.Auto;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         this.gameS = GameObject.FindObjectOfType<GameState>();
     }
 
@@ -40,12 +42,12 @@ public class LevelSelector : MonoBehaviour {
         SceneManager.LoadScene("Video_tutorial");
     }
 
-	public void Quit()
-	{
-		#if UNITY_EDITOR
-		UnityEditor.EditorApplication.isPlaying = false;
-		#else
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
 		Application.Quit();
-		#endif
-	}
+#endif
+    }
 }
