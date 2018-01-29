@@ -7621,7 +7621,7 @@ GameObject:
   - component: {fileID: 139605919}
   - component: {fileID: 139605918}
   m_Layer: 0
-  m_Name: carretera1 (7)
+  m_Name: 28
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8376,7 +8376,7 @@ GameObject:
   - component: {fileID: 151218830}
   - component: {fileID: 151218829}
   m_Layer: 0
-  m_Name: carretera1 (5)
+  m_Name: 21
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12649,7 +12649,7 @@ GameObject:
   - component: {fileID: 222109833}
   - component: {fileID: 222109832}
   m_Layer: 0
-  m_Name: NE
+  m_Name: 20
   m_TagString: SR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16009,7 +16009,7 @@ GameObject:
   - component: {fileID: 278766183}
   - component: {fileID: 278766182}
   m_Layer: 0
-  m_Name: SingleRoad- N (3)
+  m_Name: c
   m_TagString: R
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16724,7 +16724,7 @@ GameObject:
   - component: {fileID: 286439438}
   - component: {fileID: 286439437}
   m_Layer: 0
-  m_Name: carretera2 (6)
+  m_Name: 8
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29791,7 +29791,7 @@ GameObject:
   - component: {fileID: 484002881}
   - component: {fileID: 484002880}
   m_Layer: 0
-  m_Name: SingleRoad- N (4)
+  m_Name: 13
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32061,7 +32061,7 @@ GameObject:
   - component: {fileID: 524754051}
   - component: {fileID: 524754050}
   m_Layer: 0
-  m_Name: NW
+  m_Name: 19
   m_TagString: LR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32387,6 +32387,43 @@ MonoBehaviour:
   mapClosedSprite: {fileID: 21300000, guid: 91e4fa3a27f284709a1f83fee6fef970, type: 3}
   mainCamera: {fileID: 1734639515}
   car: {fileID: 2089964436}
+  carretera1:
+  - {fileID: 278766180}
+  - {fileID: 2060526307}
+  - {fileID: 2114396104}
+  - {fileID: 864902658}
+  carretera2:
+  - {fileID: 1834708938}
+  - {fileID: 1565910396}
+  - {fileID: 2042448873}
+  - {fileID: 286439435}
+  - {fileID: 872859049}
+  carretera3:
+  - {fileID: 1583864867}
+  - {fileID: 1577249113}
+  - {fileID: 758583334}
+  - {fileID: 1804123072}
+  - {fileID: 484002878}
+  - {fileID: 2116653187}
+  carretera4:
+  - {fileID: 1691068286}
+  - {fileID: 1764450471}
+  - {fileID: 1848640763}
+  - {fileID: 2074079584}
+  - {fileID: 524754048}
+  carretera5:
+  - {fileID: 222109830}
+  - {fileID: 151218827}
+  - {fileID: 1000278791}
+  - {fileID: 1432799884}
+  - {fileID: 907485491}
+  carreteraObjetivo:
+  - {fileID: 1590405750}
+  - {fileID: 693264944}
+  - {fileID: 1954398539}
+  - {fileID: 139605916}
+  - {fileID: 1313479222}
+  - {fileID: 550677712}
 --- !u!224 &528614511
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33908,7 +33945,7 @@ GameObject:
   - component: {fileID: 550677715}
   - component: {fileID: 550677714}
   m_Layer: 0
-  m_Name: carretera1 (6)
+  m_Name: 30
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41436,7 +41473,7 @@ GameObject:
   - component: {fileID: 693264947}
   - component: {fileID: 693264946}
   m_Layer: 0
-  m_Name: carretera1 (5)
+  m_Name: 26
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44613,7 +44650,7 @@ GameObject:
   - component: {fileID: 758583337}
   - component: {fileID: 758583336}
   m_Layer: 0
-  m_Name: carretera1 (6)
+  m_Name: 12
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44626,13 +44663,13 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758583334}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.041168097, z: -0, w: 0.99915224}
   m_LocalPosition: {x: -16.872803, y: -0.61743164, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 770603510}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -4.7190003, z: 0}
 --- !u!60 &758583336
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -52184,7 +52221,7 @@ GameObject:
   - component: {fileID: 864902661}
   - component: {fileID: 864902660}
   m_Layer: 0
-  m_Name: SW
+  m_Name: 4
   m_TagString: SL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52712,7 +52749,7 @@ GameObject:
   - component: {fileID: 872859052}
   - component: {fileID: 872859051}
   m_Layer: 0
-  m_Name: SE
+  m_Name: 9
   m_TagString: LR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54584,7 +54621,7 @@ GameObject:
   - component: {fileID: 907485494}
   - component: {fileID: 907485493}
   m_Layer: 0
-  m_Name: SW
+  m_Name: 24
   m_TagString: SL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61086,7 +61123,7 @@ GameObject:
   - component: {fileID: 1000278794}
   - component: {fileID: 1000278793}
   m_Layer: 0
-  m_Name: carretera1 (6)
+  m_Name: 22
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62597,7 +62634,7 @@ GameObject:
   - component: {fileID: 1016307768}
   - component: {fileID: 1016307767}
   m_Layer: 0
-  m_Name: SW
+  m_Name: 31
   m_TagString: SL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81764,7 +81801,7 @@ GameObject:
   - component: {fileID: 1313479225}
   - component: {fileID: 1313479224}
   m_Layer: 0
-  m_Name: carretera1 (5)
+  m_Name: 29
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88781,7 +88818,7 @@ GameObject:
   - component: {fileID: 1432799887}
   - component: {fileID: 1432799886}
   m_Layer: 0
-  m_Name: carretera1 (7)
+  m_Name: 23
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96883,7 +96920,7 @@ GameObject:
   - component: {fileID: 1565910399}
   - component: {fileID: 1565910398}
   m_Layer: 0
-  m_Name: carretera2 (8)
+  m_Name: 6
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97510,7 +97547,7 @@ GameObject:
   - component: {fileID: 1577249116}
   - component: {fileID: 1577249115}
   m_Layer: 0
-  m_Name: carretera1 (5)
+  m_Name: 11
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97917,7 +97954,7 @@ GameObject:
   - component: {fileID: 1583864870}
   - component: {fileID: 1583864869}
   m_Layer: 0
-  m_Name: NE
+  m_Name: 10
   m_TagString: SL
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98400,7 +98437,7 @@ GameObject:
   - component: {fileID: 1590405753}
   - component: {fileID: 1590405752}
   m_Layer: 0
-  m_Name: NE
+  m_Name: 25
   m_TagString: SR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104021,7 +104058,7 @@ GameObject:
   - component: {fileID: 1691068289}
   - component: {fileID: 1691068288}
   m_Layer: 0
-  m_Name: SE
+  m_Name: 15
   m_TagString: SLR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108487,7 +108524,7 @@ GameObject:
   - component: {fileID: 1764450474}
   - component: {fileID: 1764450473}
   m_Layer: 0
-  m_Name: carretera2 (6)
+  m_Name: 16
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111555,7 +111592,7 @@ GameObject:
   - component: {fileID: 1804123073}
   - component: {fileID: 1804123074}
   m_Layer: 0
-  m_Name: carretera1 (7)
+  m_Name: 13
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111570,7 +111607,7 @@ Transform:
   m_GameObject: {fileID: 1804123072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.7928467, y: 5.732605, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 0.93735117}
   m_Children: []
   m_Father: {fileID: 770603510}
   m_RootOrder: 2
@@ -112745,7 +112782,7 @@ GameObject:
   - component: {fileID: 1834708941}
   - component: {fileID: 1834708940}
   m_Layer: 0
-  m_Name: NW
+  m_Name: 5
   m_TagString: LR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112898,7 +112935,7 @@ GameObject:
   - component: {fileID: 1836508047}
   - component: {fileID: 1836508046}
   m_Layer: 0
-  m_Name: carretera1 (7)
+  m_Name: 3
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113652,7 +113689,7 @@ GameObject:
   - component: {fileID: 1848640766}
   - component: {fileID: 1848640765}
   m_Layer: 0
-  m_Name: carretera2 (7)
+  m_Name: 17
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119698,7 +119735,7 @@ GameObject:
   - component: {fileID: 1954398542}
   - component: {fileID: 1954398541}
   m_Layer: 0
-  m_Name: carretera1 (6)
+  m_Name: 27
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126431,7 +126468,7 @@ GameObject:
   - component: {fileID: 2042448876}
   - component: {fileID: 2042448875}
   m_Layer: 0
-  m_Name: carretera2 (7)
+  m_Name: 7
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128670,7 +128707,7 @@ GameObject:
   - component: {fileID: 2060526310}
   - component: {fileID: 2060526309}
   m_Layer: 0
-  m_Name: carretera1 (5)
+  m_Name: 1
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129349,7 +129386,7 @@ GameObject:
   - component: {fileID: 2074079587}
   - component: {fileID: 2074079586}
   m_Layer: 0
-  m_Name: carretera2 (8)
+  m_Name: 18
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132099,7 +132136,7 @@ GameObject:
   - component: {fileID: 2114396107}
   - component: {fileID: 2114396106}
   m_Layer: 0
-  m_Name: carretera1 (6)
+  m_Name: 2
   m_TagString: S
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132412,7 +132449,7 @@ GameObject:
   - component: {fileID: 2116653190}
   - component: {fileID: 2116653189}
   m_Layer: 0
-  m_Name: SW
+  m_Name: 14
   m_TagString: SLR
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

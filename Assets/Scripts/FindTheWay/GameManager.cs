@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using RAGE.Analytics;
 using System.Linq;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,8 +22,25 @@ public class GameManager : MonoBehaviour
     public Camera mainCamera;                                                                       //Main Camera
     public static GameState gameS;                                                                  //Estado del juego
     public CarMove car;                                                                             //Script de movimiento del coche
-
-
+     
+    public GameObject[] carretera1;
+    public GameObject[] carretera2;
+    public GameObject[] carretera3;
+    public GameObject[] carretera4;
+    public GameObject[] carretera5;
+    public GameObject[] carreteraObjetivo;
+    int[][] jaggedArray2 = new int[][]
+{
+    new int[] {1,3,5,7,9},
+    new int[] {0,2,4,6},
+    new int[] {11,22}
+};
+    public List<GameObject[]> todo1 = new List<GameObject[]>();
+    public List<GameObject[]> todo2 = new List<GameObject[]>();
+    public List<GameObject[]> todo3 = new List<GameObject[]>();
+    public List<GameObject[]> todo4 = new List<GameObject[]>();
+    public List<GameObject[]> todo5 = new List<GameObject[]>();
+    public List<List<GameObject[]>> todos = new List<List<GameObject[]>>();
     private static Vector3 cameraPosition = new Vector3(-273.4f, 10.85f, -350.0f);                  //Posición de la cámara al pulsar el mapa
     private Vector3 camCurrPos;                                                                     //Posición actual de la cámara
 
@@ -99,6 +117,47 @@ public class GameManager : MonoBehaviour
         return bestPath.ToList().Contains(road);                                                            //Transforma el array en una lista y comprueba que los caminos sean iguales.                                           
     }
     //============================================================================================================================
+    public int[][] mejor_camino() {
+        todo1.Add(carretera1);
+        todo1.Add(carretera2);
+        todo1.Add(carretera5);
+        todo2.Add(carretera2);
+        todo2.Add(carretera3);
+        todo3.Add(carretera3);
+        todo3.Add(carretera4);
+        todo4.Add(carretera4);
+        todo4.Add(carretera5);
+        todo4.Add(carreteraObjetivo);
+        todo5.Add(carretera5);
+        todo5.Add(carreteraObjetivo);
+        todos.Add(todo1);
+        todos.Add(todo2);
+        todos.Add(todo3);
+        todos.Add(todo4);
+        todos.Add(todo5);
+        
+        int distancia = calcularDistancia(todos[1]);
+        return null;
+    }
+    /// <summary>
+    /// Calcula la distancia de los elementos que tiene 
+    /// cada vértice del grafo.
+    /// </summary>
+    /// <param name="list"></param> Lista con los elementos que tiene el camino
+    /// <returns></returns>
+    private int calcularDistancia(List<GameObject[]> list)
+    {
+        int calculando = 0;
+        for (int i = 1; i<list.Capacity; i++)
+        {            
+            calculando += list[i].Length;
+        }
+        return calculando;
+    }
+
+   
+
+  
 
     //Método que activa los elementos del mapa o los desactiva segun el valor de opened.
     private void openMap(bool opened)
