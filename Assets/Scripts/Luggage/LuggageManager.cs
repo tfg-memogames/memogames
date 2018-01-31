@@ -50,6 +50,8 @@ public class LuggageManager : MonoBehaviour {
     // Name of the level
     private string level;
 
+
+    private CursorMode cursorMode = CursorMode.Auto;
     private void Awake()
     {
         this.right.SetActive(false);
@@ -155,6 +157,7 @@ public class LuggageManager : MonoBehaviour {
         this.popUpPanel.SetActive(true);
         this.openInfoButton.SetActive(false);
         this.interactable = false;
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
         // Tracker: player forgot the target and opens the popUp 
         Tracker.T.trackedGameObject.Interacted("OlvidoPrendaAGuardar");
     }
@@ -193,6 +196,7 @@ public class LuggageManager : MonoBehaviour {
         this.luggagePanel.SetActive(false);
         this.floorPanel.SetActive(false);
         this.interactable = true;
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 
     public void ClosePopUp()
@@ -200,6 +204,7 @@ public class LuggageManager : MonoBehaviour {
         this.popUpPanel.SetActive(false);
         this.openInfoButton.SetActive(true);
         this.interactable = true;
+        Cursor.SetCursor(null, Vector2.zero, cursorMode);
     }
 
     public bool isInteractable

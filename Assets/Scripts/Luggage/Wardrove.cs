@@ -24,7 +24,7 @@ public class Wardrove : MonoBehaviour {
 
     private void OnMouseOver()
     {
-        if (!this.gameManager.isInteractable || !Input.GetMouseButtonDown(1))
+        if (!this.gameManager.isInteractable || !Input.GetMouseButtonDown(0))
             return;
 
         if (open) CloseDoor();
