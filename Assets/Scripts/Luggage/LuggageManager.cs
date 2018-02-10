@@ -39,6 +39,7 @@ public class LuggageManager : MonoBehaviour {
     private DisplayPanel displayPanel;
     public GameObject right;
     public GameObject wrong;
+    int timerFeedback = 0;
 
     // Button that oppens the popUpInfo
     public GameObject openInfoButton;
@@ -113,10 +114,13 @@ public class LuggageManager : MonoBehaviour {
     }
 
     public void ShowFeedback(bool success)
-    {
+    {  
+        
         GameObject instance = null;
         instance = (success) ? displayPanel.instantiatePanel(right) : displayPanel.instantiatePanel(wrong);
         instance.SetActive(true);
+        Destroy(instance, 0.7f);
+         
     }
 
     public void TargetCompleted()
