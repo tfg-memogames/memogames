@@ -25,7 +25,7 @@ public class DragObject: MonoBehaviour {
     //no se usa comprobar
     private void OnMouseOver()
     {
-        //Debug.Log("OnMouseOver");
+        Debug.Log("OnMouseOver");
     }
     
     void OnMouseDown()

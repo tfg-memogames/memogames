@@ -36,10 +36,11 @@ public class ClothesController : MonoBehaviour {
     // and adding BoxCollider2D and script DragObject
     private void InitializeTargets()
     {
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Item"))
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Item"))// GameObject.FindGameObjectsWithTag("Item"))
         {
             if (go.GetComponent<CanvasRenderer>() == null)
             {
+              
                 go.GetComponent<DragObject>().destiny = new GameObject[1];
                 go.GetComponent<DragObject>().destiny.SetValue(dropObject, 0);
             }

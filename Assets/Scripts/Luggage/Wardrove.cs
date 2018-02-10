@@ -7,8 +7,12 @@ using RAGE.Analytics;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Wardrove : MonoBehaviour {
 
-    public Sprite openned;
-    public Sprite closed;
+    public Vector3 pos;
+    public Vector3 scale;
+
+    public GameObject inside;
+    private Vector3 initialPos;
+    private Vector3 initialScale;
 
     private LuggageManager gameManager;
     private SpriteRenderer render;
@@ -16,6 +20,8 @@ public class Wardrove : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        initialPos = this.transform.localPosition;
+        initialScale = this.transform.localScale;
         this.gameManager = GameObject.FindObjectOfType<LuggageManager>();
         render = gameObject.GetComponent<SpriteRenderer>();
         CloseDoor();
@@ -44,7 +50,10 @@ public class Wardrove : MonoBehaviour {
     private void CloseDoor()
     {
         open = false;
-        this.render.sprite = closed;
+        this.transform.localPosition = initialPos;
+        this.transform.localScale = initialScale;
+        inside.SetActive(false);
+        // this.render.sprite = closed;
         ShowChildObjects(false);
         EnableColliders(false);
     }
@@ -52,7 +61,10 @@ public class Wardrove : MonoBehaviour {
     private void OpenDoor()
     {
         open = true;
-        this.render.sprite = openned;
+        inside.SetActive(true);
+        this.transform.localPosition = pos;
+        this.transform.localScale = scale;
+        //this.render.sprite = openned;
         ShowChildObjects(true);
         EnableColliders(true);
 
@@ -64,9 +76,9 @@ public class Wardrove : MonoBehaviour {
     {
         string var = "";
 
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < inside.transform.childCount; i++)
         {
-            var += transform.GetChild(i).gameObject.name + "-";
+            var += inside.transform.GetChild(i).gameObject.name + "-";
         }
 
         Tracker.T.setVar("ObjetosVistos", var);
@@ -76,9 +88,9 @@ public class Wardrove : MonoBehaviour {
 
     private void ShowChildObjects(bool show)
     {
-        for (int i = 0; i < gameObject.transform.childCount; i++)
+        for (int i = 0; i < inside.gameObject.transform.childCount; i++)
         {
-            gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = show;
+            inside.gameObject.transform.GetChild(i).gameObject.GetComponent<SpriteRenderer>().enabled = show;
         }
     }
 

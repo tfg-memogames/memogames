@@ -24,7 +24,7 @@ public class HoverEffect : MonoBehaviour {
 
     private void OnMouseEnter()
     {
-        if (this.gameManager.isInteractable && (wardroveDoor == null || !wardroveDoor.isOpen)) { 
+        if (this.gameManager.isInteractable){
         SetColor(this.hoverColor);
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         }
