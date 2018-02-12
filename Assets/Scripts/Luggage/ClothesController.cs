@@ -38,6 +38,7 @@ public class ClothesController : MonoBehaviour {
     {
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Item"))// GameObject.FindGameObjectsWithTag("Item"))
         {
+            Debug.Log(go.name);
             if (go.GetComponent<CanvasRenderer>() == null)
             {
               
