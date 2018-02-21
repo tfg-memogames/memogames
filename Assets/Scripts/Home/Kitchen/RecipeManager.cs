@@ -176,7 +176,9 @@ public class RecipeManager : MonoBehaviour
             NotifyStepToTracker(true);
 
             //Instanciar el tick del shadowEffect como que ha tenido exito
-            displayPanel.instantiatePanel(correct, lastStep.drop);
+              GameObject tick =  displayPanel.instantiatePanel(correct);
+              tick.gameObject.transform.position = lastStep.drop.gameObject.transform.position;
+              Destroy(tick, 0.7f);
 
             if (steps.Count == _currentStep)
             {
@@ -197,7 +199,9 @@ public class RecipeManager : MonoBehaviour
             lastStep.drag.GetComponent<DragObject>().returnToStartPoint();
 
             //Instanciamos la X del shadowEffect
-            displayPanel.instantiatePanel(mistake, lastStep.drop);
+            GameObject error = displayPanel.instantiatePanel(mistake);
+            error.gameObject.transform.position = lastStep.drop.gameObject.transform.position;
+            Destroy(error, 1.0f);
             lastStep.drag.GetComponent<DragObject>().returnToStartPoint();
 
             // Tracker: notificamos error, paso que tocaba hacer (numero), paso que ha hecho (drag.name + drop.name + action), tiempo actual
