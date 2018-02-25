@@ -21,6 +21,7 @@ TagManager:
   - Map
   - KitchenCupBoard
   - Partner
+  - LevelSelector
   layers:
   - Default
   - TransparentFX
@@ -75,4 +76,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 3939154115
+    locked: 0
+  - name: LevelSelector
+    uniqueID: 119598279
     locked: 0

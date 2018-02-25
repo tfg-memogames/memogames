@@ -82,7 +82,7 @@ public class Logica : MonoBehaviour {
             }
 
             
-            texto.text = "Has contestado "+ intentos+ " objetos.\nTe quedan "+ (15-intentos);
+            texto.text = "Has contestado "+ intentos+ " objetos\n\nTe quedan "+ (15-intentos);
             Debug.Log(puntos);
         }
         else
