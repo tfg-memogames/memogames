@@ -5,40 +5,40 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu/Menu.unity
     guid: 2d5264ee4322445b9b476da0fa7cc726
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FindTheWay/Form.unity
     guid: 8662e9adb6410974b9b404d3f609d4a5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Home/Black.unity
     guid: d1845721650d14ccda9eb81861783342
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FindTheWay/Level_Selector.unity
     guid: ba38be43717eca1499fa2d6c941c066d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FindTheWay/Tutorial_Jugable.unity
     guid: 9020736b029dd47449576802b5f48f95
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FindTheWay/Hard_Level.unity
     guid: 3d0029d88cd0ae64ba2cec130cd36a1e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FindTheWay/Medium_Level.unity
     guid: bb63c6cb5a00a824ca78d32d5cd0fffb
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FindTheWay/Easy_Level.unity
     guid: 6e8b8ffeac138124c9ce12dadf3dfecc
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Home/Hall.unity
     guid: cbcd674a311c48142a6000d2e3c37a1b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FindTheWay/Video_tutorial.unity
     guid: 0f70c3aa083911949ac673cdc8a7bc7c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Coffee Shop/Coffee_Shop.unity
     guid: 25427cf6cb6e81f40a76a01476499b92
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu/Ready.unity
     guid: 9195c699f90884adbb9c394257a1a645
   - enabled: 0
@@ -47,37 +47,37 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LuggageGame.unity
     guid: ee1ba81de2baff8419f8f0af9cb7b284
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Home/Bathroom.unity
     guid: 317c9f1b14cd7c24baf7d5fbf658e678
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Menu/Credits.unity
     guid: 48006228868f145c29d5fcb11c06a576
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Home/Hallway.unity
     guid: 296732f0154584449963be5811326034
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Home/Kitchen.unity
     guid: 98e15cd4c10bb6940a9e1951a927cdf0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Home/Living_room.unity
     guid: 822ed5123e28ebc438cd0fe4401e9fe7
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Home/Main_bedroom.unity
     guid: b6682392934bc58499a7e3267b110f89
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Home/Second_bedroom.unity
     guid: 1ca69e9a5cbf1cf4ebf3131f8b6b5332
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Recipes/SpaguettiRecipe.unity
     guid: 2415914bc744bff428e36e7176ebe809
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Coffee Shop/Conver_Before_FTW.unity
     guid: 3cbf50599bcdeaa4fbb8108d47fc224d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Airport.unity
     guid: def9cf597cfcd43ef927d6a96f5d6fdf
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FindTheWay/Car_Selector.unity
     guid: 8e7df445527e7d74692ca259cdaaf01c
   - enabled: 0

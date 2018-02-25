@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
-
 
 public class GM : MonoBehaviour {
 
@@ -12,7 +10,7 @@ public class GM : MonoBehaviour {
     private GameObject levelSelectorPanel;
     private int level;              //0 = facil, 1= medio, 2 = dificil
     private float timer = 1;
-    
+    private float time, lasTime = 0;
     void Start () {
         levelSelectorPanel = GameObject.FindGameObjectWithTag("LevelSelector");
 	}
@@ -26,7 +24,7 @@ public class GM : MonoBehaviour {
         {
             image.SetActive(false);
         }
-        image.GetComponentInChildren<Text>().text = timer.ToString("f0");
+        Debug.Log(timer);
 		
 	}
 
@@ -42,7 +40,7 @@ public class GM : MonoBehaviour {
        
         levelSelectorPanel.SetActive(false);
         image.SetActive(true);
-       
+       // Debug.Log(timer);
 
     }
     public void pista()
