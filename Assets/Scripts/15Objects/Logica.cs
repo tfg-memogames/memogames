@@ -38,7 +38,7 @@ public class Logica : MonoBehaviour {
         string type = "A";
         if (Random.Range(0, 100) < 50) type = "B"; 
 
-        sprite.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/15Objects/"+type);
+        sprite.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/15Objects/"+type);
         Object[] aux;
         if (type == "A") aux = A;
         else aux = B;
