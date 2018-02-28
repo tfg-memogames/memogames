@@ -22,6 +22,7 @@ TagManager:
   - KitchenCupBoard
   - Partner
   - LevelSelector
+  - Points
   layers:
   - Default
   - TransparentFX

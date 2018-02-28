@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class opalopa : MonoBehaviour
+public class Objeto : MonoBehaviour
 {
+    public string[] words;
 
-    // Use this for initialization
-    private SortedDictionary<string, int> diccionary;
-
-
-    public string[] words; 
     void Start()
     {
        
