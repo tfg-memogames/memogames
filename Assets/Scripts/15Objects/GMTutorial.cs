@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class GMTutorial : MonoBehaviour
 {
-    public GameObject textBx;                                       //Game object que contiene el inputField
+    public InputField textBx;                                       //Game object que contiene el inputField
     public GameObject[] tutorialPanels;                             //Array que contiene los paneles del tutorial
-    public Text points;                                       //Texto para el panel final;
+    public Text points;                                             //Texto para el panel final;
     public GameObject finalPanel;                                   //Panel final;
 
     private bool tutorial = true;                                   //Booleano que indica si ha terminado el tutorial o no
@@ -61,7 +61,7 @@ public class GMTutorial : MonoBehaviour
         if (i > 0)
         {
             diccionary.Clear();
-            textBx.SetActive(true);
+            textBx.gameObject.SetActive(true);
         }
         while (i > 0)
         {
@@ -102,7 +102,7 @@ public class GMTutorial : MonoBehaviour
                     contTutorial++;
                     tutorialPanels[contTutorial].SetActive(true);
 
-                    textBx.SetActive(true);
+                    textBx.gameObject.SetActive(true);
 
                     int id;
                     string[] aux = result[i].GetComponent<Objeto>().dameDic(out id);
@@ -110,7 +110,7 @@ public class GMTutorial : MonoBehaviour
                     {
                         for (int w = 0; w < aux.Length; w++)
                         {
-                            diccionary.Add(aux[w], i + 1);
+                            diccionary.Add(aux[w], id);
                         }
 
 
@@ -155,8 +155,11 @@ public class GMTutorial : MonoBehaviour
         }
 
         diccionary.Clear();                                                    //Limpiamod el diccionario.
-        textBx.SetActive(false);
+        textBx.gameObject.SetActive(false);
         attempts++;
+
+        textBx.Select();
+        textBx.text = "";
     }
 
 }

@@ -89,3 +89,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/15Objects/15Objects.unity
     guid: 7fec1dbf4ea1f6541ae96b07f0272ec8
+  - enabled: 1
+    path: Assets/Scenes/15Objects/Tutorial15O.unity
+    guid: fe1b72f50cea94744893873fca269079
