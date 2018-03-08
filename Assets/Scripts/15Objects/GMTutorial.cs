@@ -31,8 +31,10 @@ public class GMTutorial : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if(contTutorial == tutorialPanels.Length - 1)
+            if(contTutorial == tutorialPanels.Length - 2)
             {
+                tutorialPanels[contTutorial].SetActive(false);
+                contTutorial++;
                 tutorialPanels[contTutorial].SetActive(false);
                 contTutorial++;
             }
@@ -62,6 +64,8 @@ public class GMTutorial : MonoBehaviour
         {
             diccionary.Clear();
             textBx.gameObject.SetActive(true);
+            textBx.Select();
+            textBx.ActivateInputField();
         }
         while (i > 0)
         {
@@ -103,6 +107,8 @@ public class GMTutorial : MonoBehaviour
                     tutorialPanels[contTutorial].SetActive(true);
 
                     textBx.gameObject.SetActive(true);
+                    textBx.Select();
+                    textBx.ActivateInputField();
 
                     int id;
                     string[] aux = result[i].GetComponent<Objeto>().dameDic(out id);
@@ -151,6 +157,7 @@ public class GMTutorial : MonoBehaviour
             tutorialPanels[contTutorial].SetActive(false);
             contTutorial++;
             tutorialPanels[contTutorial].SetActive(true);
+            tutorialPanels[contTutorial+1].SetActive(true);
             tutorial = false;
         }
 
