@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
+using System.IO;
+using System.Text;
 
 
 public class GM : MonoBehaviour {
@@ -25,6 +28,8 @@ public class GM : MonoBehaviour {
     private int attempts = 0;                                           //Entero que controla el número de intentos.
     private int mistakes = 0;                                       //Entero que controla el número de errores del usuario.
 
+    FileStream fs;
+
     void Start () {
         levelSelectorPanel = GameObject.FindGameObjectWithTag("LevelSelector");
         levelSelectorPanel.SetActive(true);
@@ -34,6 +39,18 @@ public class GM : MonoBehaviour {
         finalPanel.SetActive(false);
         textBx.gameObject.SetActive(false);
         A.SetActive(false); B.SetActive(false);
+        string path = @".\Resultados.txt";
+
+        if (File.Exists(path))
+        {
+            // Note that no lock is put on the
+            // file and the possibility exists
+            // that another process could do
+            // something with it between
+            // the calls to Exists and Delete.
+            File.Delete(path);
+        }
+        fs = File.Create(path);
 
     }
 	
@@ -42,7 +59,6 @@ public class GM : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-
             //Se comprueba si en el punto del mouse al hacer click hay colisión con algún objeto. Se devuelven todos los objetos en result.
             Collider2D[] result = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
@@ -51,11 +67,15 @@ public class GM : MonoBehaviour {
             {
                 diccionary.Clear();
                 textBx.gameObject.SetActive(true);
+                textBx.Select();
+                textBx.ActivateInputField();
             }
+            string log = "Se ha pinchado en: ";
             while (i > 0)
             {
                 i--;
                 int id;
+                log += result[i].name+" ";
                 Debug.Log("manpinchao " + result[i].name);
                 string[] aux = result[i].GetComponent<Objeto>().dameDic(out id);       //El método dameDic devuelve una vector de palabras y un identificador que nos servirá para comprobar si se había respondido ya esa palabra.
 
@@ -70,7 +90,9 @@ public class GM : MonoBehaviour {
                 }
 
             }
-
+            log += "\n";
+            Byte[] info = new UTF8Encoding(true).GetBytes(log);
+           if(result.Length > 0)  fs.Write(info, 0, info.Length);
         }
 
         if (attempts == 15)
@@ -86,21 +108,30 @@ public class GM : MonoBehaviour {
     //Este método es llamado cada vez que se pulsa enter en el inputField y recibe de parámetro la palabra introducida.
     public void OnFieldEnter(string word)
     {
-
+        string log = "";
         if (diccionary.ContainsKey(word.ToLower()))                             //Si la palabra se encuentra en el diccionario la añadimos al diccionario de respondidos
         {
             int value = -1;
             diccionary.TryGetValue(word.ToLower(), out value);
             answered.Add(word, value);
-
+            log = "\t✔ Ha respondido correctamente con: " + word;
             Debug.Log("Acertaste");
         }
-        else
+        else if(word != "")
         {
             mistakes++;
             Debug.Log("Fallaste");
+            if (answered.ContainsKey(word.ToLower())) log = "\t✘ Ha respondido una palabra repetida: " + word;
+            else log = "\t✘ Ha respondido con error: " + word;
         }
+        else
+        {
+            log = "\tHa cambiado de objeto";
+        }
+        log += "\n";
 
+        Byte[] info = new UTF8Encoding(true).GetBytes(log);
+        fs.Write(info, 0, info.Length);
 
         diccionary.Clear();                                                    //Limpiamod el diccionario.
         textBx.gameObject.SetActive(false);
@@ -121,7 +152,7 @@ public class GM : MonoBehaviour {
     {
         if(level == "rand")
         {
-            if (Random.Range(0.0f, 100.0f) < 50) level = "A";
+            if (UnityEngine.Random.Range(0.0f, 100.0f) < 50) level = "A";
             else level = "B";
         }
         if (level == "A") A.SetActive(true);
