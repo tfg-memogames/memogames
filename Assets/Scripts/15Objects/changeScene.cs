@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using RAGE.Analytics;
 
 public class changeScene : MonoBehaviour {
 
@@ -17,7 +18,8 @@ public class changeScene : MonoBehaviour {
 
     public void ChangeScene(string scene)
     {
-        if(scene != "exit")
+        Tracker.T.Accessible.Accessed(scene, AccessibleTracker.Accessible.Screen);
+        if(scene != "exit")            
             SceneManager.LoadScene(scene);
         else
 #if UNITY_EDITOR
