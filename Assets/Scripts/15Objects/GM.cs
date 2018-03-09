@@ -5,12 +5,15 @@ using UnityEngine;
 using System;
 using System.IO;
 using System.Text;
+using RAGE.Analytics;
 
 
 public class GM : MonoBehaviour {
 
 
     //Lista y Contador
+    private String level = "A";
+    private bool isRandom = false;
     public GameObject lista;
     public Text listaText;
     public Text cont;
@@ -23,9 +26,11 @@ public class GM : MonoBehaviour {
 
     private SortedDictionary<string, int> diccionary;               //Diccionario que contendrá las palabras y sinónimos de los objetos seleccionados.
     private SortedDictionary<string, int> answered;                 //Diccionario que contiene las palabras que se han respondido.
+    private SortedDictionary<string, int> simpleDictionary;        //Diccionario que contiene las palabras que se han respondido en su version simplificada.
 
     private GameObject levelSelectorPanel;
-    private int attempts = 0;                                           //Entero que controla el número de intentos.
+    private int attempts = 0;                                       //Entero que controla el número de intentos.
+    private int totalAttempts = 15;                                 
     private int mistakes = 0;                                       //Entero que controla el número de errores del usuario.
 
     FileStream fs;
@@ -35,6 +40,7 @@ public class GM : MonoBehaviour {
         levelSelectorPanel.SetActive(true);
         diccionary = new SortedDictionary<string, int>();
         answered = new SortedDictionary<string, int>();
+        simpleDictionary = new SortedDictionary<string, int>();
         lista.SetActive(false);
         finalPanel.SetActive(false);
         textBx.gameObject.SetActive(false);
@@ -65,6 +71,7 @@ public class GM : MonoBehaviour {
             int i = result.Length;
             if (i > 0)
             {
+                simpleDictionary.Clear();
                 diccionary.Clear();
                 textBx.gameObject.SetActive(true);
                 textBx.Select();
@@ -79,6 +86,7 @@ public class GM : MonoBehaviour {
                 Debug.Log("manpinchao " + result[i].name);
                 string[] aux = result[i].GetComponent<Objeto>().dameDic(out id);       //El método dameDic devuelve una vector de palabras y un identificador que nos servirá para comprobar si se había respondido ya esa palabra.
 
+                simpleDictionary.Add(result[i].name, id);
                 if (!answered.ContainsValue(id))                                        //Si no se había respondido ya añadimos las palabras de cada objeto al diccionario.
                 {
                     for (int w = 0; w < aux.Length; w++)
@@ -95,27 +103,77 @@ public class GM : MonoBehaviour {
            if(result.Length > 0)  fs.Write(info, 0, info.Length);
         }
 
-        if (attempts == 15)
+        if (attempts == totalAttempts)
         {
             finalPanel.SetActive(true);
-            points.text = (attempts - mistakes).ToString() + "/15";
+            points.text = (attempts - mistakes).ToString() + "/" + totalAttempts;
+
+            // Completed the 15 Objects level
+            bool failed = (float)mistakes > ((float)totalAttempts / 2.0f);
+            float score = 1.0f - ((float)mistakes / (float)totalAttempts);
+            Tracker.T.Completable.Completed(level, CompletableTracker.Completable.Level, !failed, score);
         }
-
-
     }
 
 
     //Este método es llamado cada vez que se pulsa enter en el inputField y recibe de parámetro la palabra introducida.
     public void OnFieldEnter(string word)
     {
+
+
         string log = "";
-        if (diccionary.ContainsKey(word.ToLower()))                             //Si la palabra se encuentra en el diccionario la añadimos al diccionario de respondidos
+        if (diccionary.ContainsKey(word.ToLower()))                             
+            //Si la palabra se encuentra en el diccionario la añadimos al diccionario de respondidos
         {
+
             int value = -1;
             diccionary.TryGetValue(word.ToLower(), out value);
             answered.Add(word, value);
             log = "\t✔ Ha respondido correctamente con: " + word;
             Debug.Log("Acertaste");
+
+            // Tracking
+            Dictionary<String, bool> simpleVarDictionary = new Dictionary<string, bool>();
+            foreach (KeyValuePair<string, int> attachStat in simpleDictionary)
+            {
+                int simpleValue = -1;
+                simpleDictionary.TryGetValue(attachStat.Key, out simpleValue);
+                if(simpleValue == value)
+                {
+                    simpleVarDictionary.Add(attachStat.Key, true);
+                } else
+                {
+                    simpleVarDictionary.Add(attachStat.Key, false);
+                }
+                
+                // Mappings por si hacen falta en el analysis
+                String varKey = "mappings_" + attachStat.Key;
+                String varValue = "";
+                foreach (KeyValuePair<string, int> dicKeyValues in diccionary)
+                {
+                    if (dicKeyValues.Value == attachStat.Value)
+                    {
+                        varValue += dicKeyValues.Key + ",";
+                    }
+                }
+                if (varValue.EndsWith(","))
+                {
+                    varValue = varValue.Substring(0, varValue.Length - 1);
+                }
+                Tracker.T.setVar(varKey, varValue);
+            }
+            Tracker.T.setVar("targets", simpleVarDictionary);
+
+            foreach (KeyValuePair<string, int> attachStat in diccionary)
+            {
+                Tracker.T.setVar(attachStat.Key, attachStat.Value);
+            }
+            // No hubo cambio de objeto
+            Tracker.T.setVar("object-changed", 0);
+            // Respuesta correcta
+            Tracker.T.setVar("correct", 1);
+            Tracker.T.setSuccess(true);
+            Tracker.T.Alternative.Selected(level, word);
         }
         else if(word != "")
         {
@@ -123,10 +181,81 @@ public class GM : MonoBehaviour {
             Debug.Log("Fallaste");
             if (answered.ContainsKey(word.ToLower())) log = "\t✘ Ha respondido una palabra repetida: " + word;
             else log = "\t✘ Ha respondido con error: " + word;
+            
+            // Tracking
+            Dictionary<String, bool> simpleVarDictionary = new Dictionary<string, bool>();
+            foreach (KeyValuePair<string, int> attachStat in simpleDictionary)
+            {
+                simpleVarDictionary.Add(attachStat.Key, false);
+
+                // Mappings por si hacen falta en el analysis
+                String varKey = "mappings_" + attachStat.Key;
+                String varValue = "";
+                foreach (KeyValuePair<string, int> dicKeyValues in diccionary)
+                {
+                    if (dicKeyValues.Value == attachStat.Value)
+                    {
+                        varValue += dicKeyValues.Key + ",";
+                    }
+                }
+                if (varValue.EndsWith(","))
+                {
+                    varValue = varValue.Substring(0, varValue.Length - 1);
+                }
+                Tracker.T.setVar(varKey, varValue);
+            }
+            Tracker.T.setVar("targets", simpleVarDictionary);
+
+            foreach (KeyValuePair<string, int> attachStat in diccionary)
+            {
+                Tracker.T.setVar(attachStat.Key, attachStat.Value);
+            }
+            // No hubo cambio de objeto
+            Tracker.T.setVar("object-changed", 0);
+            // Respuesta incorrecta
+            Tracker.T.setVar("correct", 0);
+            Tracker.T.setSuccess(false);
+            Tracker.T.Alternative.Selected(level, word);
         }
         else
         {
             log = "\tHa cambiado de objeto";
+
+            // Tracking object changed without answer
+            Dictionary<String, bool> simpleVarDictionary = new Dictionary<string, bool>();
+            foreach (KeyValuePair<string, int> attachStat in simpleDictionary)
+            {
+                simpleVarDictionary.Add(attachStat.Key, false);
+
+                // Mappings por si hacen falta en el analysis
+                String varKey = "mappings_" + attachStat.Key;
+                String varValue = "";
+                foreach (KeyValuePair<string, int> dicKeyValues in diccionary)
+                {
+                    if(dicKeyValues.Value == attachStat.Value)
+                    {
+                        varValue += dicKeyValues.Key + ",";
+                    }
+                }
+                if(varValue.EndsWith(","))
+                {
+                    varValue = varValue.Substring(0, varValue.Length - 1);
+                }
+                Tracker.T.setVar(varKey, varValue);
+            }
+
+            Tracker.T.setVar("targets", simpleVarDictionary);
+
+            foreach (KeyValuePair<string, int> attachStat in diccionary)
+            {
+                Tracker.T.setVar(attachStat.Key, attachStat.Value);
+            }
+            // Hubo cambio de objeto
+            Tracker.T.setVar("object-changed", 1);
+            // Respuesta desconocida
+            Tracker.T.setVar("correct", -1);
+            Tracker.T.setSuccess(false);
+            Tracker.T.Alternative.Selected(level, "empty");
         }
         log += "\n";
 
@@ -134,10 +263,11 @@ public class GM : MonoBehaviour {
         fs.Write(info, 0, info.Length);
 
         diccionary.Clear();                                                    //Limpiamod el diccionario.
+        simpleDictionary.Clear();
         textBx.gameObject.SetActive(false);
         attempts++;
 
-        if (hayCont) cont.text = "Has respondido " + attempts.ToString() + " objetos.\nTe quedan " + (15 - attempts).ToString();
+        if (hayCont) cont.text = "Has respondido " + attempts.ToString() + " objetos.\nTe quedan " + (totalAttempts - attempts).ToString();
         if (hayLista)
         {
             listaText.text += "\n- " + word;
@@ -145,6 +275,10 @@ public class GM : MonoBehaviour {
         
         textBx.Select();
         textBx.text = "";
+
+        // Progreso del nivel actual
+        float progress = (float)attempts / (float)totalAttempts;
+        Tracker.T.Completable.Progressed(level, CompletableTracker.Completable.Level, progress);
     }
 
 
@@ -152,15 +286,28 @@ public class GM : MonoBehaviour {
     {
         if(level == "rand")
         {
+            isRandom = true;
             if (UnityEngine.Random.Range(0.0f, 100.0f) < 50) level = "A";
             else level = "B";
+        } else
+        {
+            isRandom = false;
         }
-        if (level == "A") A.SetActive(true);
-        else B.SetActive(true);
-       
-        levelSelectorPanel.SetActive(false);       
+        if (level == "A")
+        {
+            A.SetActive(true);
+        }
+        else
+        {
+            B.SetActive(true);
+        }
+        this.level = level;
+        levelSelectorPanel.SetActive(false);
 
+        // Started the 15 Objects level
+        Tracker.T.Completable.Initialized(level, CompletableTracker.Completable.Level);
     }
+
     public void Limpiatexto (Text txt)
     {
         txt.text = "";
