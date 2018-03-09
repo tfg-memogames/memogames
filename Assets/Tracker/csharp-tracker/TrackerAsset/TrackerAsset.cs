@@ -15,8 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#define ASYNC
-///#undef ASYNC
+
+//#define ASYNC
+#undef ASYNC
 
 namespace AssetPackage
 {
@@ -35,7 +36,8 @@ namespace AssetPackage
     [Obsolete("Use TrackerAsset instead")]
     public class Tracker
     {
-        public static TrackerAsset Instance {
+        public static TrackerAsset Instance
+        {
             get { return TrackerAsset.Instance; }
         }
     }
@@ -129,7 +131,8 @@ namespace AssetPackage
         /// <summary>
         /// Tracker StrictMode
         /// </summary>
-        public bool StrictMode {
+        public bool StrictMode
+        {
             get { return strictMode; }
             set { strictMode = value; }
         }
@@ -961,7 +964,7 @@ namespace AssetPackage
             }
             //}
 
-            ActionTrace(values[0],values[1],values[2]);
+            ActionTrace(values[0], values[1], values[2]);
         }
 
         /// <summary>
@@ -996,7 +999,8 @@ namespace AssetPackage
 
             if (trace)
             {
-                Trace(new TrackerEvent(this){
+                Trace(new TrackerEvent(this)
+                {
                     Event = new TrackerEvent.TraceVerb(verb),
                     Target = new TrackerEvent.TraceObject(target_type, target_id)
                 });
@@ -1104,7 +1108,7 @@ namespace AssetPackage
                         string data = ProcessTraces(traces, settings.TraceFormat);
 
                         if ((!SendPendingTraces() || !(queue.Count > 0 && SendTraces(data))) && queue.Count > 0)
-                                tracesPending.Add(data);
+                            tracesPending.Add(data);
                     }
                 }
                 else
@@ -1221,7 +1225,7 @@ namespace AssetPackage
 
         bool SendUnloggedTraces()
         {
-            if(tracesUnlogged.Count > 0 && this.ActorObject != null)
+            if (tracesUnlogged.Count > 0 && this.ActorObject != null)
             {
                 string data = ProcessTraces(tracesUnlogged.ToArray(), settings.TraceFormat);
                 bool sent = SendTraces(data);
@@ -1255,7 +1259,7 @@ namespace AssetPackage
                     }
 
                     break;
-                case StorageTypes.net:                    
+                case StorageTypes.net:
                     Dictionary<string, string> headers = new Dictionary<string, string>();
 
                     headers.Add("Content-Type", "application/json");
@@ -1375,7 +1379,7 @@ namespace AssetPackage
         /// </summary>
         /// <param name="id">Identifier.</param>
         /// <param name="value">Value.</param>
-        public void setVar(string id, Dictionary<string,bool> value) 
+        public void setVar(string id, Dictionary<string, bool> value)
         {
             addExtension(id, value);
         }
@@ -1475,11 +1479,11 @@ namespace AssetPackage
             }
         }
 
-#endregion Extension Methods
+        #endregion Extension Methods
 
-#endregion Methods
+        #endregion Methods
 
-#region Nested Types
+        #region Nested Types
 
         /// <summary>
         /// Interface that subtrackers must implement.
@@ -1504,21 +1508,21 @@ namespace AssetPackage
         /// </summary>
         public class TrackerEvent
         {
-#region Fields
-                private static Dictionary<string, string> verbIds;
+            #region Fields
+            private static Dictionary<string, string> verbIds;
 
-                private static Dictionary<string, string> objectIds;
+            private static Dictionary<string, string> objectIds;
 
-                private static Dictionary<string, string> extensionIds;
+            private static Dictionary<string, string> extensionIds;
 
-                private TraceVerb verb;
+            private TraceVerb verb;
 
-                private TraceObject target;
+            private TraceObject target;
 
-                private TraceResult result;
-#endregion Fields
+            private TraceResult result;
+            #endregion Fields
 
-#region Constructors
+            #region Constructors
 
             public TrackerEvent(TrackerAsset tracker)
             {
@@ -1527,9 +1531,9 @@ namespace AssetPackage
                 this.Result = new TraceResult();
             }
 
-#endregion Constructors
+            #endregion Constructors
 
-#region Properties
+            #region Properties
 
             private static Dictionary<string, string> VerbIDs
             {
@@ -1652,7 +1656,8 @@ namespace AssetPackage
             /// The target.
             /// </value>
             [DefaultValue("")]
-            public TraceObject Target {
+            public TraceObject Target
+            {
                 get { return target; }
                 set
                 {
@@ -1670,7 +1675,8 @@ namespace AssetPackage
             /// </value>
             [DefaultValue("")]
 
-            public TraceResult Result {
+            public TraceResult Result
+            {
                 get { return result; }
                 set
                 {
@@ -1688,9 +1694,9 @@ namespace AssetPackage
             /// </value>
             public double TimeStamp { get; private set; }
 
-#endregion Properties
+            #endregion Properties
 
-#region Methods
+            #region Methods
 
             /// <summary>
             /// Converts this object to a CSV Item.
@@ -1703,7 +1709,7 @@ namespace AssetPackage
             {
                 return this.TimeStamp
                     + "," + Event.ToCsv()
-                    + "," + Target.ToCsv() 
+                    + "," + Target.ToCsv()
                     + (this.Result == null || String.IsNullOrEmpty(this.Result.ToCsv()) ?
                        String.Empty :
                         this.Result.ToCsv());
@@ -1810,7 +1816,7 @@ namespace AssetPackage
             private bool isValid()
             {
                 bool check = true;
-                
+
                 check &= Event.isValid();
                 check &= Target.isValid();
                 check &= Result.isValid();
@@ -1818,9 +1824,9 @@ namespace AssetPackage
                 return true;
             }
 
-#endregion Methods
+            #endregion Methods
 
-#region Nested Types
+            #region Nested Types
 
             /// <summary>
             /// Class for Target storage.
@@ -1840,7 +1846,7 @@ namespace AssetPackage
                     }
                     set
                     {
-                        if(Parent == null || Parent.Tracker.Utils.check<TargetXApiException>(value, "xAPI Exception: Target Type is null or empty. Ignoring.", "xAPI Exception: Target Type can't be null or empty."))
+                        if (Parent == null || Parent.Tracker.Utils.check<TargetXApiException>(value, "xAPI Exception: Target Type is null or empty. Ignoring.", "xAPI Exception: Target Type can't be null or empty."))
                             _type = value;
                     }
                 }
@@ -1866,27 +1872,27 @@ namespace AssetPackage
 
                 public TraceObject(string type, string id)
                 {
-                    
+
                     this.Type = type;
                     this.ID = id;
                 }
 
                 public string ToCsv()
                 {
-                    return Type.Replace(",","\\,") + "," + ID.Replace(",", "\\,");
+                    return Type.Replace(",", "\\,") + "," + ID.Replace(",", "\\,");
                 }
 
                 public JSONClass ToJson()
                 {
                     string typeKey = Type;
 
-                    if(!ObjectIDs.TryGetValue(Type, out typeKey))
+                    if (!ObjectIDs.TryGetValue(Type, out typeKey))
                     {
                         typeKey = Type;
-                        if(Parent.Tracker.StrictMode)
+                        if (Parent.Tracker.StrictMode)
                             throw (new TargetXApiException("Tracker-xAPI: Unknown definition for target type: " + Type));
                         else
-                            Parent.Tracker.Log(Severity.Warning,"Tracker-xAPI: Unknown definition for target type: " + Type);
+                            Parent.Tracker.Log(Severity.Warning, "Tracker-xAPI: Unknown definition for target type: " + Type);
                     }
 
                     JSONClass obj = new JSONClass(), definition = new JSONClass();
@@ -1956,18 +1962,19 @@ namespace AssetPackage
                             sverb = value.ToLower();
                             this.vverb = v;
                         }
-                        else if(Parent != null) {
+                        else if (Parent != null)
+                        {
                             if (Parent.Tracker.StrictMode)
                                 throw (new VerbXApiException("Tracker-xAPI: Unknown definition for verb: " + value));
                             else
-                                Parent.Tracker.Log(Severity.Warning,"Tracker-xAPI: Unknown definition for verb: " + value);
+                                Parent.Tracker.Log(Severity.Warning, "Tracker-xAPI: Unknown definition for verb: " + value);
                         }
                     }
                 }
 
                 public Verb Verb
                 {
-                    get { return vverb;  }
+                    get { return vverb; }
                     set
                     {
                         sverb = value.ToString().ToLower();
@@ -2078,7 +2085,7 @@ namespace AssetPackage
                     get
                     {
                         return score;
-                    } 
+                    }
                     set
                     {
                         if (Parent == null || Parent.Tracker.Utils.check<ValueExtensionException>(value, "xAPI extension: score null or NaN. Ignoring", "xAPI extension: score can't be null or NaN."))
@@ -2087,21 +2094,21 @@ namespace AssetPackage
                 }
 
                 Dictionary<string, System.Object> extdir;
-                public Dictionary<string,System.Object> Extensions
+                public Dictionary<string, System.Object> Extensions
                 {
                     get { return extdir; }
                     set
                     {
                         extdir = new Dictionary<string, object>();
-                        foreach(KeyValuePair<string,object> extension in value)
+                        foreach (KeyValuePair<string, object> extension in value)
                         {
                             switch (extension.Key.ToLower())
                             {
-                                case "success": Success = (bool) extension.Value; break;
-                                case "completion": Completion = (bool) extension.Value; break;
-                                case "response": Response = (string) extension.Value; break;
-                                case "score": Score = (float) extension.Value; break;
-                                default: extdir.Add(extension.Key, extension.Value);  break;
+                                case "success": Success = (bool)extension.Value; break;
+                                case "completion": Completion = (bool)extension.Value; break;
+                                case "response": Response = (string)extension.Value; break;
+                                case "score": Score = (float)extension.Value; break;
+                                default: extdir.Add(extension.Key, extension.Value); break;
                             }
                         }
                     }
@@ -2110,7 +2117,7 @@ namespace AssetPackage
                 public string ToCsv()
                 {
                     string result =
-                        ((success>-1) ? ",success" + intToBoolString(success) : "")
+                        ((success > -1) ? ",success" + intToBoolString(success) : "")
                         + ((completion > -1) ? ",completion" + intToBoolString(completion) : "")
                         + ((!string.IsNullOrEmpty(Response)) ? ",response," + Response.Replace(",", "\\,") : "")
                         + ((!float.IsNaN(score)) ? ",score," + score.ToString("G", System.Globalization.CultureInfo.InvariantCulture) : "");
@@ -2119,7 +2126,7 @@ namespace AssetPackage
                         foreach (KeyValuePair<string, System.Object> extension in Extensions)
                         {
                             result += "," + extension.Key.Replace(",", "\\,") + ",";
-                            if(extension.Value != null)
+                            if (extension.Value != null)
                             {
                                 if (extension.Value.GetType() == typeof(string))
                                     result += extension.Value.ToString().Replace(",", "\\,");
@@ -2131,11 +2138,11 @@ namespace AssetPackage
                                 {
                                     result += ((double)extension.Value).ToString("G", System.Globalization.CultureInfo.InvariantCulture);
                                 }
-                                else if (extension.Value.GetType() == typeof(Dictionary<string,bool>))
+                                else if (extension.Value.GetType() == typeof(Dictionary<string, bool>))
                                 {
                                     Dictionary<string, bool> map = (Dictionary<string, bool>)extension.Value;
                                     string smap = "";
-                                    foreach(KeyValuePair<string,bool> t in map)
+                                    foreach (KeyValuePair<string, bool> t in map)
                                     {
                                         smap += t.Key + "=" + t.Value.ToString().ToLower() + "-";
                                     }
@@ -2172,20 +2179,29 @@ namespace AssetPackage
                         result.Add("score", s);
                     }
 
-                    if (Extensions != null && Extensions.Count > 0) {
+                    if (Extensions != null && Extensions.Count > 0)
+                    {
 
                         JSONClass extensions = new JSONClass();
-                        foreach(KeyValuePair <string, System.Object > extension in Extensions)
+                        foreach (KeyValuePair<string, System.Object> extension in Extensions)
                         {
                             if (extension.Value != null)
                             {
-                                if (extension.Value.GetType() == typeof(float))
+                                if (extension.Value.GetType() == typeof(int))
                                 {
-                                    extensions.Add(extension.Key, new JSONData((float) extension.Value));
+                                    extensions.Add(extension.Key, new JSONData((int)extension.Value));
+                                }
+                                else if (extension.Value.GetType() == typeof(bool))
+                                {
+                                    extensions.Add(extension.Key, new JSONData((bool)extension.Value));
+                                }
+                                else if (extension.Value.GetType() == typeof(float))
+                                {
+                                    extensions.Add(extension.Key, new JSONData((float)extension.Value));
                                 }
                                 else if (extension.Value.GetType() == typeof(double))
                                 {
-                                    extensions.Add(extension.Key, new JSONData((double) extension.Value));
+                                    extensions.Add(extension.Key, new JSONData((double)extension.Value));
                                 }
                                 else if (extension.Value.GetType() == typeof(Dictionary<string, bool>))
                                 {
@@ -2250,7 +2266,15 @@ namespace AssetPackage
                                 if (ExtensionIDs.TryGetValue(key, out tmpkey))
                                     key = tmpkey;
 
-                                if (extension.Value.GetType() == typeof(float))
+                                if (extension.Value.GetType() == typeof(int))
+                                {
+                                    extensions.Add(key, new JSONData((int)extension.Value));
+                                }
+                                else if (extension.Value.GetType() == typeof(bool))
+                                {
+                                    extensions.Add(key, new JSONData((bool)extension.Value));
+                                }
+                                else if (extension.Value.GetType() == typeof(float))
                                 {
                                     extensions.Add(key, new JSONData((float)extension.Value));
                                 }
@@ -2284,11 +2308,11 @@ namespace AssetPackage
                 private static string intToBoolString(int property)
                 {
                     string ret = "";
-                    if(property >= 1)
-                    { 
+                    if (property >= 1)
+                    {
                         ret = ",true";
                     }
-                    else if( property == 0)
+                    else if (property == 0)
                     {
                         ret = ",false";
                     }
@@ -2333,9 +2357,9 @@ namespace AssetPackage
                 }
             }
 
-#endregion Nested Types
+            #endregion Nested Types
         }
 
-#endregion Nested Types
+        #endregion Nested Types
     }
 }
