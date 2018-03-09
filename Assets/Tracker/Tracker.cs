@@ -56,11 +56,48 @@ namespace RAGE.Analytics
 			get { return TrackerAsset.Instance; }
 		}
 
+        public void readHosts()
+        {
+            string path = Application.persistentDataPath;
+
+            if (!path.EndsWith("/"))
+            {
+                path += "/";
+            }
+            
+            PlayerPrefs.Save();
+            //PlayerPrefs.DeleteAll();
+
+            SimpleJSON.JSONNode hostfile = new SimpleJSON.JSONClass();
+
+#if !(UNITY_WEBPLAYER || UNITY_WEBGL)
+            if (!System.IO.File.Exists("host.cfg"))
+            {
+                hostfile.Add("host", new SimpleJSON.JSONData("http://localhost:3000/api/proxy/gleaner/collector/"));
+                hostfile.Add("trackingCode", new SimpleJSON.JSONData("asdasdasdasda"));
+                System.IO.File.WriteAllText("host.cfg", hostfile.ToString());
+            }
+            else
+                hostfile = SimpleJSON.JSON.Parse(System.IO.File.ReadAllText("host.cfg"));
+#endif
+
+            PlayerPrefs.SetString("host", hostfile["host"]);
+            PlayerPrefs.SetString("trackingCode", hostfile["trackingCode"]);
+            PlayerPrefs.Save();
+            
+
+            //End tracker data loading
+        }
+
         void Awake()
         {
             string domain = "";
             int port = 80;
             bool secure = false;
+
+            readHosts();
+            host = PlayerPrefs.GetString("host");
+            trackingCode = PlayerPrefs.GetString("trackingCode");
 
             if (host != "") { 
                 string[] splitted = host.Split('/');

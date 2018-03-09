@@ -222,10 +222,12 @@ public class GameManager : MonoBehaviour
         int punt = (int)score;
 
 
-        Tracker.T.setVar("Time", seconds);
+        Tracker.T.setVar("time", seconds);
         Tracker.T.setVar("Map", map);
         Tracker.T.setVar("Distance", distance);
         Tracker.T.setVar("Optimum", bestP);
+        Tracker.T.completable.Progressed(this.level, CompletableTracker.Completable.Level, score);
+        Tracker.T.setProgress(score);
         Tracker.T.completable.Completed(this.level, CompletableTracker.Completable.Level, goal, score);
 
     }
