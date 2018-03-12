@@ -6,11 +6,16 @@ using System;
 using System.IO;
 using System.Text;
 using RAGE.Analytics;
+using UnityEngine.SceneManagement;
 
 
 public class GM : MonoBehaviour {
 
+    public Text feedbackResponse;
+    private GameState15O gameS;
 
+    public Text noAnswer;
+    int contNoAnswer = 0;
     //Lista y Contador
     private String level = "A";
     private bool isRandom = false;
@@ -36,6 +41,9 @@ public class GM : MonoBehaviour {
     FileStream fs;
 
     void Start () {
+
+        this.gameS = GameObject.FindObjectOfType<GameState15O>();
+       
         levelSelectorPanel = GameObject.FindGameObjectWithTag("LevelSelector");
         levelSelectorPanel.SetActive(true);
         diccionary = new SortedDictionary<string, int>();
@@ -45,7 +53,33 @@ public class GM : MonoBehaviour {
         finalPanel.SetActive(false);
         textBx.gameObject.SetActive(false);
         A.SetActive(false); B.SetActive(false);
-        string path = @".\Resultados.txt";
+
+        string path;
+        if (gameS.fileConfig)
+        {
+            path = @".\configFile15O.txt";
+            if (!File.Exists(path))
+            {
+                // Note that no lock is put on the
+                // file and the possibility exists
+                // that another process could do
+                // something with it between
+                // the calls to Exists and Delete.
+                fs = File.Create(path);
+                Byte[] info = new UTF8Encoding(true).GetBytes("A");
+                fs.Write(info, 0, info.Length);
+                fs.Close();
+            }
+           
+            System.IO.StreamReader file = new System.IO.StreamReader(path);
+            string option = file.ReadLine();
+            Debug.Log(option);
+            file.Close();
+            SetLevel(option);
+            gameS.fileConfig = false;
+        }
+
+        path = @".\Resultados.txt";
 
         if (File.Exists(path))
         {
@@ -65,12 +99,14 @@ public class GM : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
+            contNoAnswer++;
             //Se comprueba si en el punto del mouse al hacer click hay colisión con algún objeto. Se devuelven todos los objetos en result.
             Collider2D[] result = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
             int i = result.Length;
             if (i > 0)
             {
+                contNoAnswer = 0;
                 simpleDictionary.Clear();
                 diccionary.Clear();
                 textBx.gameObject.SetActive(true);
@@ -103,8 +139,15 @@ public class GM : MonoBehaviour {
            if(result.Length > 0)  fs.Write(info, 0, info.Length);
         }
 
+        if (contNoAnswer == 2)
+        {
+            noAnswer.gameObject.SetActive(true);
+            contNoAnswer = 0;
+        }
+
         if (attempts == totalAttempts)
         {
+            gameS.fileConfig = false;
             finalPanel.SetActive(true);
             points.text = (attempts - mistakes).ToString() + "/" + totalAttempts;
 
@@ -131,6 +174,9 @@ public class GM : MonoBehaviour {
             answered.Add(word, value);
             log = "\t✔ Ha respondido correctamente con: " + word;
             Debug.Log("Acertaste");
+            feedbackResponse.gameObject.SetActive(true);
+            feedbackResponse.text = "Has respondido " + word;
+            
 
             // Tracking
             Dictionary<String, bool> simpleVarDictionary = new Dictionary<string, bool>();
@@ -181,7 +227,9 @@ public class GM : MonoBehaviour {
             Debug.Log("Fallaste");
             if (answered.ContainsKey(word.ToLower())) log = "\t✘ Ha respondido una palabra repetida: " + word;
             else log = "\t✘ Ha respondido con error: " + word;
-            
+            feedbackResponse.gameObject.SetActive(true);
+            feedbackResponse.text = "Has respondido " + word;
+
             // Tracking
             Dictionary<String, bool> simpleVarDictionary = new Dictionary<string, bool>();
             foreach (KeyValuePair<string, int> attachStat in simpleDictionary)
@@ -284,6 +332,7 @@ public class GM : MonoBehaviour {
 
     public void SetLevel(string level)
     {
+        contNoAnswer = 0;
         if(level == "rand")
         {
             isRandom = true;
@@ -293,14 +342,13 @@ public class GM : MonoBehaviour {
         {
             isRandom = false;
         }
-        if (level == "A")
-        {
-            A.SetActive(true);
-        }
-        else
-        {
-            B.SetActive(true);
-        }
+        if (level == "A")  A.SetActive(true);
+        else if (level == "B") B.SetActive(true);
+        else {
+            gameS.fileConfig = true;
+            SceneManager.LoadScene("Tutorial15O");
+        } 
+
         this.level = level;
         levelSelectorPanel.SetActive(false);
 

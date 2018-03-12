@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class GMTutorial : MonoBehaviour
 {
+    public GameObject errorPanel;
+    public Text noAnswer;
+    int contNoAnswer = 0;
+
     public InputField textBx;                                       //Game object que contiene el inputField
     public GameObject[] tutorialPanels;                             //Array que contiene los paneles del tutorial
     public Text points;                                             //Texto para el panel final;
@@ -31,6 +35,7 @@ public class GMTutorial : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            contNoAnswer++;
             if(contTutorial == tutorialPanels.Length - 2)
             {
                 tutorialPanels[contTutorial].SetActive(false);
@@ -41,6 +46,12 @@ public class GMTutorial : MonoBehaviour
             if (tutorial) tutorialUpdate();
             else gameUpdate();
 
+        }
+
+        if(contNoAnswer == 2)
+        {
+            noAnswer.gameObject.SetActive(true);
+            contNoAnswer = 0;
         }
 
         if (attempts == 5)
@@ -62,6 +73,7 @@ public class GMTutorial : MonoBehaviour
         int i = result.Length;
         if (i > 0)
         {
+            contNoAnswer = 0;
             diccionary.Clear();
             textBx.gameObject.SetActive(true);
             textBx.Select();
@@ -92,16 +104,21 @@ public class GMTutorial : MonoBehaviour
     //Funciona como el anterior.
     void tutorialUpdate()
     {
+        bool error = true;
         if (contTutorial != 0)
         {
             Collider2D[] result = Physics2D.OverlapPointAll(Camera.main.ScreenToWorldPoint(Input.mousePosition));
             int i = result.Length;
+            if(i > 0)
+            {
+                contNoAnswer= 0;
+            }
             while (i > 0)
             {
                 i--;
                 if (result[i].name == "Botella")
                 {
-
+                    error = false;
                     tutorialPanels[contTutorial].SetActive(false);
                     contTutorial++;
                     tutorialPanels[contTutorial].SetActive(true);
@@ -123,6 +140,13 @@ public class GMTutorial : MonoBehaviour
                     }
 
                 }
+                
+            }
+            if (error)
+            {
+                
+                errorPanel.SetActive(true);
+                
             }
         }
         else
