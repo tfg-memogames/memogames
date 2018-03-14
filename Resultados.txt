@@ -1,1 +1,2 @@
-Se ha pinchado en: Bombilla CepilloDientes 
+Se ha pinchado en: Pistola 
+	✘ Ha respondido con error: pistolito
