@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-//#define ASYNC
-#undef ASYNC
+#define ASYNC
+//#undef ASYNC
 
 namespace AssetPackage
 {
