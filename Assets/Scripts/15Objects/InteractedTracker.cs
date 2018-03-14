@@ -12,7 +12,7 @@ public class InteractedTracker : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {/*
+	void Update () {
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -31,7 +31,8 @@ public class InteractedTracker : MonoBehaviour {
                     i--;
                     int id;
                     string objName = result[i].name;
-                    Tracker.T.setVar(objName, 1);
+                    if(objName != null)
+                        Tracker.T.setVar(objName, 1);
                 }
             }
 
@@ -54,6 +55,6 @@ public class InteractedTracker : MonoBehaviour {
             }
 
             Tracker.T.GameObject.Interacted(name);
-        }*/
+        }
     }
 }

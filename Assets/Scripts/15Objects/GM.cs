@@ -194,7 +194,7 @@ public class GM : MonoBehaviour {
                 
                 // Mappings por si hacen falta en el analysis
                 String varKey = "mappings_" + attachStat.Key;
-                String varValue = "";
+                String varValue = " ";
                 foreach (KeyValuePair<string, int> dicKeyValues in diccionary)
                 {
                     if (dicKeyValues.Value == attachStat.Value)
@@ -206,13 +206,16 @@ public class GM : MonoBehaviour {
                 {
                     varValue = varValue.Substring(0, varValue.Length - 1);
                 }
-                Tracker.T.setVar(varKey, varValue);
+                if(varKey != null && varValue != null)
+                    Tracker.T.setVar(varKey, varValue);
             }
-            Tracker.T.setVar("targets", simpleVarDictionary);
+            if(simpleVarDictionary != null)
+                Tracker.T.setVar("targets", simpleVarDictionary);
 
             foreach (KeyValuePair<string, int> attachStat in diccionary)
             {
-                Tracker.T.setVar(attachStat.Key, attachStat.Value);
+                if(attachStat.Key != null)
+                    Tracker.T.setVar(attachStat.Key, attachStat.Value);
             }
             // No hubo cambio de objeto
             Tracker.T.setVar("object-changed", 0);
@@ -238,7 +241,7 @@ public class GM : MonoBehaviour {
 
                 // Mappings por si hacen falta en el analysis
                 String varKey = "mappings_" + attachStat.Key;
-                String varValue = "";
+                String varValue = " ";
                 foreach (KeyValuePair<string, int> dicKeyValues in diccionary)
                 {
                     if (dicKeyValues.Value == attachStat.Value)
@@ -250,13 +253,16 @@ public class GM : MonoBehaviour {
                 {
                     varValue = varValue.Substring(0, varValue.Length - 1);
                 }
-                Tracker.T.setVar(varKey, varValue);
+                if(varKey != null && varValue != null)
+                    Tracker.T.setVar(varKey, varValue);
             }
-            Tracker.T.setVar("targets", simpleVarDictionary);
+            if(simpleVarDictionary != null)
+                Tracker.T.setVar("targets", simpleVarDictionary);
 
             foreach (KeyValuePair<string, int> attachStat in diccionary)
             {
-                Tracker.T.setVar(attachStat.Key, attachStat.Value);
+                if(attachStat.Key != null)
+                    Tracker.T.setVar(attachStat.Key, attachStat.Value);
             }
             // No hubo cambio de objeto
             Tracker.T.setVar("object-changed", 0);
@@ -277,7 +283,7 @@ public class GM : MonoBehaviour {
 
                 // Mappings por si hacen falta en el analysis
                 String varKey = "mappings_" + attachStat.Key;
-                String varValue = "";
+                String varValue = " ";
                 foreach (KeyValuePair<string, int> dicKeyValues in diccionary)
                 {
                     if(dicKeyValues.Value == attachStat.Value)
@@ -289,14 +295,16 @@ public class GM : MonoBehaviour {
                 {
                     varValue = varValue.Substring(0, varValue.Length - 1);
                 }
-                Tracker.T.setVar(varKey, varValue);
+                if(varKey != null && varValue != null)
+                    Tracker.T.setVar(varKey, varValue);
             }
-
-            Tracker.T.setVar("targets", simpleVarDictionary);
+            if(simpleVarDictionary != null)
+                Tracker.T.setVar("targets", simpleVarDictionary);
 
             foreach (KeyValuePair<string, int> attachStat in diccionary)
             {
-                Tracker.T.setVar(attachStat.Key, attachStat.Value);
+                if(attachStat.Key != null)
+                    Tracker.T.setVar(attachStat.Key, attachStat.Value);
             }
             // Hubo cambio de objeto
             Tracker.T.setVar("object-changed", 1);

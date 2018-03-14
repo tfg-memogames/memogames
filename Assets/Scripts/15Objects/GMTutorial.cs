@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GMTutorial : MonoBehaviour
 {
     public GameObject errorPanel;
+    public Text info;
     public Text noAnswer;
     int contNoAnswer = 0;
 
@@ -118,6 +119,7 @@ public class GMTutorial : MonoBehaviour
                 i--;
                 if (result[i].name == "Botella")
                 {
+                    info.gameObject.SetActive(true);
                     error = false;
                     tutorialPanels[contTutorial].SetActive(false);
                     contTutorial++;
