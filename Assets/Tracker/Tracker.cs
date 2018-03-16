@@ -29,32 +29,32 @@ using System.Threading;
 
 namespace RAGE.Analytics
 {
-	using AssetPackage;
+    using AssetPackage;
 
-	public class Tracker : MonoBehaviour
-	{
-		public static DateTime START_DATE = new DateTime (1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-		public bool rawCopy;
-		public static bool strictMode = true;
-		private float nextFlush;
-		private bool flushRequested = false;
-		public float flushInterval = 3;
-		[Range(3, int.MaxValue)]
-		public float checkInterval = 3;
-		private float nextCheck;
-		public string storageType = "net";
-		public string traceFormat = "xapi";
-		public string host = "https://analytics.e-ucm.es/";
-		public string trackingCode;
-		public Boolean debug = false;
+    public class Tracker : MonoBehaviour
+    {
+        public static DateTime START_DATE = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        public bool rawCopy;
+        public static bool strictMode = true;
+        private float nextFlush;
+        private bool flushRequested = false;
+        public float flushInterval = 1;
+        [Range(3, int.MaxValue)]
+        public float checkInterval = 3;
+        private float nextCheck;
+        public string storageType = "net";
+        public string traceFormat = "xapi";
+        public string host = "https://analytics.e-ucm.es/";
+        public string trackingCode;
+        public Boolean debug = false;
 
-		public string username;
-		public string password;
+        public string username;
+        public string password;
 
-		public static TrackerAsset T
-		{
-			get { return TrackerAsset.Instance; }
-		}
+        public static TrackerAsset T
+        {
+            get { return TrackerAsset.Instance; }
+        }
 
         public void readHosts()
         {
@@ -64,7 +64,7 @@ namespace RAGE.Analytics
             {
                 path += "/";
             }
-            
+
             PlayerPrefs.Save();
             //PlayerPrefs.DeleteAll();
 
@@ -84,7 +84,7 @@ namespace RAGE.Analytics
             PlayerPrefs.SetString("host", hostfile["host"]);
             PlayerPrefs.SetString("trackingCode", hostfile["trackingCode"]);
             PlayerPrefs.Save();
-            
+
 
             //End tracker data loading
         }
@@ -98,8 +98,11 @@ namespace RAGE.Analytics
             readHosts();
             host = PlayerPrefs.GetString("host");
             trackingCode = PlayerPrefs.GetString("trackingCode");
+            username = PlayerPrefs.GetString("username");
+            password = PlayerPrefs.GetString("username");
 
-            if (host != "") { 
+            if (host != "")
+            {
                 string[] splitted = host.Split('/');
                 string[] host_splitted = splitted[2].Split(':');
                 domain = host_splitted[0];
@@ -107,89 +110,97 @@ namespace RAGE.Analytics
                 secure = splitted[0] == "https:";
             }
 
-			TrackerAsset.TraceFormats format;
-			switch (traceFormat) {
-			case "json":
-				format = TrackerAsset.TraceFormats.json;
-				break;
-			case "xapi":
-				format = TrackerAsset.TraceFormats.xapi;
-				break;
-			default:
-				format = TrackerAsset.TraceFormats.csv;
-				break;
-			}
+            TrackerAsset.TraceFormats format;
+            switch (traceFormat)
+            {
+                case "json":
+                    format = TrackerAsset.TraceFormats.json;
+                    break;
+                case "xapi":
+                    format = TrackerAsset.TraceFormats.xapi;
+                    break;
+                default:
+                    format = TrackerAsset.TraceFormats.csv;
+                    break;
+            }
 
-			TrackerAsset.StorageTypes storage;
-			switch (storageType) {
-			case "net":
-				storage = TrackerAsset.StorageTypes.net;
-				break;
-			default:
-				storage = TrackerAsset.StorageTypes.local;
-				break;
-			}
+            TrackerAsset.StorageTypes storage;
+            switch (storageType)
+            {
+                case "net":
+                    storage = TrackerAsset.StorageTypes.net;
+                    break;
+                default:
+                    storage = TrackerAsset.StorageTypes.local;
+                    break;
+            }
 
-			TrackerAssetSettings tracker_settings = new TrackerAssetSettings()
-			{
-				Host = domain,
-				TrackingCode = trackingCode,
-				BasePath = "/api",
-				Port = port,
-				Secure = secure,
+            TrackerAssetSettings tracker_settings = new TrackerAssetSettings()
+            {
+                Host = domain,
+                TrackingCode = trackingCode,
+                BasePath = "/api",
+                Port = port,
+                Secure = secure,
                 StorageType = storage,
-				TraceFormat = format,
-				BackupStorage = rawCopy
-			};
+                TraceFormat = format,
+                BackupStorage = rawCopy,
+                BackupFile = "tracesRaw.csv"
+            };
 
-			TrackerAsset.Instance.Bridge = new UnityBridge();
-			TrackerAsset.Instance.Settings = tracker_settings;
-		}
-        
-		/// <summary>
-		/// DONT USE THIS METHOD. UNITY INTERNAL MONOBEHAVIOUR.
-		/// </summary>
-		public void Start ()
-		{
-			if (!String.IsNullOrEmpty (username))
-				TrackerAsset.Instance.Login (username, password);
+            TrackerAsset.Instance.Bridge = new UnityBridge();
+            TrackerAsset.Instance.Settings = tracker_settings;
+        }
 
-			TrackerAsset.Instance.Start ();
-			this.nextFlush = flushInterval;
-			UnityEngine.Object.DontDestroyOnLoad (this);
-		}
+        /// <summary>
+        /// DONT USE THIS METHOD. UNITY INTERNAL MONOBEHAVIOUR.
+        /// </summary>
+        public void Start()
+        {
+            if (!String.IsNullOrEmpty(username))
+                TrackerAsset.Instance.Login(username, password);
 
-		void OnApplicationQuit(){
-			// We start the thread for a final
-			ProcessThreadCollection currentThreads = Process.GetCurrentProcess().Threads;
+            TrackerAsset.Instance.Start();
+            this.nextFlush = flushInterval;
+            UnityEngine.Object.DontDestroyOnLoad(this);
+        }
 
-			foreach (ProcessThread thread in currentThreads)    
-			{
-				UnityEngine.Debug.Log ("Thread: " + thread.Id + " - " + thread.StartTime);
-			}
-			TrackerAsset.Instance.Exit ();
-			UnityEngine.Debug.Log ("Fin");
-		}
+        void OnApplicationQuit()
+        {
+            // We start the thread for a final
+            ProcessThreadCollection currentThreads = Process.GetCurrentProcess().Threads;
 
-		// <summary>
-		// DONT USE THIS METHOD. UNITY INTERNAL MONOBEHAVIOUR.
-		/// </summary>
-		public void Update ()
-		{
-			float delta = Time.deltaTime;
-			if (flushInterval >= 0) {
-					nextFlush -= delta;
-					if (nextFlush <= 0) {
-						flushRequested = true;
-					}
-					while (nextFlush <= 0) {
-						nextFlush += flushInterval;
-					}
-			}
-			if (flushRequested) {
-				flushRequested = false;
-				TrackerAsset.Instance.Flush ();
-			}
-		}
-	}
+            foreach (ProcessThread thread in currentThreads)
+            {
+                UnityEngine.Debug.Log("Thread: " + thread.Id + " - " + thread.StartTime);
+            }
+            TrackerAsset.Instance.Exit();
+            UnityEngine.Debug.Log("Fin");
+        }
+
+        // <summary>
+        // DONT USE THIS METHOD. UNITY INTERNAL MONOBEHAVIOUR.
+        /// </summary>
+        public void Update()
+        {
+            float delta = Time.deltaTime;
+            if (flushInterval >= 0)
+            {
+                nextFlush -= delta;
+                if (nextFlush <= 0)
+                {
+                    flushRequested = true;
+                }
+                while (nextFlush <= 0)
+                {
+                    nextFlush += flushInterval;
+                }
+            }
+            if (flushRequested)
+            {
+                flushRequested = false;
+                TrackerAsset.Instance.Flush();
+            }
+        }
+    }
 }
