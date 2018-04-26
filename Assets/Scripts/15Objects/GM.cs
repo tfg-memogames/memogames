@@ -21,8 +21,7 @@ public class GM : MonoBehaviour {
     private bool isRandom = false;
     public GameObject lista;
     public Text listaText;
-    public Text cont;
-    private bool hayLista = false, hayCont = false;
+    private bool hayLista = false;
 
     public Text points;                                             //Texto para el panel final;
     public GameObject finalPanel;                                   //Panel final;
@@ -35,7 +34,6 @@ public class GM : MonoBehaviour {
 
     private GameObject levelSelectorPanel;
     private int attempts = 0;                                       //Entero que controla el número de intentos.
-    private int totalAttempts = 15;                                 
     private int mistakes = 0;                                       //Entero que controla el número de errores del usuario.
 
     FileStream fs;
@@ -55,28 +53,40 @@ public class GM : MonoBehaviour {
         A.SetActive(false); B.SetActive(false);
 
         string path;
-        if (gameS.fileConfig)
+
+        string type = PlayerPrefs.GetString("type", null);
+
+        if (type == "A" || type == "B")
         {
-            path = @".\configFile15O.txt";
-            if (!File.Exists(path))
-            {
-                // Note that no lock is put on the
-                // file and the possibility exists
-                // that another process could do
-                // something with it between
-                // the calls to Exists and Delete.
-                fs = File.Create(path);
-                Byte[] info = new UTF8Encoding(true).GetBytes("A");
-                fs.Write(info, 0, info.Length);
-                fs.Close();
-            }
-           
-            System.IO.StreamReader file = new System.IO.StreamReader(path);
-            string option = file.ReadLine();
-            Debug.Log(option);
-            file.Close();
-            SetLevel(option);
             gameS.fileConfig = false;
+            SetLevel(type);
+        }
+        else
+        {
+
+            if (gameS.fileConfig)
+            {
+                path = @".\configFile15O.txt";
+                if (!File.Exists(path))
+                {
+                    // Note that no lock is put on the
+                    // file and the possibility exists
+                    // that another process could do
+                    // something with it between
+                    // the calls to Exists and Delete.
+                    fs = File.Create(path);
+                    Byte[] info = new UTF8Encoding(true).GetBytes("A");
+                    fs.Write(info, 0, info.Length);
+                    fs.Close();
+                }
+
+                System.IO.StreamReader file = new System.IO.StreamReader(path);
+                string option = file.ReadLine();
+                Debug.Log(option);
+                file.Close();
+                SetLevel(option);
+                gameS.fileConfig = false;
+            }
         }
 
         path = @".\Resultados.txt";
@@ -145,17 +155,6 @@ public class GM : MonoBehaviour {
             contNoAnswer = 0;
         }
 
-        if (attempts == totalAttempts)
-        {
-            gameS.fileConfig = false;
-            finalPanel.SetActive(true);
-            points.text = (attempts - mistakes).ToString() + "/" + totalAttempts;
-
-            // Completed the 15 Objects level
-            bool failed = (float)mistakes > ((float)totalAttempts / 2.0f);
-            float score = 1.0f - ((float)mistakes / (float)totalAttempts);
-            Tracker.T.Completable.Completed(level, CompletableTracker.Completable.Level, !failed, score);
-        }
     }
 
 
@@ -322,19 +321,12 @@ public class GM : MonoBehaviour {
         simpleDictionary.Clear();
         textBx.gameObject.SetActive(false);
         attempts++;
-
-        if (hayCont) cont.text = "Has respondido " + attempts.ToString() + " objetos.\nTe quedan " + (totalAttempts - attempts).ToString();
-        if (hayLista)
-        {
-            listaText.text += "\n- " + word;
-        }
         
         textBx.Select();
         textBx.text = "";
 
         // Progreso del nivel actual
-        float progress = (float)attempts / (float)totalAttempts;
-        Tracker.T.Completable.Progressed(level, CompletableTracker.Completable.Level, progress);
+      //  Tracker.T.Completable.Progressed(level, CompletableTracker.Completable.Level, progress);
     }
 
 
@@ -373,12 +365,7 @@ public class GM : MonoBehaviour {
         hayLista = hay;
         SwActive(lista);
     }
-    public void HayCont(bool hay)
-    {
-        hayCont = hay;
-        cont.text = "Has respondido 0 objetos\nTe quedan 15";
-        SwActive(cont.gameObject);
-    }
+ 
     public void SwActive(GameObject ob)
     {
         ob.SetActive(!ob.active);

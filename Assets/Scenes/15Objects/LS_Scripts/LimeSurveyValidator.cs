@@ -8,7 +8,7 @@ using RAGE.Net;
 public class LimeSurveyValidator : MonoBehaviour {
 
     Net connection;
-    string host = "localhost";
+    string host = "localhost", surveymanager_host = "localhost/api/proxy/surveymanager/classes/metadata/AB/";
 	string survey_pre = "", survey_post = "", master_token_online = "", master_token_offline = "";
 
     public Text token, response;
@@ -30,8 +30,10 @@ public class LimeSurveyValidator : MonoBehaviour {
 			survey_post = hostfile["limesurvey_post"];
 			master_token_online = hostfile["master_token_online"];
 			master_token_offline = hostfile["master_token_offline"];
+            surveymanager_host = hostfile["surveymanager_host"];
 
-		}catch(Exception ex){}
+        }
+        catch(Exception ex){}
 
         PlayerPrefs.SetString("LimesurveyHost", host);
 		if(survey_pre != "")
@@ -64,9 +66,10 @@ public class LimeSurveyValidator : MonoBehaviour {
 			}else
 				PlayerPrefs.SetInt ("online", 1);
 
-			SceneManager.LoadScene ("Start");
+            PlayerPrefs.SetString("type", "default");
+            SceneManager.LoadScene ("Start");
 		} else
-            connection.GET(host + "surveys/validate?survey=" + survey_pre + ((token.Length>0)? "&token=" + token : ""), new ValidateListener(response, token));
+            connection.GET(host + "surveys/validate?survey=" + survey_pre + ((token.Length>0)? "&token=" + token : ""), new ValidateListener(response, token, surveymanager_host, connection));
     }
 
     public void completed()
@@ -88,18 +91,21 @@ public class LimeSurveyValidator : MonoBehaviour {
 		else if(type == "post")
 			survey = PlayerPrefs.GetString ("LimesurveyPost");
 
-		connection.GET(host + "surveys/completed?survey=" + survey + ((token.Length > 0) ? "&token=" + token : ""), new CompleteListener(response, token));
+		connection.GET(host + "surveys/completed?survey=" + survey + ((token.Length > 0) ? "&token=" + token : ""), new CompleteListener(response, token, surveymanager_host, connection));
     }
 
     public class ValidateListener : Net.IRequestListener
     {
         Text response;
-        string token;
+        string token, surveymanager_host;
+        Net connection;
 
-        public ValidateListener(Text response, string token)
+        public ValidateListener(Text response, string token, string surveymanger_host, Net connection)
         {
             this.response = response;
             this.token = token;
+            this.surveymanager_host = surveymanger_host;
+            this.connection = connection;
         }
 
         public void Error(string error)
@@ -116,23 +122,30 @@ public class LimeSurveyValidator : MonoBehaviour {
 			PlayerPrefs.SetString("name", token);
             PlayerPrefs.SetString("LimesurveyToken", token);
             PlayerPrefs.Save();
-			if (PlayerPrefs.HasKey ("LimesurveyPre")) {
-				PlayerPrefs.SetString ("CurrentSurvey", "pre");
-				SceneManager.LoadScene ("_Survey");
-			}else
-                SceneManager.LoadScene("Start");
+            if (PlayerPrefs.HasKey("LimesurveyPre"))
+            {
+                PlayerPrefs.SetString("CurrentSurvey", "pre");
+                SceneManager.LoadScene("_Survey");
+            }
+            else
+            {
+                connection.GET(surveymanager_host + token, new TestTypeListener(response, token));
+            }
         }
     }
 
 	public class CompleteListener : Net.IRequestListener
     {
         Text response;
-        string token;
+        string token, host;
+        Net connection;
 
-        public CompleteListener(Text response, string token)
+        public CompleteListener(Text response, string token, string host, Net connection)
         {
             this.response = response;
             this.token = token;
+            this.connection = connection;
+            this.host = host;
         }
 
         public void Error(string error)
@@ -149,9 +162,49 @@ public class LimeSurveyValidator : MonoBehaviour {
 				type = PlayerPrefs.GetString ("CurrentSurvey");
 
 			if (type == "pre")
-				SceneManager.LoadScene ("Start");
-			else if (type == "post")
+                connection.GET(host + token, new TestTypeListener(response, token));
+            else if (type == "post")
 				Application.Quit ();
+        }
+    }
+
+    public class TestTypeListener : Net.IRequestListener
+    {
+        Text response;
+        string token;
+
+        public TestTypeListener(Text response, string token)
+        {
+            this.response = response;
+            this.token = token;
+        }
+
+        public void Error(string error)
+        {
+            PlayerPrefs.SetString("type", "default");
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("Explanation");
+        }
+
+        public void Result(string data)
+        {
+            SimpleJSON.JSONNode type = SimpleJSON.JSON.Parse(data);
+
+            string value = type["value"];
+            if(value != "A" && value != "B")
+            {
+                value = "default";
+                PlayerPrefs.SetString("type", value);
+                PlayerPrefs.Save();
+                SceneManager.LoadScene("Start");
+
+            }
+            else
+            {
+                PlayerPrefs.SetString("type", value);
+                PlayerPrefs.Save();
+                SceneManager.LoadScene("Explanation");
+            }
         }
     }
 }

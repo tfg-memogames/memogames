@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -500,6 +500,7 @@ GameObject:
   - component: {fileID: 58663284}
   - component: {fileID: 58663283}
   - component: {fileID: 58663287}
+  - component: {fileID: 58663288}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -581,6 +582,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a98f9b303700140a75d2bfc0a861a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &58663288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 58663282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae305a0c067b4248970da8d78248f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  confirmExitPanel: {fileID: 0}
+  forceExit: 0
+  infoPanel: {fileID: 0}
+  dataFile: 
 --- !u!1 &63986436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,6 +1582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9c02ee11204713449997d09a23dcf73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sa: {fileID: 58663288}
 --- !u!114 &156637718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5082,7 +5099,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 156637717}
-        m_MethodName: ChangeScene
+        m_MethodName: CheckAndChangeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8799,7 +8816,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.586, y: 0.143}
   m_AnchorMax: {x: 0.94400007, y: 0.28023714}
-  m_AnchoredPosition: {x: 1.5400009, y: 0.5}
+  m_AnchoredPosition: {x: 1.5400085, y: 0.5}
   m_SizeDelta: {x: 0.05000305, y: 7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1050789683
@@ -9331,7 +9348,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 156637717}
-        m_MethodName: ChangeScene
+        m_MethodName: CheckAndChangeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15627,7 +15644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.586, y: 0.44300002}
   m_AnchorMax: {x: 0.94400007, y: 0.5862543}
-  m_AnchoredPosition: {x: 1.3740005, y: -3.90504}
+  m_AnchoredPosition: {x: 1.3739929, y: -3.9050398}
   m_SizeDelta: {x: -0.22000122, y: 7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1846699046

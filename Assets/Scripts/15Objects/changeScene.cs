@@ -18,6 +18,17 @@ public class changeScene : MonoBehaviour {
 		
 	}
 
+    public void CheckAndChangeScene(string scene)
+    {
+        string type = PlayerPrefs.GetString("type", null);
+
+        if (type == "A" || type == "B")
+        {
+            scene = "exit";
+        }
+        ChangeScene(scene);
+    }
+
     public void ChangeScene(string scene)
     {
         Tracker.T.Accessible.Accessed(scene, AccessibleTracker.Accessible.Screen);

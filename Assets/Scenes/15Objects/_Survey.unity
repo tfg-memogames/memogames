@@ -375,6 +375,59 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 303916500}
+--- !u!1 &325013852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1658850938989692, guid: 2368d04e5926afe498ac3b9d840c089b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 325013854}
+  - component: {fileID: 325013853}
+  m_Layer: 0
+  m_Name: Tracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &325013853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114913067745731754, guid: 2368d04e5926afe498ac3b9d840c089b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 325013852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f96f0a1591a944f801ecb456e9e6a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rawCopy: 1
+  flushInterval: 1
+  checkInterval: 3
+  storageType: net
+  traceFormat: xapi
+  host: https://analytics.e-ucm.es/
+  trackingCode: 
+  debug: 1
+  username: 
+  password: 
+--- !u!4 &325013854
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 4255015774662002, guid: 2368d04e5926afe498ac3b9d840c089b,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 325013852}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352016316
 GameObject:
   m_ObjectHideFlags: 0

@@ -53,13 +53,7 @@ public class GMTutorial : MonoBehaviour
         {
             noAnswer.gameObject.SetActive(true);
             contNoAnswer = 0;
-        }
-
-        if (attempts == 5)
-        {
-            finalPanel.SetActive(true);
-            points.text = (attempts - mistakes).ToString() + "/5";
-        }
+        }       
     }
 
     #region Updates
@@ -117,7 +111,7 @@ public class GMTutorial : MonoBehaviour
             while (i > 0)
             {
                 i--;
-                if (result[i].name == "Botella")
+                if (result[i].name.ToLower().Equals("botella"))
                 {
                     info.gameObject.SetActive(true);
                     error = false;
