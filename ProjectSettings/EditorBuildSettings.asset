@@ -84,11 +84,23 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/15Objects/_Login.unity
+    guid: 8e7879ebfd701bb4498eb1be656a4c0a
+  - enabled: 1
+    path: Assets/Scenes/15Objects/_Survey.unity
+    guid: a076f839b58dcdd4ba2c46bad712a1db
+  - enabled: 1
     path: Assets/Scenes/15Objects/Start.unity
     guid: b65a18ae7c88b9147b8d37dc314940a3
   - enabled: 1
+    path: Assets/Scenes/15Objects/PreGame.unity
+    guid: 8ad62a7df4f5b0748b4e3c8c26d0f94d
+  - enabled: 1
     path: Assets/Scenes/15Objects/15Objects.unity
     guid: 7fec1dbf4ea1f6541ae96b07f0272ec8
+  - enabled: 1
+    path: Assets/Scenes/15Objects/Explanation.unity
+    guid: 3189f90ade9e05a469440734556b6ac5
   - enabled: 1
     path: Assets/Scenes/15Objects/Tutorial15O.unity
     guid: fe1b72f50cea94744893873fca269079

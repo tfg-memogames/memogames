@@ -53,6 +53,9 @@ public class InteractedTracker : MonoBehaviour {
                     name += "-B";
                 }
             }
+            
+            Tracker.T.setVar("xPerc", Input.mousePosition.x / Screen.width);
+            Tracker.T.setVar("yPerc", Input.mousePosition.x / Screen.width);
 
             Tracker.T.GameObject.Interacted(name);
         }

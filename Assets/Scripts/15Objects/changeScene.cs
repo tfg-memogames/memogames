@@ -6,6 +6,8 @@ using RAGE.Analytics;
 
 public class changeScene : MonoBehaviour {
 
+    public SettingsApp sa;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,17 +18,26 @@ public class changeScene : MonoBehaviour {
 		
 	}
 
+    public void CheckAndChangeScene(string scene)
+    {
+        string type = PlayerPrefs.GetString("type", null);
+
+        if (type == "A" || type == "B")
+        {
+            scene = "exit";
+        }
+        ChangeScene(scene);
+    }
+
     public void ChangeScene(string scene)
     {
         Tracker.T.Accessible.Accessed(scene, AccessibleTracker.Accessible.Screen);
-        if(scene != "exit")            
+        if (scene != "exit")
             SceneManager.LoadScene(scene);
         else
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-		Application.Quit();
-#endif
+        {
+            sa.ExitGameConfirmed();
+        }
+            
     }
-
 }
